@@ -19,12 +19,12 @@
 <div style="width:100%;margin:0 auto;overflow:clip;container-type:inline-size;background:#1F1C1A;color:#F4EFE6;position:relative">
 
 <header style="position:relative;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:28px clamp(20px,5.5cqw,80px)">
-<a href="index.html" style="font:700 22px/1 'Familjen Grotesk',sans-serif;letter-spacing:-.015em">REEVA.</a>
+<span></span>
 <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}"><nav style="display:flex;gap:40px;font:400 17px/1 'Familjen Grotesk',sans-serif"><a href="index.html">Home</a><a href="about.html" style="color:#D42A2E">About</a><a href="say-hi.html">Say Hi →</a></nav></sc-if>
 <sc-if value="{{ isMobile }}"><button onClick="{{ toggleMenu }}" style="background:none;border:1px solid rgba(244,239,230,.35);color:#F4EFE6;border-radius:999px;padding:0 18px;height:44px;font:500 14px/1 'Familjen Grotesk',sans-serif;cursor:pointer">Menu</button></sc-if>
 </header>
 <sc-if value="{{ menuOpen }}"><div style="position:absolute;inset:0;z-index:30;background:#D42A2E;padding:28px 24px;display:flex;flex-direction:column;gap:6px">
-<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:56px"><span style="font:700 26px/1 'Familjen Grotesk',sans-serif;letter-spacing:-.015em">REEVA.</span><button onClick="{{ toggleMenu }}" style="background:#F4EFE6;border:none;color:#D42A2E;border-radius:999px;padding:0 18px;height:44px;font:600 14px/1 'Familjen Grotesk',sans-serif;cursor:pointer">Close</button></div>
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:56px"><span></span><button onClick="{{ toggleMenu }}" style="background:#F4EFE6;border:none;color:#D42A2E;border-radius:999px;padding:0 18px;height:44px;font:600 14px/1 'Familjen Grotesk',sans-serif;cursor:pointer">Close</button></div>
 <a href="index.html" style="font:400 52px/1.2 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;color:#F4EFE6">Home</a><a href="about.html" style="font:400 52px/1.2 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;color:#F4EFE6">About</a><a href="#say-hi" onClick="{{ toggleMenu }}" style="font:400 52px/1.2 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;color:#F4EFE6">Say hi</a>
 </div></sc-if>
 
