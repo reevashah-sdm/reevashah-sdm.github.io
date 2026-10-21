@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&amp;family=Caveat+Brush&amp;display=swap" rel="stylesheet">
+<style>body{margin:0;background:#161412}*{box-sizing:border-box}html{scroll-behavior:smooth}a{color:inherit;text-decoration:none;transition:color .2s}a:hover{color:#D42A2E}::selection{background:#D42A2E;color:#F4EFE6}@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}html{scroll-behavior:auto!important}}</style>
+<script src="reeva-face.js"></script>
+</helmet>
+<div style="min-height:100vh;background:#161412;font-family:'Familjen Grotesk',sans-serif">
+<div ref="{{ peekRef }}" style="position:fixed;left:0;top:0;width:0;height:0;overflow:hidden;z-index:45;pointer-events:none"><div ref="{{ canvasRef }}" style="position:absolute;left:0;top:0;width:0;height:0"></div></div>
+<div ref="{{ bubbleRef }}" style="position:fixed;left:0;top:0;z-index:46;pointer-events:none;opacity:0;transition:opacity .3s;padding:10px 16px 8px;border-radius:999px;background:#F4EFE6;color:#1F1C1A;font:400 20px/1 'Caveat Brush',cursive;white-space:nowrap;box-shadow:0 10px 30px rgba(0,0,0,.25)"></div>
+<div style="width:100%;margin:0 auto;overflow:clip;container-type:inline-size;background:#1F1C1A;color:#F4EFE6;position:relative">
+
+<header style="position:relative;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:28px clamp(20px,5.5cqw,80px)">
+<a href="index.html" style="font:700 22px/1 'Familjen Grotesk',sans-serif;letter-spacing:-.015em">REEVA.</a>
+<sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}"><nav style="display:flex;gap:40px;font:400 17px/1 'Familjen Grotesk',sans-serif"><a href="index.html">Home</a><a href="about.html" style="color:#D42A2E">About</a><a href="say-hi.html">Say Hi →</a></nav></sc-if>
+<sc-if value="{{ isMobile }}"><button onClick="{{ toggleMenu }}" style="background:none;border:1px solid rgba(244,239,230,.35);color:#F4EFE6;border-radius:999px;padding:0 18px;height:44px;font:500 14px/1 'Familjen Grotesk',sans-serif;cursor:pointer">Menu</button></sc-if>
+</header>
+<sc-if value="{{ menuOpen }}"><div style="position:absolute;inset:0;z-index:30;background:#D42A2E;padding:28px 24px;display:flex;flex-direction:column;gap:6px">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:56px"><span style="font:700 26px/1 'Familjen Grotesk',sans-serif;letter-spacing:-.015em">REEVA.</span><button onClick="{{ toggleMenu }}" style="background:#F4EFE6;border:none;color:#D42A2E;border-radius:999px;padding:0 18px;height:44px;font:600 14px/1 'Familjen Grotesk',sans-serif;cursor:pointer">Close</button></div>
+<a href="index.html" style="font:400 52px/1.2 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;color:#F4EFE6">Home</a><a href="about.html" style="font:400 52px/1.2 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;color:#F4EFE6">About</a><a href="#say-hi" onClick="{{ toggleMenu }}" style="font:400 52px/1.2 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;color:#F4EFE6">Say hi</a>
+</div></sc-if>
+
+<section ref="{{ heroRef }}" onMouseMove="{{ heroMove }}" onMouseLeave="{{ heroLeave }}" style="position:relative;overflow:hidden">
+<div style="position:relative;z-index:1;padding:clamp(24px,3cqw,40px) clamp(20px,5.5cqw,80px) clamp(80px,8cqw,120px)">
+<div style="font:400 clamp(18px,1.6cqw,22px)/1.3 'Caveat Brush',cursive;color:#D42A2E">— the person behind the work</div>
+<h1 style="margin:20px 0 0;font:400 clamp(40px,6cqw,88px)/1.2 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;cursor:default"><sc-for list="{{ heroLines }}" as="ln" hint-placeholder-count="2"><span style="display:block"><sc-for list="{{ ln.chars }}" as="c" hint-placeholder-count="8"><span style="white-space:pre">{{ c }}</span></sc-for></span></sc-for></h1>
+<div style="margin-top:clamp(48px,6cqw,80px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(36px,5cqw,80px);align-items:center">
+<div style="display:flex;flex-direction:column;align-items:center;gap:16px">
+<div onMouseEnter="{{ stageOn }}" onMouseLeave="{{ stageOff }}" style="position:relative;width:min(100%,460px);aspect-ratio:1">
+<sc-if value="{{ isRing }}" hint-placeholder-val="{{ true }}">
+<svg ref="{{ ringTextRef }}" viewBox="0 0 400 400" style="position:absolute;inset:0;width:100%;height:100%;overflow:visible"><defs><path id="rvRing" d="M200,200 m-184,0 a184,184 0 1,1 368,0 a184,184 0 1,1 -368,0"></path></defs><text style="font:500 15px 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;fill:#90887D"><textPath href="#rvRing" textLength="1150" lengthAdjust="spacing">A LITTLE ABOUT ME ✦ JUST A PERSON ✦ WITH A LOT GOING ON ✦ AND TOO MANY TABS OPEN ✦</textPath></text></svg>
+<div style="position:absolute;left:16%;right:16%;bottom:12%;aspect-ratio:1;border-radius:50%;background:#D42A2E"></div>
+</sc-if>
+<sc-if value="{{ isTabs }}">
+<sc-for list="{{ tabs }}" as="w" hint-placeholder-count="4"><div style="position:absolute;left:8%;right:8%;top:24%;bottom:14%;border-radius:12px;background:{{ w.bg }};border:1px solid {{ w.bd }};box-shadow:0 20px 50px rgba(0,0,0,.35);transform:{{ w.tf }};transition:transform .6s cubic-bezier(.3,1.3,.5,1);overflow:hidden">
+<div style="height:34px;display:flex;align-items:flex-end;gap:6px;padding:0 10px;background:{{ w.bar }}"><span style="display:flex;gap:5px;align-self:center;margin-right:6px"><span style="width:8px;height:8px;border-radius:50%;background:{{ w.dot }}"></span><span style="width:8px;height:8px;border-radius:50%;background:{{ w.dot }}"></span><span style="width:8px;height:8px;border-radius:50%;background:{{ w.dot }}"></span></span><span style="max-width:70%;padding:7px 12px;border-radius:8px 8px 0 0;background:{{ w.bg }};font:400 12px/1 'Familjen Grotesk',sans-serif;color:{{ w.fg }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ w.title }}</span></div>
+</div></sc-for>
+</sc-if>
+<sc-if value="{{ isPolaroid }}">
+<div style="position:absolute;left:12%;right:12%;top:8%;bottom:4%;background:#f4f1ea;padding:6% 6% 0;box-shadow:0 30px 60px rgba(0,0,0,.45);transform:{{ polaTf }};transition:transform .5s cubic-bezier(.3,1.4,.5,1);display:flex;flex-direction:column">
+<div style="flex:1;background:#D42A2E"></div>
+<div style="height:22%;display:grid;place-items:center;font:400 clamp(20px,2.2cqw,28px)/1 'Caveat Brush',cursive;color:#1F1C1A">me, mid-thought</div>
+<div style="position:absolute;left:50%;top:-4%;width:34%;height:9%;background:rgba(244,239,230,.4);transform:translateX(-50%) rotate(-4deg)"></div>
+</div>
+<div style="position:absolute;left:-4%;bottom:14%;padding:14px 14px 18px;width:34%;background:#ffd84d;color:#1F1C1A;font:400 clamp(15px,1.5cqw,19px)/1.1 'Caveat Brush',cursive;transform:rotate(-8deg);box-shadow:0 12px 24px rgba(0,0,0,.3)">too many tabs open</div>
+</sc-if>
+<div ref="{{ heroFaceRef }}" style="position:absolute;inset:{{ faceInset }};transition:inset .4s"></div>
+<div style="position:absolute;z-index:2;right:-8%;top:-6%;padding:10px 16px 8px;border-radius:999px;background:#F4EFE6;color:#1F1C1A;font:400 20px/1 'Caveat Brush',cursive;transform:rotate(4deg);white-space:nowrap;box-shadow:0 10px 30px rgba(0,0,0,.25)">{{ heroNote }}</div>
+</div>
+<div style="font:400 18px/1.2 'Caveat Brush',cursive;color:#9D958A">{{ heroHint }}</div>
+</div>
+<div data-reveal="1">
+<p style="margin:0;font:400 clamp(30px,3.4cqw,50px)/1.2 'Familjen Grotesk',sans-serif;text-wrap:balance">A little bit of everything, <span style="color:#D42A2E">never just one thing.</span></p>
+<p style="margin:32px 0 0;font:400 clamp(18px,1.5cqw,21px)/1.85 'Familjen Grotesk',sans-serif;color:#C2BBB0;text-wrap:pretty"><sc-for list="{{ segs }}" as="g" hint-placeholder-count="12"><span onMouseEnter="{{ g.on }}" onMouseLeave="{{ g.off }}" style="color:{{ g.c }};background:{{ g.bg }};border-bottom:{{ g.bd }};padding:{{ g.pad }};cursor:{{ g.cur }};transition:background .25s,color .25s">{{ g.t }}</span></sc-for></p>
+<p style="margin:36px 0 0;display:inline-block;font:400 clamp(24px,2.2cqw,32px)/1.3 'Caveat Brush',cursive;color:#F4EFE6;transform:rotate(-2deg);border-bottom:3px solid #D42A2E;padding-bottom:4px">Design just happens to be where it all comes together.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section ref="{{ schoolsSecRef }}" style="padding:clamp(90px,10cqw,140px) clamp(20px,5.5cqw,80px) 0">
+<div data-reveal="1" style="display:flex;justify-content:space-between;align-items:flex-end;font:500 19px/1 'Familjen Grotesk',sans-serif"><span style="font:400 26px/1 'Caveat Brush',cursive;color:#D42A2E">Where I Come From</span></div>
+<div ref="{{ schoolsRef }}" style="margin:56px 0 0;overflow:hidden"><div style="font:400 clamp(36px,5.6cqw,80px)/1.1 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;color:#D42A2E"><span ref="{{ schoolsA }}" style="display:block;will-change:transform">Two schools,</span><span ref="{{ schoolsB }}" style="display:block;text-align:right;color:#F4EFE6;will-change:transform">one lens.</span></div></div>
+<div data-reveal="1" style="margin-top:48px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:clamp(28px,5cqw,72px)">
+<p style="margin:0;font:400 clamp(20px,2cqw,26px)/1.45 'Familjen Grotesk',sans-serif;text-wrap:pretty">My design education spans strategic design management and communication design.</p>
+<p style="margin:0;font:400 17px/1.7 'Familjen Grotesk',sans-serif;color:#C2BBB0;text-wrap:pretty">One taught me to ask better questions, the other taught me to give them a shape. These days they don't take turns. They work together, quietly, on everything I touch.</p>
+</div>
+</section>
+
+<section style="padding:clamp(90px,10cqw,140px) clamp(20px,5.5cqw,80px) 0">
+<div data-reveal="1" style="display:flex;justify-content:space-between;align-items:flex-end;font:500 19px/1 'Familjen Grotesk',sans-serif"><span style="font:400 26px/1 'Caveat Brush',cursive;color:#D42A2E">What Drives Me</span></div>
+<div style="position:relative;margin-top:48px;display:inline-block">
+<h2 style="margin:0;font:400 clamp(28px,3.6cqw,52px)/1.15 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;color:#F4EFE6">What I keep<br>coming back to</h2>
+</div>
+<div data-reveal="1" style="position:relative;margin-top:clamp(80px,9cqw,120px)">
+<div style="position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:48px 0">
+<sc-for list="{{ values }}" as="v" hint-placeholder-count="4"><div onMouseEnter="{{ v.on }}" onMouseLeave="{{ v.off }}" style="padding:0 24px 0 0;display:flex;flex-direction:column;gap:18px;cursor:default">
+<div style="height:72px;display:flex;align-items:center"><span ref="{{ v.ref }}" style="display:grid;place-items:center;background:#1F1C1A;padding-right:12px">
+<sc-if value="{{ v.i0 }}"><svg viewBox="0 0 80 80" width="72" height="72" style="overflow:visible"><g style="transform-origin:40px 40px;transform:{{ v.rot }};transition:transform .7s cubic-bezier(.3,1.4,.5,1)" fill="none" stroke="{{ v.stroke }}" stroke-width="1.5"><circle cx="40" cy="40" r="26"></circle><circle cx="52" cy="30" r="4"></circle><line x1="40" y1="40" x2="66" y2="40"></line></g></svg></sc-if>
+<sc-if value="{{ v.i1 }}"><svg viewBox="0 0 80 80" width="72" height="72" style="overflow:visible"><g style="transform-origin:40px 40px;transform:{{ v.rot }};transition:transform .7s cubic-bezier(.3,1.4,.5,1)" fill="none" stroke="{{ v.stroke }}" stroke-width="1.5"><circle cx="40" cy="40" r="26"></circle><line x1="4" y1="40" x2="76" y2="40"></line><line x1="40" y1="14" x2="40" y2="66"></line></g></svg></sc-if>
+<sc-if value="{{ v.i2 }}"><svg viewBox="0 0 80 80" width="72" height="72" style="overflow:visible"><g style="transform-origin:40px 40px;transform:{{ v.rot }};transition:transform .7s cubic-bezier(.3,1.4,.5,1)" fill="none" stroke="{{ v.stroke }}" stroke-width="1.5"><rect x="21" y="21" width="38" height="38" transform="rotate(45 40 40)"></rect><circle cx="40" cy="40" r="3"></circle></g></svg></sc-if>
+<sc-if value="{{ v.i3 }}"><svg viewBox="0 0 80 80" width="72" height="72" style="overflow:visible"><g style="transform-origin:40px 40px;transform:{{ v.rot }};transition:transform .7s cubic-bezier(.3,1.4,.5,1)" fill="none" stroke="{{ v.stroke }}" stroke-width="1.5"><circle cx="30" cy="40" r="20"></circle><circle cx="50" cy="40" r="20"></circle></g></svg></sc-if>
+</span></div>
+<div style="font:500 clamp(30px,2.8cqw,40px)/1 'Familjen Grotesk',sans-serif;letter-spacing:-.025em;color:{{ v.c }};transition:color .3s">{{ v.word }}</div>
+<p style="margin:0;max-width:240px;font:400 16px/1.6 'Familjen Grotesk',sans-serif;color:#ABA398">{{ v.back }}</p>
+</div></sc-for>
+</div>
+</div>
+</section>
+
+<section style="padding:clamp(90px,10cqw,140px) clamp(20px,5.5cqw,80px) 0">
+<div data-reveal="1" style="display:flex;justify-content:space-between;align-items:flex-end;font:500 19px/1 'Familjen Grotesk',sans-serif"><span style="font:400 26px/1 'Caveat Brush',cursive;color:#D42A2E">Quick Picks</span><span style="font:400 15px/1 'Familjen Grotesk',sans-serif;color:#9D958A">{{ score }}</span></div>
+<div data-reveal="1" style="margin-top:48px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px 48px">
+<h2 style="margin:0;font:400 clamp(36px,5cqw,72px)/1.1 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;cursor:default;display:flex;gap:.35em;align-items:baseline"><span style="color:{{ w1c }};transition:color .3s">{{ w1 }}</span><span style="font:400 .55em/1 'Caveat Brush',cursive;letter-spacing:0;color:#9D958A;display:inline-block;transition:transform .5s cubic-bezier(.3,1.6,.5,1);transform:{{ orRot }}">or</span><span style="color:{{ w2c }};transition:color .3s">{{ w2 }}</span></h2>
+</div>
+<div data-reveal="1" style="margin-top:clamp(80px,8cqw,110px)">
+<div ref="{{ pickRef }}" style="position:relative;display:flex;height:clamp(300px,34cqw,440px);border:1px solid rgba(244,239,230,.15);overflow:hidden">
+<button onClick="{{ cur.pickA }}" style="flex:{{ cur.aFlex }} 1 0%;min-width:0;border:none;background:{{ cur.aBg }};color:{{ cur.aFg }};cursor:pointer;display:flex;align-items:flex-end;justify-content:flex-start;padding:clamp(20px,3cqw,40px);transition:flex .6s cubic-bezier(.6,0,.2,1),background .4s,color .4s;overflow:hidden" style-hover="background:{{ cur.aHover }}"><span style="font:400 clamp(30px,5.4cqw,78px)/1 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;text-transform:uppercase;white-space:nowrap">{{ cur.a }}</span></button>
+<div style="width:1px;background:rgba(244,239,230,.15)"></div>
+<button onClick="{{ cur.pickB }}" style="flex:{{ cur.bFlex }} 1 0%;min-width:0;border:none;background:{{ cur.bBg }};color:{{ cur.bFg }};cursor:pointer;display:flex;align-items:flex-start;justify-content:flex-end;padding:clamp(20px,3cqw,40px);transition:flex .6s cubic-bezier(.6,0,.2,1),background .4s,color .4s;overflow:hidden" style-hover="background:{{ cur.bHover }}"><span style="font:400 clamp(30px,5.4cqw,78px)/1 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;text-transform:uppercase;white-space:nowrap">{{ cur.b }}</span></button>
+<div style="position:absolute;left:{{ cur.split }};top:50%;transform:translate(-50%,-50%);width:clamp(120px,15cqw,190px);aspect-ratio:1;border-radius:50%;background:#1F1C1A;border:1px solid rgba(244,239,230,.25);display:grid;place-items:center;text-align:center;padding:18px;pointer-events:none;transition:left .6s cubic-bezier(.6,0,.2,1)"><span style="font:400 clamp(16px,1.6cqw,21px)/1.15 'Caveat Brush',cursive;color:#F4EFE6">{{ cur.note }}</span></div>
+<div style="position:absolute;left:clamp(20px,3cqw,40px);top:clamp(20px,3cqw,40px);font:400 14px/1 'Familjen Grotesk',sans-serif;color:{{ cur.numC }};pointer-events:none">{{ cur.num }}</div>
+</div>
+<div style="margin-top:20px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap">
+<div style="display:flex;gap:8px;align-items:center"><sc-for list="{{ dots }}" as="d" hint-placeholder-count="6"><button onClick="{{ d.go }}" style="width:{{ d.w }};height:10px;border-radius:999px;border:none;padding:0;background:{{ d.bg }};cursor:pointer;transition:width .3s,background .3s"></button></sc-for></div>
+<div style="display:flex;gap:10px"><button onClick="{{ prevPick }}" style="width:48px;height:48px;border-radius:50%;border:1px solid rgba(244,239,230,.35);background:none;color:#F4EFE6;font:400 18px/1 'Familjen Grotesk',sans-serif;cursor:pointer" style-hover="background:#D42A2E;border-color:#D42A2E">←</button><button onClick="{{ nextPick }}" style="height:48px;padding:0 22px;border-radius:999px;border:1px solid rgba(244,239,230,.35);background:none;color:#F4EFE6;font:500 14px/1 'Familjen Grotesk',sans-serif;cursor:pointer" style-hover="background:#D42A2E;border-color:#D42A2E">{{ nextLabel }}</button></div>
+</div>
+</div>
+</section>
+
+<footer id="say-hi" style="margin-top:clamp(90px,10cqw,140px);padding:clamp(80px,9cqw,120px) clamp(20px,5.5cqw,80px) 32px;background:#24211E">
+<div data-reveal="1">
+<div style="font:400 22px/1.3 'Caveat Brush',cursive;color:#D42A2E">— got a thought worth exploring?</div>
+<h2 style="margin:18px 0 0;font:400 clamp(32px,5.4cqw,80px)/1.18 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;color:#D42A2E;cursor:default">Let's make <span style="color:#F4EFE6">{{ ctaWord }}</span><br><span style="color:#F4EFE6">great together.</span></h2>
+</div>
+<div ref="{{ footLineRef }}" data-reveal="1" style="margin:48px 0 56px;display:flex;flex-wrap:wrap;gap:16px 32px;align-items:center">
+<button onClick="{{ copy }}" style="display:flex;align-items:center;gap:16px;height:64px;padding:0 10px 0 28px;border-radius:999px;border:1px solid rgba(244,239,230,.35);background:none;color:#F4EFE6;cursor:pointer;font:500 clamp(17px,1.6cqw,21px)/1 'Familjen Grotesk',sans-serif" style-hover="border-color:#D42A2E">contactreeva@gmail.com<span style="height:46px;padding:0 18px;border-radius:999px;background:{{ copyBg }};display:inline-flex;align-items:center;font:500 14px/1 'Familjen Grotesk',sans-serif;transition:background .2s">{{ copyLabel }}</span></button>
+<div style="display:flex;flex-wrap:wrap;gap:12px 28px;font:500 17px/1.2 'Familjen Grotesk',sans-serif"><a href="#">LinkedIn ↗</a><a href="#">Behance ↗</a><a href="#">Résumé ↓</a></div>
+</div>
+<div style="border-top:1px solid rgba(244,239,230,.18);padding-top:24px;display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:center">
+<nav style="display:flex;flex-wrap:wrap;gap:16px 36px;font:400 17px/1 'Familjen Grotesk',sans-serif"><a href="index.html">Home</a><a href="about.html">About</a><a href="#say-hi">Say Hi</a></nav>
+<div style="font:500 15px/1 'Familjen Grotesk',sans-serif">© 2024 <a href="index.html" style="text-decoration:underline;font-weight:700">Reeva</a></div>
+</div>
+</footer>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;heroStyle&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Ring&quot;,&quot;Tabs&quot;,&quot;Polaroid&quot;],&quot;default&quot;:&quot;Tabs&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Hero&quot;},&quot;scrollReveal&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Motion&quot;},&quot;spotSize&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;min&quot;:60,&quot;max&quot;:240,&quot;step&quot;:10,&quot;unit&quot;:&quot;px&quot;,&quot;default&quot;:110,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Motion&quot;}}">
+const RED = '#D42A2E';
+const CTA = ['something', 'something new', 'something bold', 'something true', 'something that lasts'];
+const VALUES = [
+  { word: 'Curiosity', back: 'Questions that don\'t have answers yet.', note: 'always one more question' },
+  { word: 'Clarity', back: 'The simple thing hiding inside the complicated one.', note: 'found it!' },
+  { word: 'Craft', back: 'Small details, given a little more time.', note: 'one more pass…' },
+  { word: 'Character', back: 'Work that sounds like someone made it.', note: 'sounds like me' },
+];
+const PICKS = [
+  { a: 'Sketchbook', b: 'Screen', me: 'a', why: 'Sketchbook first. The screen can wait.' },
+  { a: 'Sunrise', b: 'Midnight', me: 'b', why: 'Midnight. Good ideas keep odd hours.' },
+  { a: 'Plan it', b: 'Wing it', me: 'a', why: 'Plan it, then wing it anyway.' },
+  { a: 'Bold', b: 'Subtle', me: 'b', why: 'Subtle, until it needs to be bold.' },
+  { a: 'Questions', b: 'Answers', me: 'a', why: 'Questions. The answers come later.' },
+  { a: 'Chai', b: 'Coffee', me: 'a', why: 'Chai. Non-negotiable.' },
+];
+const SEGS = [
+  ['I like '], ['making things look good', 'the fun part'], [', '], ['figuring out what makes them work', 'the nerdy part'], [', and occasionally '], ['getting carried away with an idea', 'guilty.'],
+  ['. Somewhere between '], ['visual experiments', 'so many experiments'], [', '], ['oddly specific interests', "don't get me started"], [', and '], ['plans that keep changing', 'plan B, C, D…'], [', I’m finding my own way of doing things.'],
+];
+const HERO_NOTES = ['hi, that\'s me', 'hey, that tickles', 'still me', 'ok, one more?', "I'm dizzy now"];
+const faceLib = () => new Promise(res => { const k = () => window.ReevaFace ? res(window.ReevaFace) : setTimeout(k, 50); k(); });
+const lerp = (a, b, t) => a + (b - a) * t, clamp = (v, a, b) => Math.max(a, Math.min(b, v)), sstep = t => t * t * (3 - 2 * t);
+class Component extends DCLogic {
+  state = { device: typeof innerWidth !== 'undefined' && innerWidth < 700 ? 'mobile' : 'desktop', menu: false, cta: 0, copied: false, hn: 0 };
+  heroRef = React.createRef(); dotsRef = React.createRef(); heroFaceRef = React.createRef();
+  peekRef = React.createRef(); canvasRef = React.createRef(); bubbleRef = React.createRef();
+  schoolsSecRef = React.createRef(); schoolsRef = React.createRef(); schoolsA = React.createRef(); schoolsB = React.createRef();
+  spotRef = React.createRef(); lineRef = React.createRef(); pickRef = React.createRef(); footLineRef = React.createRef();
+  iconRefs = VALUES.map(() => React.createRef());
+  m = { x: -999, y: -999 }; pk = 0; cd = null; clicks = [];
+  p(k, d) { const v = this.props[k]; return v === undefined || v === null ? d : v; }
+  onScroll = () => {
+    const w = this.schoolsRef.current; if (!w) return;
+    const b = w.getBoundingClientRect(), H = innerHeight, pr = clamp((H - b.top) / (H * .65), 0, 1), off = ((1 - pr) * 40).toFixed(1);
+    if (this.schoolsA.current) this.schoolsA.current.style.transform = `translateX(-${off}%)`;
+    if (this.schoolsB.current) this.schoolsB.current.style.transform = `translateX(${off}%)`;
+  };
+  onResize = () => { const d = innerWidth < 700 ? 'mobile' : 'desktop'; if (d !== this.state.device) this.setState({ device: d }); this.onScroll(); };
+  heroMove = e => { const b = this.heroRef.current.getBoundingClientRect(); this.m = { x: e.clientX - b.left, y: e.clientY - b.top }; };
+  heroLeave = () => { this.m = { x: -999, y: -999 }; };
+  spotMove = e => { const el = this.spotRef.current; if (!el) return; const b = el.getBoundingClientRect(); el.style.clipPath = `circle(${this.p('spotSize', 110)}px at ${e.clientX - b.left}px ${e.clientY - b.top}px)`; };
+  spotLeave = () => { const el = this.spotRef.current; if (el) el.style.clipPath = 'circle(0px at 50% 50%)'; };
+  ctaOn = () => { clearInterval(this.ci); const nx = s => ({ cta: ((s.cta || 0) + 1) % CTA.length }); this.setState(nx); this.ci = setInterval(() => this.setState(nx), 900); };
+  ctaOff = () => clearInterval(this.ci);
+  // Dot grid: dots near the cursor swell and blush red, like her attention landing on them.
+  drawDots() {
+    const cv = this.dotsRef.current, h = this.heroRef.current; if (!cv || !h) return;
+    const b = h.getBoundingClientRect(); if (b.bottom < 0) return;
+    const dpr = Math.min(2, devicePixelRatio || 1), W = b.width, H = b.height;
+    if (cv.width !== Math.round(W * dpr) || cv.height !== Math.round(H * dpr)) { cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr); }
+    const g = cv.getContext('2d'); g.setTransform(dpr, 0, 0, dpr, 0, 0); g.clearRect(0, 0, W, H);
+    const S = 26, R = 140, t = performance.now() / 1000, mx = this.m.x, my = this.m.y;
+    for (let y = S / 2; y < H; y += S) for (let x = S / 2; x < W; x += S) {
+      const d = Math.hypot(x - mx, y - my), k = d < R ? 1 - d / R : 0, br = Math.sin(t * .8 + x * .01 + y * .013) * .25;
+      g.fillStyle = k > 0 ? `rgba(212,42,46,${(.25 + k * .7).toFixed(2)})` : 'rgba(244,239,230,.11)';
+      g.beginPath(); g.arc(x, y, 1.1 + br * .4 + k * 2.2, 0, 6.283); g.fill();
+    }
+  }
+  onClick = e => {
+    if (e.target.closest && e.target.closest('a,button')) return;
+    const f = (this.faces || []).find(x => x.hit); if (!f) return; f.kick();
+    const t = performance.now() / 1000; this.clicks = this.clicks.filter(c => c > t - 2.5); this.clicks.push(t);
+    const dizzy = this.clicks.length >= 5; if (dizzy) { this.clicks = []; f.spin(); }
+    if (f === this.hero) this.setState(s => ({ hn: dizzy ? 4 : 1 + (s.hn % 3) }));
+    else { this.tempNote = dizzy ? "ok ok, I'm dizzy" : 'hey, that tickles'; this.tempUntil = t + 1.6; }
+  };
+  async init3d() {
+    const F = await faceLib(); if (this.dead) return;
+    if (this.heroFaceRef.current) this.hero = await F.mount(this.heroFaceRef.current);
+    if (this.canvasRef.current) this.face = await F.mount(this.canvasRef.current);
+    this.faces = [this.hero, this.face].filter(Boolean);
+  }
+  // The roaming character: peeks into each section with a note about what's there.
+  frame(t) {
+    document.body.style.cursor = (this.faces || []).some(f => f.hit) ? 'pointer' : '';
+    if (this.hero) { const ph = this.state.ph; this.hero.t.wide = this.state.hn === 1 || ph != null ? 1 : 0; this.hero.look = ph != null ? this.phPt : null; this.hero.t.wiggle = ph === 5 ? 1 : 0; }
+    const f = this.face, pk = this.peekRef.current, box = this.canvasRef.current, bub = this.bubbleRef.current; if (!f || !pk || !box) return;
+    const W = innerWidth, H = innerHeight, mob = W < 700, R = r => r.current && r.current.getBoundingClientRect(), s = this.state;
+    const hb = R(this.heroRef), sc = R(this.schoolsSecRef), ln = R(this.lineRef), pb = R(this.pickRef), fl = R(this.footLineRef);
+    let d = null;
+    if (hb && hb.bottom > H * .4) d = null;
+    else if (sc && sc.top < H * .55 && sc.bottom > H * .45) { const z = mob ? 150 : 220; d = { id: 'school', x: W - z * .58, y: H * .5 - z / 2, w: z * .58, h: z, in: z, side: 'r', note: 'two schools, one me' }; }
+    else if (ln && ln.top < H * .8 && ln.top > H * .12) d = null;
+    else if (pb && pb.top < H * .75 && pb.bottom > H * .3) { const z = mob ? 110 : 150; d = { id: 'pick', x: pb.right - z - 24, y: pb.top - z * .8, w: z, h: z * .8, in: z, side: 'b', note: null }; }
+    else if (fl && fl.top < H) { const z = mob ? 150 : 220; d = { id: 'foot', x: fl.right - z - (mob ? 0 : 24), y: fl.top - z * .62, w: z, h: z * .62, in: z, side: 'b', note: "go on, say hi" }; }
+    if (!this.cd && d) this.cd = d;
+    let want = 0;
+    if (d && this.cd && d.id === this.cd.id) { this.cd = d; want = 1; } else if (d && this.pk < .03) this.cd = d;
+    this.pk = lerp(this.pk, want, .13);
+    const D = this.cd; if (!D) return;
+    pk.style.left = D.x + 'px'; pk.style.top = D.y + 'px'; pk.style.width = D.w + 'px'; pk.style.height = D.h + 'px';
+    const off = 1 - sstep(clamp(this.pk, 0, 1));
+    box.style.width = box.style.height = D.in + 'px';
+    box.style.left = (D.side === 'r' ? off * D.w : 0) + 'px'; box.style.top = (D.side === 'b' ? off * D.h : 0) + 'px';
+    const T = f.t; T.rotY = 0; T.rotX = 0; T.tilt = 0; T.wide = 0; T.wiggle = 0; T.squint = 0; f.look = null;
+    let note = D.note, mood = '';
+    if (D.id === 'school') { T.rotY = -.55; T.tilt = .12; const a = R(this.schoolsA); if (a) f.look = { x: a.left + a.width * .3, y: a.top + a.height / 2 }; }
+    if (D.id === 'val') { T.rotX = .25; if (s.hv != null) { T.wide = 1; if (s.hv === 2) T.wiggle = 1; } }
+    if (D.id === 'pick' && pb) {
+      const pi = s.pi || 0, ch = (s.picks || {})[pi], agree = ch && ch === PICKS[pi].me;
+      T.rotX = .06; f.look = { x: pb.left + pb.width / 2, y: pb.top - 40 };
+      if (ch) { if (agree) T.wide = 1; else T.squint = 1; }
+      note = !ch ? 'Pick a side. Then see which way I lean.' : agree ? 'same here!' : 'hmm… fair'; mood = ch ? (agree ? 'y' : 'n') : '';
+    }
+    const key = D.id + (D.id === 'val' ? s.hv : D.id === 'pick' ? (s.pi || 0) + mood : '');
+    if (key !== this.lastKey) { if (this.lastKey) f.kick(); this.lastKey = key; }
+    if (bub) {
+      const txt = (this.tempUntil > t ? this.tempNote : note) || '';
+      if (bub.textContent !== txt) bub.textContent = txt;
+      const bw = bub.offsetWidth; let bx = D.x - bw - 6; if (bx < 8) bx = D.x + D.w + 6;
+      const by = D.y + D.h * (D.side === 'r' ? .18 : .15);
+      bub.style.transform = `translate(${bx}px,${by}px) rotate(-3deg)`; bub.style.opacity = this.pk > .85 && txt ? 1 : 0;
+    }
+  }
+  ringTextRef = React.createRef();
+  tick = () => { const t = performance.now() / 1000; const rg = this.ringTextRef.current; if (rg) rg.style.transform = `rotate(${(t * 6 + scrollY * .08) % 360}deg)`; try { this.drawDots(); this.frame(t); } catch (e) { if (!this.err) { this.err = 1; console.error(e); } } this.raf = requestAnimationFrame(this.tick); };
+  setupReveal() {
+    if (this.io) this.io.disconnect();
+    const els = document.querySelectorAll('[data-reveal]'), on = this.p('scrollReveal', false);
+    els.forEach(el => { el.style.transition = 'opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1)'; el.style.opacity = on ? 0 : 1; el.style.transform = on ? 'translateY(32px)' : 'none'; });
+    if (!on || !window.IntersectionObserver) return;
+    this.io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.style.opacity = 1; e.target.style.transform = 'none'; this.io.unobserve(e.target); } }), { threshold: 0.15 });
+    els.forEach(el => this.io.observe(el));
+  }
+  componentDidMount() {
+    window.addEventListener('scroll', this.onScroll, true); window.addEventListener('resize', this.onResize); window.addEventListener('click', this.onClick); this.onScroll();
+    this.init3d(); this.raf = requestAnimationFrame(this.tick);
+    setTimeout(() => this.setupReveal(), 50);
+  }
+  componentDidUpdate(pp) { if (pp.scrollReveal !== this.props.scrollReveal) this.setupReveal(); }
+  componentWillUnmount() { this.dead = true; window.removeEventListener('scroll', this.onScroll, true); window.removeEventListener('resize', this.onResize); window.removeEventListener('click', this.onClick); document.body.style.cursor = ''; (this.faces || []).forEach(f => f.dispose()); cancelAnimationFrame(this.raf); if (this.io) this.io.disconnect(); clearInterval(this.ci); clearTimeout(this.ct); clearTimeout(this.pt); }
+  renderVals() {
+    const s = this.state, mob = s.device === 'mobile';
+    return {
+      isMobile: mob, isDesktop: !mob, menuOpen: s.menu && mob, toggleMenu: () => this.setState(x => ({ menu: !x.menu })),
+      peekRef: this.peekRef, canvasRef: this.canvasRef, bubbleRef: this.bubbleRef,
+      heroRef: this.heroRef, dotsRef: this.dotsRef, heroFaceRef: this.heroFaceRef, ringTextRef: this.ringTextRef, heroMove: this.heroMove, heroLeave: this.heroLeave,
+      ...(() => { const hs = this.p('heroStyle', 'Tabs'), o = !!s.stage; return {
+        isRing: hs === 'Ring', isTabs: hs === 'Tabs', isPolaroid: hs === 'Polaroid',
+        faceInset: hs === 'Tabs' ? '4% 10% 16%' : hs === 'Polaroid' ? '0% 16% 26%' : '2% 6% 10%',
+        polaTf: o ? 'rotate(1deg) scale(1.02)' : 'rotate(-3deg)',
+        stageOn: () => this.setState({ stage: true }), stageOff: () => this.setState({ stage: false }),
+        tabs: [['portfolio_final_FINAL_v7', -16, -14, -10], ['why do fonts feel things?', 12, -9, -5], ['chai near me', -8, -4, 4], ['a little about me', 0, 0, 0]].map(([title, r, y, x], i, a) => { const front = i === a.length - 1, k = o ? 1.8 : 1; return { title, tf: `translate(${x * k}%,${y * k}%) rotate(${r * k * .6}deg)`, bg: front ? RED : '#2C2825', bd: front ? RED : '#3A3531', bar: front ? '#B82226' : '#24211E', dot: front ? 'rgba(244,239,230,.45)' : '#4a4a4a', fg: front ? '#F4EFE6' : '#ABA398' }; }),
+      }; })(),
+      heroNote: s.ph != null ? SEGS[s.ph][1] : HERO_NOTES[s.hn],
+      segs: SEGS.map(([t, n], i) => n ? { t, c: s.ph === i ? '#F4EFE6' : '#E9E3D9', bg: s.ph === i ? RED : 'transparent', bd: '1px dashed ' + (s.ph === i ? 'transparent' : 'rgba(212,42,46,.8)'), pad: '0 2px', cur: 'default', on: e => { const b = e.currentTarget.getBoundingClientRect(); this.phPt = { x: b.left + b.width / 2, y: b.top + b.height / 2 }; this.setState({ ph: i }); }, off: () => this.setState({ ph: null }) } : { t, c: 'inherit', bg: 'transparent', bd: '0', pad: '0', cur: 'auto', on: null, off: null }), heroHint: mob ? 'tap her. she reacts' : 'poke her. she reacts',
+      heroLines: ['A little', 'about me.'].map(l => ({ chars: l.split('') })),
+      schoolsSecRef: this.schoolsSecRef, schoolsRef: this.schoolsRef, schoolsA: this.schoolsA, schoolsB: this.schoolsB,
+      spotRef: this.spotRef, spotMove: this.spotMove, spotLeave: this.spotLeave, lineRef: this.lineRef, pickRef: this.pickRef, footLineRef: this.footLineRef,
+      values: VALUES.map((v, i) => { const on = s.hv === i; return { ...v, ref: this.iconRefs[i], i0: i === 0, i1: i === 1, i2: i === 2, i3: i === 3, rot: on ? 'rotate(45deg) scale(1.08)' : 'rotate(0deg)', stroke: on ? RED : 'rgba(244,239,230,.75)', c: on ? RED : '#F4EFE6', on: () => this.setState({ hv: i }), off: () => this.setState({ hv: null }) }; }),
+      w1: s.swap ? 'THAT' : 'THIS', w2: s.swap ? 'THIS' : 'THAT', w1c: s.swap ? '#F4EFE6' : RED, w2c: s.swap ? RED : '#F4EFE6', orRot: s.swap ? 'rotate(-14deg) scale(1.2)' : 'none',
+      swapOn: () => this.setState({ swap: true }), swapOff: () => this.setState({ swap: false }),
+      score: (() => { const ch = s.picks || {}, n = Object.keys(ch).length, m = Object.keys(ch).filter(i => ch[i] === PICKS[i].me).length; return n ? `we agree on ${m} of ${n}` : '0 of 6 picked'; })(),
+      cur: (() => {
+        const i = s.pi || 0, k = PICKS[i], ch = (s.picks || {})[i];
+        const set = v => () => { this.setState(x => ({ picks: { ...(x.picks || {}), [i]: v } })); clearTimeout(this.pt); this.pt = setTimeout(() => this.setState(x => ({ pi: Math.min(PICKS.length - 1, (x.pi || 0) + 1) })), 1800); };
+        const same = ch && ch === k.me;
+        return { a: k.a, b: k.b, pickA: set('a'), pickB: set('b'), num: '0' + (i + 1) + ' / 0' + PICKS.length,
+          aFlex: ch === 'a' ? 1.6 : ch === 'b' ? 0.6 : 1, bFlex: ch === 'b' ? 1.6 : ch === 'a' ? 0.6 : 1,
+          split: ch === 'a' ? '72.7%' : ch === 'b' ? '27.3%' : '50%',
+          aBg: ch === 'a' ? RED : 'transparent', bBg: ch === 'b' ? RED : 'transparent',
+          aFg: ch === 'b' ? '#5E574E' : '#F4EFE6', bFg: ch === 'a' ? '#5E574E' : '#F4EFE6',
+          aHover: ch === 'a' ? RED : 'rgba(212,42,46,.12)', bHover: ch === 'b' ? RED : 'rgba(212,42,46,.12)',
+          numC: ch === 'a' ? '#F4EFE6' : '#90887D', note: !ch ? 'pick a side' : (same ? 'Same here. ' : 'Fair. ') + k.why };
+      })(),
+      dots: PICKS.map((k, i) => ({ w: (s.pi || 0) === i ? '28px' : '10px', bg: (s.pi || 0) === i ? RED : ((s.picks || {})[i] ? 'rgba(212,42,46,.5)' : 'rgba(244,239,230,.25)'), go: () => { clearTimeout(this.pt); this.setState({ pi: i }); } })),
+      prevPick: () => { clearTimeout(this.pt); this.setState(x => ({ pi: Math.max(0, (x.pi || 0) - 1) })); },
+      nextPick: () => { clearTimeout(this.pt); this.setState(x => ((x.pi || 0) >= PICKS.length - 1 ? { pi: 0, picks: {} } : { pi: (x.pi || 0) + 1 })); },
+      nextLabel: (s.pi || 0) >= PICKS.length - 1 ? 'Start over ↺' : 'Next →',
+      ctaOn: this.ctaOn, ctaOff: this.ctaOff, ctaWord: CTA[s.cta || 0], ctaHint: (s.cta || 0) === 0 ? 'hover the headline' : 'you tell me the rest',
+      copy: () => { try { navigator.clipboard && navigator.clipboard.writeText('contactreeva@gmail.com'); } catch (e) {} this.setState({ copied: true }); clearTimeout(this.ct); this.ct = setTimeout(() => this.setState({ copied: false }), 1800); },
+      copyLabel: s.copied ? 'Copied' : 'Copy', copyBg: s.copied ? RED : 'rgba(244,239,230,.12)',
+    };
+  }
+}
+</script>
+</body>
+</html>

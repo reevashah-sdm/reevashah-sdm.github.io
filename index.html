@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&amp;family=Caveat+Brush&amp;display=swap" rel="stylesheet">
+<style>body{margin:0;background:#161412}*{box-sizing:border-box}html{scroll-behavior:smooth}a{color:inherit;text-decoration:none;transition:color .2s}a:hover{color:#D42A2E}::selection{background:#D42A2E;color:#F4EFE6}html.lens,html.lens *{cursor:none!important}@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}html{scroll-behavior:auto!important}}</style>
+<script src="reeva-face.js"></script>
+<script src="reeva-hero.js"></script>
+</helmet>
+<div style="min-height:100vh;background:#161412;font-family:'Familjen Grotesk',sans-serif">
+
+<div ref="{{ peekRef }}" style="position:fixed;left:0;top:0;width:0;height:0;overflow:hidden;z-index:45;pointer-events:none"><div ref="{{ canvasRef }}" style="position:absolute;left:0;top:0;width:0;height:0"></div></div>
+<div ref="{{ bubbleRef }}" style="position:fixed;left:0;top:0;z-index:46;pointer-events:none;opacity:0;transition:opacity .3s;padding:10px 16px 8px;border-radius:999px;background:#F4EFE6;color:#1F1C1A;font:400 20px/1 'Caveat Brush',cursive;white-space:nowrap;box-shadow:0 10px 30px rgba(0,0,0,.25)"></div>
+<div style="padding:{{ outerPad }}">
+<div style="width:{{ frameW }};max-width:100%;margin:0 auto;border-radius:{{ frameR }};box-shadow:{{ frameShadow }};overflow:clip;container-type:inline-size;background:#1F1C1A;color:#F4EFE6;position:relative">
+
+<header style="position:relative;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:28px clamp(20px,5.5cqw,80px)">
+
+<sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}"><nav style="display:flex;gap:40px;font:400 17px/1 'Familjen Grotesk',sans-serif"><a href="index.html" style="color:#D42A2E">Home</a><a href="about.html">About</a><a href="say-hi.html">Say Hi →</a></nav></sc-if>
+<sc-if value="{{ isMobile }}"><button onClick="{{ toggleMenu }}" style="background:none;border:1px solid rgba(244,239,230,.35);color:#F4EFE6;border-radius:999px;padding:0 18px;height:44px;font:500 14px/1 'Familjen Grotesk',sans-serif;cursor:pointer">Menu</button></sc-if>
+</header>
+<sc-if value="{{ menuOpen }}"><div style="position:absolute;inset:0;z-index:30;background:#D42A2E;padding:28px 24px;display:flex;flex-direction:column;gap:6px">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:56px"><span style="font:700 26px/1 'Familjen Grotesk',sans-serif;letter-spacing:-.015em">REEVA.</span><button onClick="{{ toggleMenu }}" style="background:#F4EFE6;border:none;color:#D42A2E;border-radius:999px;padding:0 18px;height:44px;font:600 14px/1 'Familjen Grotesk',sans-serif;cursor:pointer">Close</button></div>
+<a href="index.html" style="font:400 52px/1.2 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;color:#F4EFE6">Home</a><a href="about.html" style="font:400 52px/1.2 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;color:#F4EFE6">About</a><a href="say-hi.html" style="font:400 52px/1.2 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;color:#F4EFE6">Say hi</a>
+</div></sc-if>
+
+<section ref="{{ heroRef }}" style="position:relative;overflow:hidden">
+<div style="position:relative;z-index:1;padding:clamp(24px,3cqw,40px) clamp(20px,5.5cqw,80px) clamp(96px,9cqw,130px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:clamp(56px,6cqw,96px);align-items:center">
+<div>
+<div data-cycle="strategic designer|storyteller at heart" style="font:400 clamp(18px,1.6cqw,22px)/1.3 'Caveat Brush',cursive;color:#D42A2E;min-height:1.3em">strategic designer</div>
+<div style="margin-top:28px;font:400 clamp(22px,2.2cqw,32px)/1 'Familjen Grotesk',sans-serif;letter-spacing:-.015em">Hi, I'm</div>
+<h1 style="margin:8px 0 0;font:400 clamp(40px,4.4cqw,64px)/1 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;display:flex;user-select:none"><span data-nl="1" style="display:inline-block;will-change:transform;opacity:0;cursor:pointer">R</span><span data-nl="1" style="display:inline-block;will-change:transform;opacity:0;cursor:pointer">E</span><span data-nl="1" style="display:inline-block;will-change:transform;opacity:0;cursor:pointer">E</span><span data-nl="1" style="display:inline-block;will-change:transform;opacity:0;cursor:pointer">V</span><span data-nl="1" style="display:inline-block;will-change:transform;opacity:0;cursor:pointer">A</span><span data-nl="1" style="display:inline-block;will-change:transform;color:#D42A2E;opacity:0">.</span><span style="position:relative;display:inline-block;width:1.6em;height:1.6em;margin:-.3em 0 -.3em .12em;flex:none"><span ref="{{ avatarRef }}" style="position:absolute;left:-25%;top:-25%;width:150%;height:150%;pointer-events:none"></span><span style="position:absolute;left:100%;top:.25em;font:400 20px/1 'Caveat Brush',cursive;letter-spacing:0;color:#9D958A;white-space:nowrap;transform:rotate(-6deg)">{{ avNote }}</span></span></h1>
+<h2 style="margin:24px 0 0;max-width:560px;font:400 clamp(28px,3cqw,42px)/1.18 'Familjen Grotesk',sans-serif;perspective:700px;display:flex;flex-wrap:wrap;column-gap:.26em"><span data-fw="1" data-a="Strategy" data-b="Thinking" data-col-a="" data-col-b="#D42A2E" style="display:inline-block;cursor:default;will-change:transform">Strategy</span><span data-fw="1" data-a="and" data-b="and" data-col-a="" data-col-b="#D42A2E" style="display:inline-block;cursor:default;will-change:transform">and</span><span data-fw="1" data-a="design," data-b="making," data-col-a="" data-col-b="#D42A2E" style="display:inline-block;cursor:default;will-change:transform">design,</span><span data-fw="1" data-a="in the same head." data-b="in one practice." data-col-a="#D42A2E" data-col-b="#F4EFE6" style="display:inline-block;cursor:default;will-change:transform;color:#D42A2E">in the same head.</span></h2>
+<p style="margin:18px 0 0;max-width:520px;font:400 17px/1.65 'Familjen Grotesk',sans-serif;color:#90887D;text-wrap:pretty">There's always another side to the story. Sometimes, all it takes is a different pair of eyes to see what was right there all along.</p>
+<div style="margin-top:22px;transform:rotate(-1.5deg);transform-origin:left"><span style="font:400 19px/1.1 'Caveat Brush',cursive;color:#F4EFE6">psst… drag the circles into <span style="color:#D42A2E">one</span> and watch the headline</span></div>
+<div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:28px"><a href="#work" style="display:inline-flex;align-items:center;height:52px;padding:0 26px;border-radius:999px;background:#D42A2E;color:#F4EFE6;font:500 16px/1 'Familjen Grotesk',sans-serif" style-hover="background:#F4EFE6;color:#D42A2E">Explore my work ↓</a><a href="about.html" style="display:inline-flex;align-items:center;height:52px;padding:0 26px;border-radius:999px;border:1px solid rgba(244,239,230,.4);font:500 16px/1 'Familjen Grotesk',sans-serif">About me</a></div>
+</div>
+<div data-venn="1" style="position:relative;width:100%;max-width:560px;aspect-ratio:1/.82;margin:0 auto;touch-action:none;user-select:none">
+<svg viewBox="0 0 560 459" style="position:absolute;inset:0;width:100%;height:100%;overflow:visible">
+<defs><clipPath id="rvClipA"><circle data-clip="1" cx="173.6" cy="201" r="173.6"></circle></clipPath></defs>
+<g data-ghost="1" style="opacity:0"><circle cx="173.6" cy="201" r="173.6" style="fill:none;stroke:rgba(244,239,230,.3);stroke-width:1.5;stroke-dasharray:6 8"></circle><circle cx="386.4" cy="201" r="173.6" style="fill:none;stroke:rgba(212,42,46,.5);stroke-width:1.5;stroke-dasharray:6 8"></circle></g>
+<circle data-ca="1" cx="173.6" cy="201" r="173.6" style="fill:none;stroke:rgba(244,239,230,.6);stroke-width:1.5"></circle>
+<circle data-cb="1" cx="386.4" cy="201" r="173.6" style="fill:none;stroke:#D42A2E;stroke-width:1.5"></circle>
+</svg>
+<div data-la="1" style="position:absolute;left:0;top:0;font:400 clamp(12px,1.1cqw,15px)/1 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;color:#CAC3B8;pointer-events:none;white-space:nowrap">THINKING</div>
+<div data-lb="1" style="position:absolute;left:0;top:0;font:400 clamp(12px,1.1cqw,15px)/1 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;color:#D42A2E;pointer-events:none;white-space:nowrap">MAKING</div>
+<div data-lc="1" style="position:absolute;left:0;top:0;text-align:center;font:400 clamp(16px,1.6cqw,22px)/1.1 'Caveat Brush',cursive;color:#F4EFE6;pointer-events:none;white-space:nowrap;transition:transform .2s">where I<br>work</div>
+<div style="position:absolute;left:0;right:0;bottom:-28px;display:flex;flex-direction:column;align-items:center;gap:10px">
+<div data-vline="1" style="min-height:1.3em;text-align:center;font:400 20px/1.3 'Caveat Brush',cursive;color:#CAC3B8;pointer-events:none;transition:color .3s">where I work: in the overlap</div>
+<div style="display:flex;gap:4px;padding:4px;border:1px solid rgba(244,239,230,.2);border-radius:999px;background:#1F1C1A">
+<button data-stop="186" style="height:34px;padding:0 16px;border:none;border-radius:999px;background:transparent;color:#CAC3B8;font:500 13px/1 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;cursor:pointer;transition:background .25s,color .25s">APART</button>
+<button data-stop="106.4" style="height:34px;padding:0 16px;border:none;border-radius:999px;background:#D42A2E;color:#F4EFE6;font:500 13px/1 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;cursor:pointer;transition:background .25s,color .25s">OVERLAP</button>
+<button data-stop="0" style="height:34px;padding:0 16px;border:none;border-radius:999px;background:transparent;color:#CAC3B8;font:500 13px/1 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;cursor:pointer;transition:background .25s,color .25s">ONE</button>
+</div>
+</div>
+</div>
+</div>
+<div ref="{{ revealRef }}" data-reveal-layer="1" style="position:absolute;inset:0;z-index:2;background:#D42A2E;color:#1F1C1A;pointer-events:none;-webkit-mask-image:linear-gradient(transparent,transparent);mask-image:linear-gradient(transparent,transparent)">
+<div style="padding:clamp(24px,3cqw,40px) clamp(20px,5.5cqw,80px) clamp(96px,9cqw,130px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:clamp(56px,6cqw,96px);align-items:center">
+<div>
+<div style="font:400 clamp(18px,1.6cqw,22px)/1.3 'Caveat Brush',cursive;color:#F4EFE6;min-height:1.3em">storyteller at heart</div>
+<div style="margin-top:28px;font:400 clamp(22px,2.2cqw,32px)/1 'Familjen Grotesk',sans-serif;letter-spacing:-.015em">Hi, I'm</div>
+<h1 style="margin:8px 0 0;font:400 clamp(40px,4.4cqw,64px)/1 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;display:flex"><span data-nl2="1" style="display:inline-block;will-change:transform">R</span><span data-nl2="1" style="display:inline-block;will-change:transform">E</span><span data-nl2="1" style="display:inline-block;will-change:transform">E</span><span data-nl2="1" style="display:inline-block;will-change:transform">V</span><span data-nl2="1" style="display:inline-block;will-change:transform">A</span><span data-nl2="1" style="display:inline-block;will-change:transform;color:#F4EFE6">.</span></h1>
+<h2 style="margin:24px 0 0;max-width:560px;font:400 clamp(28px,3cqw,42px)/1.18 'Familjen Grotesk',sans-serif">Thinking and making, <span style="color:#F4EFE6">in one practice.</span></h2>
+<p style="margin:18px 0 0;max-width:520px;font:400 17px/1.65 'Familjen Grotesk',sans-serif;color:#1F1C1A;text-wrap:pretty">There's always another side to the story. Sometimes, all it takes is a different pair of eyes to see what was right there all along.</p>
+<div style="margin-top:22px;transform:rotate(-1.5deg);transform-origin:left"><span style="font:400 19px/1.1 'Caveat Brush',cursive;color:#1F1C1A">you found the <span style="color:#F4EFE6">other side</span></span></div>
+<div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:28px"><span style="display:inline-flex;align-items:center;height:52px;padding:0 26px;border-radius:999px;background:#1F1C1A;color:#F4EFE6;font:500 16px/1 'Familjen Grotesk',sans-serif">Explore my work ↓</span><span style="display:inline-flex;align-items:center;height:52px;padding:0 26px;border-radius:999px;border:1px solid #1F1C1A;font:500 16px/1 'Familjen Grotesk',sans-serif">About me</span></div>
+</div>
+<div style="position:relative;width:100%;max-width:560px;aspect-ratio:1/.82;margin:0 auto">
+<div style="position:absolute;left:0;top:6%;width:62%;aspect-ratio:1;border-radius:50%;border:1.5px solid #1F1C1A"></div>
+<div style="position:absolute;right:0;top:6%;width:62%;aspect-ratio:1;border-radius:50%;border:1.5px solid #F4EFE6"></div>
+<div style="position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);width:24%;aspect-ratio:1;border-radius:50%;background:#1F1C1A;color:#F4EFE6;display:grid;place-items:center;text-align:center;font:400 clamp(16px,1.6cqw,22px)/1.1 'Caveat Brush',cursive">always<br>both</div>
+<div style="position:absolute;left:0;right:0;bottom:-8px;text-align:center;font:400 20px/1.3 'Caveat Brush',cursive;color:#1F1C1A">look closer: it was always both</div>
+</div>
+</div>
+</div>
+</section>
+
+<sc-if value="{{ showMarquee }}" hint-placeholder-val="{{ true }}"><div style="overflow:hidden;padding:20px 0">
+<div ref="{{ marqRef }}" style="display:flex;width:max-content;font:400 clamp(22px,2.4cqw,34px)/1 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;white-space:nowrap;will-change:transform">
+<sc-for list="{{ marquee }}" as="m" hint-placeholder-count="12"><span style="display:flex;align-items:center;gap:28px;padding-right:28px">{{ m }}<span style="width:8px;height:8px;border-radius:50%;background:#D42A2E;flex:none"></span></span></sc-for>
+</div>
+</div></sc-if>
+
+<section id="work" style="margin-top:clamp(90px,10cqw,140px);background:#F4EFE6;color:#1F1C1A;padding:clamp(56px,7cqw,90px) clamp(20px,5.5cqw,80px)">
+<div data-reveal="1" style="display:flex;justify-content:space-between;align-items:flex-end;font:500 19px/1 'Familjen Grotesk',sans-serif"><span style="font:400 26px/1 'Caveat Brush',cursive;color:#D42A2E">Selected Work</span></div>
+<div data-reveal="1" style="margin-top:56px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px"><h2 style="margin:0;position:relative;font:400 clamp(40px,6.4cqw,92px)/1.12 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;color:#D42A2E;cursor:default"><sc-for list="{{ workLines }}" as="ln" hint-placeholder-count="2"><span style="display:block"><sc-for list="{{ ln.chars }}" as="c" hint-placeholder-count="8"><span style="white-space:pre">{{ c }}</span></sc-for></span></sc-for></h2></div>
+</section>
+<section style="position:relative;background:#161412">
+<div style="position:absolute;inset:0;z-index:3;pointer-events:none"><div style="position:sticky;top:{{ sqTop }};height:min(60cqw,420px);padding-left:{{ sqLeft }};pointer-events:none">
+<div ref="{{ sqRef }}" data-wipe="1" style="position:relative;width:min(60cqw,420px);aspect-ratio:1;box-shadow:0 40px 80px rgba(0,0,0,.45);perspective:1200px">
+<div style="position:absolute;inset:0;transform-style:preserve-3d;transition:transform .9s cubic-bezier(.3,1.3,.5,1);transform:rotateY({{ cardRot }}deg)">
+<div style="position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden">
+<sc-for list="{{ projects }}" as="p" hint-placeholder-count="4"><div style="position:absolute;inset:0;background:{{ p.bg }};display:grid;place-items:center;opacity:{{ p.op }};transform:scale({{ p.sc }});transition:opacity .55s ease, transform .55s ease"><span style="font:400 12px/1 'Familjen Grotesk',sans-serif;color:{{ p.labelC }}">{{ p.label }}</span><span style="position:absolute;right:16px;bottom:16px;width:44px;height:44px;border-radius:50%;background:#D42A2E;color:#F4EFE6;display:grid;place-items:center;font:400 18px/1 'Caveat Brush',cursive">{{ p.num }}</span></div></sc-for>
+</div>
+<div style="position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;transform:rotateY(180deg);background:#D42A2E;color:#F4EFE6;padding:clamp(20px,3cqw,32px);box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between;gap:16px">
+<div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px"><span style="font:400 24px/1 'Caveat Brush',cursive">what I saw</span><span style="font:500 12px/1 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;text-transform:uppercase">{{ cur.title }}</span></div>
+<div style="font:500 clamp(18px,2.2cqw,26px)/1.3 'Familjen Grotesk',sans-serif;text-wrap:pretty">{{ cur.saw }}</div>
+<div style="font:400 13px/1.5 'Familjen Grotesk',sans-serif;color:#1F1C1A"><span style="font-weight:600">The brief:</span> {{ cur.asked }}</div>
+</div>
+</div>
+<div style="position:absolute;left:0;top:-28px;font:500 13px/1 'Familjen Grotesk',sans-serif;color:#F4EFE6">{{ counter }}</div>
+</div>
+</div>
+</div>
+<sc-for list="{{ projects }}" as="p" hint-placeholder-count="4"><div ref="{{ p.ref }}" style="position:relative;min-height:{{ rowH }};overflow:hidden;display:flex;align-items:{{ rowAlign }};justify-content:flex-end;padding:clamp(28px,5cqw,64px) clamp(20px,5.5cqw,80px)">
+<div style="position:absolute;inset:-24px;background:{{ p.bg }};filter:blur(10px)"></div>
+<div style="position:absolute;inset:0;background:rgba(20,20,20,.45)"></div>
+<div style="position:relative;width:{{ textW }};color:#F4EFE6">
+<div style="font:400 26px/1 'Caveat Brush',cursive;color:#F4EFE6;transform:rotate(-2deg);transform-origin:left">{{ p.cat }}</div>
+<a href="{{ p.href }}" style="display:block;margin:14px 0 10px;font:600 clamp(34px,4cqw,58px)/1 'Familjen Grotesk',sans-serif;letter-spacing:-.025em">{{ p.title }}</a>
+<p style="margin:0 0 18px;font:400 16px/1.6 'Familjen Grotesk',sans-serif;color:#E6E0D6">{{ p.blurb }}</p>
+<a href="{{ p.href }}" style="font:500 15px/1 'Familjen Grotesk',sans-serif;border-bottom:2px solid #D42A2E;padding-bottom:4px">Look closer →</a>
+</div>
+</div></sc-for>
+</section>
+
+<section ref="{{ howRef }}" style="padding:clamp(80px,9cqw,130px) clamp(20px,5.5cqw,80px) 0">
+<div data-reveal="1" style="display:flex;justify-content:space-between;align-items:flex-end;font:500 19px/1 'Familjen Grotesk',sans-serif"><span style="font:400 26px/1 'Caveat Brush',cursive;color:#D42A2E">How I Work</span></div>
+<div data-reveal="1" style="margin-top:48px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px 64px">
+<h2 style="margin:0;position:relative;font:400 min(67px,9.5cqw)/1.1 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;color:#D42A2E">Behind what<br>you see</h2>
+<p style="margin:0;max-width:440px;font:400 17px/1.65 'Familjen Grotesk',sans-serif;color:#CAC3B8">Shaped by two disciplines and one way of seeing. This is roughly how an idea travels from a question to something you can feel.</p>
+</div>
+<div ref="{{ trackRef }}" style="position:relative;height:320vh;margin-top:24px">
+<div style="position:sticky;top:0;height:100vh;display:flex;flex-direction:column;justify-content:center;gap:clamp(20px,4vh,44px)">
+<div style="position:relative;height:clamp(130px,20vh,190px);margin:0 calc(-1 * clamp(20px,5.5cqw,80px))">
+<svg viewBox="0 0 1000 200" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%;overflow:visible"><path d="M0,140 C80,140 110,100 170,100 S330,20 500,60 S700,150 830,110 S960,40 1000,70" fill="none" stroke="rgba(244,239,230,.14)" stroke-width="1.5" stroke-dasharray="4 6" vector-effect="non-scaling-stroke"></path><path ref="{{ threadRef }}" d="M0,140 C80,140 110,100 170,100 S330,20 500,60 S700,150 830,110 S960,40 1000,70" fill="none" stroke="#D42A2E" stroke-width="3" stroke-linecap="round" style="clip-path:inset(-20px 100% -20px 0)" vector-effect="non-scaling-stroke"></path></svg>
+<sc-for list="{{ knots }}" as="k" hint-placeholder-count="3"><button onClick="{{ k.onClick }}" style="position:absolute;left:{{ k.x }};top:{{ k.y }};transform:translate(-50%,-50%);background:none;border:none;padding:0;cursor:pointer;color:{{ k.fg }};display:flex;flex-direction:column;align-items:center;transition:color .4s"><span style="width:22px;height:22px;border-radius:50%;border:2px solid #D42A2E;background:{{ k.dot }};box-shadow:{{ k.ring }};transition:background .4s,box-shadow .5s"></span><span style="position:absolute;top:34px;white-space:nowrap;display:flex;flex-direction:column;align-items:center;gap:6px"><span style="font:400 12px/1 'Familjen Grotesk',sans-serif;opacity:.7">{{ k.n }}</span><span style="font:500 clamp(14px,1.6cqw,20px)/1 'Familjen Grotesk',sans-serif;letter-spacing:-.015em">{{ k.title }}</span></span></button></sc-for>
+</div>
+<div style="margin:12px calc(-1 * clamp(20px,5.5cqw,80px)) 0;display:grid;grid-template-columns:{{ colsT }};min-height:clamp(220px,34vh,320px)">
+<sc-for list="{{ cols }}" as="c" hint-placeholder-count="3"><div style="display:{{ c.disp }};flex-direction:column;align-items:center;text-align:center;padding:0 clamp(16px,2.4cqw,40px);opacity:{{ c.op }};filter:blur({{ c.blur }});transform:translateY({{ c.y }});transition:opacity .6s ease,filter .6s ease,transform .7s cubic-bezier(.2,.75,.2,1)">
+<div style="font:400 clamp(26px,2.6cqw,36px)/1 'Caveat Brush',cursive;color:#D42A2E;transform:rotate(-3deg)">{{ c.kicker }}</div>
+<div style="margin-top:18px;max-width:340px;min-height:6em;font:400 clamp(17px,1.5cqw,21px)/1.5 'Familjen Grotesk',sans-serif;color:#EEE8DE;text-wrap:pretty">{{ c.body }}</div>
+<div style="margin-top:24px;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:10px 12px;font:400 italic 16px/1 'Familjen Grotesk',sans-serif;color:#D8D1C6"><sc-for list="{{ c.chips }}" as="t" hint-placeholder-count="4"><span style="display:flex;align-items:center;gap:12px"><span style="cursor:default;padding-bottom:3px;border-bottom:1px solid transparent;transition:color .2s,border-color .2s" style-hover="color:#F4EFE6;border-color:#D42A2E">{{ t.t }}</span></span></sc-for></div>
+</div></sc-for>
+</div>
+</div>
+</div>
+</section>
+
+<footer style="padding:clamp(80px,9cqw,120px) clamp(20px,5.5cqw,80px) 32px;background:#24211E">
+<div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:40px">
+<div data-reveal="1" style="flex:1 1 520px">
+<div style="font:400 22px/1.3 'Caveat Brush',cursive;color:#D42A2E">— got a thought worth exploring?</div>
+<h2 style="margin:18px 0 0;font:400 clamp(32px,5.4cqw,80px)/1.18 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;color:#D42A2E;cursor:default">Let's make <span style="color:#F4EFE6">{{ ctaWord }}</span><br><span style="color:#F4EFE6">great together.</span></h2>
+</div>
+
+</div>
+<div data-reveal="1" style="margin:48px 0 56px;display:flex;flex-wrap:wrap;gap:16px 32px;align-items:center">
+<button onClick="{{ copy }}" style="display:flex;align-items:center;gap:16px;height:64px;padding:0 10px 0 28px;border-radius:999px;border:1px solid rgba(244,239,230,.35);background:none;color:#F4EFE6;cursor:pointer;font:500 clamp(17px,1.6cqw,21px)/1 'Familjen Grotesk',sans-serif" style-hover="border-color:#D42A2E">contactreeva@gmail.com<span style="height:46px;padding:0 18px;border-radius:999px;background:{{ copyBg }};display:inline-flex;align-items:center;font:500 14px/1 'Familjen Grotesk',sans-serif;transition:background .2s">{{ copyLabel }}</span></button>
+<div style="display:flex;flex-wrap:wrap;gap:12px 28px;font:500 17px/1.2 'Familjen Grotesk',sans-serif"><a href="#">LinkedIn ↗</a><a href="#">Behance ↗</a><a href="#">Résumé ↓</a></div>
+</div>
+<div ref="{{ footLineRef }}" style="border-top:1px solid rgba(244,239,230,.18);padding-top:24px;display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:center">
+<nav style="display:flex;flex-wrap:wrap;gap:16px 36px;font:400 17px/1 'Familjen Grotesk',sans-serif"><a href="index.html">Home</a><a href="about.html">About</a><a href="say-hi.html">Say Hi</a></nav>
+<div style="font:500 15px/1 'Familjen Grotesk',sans-serif">© 2024 <a href="index.html" style="text-decoration:underline;font-weight:700">Reeva</a></div>
+</div>
+</footer>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;orbiters&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Face&quot;},&quot;heroEffect&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Cursor reveal&quot;,&quot;Static&quot;],&quot;default&quot;:&quot;Cursor reveal&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Hero&quot;},&quot;revealSize&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;min&quot;:100,&quot;max&quot;:400,&quot;step&quot;:10,&quot;unit&quot;:&quot;px&quot;,&quot;default&quot;:200,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Hero&quot;},&quot;showMarquee&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Motion&quot;},&quot;marqueeSpeed&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;min&quot;:0,&quot;max&quot;:3,&quot;step&quot;:0.1,&quot;default&quot;:1,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Motion&quot;},&quot;autoplaySkills&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Motion&quot;},&quot;scrollReveal&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Motion&quot;}}">
+const RED = '#D42A2E';
+const KX = [.17, .5, .83], KY = [.5, .3, .55];
+const STEP_NOTES = ['looking closer…', 'found a thread!', 'now, make it felt'];
+const PEEK_NOTES = ['ooh, colour', 'this one listened first', 'look up!', "shh, it's a café"];
+const faceLib = () => new Promise(res => { const k = () => window.ReevaFace ? res(window.ReevaFace) : setTimeout(k, 50); k(); });
+const TINTS = [0xEE7A22, 0xff3d6e, 0x7a6cff, 0xD9D4CA];
+const NOTES = { idle: 'poke the face. there\'s another side', mob: 'tap the face. there\'s another side', on: 'the other side: all sticky notes', off: 'and back to the front', dizzy: "ok ok, I'm dizzy" };
+const lerp = (a, b, t) => a + (b - a) * t;
+const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+const sstep = t => t * t * (3 - 2 * t);
+const CTA = ['something', 'something new', 'something bold', 'something true', 'something that lasts'];
+const SKILLS = ['SEEING DIFFERENTLY', 'ASKING WHY', 'CONNECTING DOTS', 'FINDING THE THREAD', 'SHAPING STORIES', 'MAKING IT FELT'];
+const stripe = t => t;
+const STEPS = [
+  { title: 'DISCOVER', kicker: 'listen first', body: 'It starts with curiosity. Looking closer, asking more, and staying with the question a little longer than most.', chips: ['Curiosity', 'Context', 'Conversations', 'Patterns'], label: 'image — the first question', tint: '#38332F' },
+  { title: 'DEFINE', kicker: 'find the thread', body: 'Somewhere in the noise there is a thread. I follow it until the direction feels obvious in hindsight.', chips: ['Clarity', 'Direction', 'Meaning', 'Focus'], label: 'image — the thread', tint: '#7a1426' },
+  { title: 'DESIGN', kicker: 'make it felt', body: 'Then it takes shape: something people notice, remember, and feel before they can explain why.', chips: ['Form', 'Feeling', 'Story', 'Detail'], label: 'image — the outcome', tint: '#D42A2E' },
+];
+const PROJECTS = [
+  { num: '1', title: 'Twasa', cat: 'A quiet confidence', tint: '#EE7A22', labelC: 'rgba(244,239,230,.85)', label: 'twasa key visual', blurb: 'What happens when science wants to feel human? A story of balance, told in colour.' },
+  { num: '2', title: 'Human Behaviour Study', cat: 'Law & Life', tint: '#E31E48', labelC: 'rgba(244,239,230,.85)', label: 'flamingo key visual', blurb: 'The waiting public vs a courtroom that tells them almost nothing. What happens to people while they wait for justice.', href: 'human-behaviour-study/' },
+  { num: '3', title: "Ahmedabad's Biggest Wall Projection", cat: 'One night, one wall', tint: '#1B1830', labelC: 'rgba(244,239,230,.7)', label: 'night photo', blurb: 'A city, a wall, and a moment that made people stop and look up.' },
+  { num: '4', title: 'One Café', cat: 'Small, but considered', tint: '#D9D4CA', labelC: 'rgba(35,35,35,.7)', label: 'one café key visual', blurb: 'A neighbourhood ritual, given a voice that never needs to raise itself.' },
+];
+PROJECTS.forEach(p => { p.href = p.href || '#work'; p.asked = p.asked || 'Add what the client asked for.'; p.saw = p.saw || 'Add what you saw: the insight that changed the direction.'; });
+class Component extends DCLogic {
+  ls(k, d) { try { return localStorage.getItem(k) || d; } catch (e) { return d; } }
+  state = { device: typeof innerWidth !== 'undefined' && innerWidth < 700 ? 'mobile' : 'desktop', menu: false, act: 0, step: 0, copied: false, note: '' };
+  canvasRef = React.createRef(); heroSlotRef = React.createRef(); footSlotRef = React.createRef();
+  m = { x: 0, y: 0, nx: 0, ny: 0 }; F = null; clicks = []; flipped = false; flip = 0; kick = 0; sq = 0; sqv = 0; blink = 1; nextBlink = 2;
+  rowRefs = PROJECTS.map(() => React.createRef());
+  heroRef = React.createRef(); revealRef = React.createRef(); ringRef = React.createRef();
+  marqRef = React.createRef(); barRef = React.createRef();
+  cur = { x: 0, y: 0, r: 0 }; tgt = { x: 0, y: 0, r: 0 }; mx = 0; prog = 0; paused = false;
+  p(k, d) { const v = this.props[k]; return v === undefined || v === null ? d : v; }
+  onScroll = () => {
+    const mid = window.innerHeight / 2;
+    let idx = this.state.act;
+    this.rowRefs.forEach((r, i) => { const el = r.current; if (!el) return; const b = el.getBoundingClientRect(); if (b.top <= mid && b.bottom > mid) idx = i; });
+    if (idx !== this.state.act) this.setState({ act: idx, cardFlip: false });
+    const f = this.fillRef.current;
+    if (f) { const b = f.parentNode.getBoundingClientRect(), H = window.innerHeight; const pr = Math.max(0, Math.min(1, (H * 0.9 - b.top) / (H * 0.45))); f.style.clipPath = `inset(0 ${(100 - pr * 100).toFixed(1)}% 0 0)`; }
+  };
+  fillRef = React.createRef(); nameA = React.createRef(); nameB = React.createRef();
+  scramble = () => {
+    const T = 'REEVA', G = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ#&%';
+    let f = 0; clearInterval(this.si);
+    this.si = setInterval(() => {
+      f++;
+      const out = f >= 16 ? T : T.split('').map((c, i) => i < f / 3 ? c : G[(Math.random() * G.length) | 0]).join('');
+      [this.nameA.current, this.nameB.current].forEach(e => { if (e) e.textContent = out; });
+      if (f >= 16) clearInterval(this.si);
+    }, 45);
+  };
+  ctaOn = () => { clearInterval(this.ci); const nx = s => ({ cta: ((s.cta || 0) + 1) % CTA.length }); this.setState(nx); this.ci = setInterval(() => this.setState(nx), 900); };
+  ctaOff = () => { clearInterval(this.ci); };
+  heroMove = e => {
+    const h = this.heroRef.current; if (!h) return;
+    const pt = e.touches ? e.touches[0] : e, b = h.getBoundingClientRect();
+    this.tgt.x = pt.clientX - b.left; this.tgt.y = pt.clientY - b.top; this.tgt.r = this.p('revealSize', 200);
+    if (this.cur.r < 2) { this.cur.x = this.tgt.x; this.cur.y = this.tgt.y; }
+  };
+  heroLeave = () => { this.tgt.r = 0; };
+  tick = t => {
+    const dt = Math.min(50, t - (this.last || t)); this.last = t;
+    const c = this.cur, g = this.tgt;
+    try { this.frame && this.frame(t / 1000, c, g); } catch (err) { if (!this.errLogged) { this.errLogged = true; console.error('frame', err); } }
+    const m = this.marqRef.current;
+    if (m) { this.mx -= this.p('marqueeSpeed', 1) * dt * 0.06; const w = m.scrollWidth / 2; if (w && -this.mx >= w) this.mx += w; m.style.transform = `translateX(${this.mx}px)`; }
+    this.thread();
+    this.raf = requestAnimationFrame(this.tick);
+  };
+  setupReveal() {
+    if (this.io) this.io.disconnect();
+    const els = document.querySelectorAll('[data-reveal]');
+    const on = this.p('scrollReveal', false);
+    els.forEach(el => { el.style.transition = 'opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1)'; if (on) { el.style.opacity = 0; el.style.transform = 'translateY(32px)'; } else { el.style.opacity = 1; el.style.transform = 'none'; } });
+    if (!on || !window.IntersectionObserver) return;
+    this.io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.style.opacity = 1; e.target.style.transform = 'none'; this.io.unobserve(e.target); } }), { threshold: 0.15 });
+    els.forEach(el => this.io.observe(el));
+  }
+  onMove = e => { const pt = e.touches ? e.touches[0] : e; if (!pt) return; this.m.x = pt.clientX; this.m.y = pt.clientY; this.m.nx = e.clientX / innerWidth * 2 - 1; this.m.ny = -(e.clientY / innerHeight) * 2 + 1; this.overUI = !!(e.target.closest && e.target.closest('a,button')); };
+  onClick = e => { this.poke && this.poke(e); };
+  sqRef = React.createRef(); howRef = React.createRef(); footLineRef = React.createRef();
+  trackRef = React.createRef(); threadRef = React.createRef(); tx = 0; tip = null;
+  // Scroll through the pinned track: the red thread draws from knot to knot and unlocks each step.
+  thread() {
+    const tr = this.trackRef.current, path = this.threadRef.current; if (!tr || !path) return;
+    const H = innerHeight, b = tr.getBoundingClientRect(), span = Math.max(1, b.height - H);
+    const goal = b.top > 0 ? KX[0] * clamp((H - b.top) / (H * .8), 0, 1) : KX[0] + (1 - KX[0]) * clamp(-b.top / span, 0, 1);
+    this.tx = lerp(this.tx, goal, .12);
+    if (!this.lut) { this.L = path.getTotalLength(); this.lut = []; for (let i = 0; i <= 300; i++) this.lut.push(path.getPointAtLength(this.L * i / 300).x / 1000); }
+    let i = 0; while (i < 300 && this.lut[i] < this.tx) i++;
+    const f = i / 300;
+    const pt = path.getPointAtLength(f * this.L), m = path.getScreenCTM();
+    path.style.clipPath = `inset(-20px ${(100 - pt.x / 10).toFixed(2)}% -20px 0)`;
+    this.tip = m && f > .01 ? { x: m.a * pt.x + m.c * pt.y + m.e, y: m.b * pt.x + m.d * pt.y + m.f } : null;
+    const st = this.tx >= KX[2] - .01 ? 2 : this.tx >= KX[1] - .01 ? 1 : 0;
+    if (st !== this.state.step) this.setState({ step: st });
+  }
+  jumpTo(i) {
+    const tr = this.trackRef.current; if (!tr) return;
+    let sc = tr.parentElement; while (sc && sc !== document.body && !(sc.scrollHeight > sc.clientHeight + 4 && /auto|scroll/.test(getComputedStyle(sc).overflowY))) sc = sc.parentElement;
+    if (!sc || sc === document.body) sc = document.scrollingElement;
+    const b = tr.getBoundingClientRect(), span = b.height - innerHeight, k = (KX[i] - KX[0]) / (1 - KX[0]) + (i ? .02 : 0);
+    sc.scrollBy({ top: b.top + k * span, behavior: 'smooth' });
+  }
+  avatarRef = React.createRef();
+  mountHero() {
+    const go = () => { if (this.dead || !this.heroRef.current) return; if (!window.ReevaHero) return setTimeout(go, 50);
+      this.hx = window.ReevaHero.mount(this.heroRef.current, { revealSize: this.p('revealSize', 200), keepLens: !!this.keepLens, onLens: on => this.onLens && this.onLens(on), lensRadius: (x, y) => this.lensRadius ? this.lensRadius(x, y) : 0, lensFrom: () => null }); };
+    go();
+  }
+  lensFrom() {
+    const list = [this.avatar, this.footFace].filter(Boolean); let pick = null;
+    for (const f of list) { const b = f.el.getBoundingClientRect(); if (b.bottom > 0 && b.top < innerHeight) { pick = b; break; } }
+    if (!pick && this.avatar) pick = this.avatar.el.getBoundingClientRect();
+    return pick ? { x: pick.left + pick.width / 2, y: pick.top + pick.height * .46 } : null;
+  }
+  anyHit() { return (this.faces || []).some(f => f.hit); }
+  pokeCount() { const t = performance.now() / 1000; this.clicks = this.clicks.filter(c => c > t - 2.5); this.clicks.push(t); if (this.clicks.length >= 5) { this.clicks = []; return true; } return false; }
+  heroReveal(c, g, full) {
+    const h0 = this.heroRef.current, rv = this.revealRef.current, ring = this.ringRef.current, hs = this.heroSlotRef.current;
+    if (h0 && hs) { const a = h0.getBoundingClientRect(), b = hs.getBoundingClientRect(); this.heroFace = { x: b.left + b.width / 2 - a.left, y: b.top + b.height / 2 - a.top }; }
+    const hit = this.anyHit(), hf = full && this.heroFace;
+    const gx = hf ? this.heroFace.x : g.x, gy = hf ? this.heroFace.y : g.y, gr = hf && h0 ? Math.hypot(h0.offsetWidth, h0.offsetHeight) : hit || this.state.v ? 0 : g.r;
+    if (hf && c.r < 2) { c.x = gx; c.y = gy; }
+    c.x += (gx - c.x) * (hf ? .08 : .2); c.y += (gy - c.y) * (hf ? .08 : .2); c.r += (gr - c.r) * (hf ? .06 : .14);
+    if (rv) rv.style.clipPath = `circle(${c.r.toFixed(1)}px at ${c.x.toFixed(1)}px ${c.y.toFixed(1)}px)`;
+    if (ring) { ring.style.width = ring.style.height = 2 * c.r + 'px'; ring.style.transform = `translate(${c.x - c.r}px,${c.y - c.r}px)`; ring.style.opacity = c.r > 4 && !full ? 1 : 0; }
+    if (h0) h0.style.cursor = hit ? 'pointer' : this.state.v ? 'default' : this.p('heroEffect', 'Cursor reveal') === 'Cursor reveal' ? 'none' : 'auto';
+    document.body.style.cursor = hit ? 'pointer' : '';
+  }
+  heroPoke(f) {
+    f.kick();
+    if (this.pokeCount()) { f.spin(); this.setState({ note: NOTES.dizzy }); return; }
+    this.flipped = !this.flipped; f.t.flip = this.flipped ? 1 : 0; { const b = f.el.getBoundingClientRect(); this.hx && this.hx.setFull(this.flipped, b.left + b.width / 2, b.top + b.height / 2); } this.setState({ note: this.flipped ? NOTES.on : NOTES.off });
+  }
+  onResize = () => { const d = innerWidth < 700 ? 'mobile' : 'desktop'; if (d !== this.state.device) this.setState({ device: d }); this.onScroll(); };
+  peekRef = React.createRef(); bubbleRef = React.createRef(); pk = 0; cd = null;
+  async init3d() { this.mountHero(); const F = await faceLib(); if (this.dead || !this.canvasRef.current) return; this.face = await F.mount(this.canvasRef.current); this.faces = [this.face];
+    if (this.avatarRef.current) this.faces.push(this.avatar = await F.mount(this.avatarRef.current)); }
+  poke = e => {
+    if (e.target.closest('a,button')) return; const f = (this.faces || []).find(x => x.hit); if (!f) return; f.kick();
+    if (f === this.avatar) { this.hx && this.hx.setLens(!this.hx.lens); return; }
+    const t = performance.now() / 1000;
+    if (this.pokeCount()) { f.spin(); this.tempNote = "ok ok, I'm dizzy"; this.tempUntil = t + 1.6; return; }
+    if (this.cd && this.cd.id === 'work') { this.setState(s => ({ cardFlip: !s.cardFlip })); return; }
+    this.tempNote = 'hey, that tickles'; this.tempUntil = t + 1.6;
+  };
+  onLens(on) { this.setState({ lensOn: on }); const a = this.avatar; if (a) { a.kick(); a.t.glassesOff = on ? 1 : 0; a.t.squint = on ? 1 : 0; } }
+  frame(t, c, g) {
+    document.body.style.cursor = this.anyHit() ? 'pointer' : '';
+    const f = this.face, pk = this.peekRef.current, box = this.canvasRef.current, bub = this.bubbleRef.current; if (!f || !pk || !box) return;
+    const W = innerWidth, H = innerHeight, mob = W < 700, R = r => r.current && r.current.getBoundingClientRect();
+    const hs = R(this.heroSlotRef), how = R(this.howRef), sq = R(this.sqRef), r0 = R(this.rowRefs[0]), rn = R(this.rowRefs[PROJECTS.length - 1]), fl = R(this.footLineRef);
+    let d = null;
+    const hb = R(this.heroRef);
+    if (hb && hb.bottom > H * .45) { d = null; }
+    else if (this.tip && (tk => tk && tk.top < H * .4 && tk.bottom > H * .6)(R(this.trackRef))) { const z = mob ? 96 : 130, tp = this.tip; d = { id: 'how', x: tp.x - z / 2, y: tp.y - z * .8, w: z, h: z * .8, in: z, side: 'b', note: STEP_NOTES[this.state.step] }; }
+    else if (sq && r0 && rn && r0.top < H * .5 && rn.bottom > H * .5) { const z = Math.min(190, sq.width * .48); d = { id: 'work', x: sq.right - z - 8, y: sq.top - z * .62, w: z, h: z * .62, in: z, side: 'b', note: this.state.cardFlip ? 'this is what I saw' : 'poke me to see what I saw' }; }
+    else if (fl && fl.top < H) { const z = mob ? 150 : 220; d = { id: 'foot', x: fl.right - z - (mob ? 0 : 24), y: fl.top - z * .62, w: z, h: z * .62, in: z, side: 'b', note: "what's the other side of your story?" }; }
+    if (!this.cd && d) this.cd = d;
+    let want = 0;
+    if (d && this.cd && d.id === this.cd.id) { this.cd = d; want = 1; } else if (d && this.pk < .03) this.cd = d;
+    this.pk = lerp(this.pk, want, .13);
+    const D = this.cd; if (!D) return;
+    if (D.id !== 'hero' && this.flipped) { this.flipped = false; f.t.flip = 0; this.hx && this.hx.setFull(false); }
+    pk.style.left = D.x + 'px'; pk.style.top = D.y + 'px'; pk.style.width = D.w + 'px'; pk.style.height = D.h + 'px';
+    const off = 1 - sstep(clamp(this.pk, 0, 1));
+    box.style.width = box.style.height = D.in + 'px';
+    box.style.left = (D.side === 'r' ? off * D.w : 0) + 'px'; box.style.top = (D.side === 'b' ? off * D.h : 0) + 'px';
+    const T = f.t, st = this.state.step; T.rotY = 0; T.rotX = 0; T.tilt = 0; T.wide = 0; T.wiggle = 0; f.look = null;
+    if (D.id === 'how') { T.tilt = .1; if (st === 0) T.wide = 1; if (st < 2 && this.tip) f.look = { x: this.tip.x + 260, y: this.tip.y }; if (st === 2) T.wiggle = 1; }
+    if (D.id === 'work' && sq) { T.rotX = .3; f.look = { x: sq.left + sq.width / 2, y: sq.top + sq.height / 2 }; }
+    T.flip = D.id === 'work' && this.state.cardFlip ? 1 : 0;
+    const key = D.id + (D.id === 'how' ? st : D.id === 'work' ? this.state.act : '');
+    if (key !== this.lastKey) { if (this.lastKey) f.kick(); this.lastKey = key; }
+    if (bub) {
+      const txt = (this.tempUntil > t ? this.tempNote : D.note) || '';
+      if (bub.textContent !== txt) bub.textContent = txt;
+      const bw = bub.offsetWidth, bx = Math.max(8, D.x - bw - 6), by = D.y + D.h * (D.side === 'r' ? .18 : .15);
+      bub.style.transform = `translate(${bx}px,${by}px) rotate(-3deg)`; bub.style.opacity = this.pk > .85 && txt && !(D.id === 'hero' && this.flipped) ? 1 : 0;
+    }
+  }
+  extraVals() { return { peekRef: this.peekRef, bubbleRef: this.bubbleRef }; }
+
+  componentDidMount() {
+    window.addEventListener('scroll', this.onScroll, true); window.addEventListener('resize', this.onResize); this.onScroll();
+    window.addEventListener('mousemove', this.onMove); window.addEventListener('touchmove', this.onMove, { passive: true }); window.addEventListener('click', this.onClick);
+    this.init3d();
+    this.raf = requestAnimationFrame(this.tick);
+    setTimeout(() => this.setupReveal(), 50);
+  }
+  componentDidUpdate(pp) { if (pp.scrollReveal !== this.props.scrollReveal) this.setupReveal(); }
+  componentWillUnmount() { this.dead = true; window.removeEventListener('scroll', this.onScroll, true); window.removeEventListener('resize', this.onResize); window.removeEventListener('mousemove', this.onMove); window.removeEventListener('click', this.onClick); document.body.style.cursor = ''; window.removeEventListener('touchmove', this.onMove); document.documentElement.classList.remove('lens'); (this.faces || []).forEach(f => f.dispose()); this.hx && this.hx.dispose(); cancelAnimationFrame(this.raf); clearInterval(this.si); clearInterval(this.ci); clearTimeout(this.st); if (this.io) this.io.disconnect(); clearTimeout(this.ct); }
+  renderVals() {
+    const s = this.state, mob = s.device === 'mobile', reveal = this.p('heroEffect', 'Cursor reveal') === 'Cursor reveal';
+    const btn = on => ({ bg: on ? RED : 'transparent', fg: on ? '#F4EFE6' : '#9D958A' });
+    const st = STEPS[s.step];
+    return {
+      devices: [['desktop', 'Desktop'], ['mobile', 'Mobile']].map(([k, l]) => ({ label: l, ...btn(s.device === k), onClick: () => { try { localStorage.setItem('reeva-device', k); } catch (e) {} this.setState({ device: k, menu: false }); } })),
+      isMobile: mob, isDesktop: !mob,
+      frameW: '100%', frameR: '0px', outerPad: '0px', frameShadow: 'none', canvasRef: this.canvasRef, heroSlotRef: this.heroSlotRef, sqRef: this.sqRef, howRef: this.howRef, footLineRef: this.footLineRef, avatarRef: this.avatarRef, avNote: s.lens || s.lensOn ? "← you're seeing it my way now" : "← that's me", cardRot: s.cardFlip ? 180 : 0, cur: PROJECTS[s.act], ...(this.extraVals ? this.extraVals(s, mob) : {}),
+      menuOpen: s.menu && mob, toggleMenu: () => this.setState(x => ({ menu: !x.menu })),
+      heroRef: this.heroRef, revealRef: this.revealRef, ringRef: this.ringRef, marqRef: this.marqRef, barRef: this.barRef,
+      vOn: () => this.setState({ v: true }), vOff: () => this.setState({ v: false }),
+      vTxt: s.v ? '#F4EFE6' : s.note ? RED : '#9D958A', vLine: s.v ? 'Curiosity · Clarity · Craft · Character' : s.note || 'hover the middle', vBg: s.v ? RED : 'rgba(212,42,46,.25)', vScale: s.v ? 1.12 : 1,
+      fillRef: this.fillRef, nameA: this.nameA, nameB: this.nameB, scramble: this.scramble,
+      hlOn: () => this.setState({ hl: true }), hlOff: () => this.setState({ hl: false }),
+      hlW: s.hl ? '100%' : '0%', hlC: s.hl ? '#F4EFE6' : RED,
+      pokeT: mob ? 'translateY(2.6em) rotate(-6deg)' : 'translateX(100%) rotate(-6deg)',
+      workLines: ['Made along', 'the way'].map(l => ({ chars: l.split('') })),
+      ctaOn: this.ctaOn, ctaOff: this.ctaOff, ctaWord: CTA[s.cta || 0],
+      ctaHint: (s.cta || 0) === 0 ? 'hover the headline' : 'you tell me the rest',
+      heroMove: this.heroMove, heroLeave: this.heroLeave, showReveal: reveal, heroCursor: reveal ? 'none' : 'auto',
+      showMarquee: this.p('showMarquee', false), marquee: [...SKILLS, ...SKILLS],
+      trackRef: this.trackRef, threadRef: this.threadRef,
+      colsT: mob ? 'minmax(0,1fr)' : 'repeat(3,minmax(0,1fr))',
+      cols: STEPS.map((x, i) => ({ kicker: x.kicker, body: x.body, chips: x.chips.map((t, j) => ({ t, dot: j ? 'block' : 'none' })), disp: mob && i !== s.step ? 'none' : 'flex', op: i === s.step ? 1 : i < s.step ? .38 : .14, blur: i > s.step ? '4px' : '0px', y: i > s.step ? '18px' : '0px' })),
+      knots: STEPS.map((x, i) => ({ title: x.title, n: '0' + (i + 1), x: KX[i] * 100 + '%', y: KY[i] * 100 + '%', fg: i <= s.step ? '#F4EFE6' : '#6E665C', dot: i <= s.step ? RED : '#1F1C1A', ring: i === s.step ? '0 0 0 8px rgba(212,42,46,.22)' : '0 0 0 0 rgba(212,42,46,0)', onClick: () => this.jumpTo(i) })),
+      step: { ...st, bg: stripe(st.tint) }, barLeft: (s.step * 33.333).toFixed(2) + '%',
+      pause: () => { this.paused = true; }, resume: () => { this.paused = false; },
+      sqLeft: mob ? '20px' : 'clamp(20px,12cqw,180px)', rowH: mob ? '720px' : '100vh', rowAlign: mob ? 'flex-end' : 'center',
+      textW: mob ? '100%' : 'min(100%,40%)', sqTop: mob ? '80px' : 'calc(50vh - min(30cqw,210px) + 20px)',
+      counter: '0' + (s.act + 1) + ' / 0' + PROJECTS.length,
+      projects: PROJECTS.map((p, i) => ({ ...p, ref: this.rowRefs[i], bg: stripe(p.tint), op: s.act === i ? 1 : 0, sc: s.act === i ? 1 : 0.96 })),
+      copy: () => { try { navigator.clipboard && navigator.clipboard.writeText('contactreeva@gmail.com'); } catch (e) {} this.setState({ copied: true }); clearTimeout(this.ct); this.ct = setTimeout(() => this.setState({ copied: false }), 1800); },
+      copyLabel: s.copied ? 'Copied' : 'Copy', copyBg: s.copied ? RED : 'rgba(244,239,230,.12)',
+    };
+  }
+}
+</script>
+</body>
+</html>
