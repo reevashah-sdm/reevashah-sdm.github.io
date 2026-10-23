@@ -1,10 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="utf-8">
-<title>About · Reeva Shah</title>
-<meta name="description" content="A little about Reeva Shah: a designer who likes making things look good and figuring out what makes them work.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23161412'/%3E%3Ctext x='29' y='45' text-anchor='middle' font-family='Georgia,serif' font-size='38' fill='%23F4EFE6'%3ER%3C/text%3E%3Ccircle cx='48' cy='42' r='4.5' fill='%23D42A2E'/%3E%3C/svg%3E">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
 </head>
@@ -12,39 +9,39 @@
 <x-dc>
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&amp;family=Lato:ital,wght@0,400;0,700;0,900;1,400&amp;family=Caveat+Brush&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&amp;family=Caveat+Brush&amp;display=swap" rel="stylesheet">
 <style>body{margin:0;background:#161412}*{box-sizing:border-box}html{scroll-behavior:smooth}a{color:inherit;text-decoration:none;transition:color .2s}a:hover{color:#D42A2E}::selection{background:#D42A2E;color:#F4EFE6}@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}html{scroll-behavior:auto!important}}</style>
 <script src="reeva-face.js"></script>
 </helmet>
-<div style="min-height:100vh;background:#161412;font-family:Lato,sans-serif">
+<div style="min-height:100vh;background:#161412;font-family:'Familjen Grotesk',sans-serif">
 <div ref="{{ peekRef }}" style="position:fixed;left:0;top:0;width:0;height:0;overflow:hidden;z-index:45;pointer-events:none"><div ref="{{ canvasRef }}" style="position:absolute;left:0;top:0;width:0;height:0"></div></div>
 <div ref="{{ bubbleRef }}" style="position:fixed;left:0;top:0;z-index:46;pointer-events:none;opacity:0;transition:opacity .3s;padding:10px 16px 8px;border-radius:999px;background:#F4EFE6;color:#1F1C1A;font:400 20px/1 'Caveat Brush',cursive;white-space:nowrap;box-shadow:0 10px 30px rgba(0,0,0,.25)"></div>
 <div style="width:100%;margin:0 auto;overflow:clip;container-type:inline-size;background:#1F1C1A;color:#F4EFE6;position:relative">
 
 <header style="position:relative;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:28px clamp(20px,5.5cqw,80px)">
 <span></span>
-<sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}"><nav style="display:flex;gap:40px;font:400 17px/1 Lato,sans-serif"><a href="index.html">Home</a><a href="about.html" style="color:#D42A2E">About</a><a href="say-hi.html">Say Hi →</a></nav></sc-if>
-<sc-if value="{{ isMobile }}"><button onClick="{{ toggleMenu }}" style="background:none;border:1px solid rgba(244,239,230,.35);color:#F4EFE6;border-radius:999px;padding:0 18px;height:44px;font:500 14px/1 Lato,sans-serif;cursor:pointer">Menu</button></sc-if>
+<sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}"><nav style="display:flex;gap:40px;font:400 17px/1 'Familjen Grotesk',sans-serif"><a href="index.html">Home</a><a href="about.html" style="color:#D42A2E">About</a><a href="say-hi.html">Say Hi →</a></nav></sc-if>
+<sc-if value="{{ isMobile }}"><button onClick="{{ toggleMenu }}" style="background:none;border:1px solid rgba(244,239,230,.35);color:#F4EFE6;border-radius:999px;padding:0 18px;height:44px;font:500 14px/1 'Familjen Grotesk',sans-serif;cursor:pointer">Menu</button></sc-if>
 </header>
 <sc-if value="{{ menuOpen }}"><div style="position:absolute;inset:0;z-index:30;background:#D42A2E;padding:28px 24px;display:flex;flex-direction:column;gap:6px">
-<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:56px"><span></span><button onClick="{{ toggleMenu }}" style="background:#F4EFE6;border:none;color:#D42A2E;border-radius:999px;padding:0 18px;height:44px;font:600 14px/1 Lato,sans-serif;cursor:pointer">Close</button></div>
-<a href="index.html" style="font:400 52px/1.2 'Tenor Sans',serif;letter-spacing:-.015em;color:#F4EFE6">Home</a><a href="about.html" style="font:400 52px/1.2 'Tenor Sans',serif;letter-spacing:-.015em;color:#F4EFE6">About</a><a href="#say-hi" onClick="{{ toggleMenu }}" style="font:400 52px/1.2 'Tenor Sans',serif;letter-spacing:-.015em;color:#F4EFE6">Say hi</a>
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:56px"><span></span><button onClick="{{ toggleMenu }}" style="background:#F4EFE6;border:none;color:#D42A2E;border-radius:999px;padding:0 18px;height:44px;font:600 14px/1 'Familjen Grotesk',sans-serif;cursor:pointer">Close</button></div>
+<a href="index.html" style="font:400 52px/1.2 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;color:#F4EFE6">Home</a><a href="about.html" style="font:400 52px/1.2 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;color:#F4EFE6">About</a><a href="#say-hi" onClick="{{ toggleMenu }}" style="font:400 52px/1.2 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;color:#F4EFE6">Say hi</a>
 </div></sc-if>
 
 <section ref="{{ heroRef }}" onMouseMove="{{ heroMove }}" onMouseLeave="{{ heroLeave }}" style="position:relative;overflow:hidden">
 <div style="position:relative;z-index:1;padding:clamp(24px,3cqw,40px) clamp(20px,5.5cqw,80px) clamp(80px,8cqw,120px)">
 <div style="font:400 clamp(18px,1.6cqw,22px)/1.3 'Caveat Brush',cursive;color:#D42A2E">— the person behind the work</div>
-<h1 style="margin:20px 0 0;font:400 clamp(40px,6cqw,88px)/1.2 'Tenor Sans',serif;letter-spacing:-.015em;cursor:default"><sc-for list="{{ heroLines }}" as="ln" hint-placeholder-count="2"><span style="display:block"><sc-for list="{{ ln.chars }}" as="c" hint-placeholder-count="8"><span style="white-space:pre">{{ c }}</span></sc-for></span></sc-for></h1>
+<h1 style="margin:20px 0 0;font:400 clamp(40px,6cqw,88px)/1.2 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;cursor:default"><sc-for list="{{ heroLines }}" as="ln" hint-placeholder-count="2"><span style="display:block"><sc-for list="{{ ln.chars }}" as="c" hint-placeholder-count="8"><span style="white-space:pre">{{ c }}</span></sc-for></span></sc-for></h1>
 <div style="margin-top:clamp(48px,6cqw,80px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(36px,5cqw,80px);align-items:center">
 <div style="display:flex;flex-direction:column;align-items:center;gap:16px">
 <div onMouseEnter="{{ stageOn }}" onMouseLeave="{{ stageOff }}" style="position:relative;width:min(100%,460px);aspect-ratio:1">
 <sc-if value="{{ isRing }}" hint-placeholder-val="{{ true }}">
-<svg ref="{{ ringTextRef }}" viewBox="0 0 400 400" style="position:absolute;inset:0;width:100%;height:100%;overflow:visible"><defs><path id="rvRing" d="M200,200 m-184,0 a184,184 0 1,1 368,0 a184,184 0 1,1 -368,0"></path></defs><text style="font:500 15px Lato,sans-serif;letter-spacing:-.015em;fill:#90887D"><textPath href="#rvRing" textLength="1150" lengthAdjust="spacing">A LITTLE ABOUT ME ✦ JUST A PERSON ✦ WITH A LOT GOING ON ✦ AND TOO MANY TABS OPEN ✦</textPath></text></svg>
+<svg ref="{{ ringTextRef }}" viewBox="0 0 400 400" style="position:absolute;inset:0;width:100%;height:100%;overflow:visible"><defs><path id="rvRing" d="M200,200 m-184,0 a184,184 0 1,1 368,0 a184,184 0 1,1 -368,0"></path></defs><text style="font:500 15px 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;fill:#90887D"><textPath href="#rvRing" textLength="1150" lengthAdjust="spacing">A LITTLE ABOUT ME ✦ JUST A PERSON ✦ WITH A LOT GOING ON ✦ AND TOO MANY TABS OPEN ✦</textPath></text></svg>
 <div style="position:absolute;left:16%;right:16%;bottom:12%;aspect-ratio:1;border-radius:50%;background:#D42A2E"></div>
 </sc-if>
 <sc-if value="{{ isTabs }}">
 <sc-for list="{{ tabs }}" as="w" hint-placeholder-count="4"><div style="position:absolute;left:8%;right:8%;top:24%;bottom:14%;border-radius:12px;background:{{ w.bg }};border:1px solid {{ w.bd }};box-shadow:0 20px 50px rgba(0,0,0,.35);transform:{{ w.tf }};transition:transform .6s cubic-bezier(.3,1.3,.5,1);overflow:hidden">
-<div style="height:34px;display:flex;align-items:flex-end;gap:6px;padding:0 10px;background:{{ w.bar }}"><span style="display:flex;gap:5px;align-self:center;margin-right:6px"><span style="width:8px;height:8px;border-radius:50%;background:{{ w.dot }}"></span><span style="width:8px;height:8px;border-radius:50%;background:{{ w.dot }}"></span><span style="width:8px;height:8px;border-radius:50%;background:{{ w.dot }}"></span></span><span style="max-width:70%;padding:7px 12px;border-radius:8px 8px 0 0;background:{{ w.bg }};font:400 12px/1 Lato,sans-serif;color:{{ w.fg }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ w.title }}</span></div>
+<div style="height:34px;display:flex;align-items:flex-end;gap:6px;padding:0 10px;background:{{ w.bar }}"><span style="display:flex;gap:5px;align-self:center;margin-right:6px"><span style="width:8px;height:8px;border-radius:50%;background:{{ w.dot }}"></span><span style="width:8px;height:8px;border-radius:50%;background:{{ w.dot }}"></span><span style="width:8px;height:8px;border-radius:50%;background:{{ w.dot }}"></span></span><span style="max-width:70%;padding:7px 12px;border-radius:8px 8px 0 0;background:{{ w.bg }};font:400 12px/1 'Familjen Grotesk',sans-serif;color:{{ w.fg }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ w.title }}</span></div>
 </div></sc-for>
 </sc-if>
 <sc-if value="{{ isPolaroid }}">
@@ -61,8 +58,8 @@
 <div style="font:400 18px/1.2 'Caveat Brush',cursive;color:#9D958A">{{ heroHint }}</div>
 </div>
 <div data-reveal="1">
-<p style="margin:0;font:400 clamp(30px,3.4cqw,50px)/1.2 'Tenor Sans',serif;text-wrap:balance">A little bit of everything, <span style="color:#D42A2E">never just one thing.</span></p>
-<p style="margin:32px 0 0;font:400 clamp(18px,1.5cqw,21px)/1.85 Lato,sans-serif;color:#C2BBB0;text-wrap:pretty"><sc-for list="{{ segs }}" as="g" hint-placeholder-count="12"><span onMouseEnter="{{ g.on }}" onMouseLeave="{{ g.off }}" style="color:{{ g.c }};background:{{ g.bg }};border-bottom:{{ g.bd }};padding:{{ g.pad }};cursor:{{ g.cur }};transition:background .25s,color .25s">{{ g.t }}</span></sc-for></p>
+<p style="margin:0;font:400 clamp(30px,3.4cqw,50px)/1.2 'Familjen Grotesk',sans-serif;text-wrap:balance">A little bit of everything, <span style="color:#D42A2E">never just one thing.</span></p>
+<p style="margin:32px 0 0;font:400 clamp(18px,1.5cqw,21px)/1.85 'Familjen Grotesk',sans-serif;color:#C2BBB0;text-wrap:pretty"><sc-for list="{{ segs }}" as="g" hint-placeholder-count="12"><span onMouseEnter="{{ g.on }}" onMouseLeave="{{ g.off }}" style="color:{{ g.c }};background:{{ g.bg }};border-bottom:{{ g.bd }};padding:{{ g.pad }};cursor:{{ g.cur }};transition:background .25s,color .25s">{{ g.t }}</span></sc-for></p>
 <p style="margin:36px 0 0;display:inline-block;font:400 clamp(24px,2.2cqw,32px)/1.3 'Caveat Brush',cursive;color:#F4EFE6;transform:rotate(-2deg);border-bottom:3px solid #D42A2E;padding-bottom:4px">Design just happens to be where it all comes together.</p>
 </div>
 </div>
@@ -70,18 +67,18 @@
 </section>
 
 <section ref="{{ schoolsSecRef }}" style="padding:clamp(90px,10cqw,140px) clamp(20px,5.5cqw,80px) 0">
-<div data-reveal="1" style="display:flex;justify-content:space-between;align-items:flex-end;font:500 19px/1 Lato,sans-serif"><span style="font:400 26px/1 'Caveat Brush',cursive;color:#D42A2E">Where I Come From</span></div>
-<div ref="{{ schoolsRef }}" style="margin:56px 0 0;overflow:hidden"><div style="font:400 clamp(36px,5.6cqw,80px)/1.1 'Tenor Sans',serif;letter-spacing:-.015em;color:#D42A2E"><span ref="{{ schoolsA }}" style="display:block;will-change:transform">Two schools,</span><span ref="{{ schoolsB }}" style="display:block;text-align:right;color:#F4EFE6;will-change:transform">one lens.</span></div></div>
+<div data-reveal="1" style="display:flex;justify-content:space-between;align-items:flex-end;font:500 19px/1 'Familjen Grotesk',sans-serif"><span style="font:400 26px/1 'Caveat Brush',cursive;color:#D42A2E">Where I Come From</span></div>
+<div ref="{{ schoolsRef }}" style="margin:56px 0 0;overflow:hidden"><div style="font:400 clamp(36px,5.6cqw,80px)/1.1 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;color:#D42A2E"><span ref="{{ schoolsA }}" style="display:block;will-change:transform">Two schools,</span><span ref="{{ schoolsB }}" style="display:block;text-align:right;color:#F4EFE6;will-change:transform">one lens.</span></div></div>
 <div data-reveal="1" style="margin-top:48px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:clamp(28px,5cqw,72px)">
-<p style="margin:0;font:400 clamp(20px,2cqw,26px)/1.45 Lato,sans-serif;text-wrap:pretty">My design education spans strategic design management and communication design.</p>
-<p style="margin:0;font:400 17px/1.7 Lato,sans-serif;color:#C2BBB0;text-wrap:pretty">One taught me to ask better questions, the other taught me to give them a shape. These days they don't take turns. They work together, quietly, on everything I touch.</p>
+<p style="margin:0;font:400 clamp(20px,2cqw,26px)/1.45 'Familjen Grotesk',sans-serif;text-wrap:pretty">My design education spans strategic design management and communication design.</p>
+<p style="margin:0;font:400 17px/1.7 'Familjen Grotesk',sans-serif;color:#C2BBB0;text-wrap:pretty">One taught me to ask better questions, the other taught me to give them a shape. These days they don't take turns. They work together, quietly, on everything I touch.</p>
 </div>
 </section>
 
 <section style="padding:clamp(90px,10cqw,140px) clamp(20px,5.5cqw,80px) 0">
-<div data-reveal="1" style="display:flex;justify-content:space-between;align-items:flex-end;font:500 19px/1 Lato,sans-serif"><span style="font:400 26px/1 'Caveat Brush',cursive;color:#D42A2E">What Drives Me</span></div>
+<div data-reveal="1" style="display:flex;justify-content:space-between;align-items:flex-end;font:500 19px/1 'Familjen Grotesk',sans-serif"><span style="font:400 26px/1 'Caveat Brush',cursive;color:#D42A2E">What Drives Me</span></div>
 <div style="position:relative;margin-top:48px;display:inline-block">
-<h2 style="margin:0;font:400 clamp(28px,3.6cqw,52px)/1.15 'Tenor Sans',serif;letter-spacing:-.015em;color:#F4EFE6">What I keep<br>coming back to</h2>
+<h2 style="margin:0;font:400 clamp(28px,3.6cqw,52px)/1.15 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;color:#F4EFE6">What I keep<br>coming back to</h2>
 </div>
 <div data-reveal="1" style="position:relative;margin-top:clamp(80px,9cqw,120px)">
 <div style="position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:48px 0">
@@ -92,29 +89,29 @@
 <sc-if value="{{ v.i2 }}"><svg viewBox="0 0 80 80" width="72" height="72" style="overflow:visible"><g style="transform-origin:40px 40px;transform:{{ v.rot }};transition:transform .7s cubic-bezier(.3,1.4,.5,1)" fill="none" stroke="{{ v.stroke }}" stroke-width="1.5"><rect x="21" y="21" width="38" height="38" transform="rotate(45 40 40)"></rect><circle cx="40" cy="40" r="3"></circle></g></svg></sc-if>
 <sc-if value="{{ v.i3 }}"><svg viewBox="0 0 80 80" width="72" height="72" style="overflow:visible"><g style="transform-origin:40px 40px;transform:{{ v.rot }};transition:transform .7s cubic-bezier(.3,1.4,.5,1)" fill="none" stroke="{{ v.stroke }}" stroke-width="1.5"><circle cx="30" cy="40" r="20"></circle><circle cx="50" cy="40" r="20"></circle></g></svg></sc-if>
 </span></div>
-<div style="font:400 clamp(30px,2.8cqw,40px)/1 'Tenor Sans',serif;letter-spacing:-.025em;color:{{ v.c }};transition:color .3s">{{ v.word }}</div>
-<p style="margin:0;max-width:240px;font:400 16px/1.6 Lato,sans-serif;color:#ABA398">{{ v.back }}</p>
+<div style="font:500 clamp(30px,2.8cqw,40px)/1 'Familjen Grotesk',sans-serif;letter-spacing:-.025em;color:{{ v.c }};transition:color .3s">{{ v.word }}</div>
+<p style="margin:0;max-width:240px;font:400 16px/1.6 'Familjen Grotesk',sans-serif;color:#ABA398">{{ v.back }}</p>
 </div></sc-for>
 </div>
 </div>
 </section>
 
 <section style="padding:clamp(90px,10cqw,140px) clamp(20px,5.5cqw,80px) 0">
-<div data-reveal="1" style="display:flex;justify-content:space-between;align-items:flex-end;font:500 19px/1 Lato,sans-serif"><span style="font:400 26px/1 'Caveat Brush',cursive;color:#D42A2E">Quick Picks</span><span style="font:400 15px/1 Lato,sans-serif;color:#9D958A">{{ score }}</span></div>
+<div data-reveal="1" style="display:flex;justify-content:space-between;align-items:flex-end;font:500 19px/1 'Familjen Grotesk',sans-serif"><span style="font:400 26px/1 'Caveat Brush',cursive;color:#D42A2E">Quick Picks</span><span style="font:400 15px/1 'Familjen Grotesk',sans-serif;color:#9D958A">{{ score }}</span></div>
 <div data-reveal="1" style="margin-top:48px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px 48px">
-<h2 style="margin:0;font:400 clamp(36px,5cqw,72px)/1.1 'Tenor Sans',serif;letter-spacing:-.015em;cursor:default;display:flex;gap:.35em;align-items:baseline"><span style="color:{{ w1c }};transition:color .3s">{{ w1 }}</span><span style="font:400 .55em/1 'Caveat Brush',cursive;letter-spacing:0;color:#9D958A;display:inline-block;transition:transform .5s cubic-bezier(.3,1.6,.5,1);transform:{{ orRot }}">or</span><span style="color:{{ w2c }};transition:color .3s">{{ w2 }}</span></h2>
+<h2 style="margin:0;font:400 clamp(36px,5cqw,72px)/1.1 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;cursor:default;display:flex;gap:.35em;align-items:baseline"><span style="color:{{ w1c }};transition:color .3s">{{ w1 }}</span><span style="font:400 .55em/1 'Caveat Brush',cursive;letter-spacing:0;color:#9D958A;display:inline-block;transition:transform .5s cubic-bezier(.3,1.6,.5,1);transform:{{ orRot }}">or</span><span style="color:{{ w2c }};transition:color .3s">{{ w2 }}</span></h2>
 </div>
 <div data-reveal="1" style="margin-top:clamp(80px,8cqw,110px)">
 <div ref="{{ pickRef }}" style="position:relative;display:flex;height:clamp(300px,34cqw,440px);border:1px solid rgba(244,239,230,.15);overflow:hidden">
-<button onClick="{{ cur.pickA }}" style="flex:{{ cur.aFlex }} 1 0%;min-width:0;border:none;background:{{ cur.aBg }};color:{{ cur.aFg }};cursor:pointer;display:flex;align-items:flex-end;justify-content:flex-start;padding:clamp(20px,3cqw,40px);transition:flex .6s cubic-bezier(.6,0,.2,1),background .4s,color .4s;overflow:hidden" style-hover="background:{{ cur.aHover }}"><span style="font:400 clamp(30px,5.4cqw,78px)/1 'Tenor Sans',serif;letter-spacing:-.015em;text-transform:uppercase;white-space:nowrap">{{ cur.a }}</span></button>
+<button onClick="{{ cur.pickA }}" style="flex:{{ cur.aFlex }} 1 0%;min-width:0;border:none;background:{{ cur.aBg }};color:{{ cur.aFg }};cursor:pointer;display:flex;align-items:flex-end;justify-content:flex-start;padding:clamp(20px,3cqw,40px);transition:flex .6s cubic-bezier(.6,0,.2,1),background .4s,color .4s;overflow:hidden" style-hover="background:{{ cur.aHover }}"><span style="font:400 clamp(30px,5.4cqw,78px)/1 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;text-transform:uppercase;white-space:nowrap">{{ cur.a }}</span></button>
 <div style="width:1px;background:rgba(244,239,230,.15)"></div>
-<button onClick="{{ cur.pickB }}" style="flex:{{ cur.bFlex }} 1 0%;min-width:0;border:none;background:{{ cur.bBg }};color:{{ cur.bFg }};cursor:pointer;display:flex;align-items:flex-start;justify-content:flex-end;padding:clamp(20px,3cqw,40px);transition:flex .6s cubic-bezier(.6,0,.2,1),background .4s,color .4s;overflow:hidden" style-hover="background:{{ cur.bHover }}"><span style="font:400 clamp(30px,5.4cqw,78px)/1 'Tenor Sans',serif;letter-spacing:-.015em;text-transform:uppercase;white-space:nowrap">{{ cur.b }}</span></button>
+<button onClick="{{ cur.pickB }}" style="flex:{{ cur.bFlex }} 1 0%;min-width:0;border:none;background:{{ cur.bBg }};color:{{ cur.bFg }};cursor:pointer;display:flex;align-items:flex-start;justify-content:flex-end;padding:clamp(20px,3cqw,40px);transition:flex .6s cubic-bezier(.6,0,.2,1),background .4s,color .4s;overflow:hidden" style-hover="background:{{ cur.bHover }}"><span style="font:400 clamp(30px,5.4cqw,78px)/1 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;text-transform:uppercase;white-space:nowrap">{{ cur.b }}</span></button>
 <div style="position:absolute;left:{{ cur.split }};top:50%;transform:translate(-50%,-50%);width:clamp(120px,15cqw,190px);aspect-ratio:1;border-radius:50%;background:#1F1C1A;border:1px solid rgba(244,239,230,.25);display:grid;place-items:center;text-align:center;padding:18px;pointer-events:none;transition:left .6s cubic-bezier(.6,0,.2,1)"><span style="font:400 clamp(16px,1.6cqw,21px)/1.15 'Caveat Brush',cursive;color:#F4EFE6">{{ cur.note }}</span></div>
-<div style="position:absolute;left:clamp(20px,3cqw,40px);top:clamp(20px,3cqw,40px);font:400 14px/1 Lato,sans-serif;color:{{ cur.numC }};pointer-events:none">{{ cur.num }}</div>
+<div style="position:absolute;left:clamp(20px,3cqw,40px);top:clamp(20px,3cqw,40px);font:400 14px/1 'Familjen Grotesk',sans-serif;color:{{ cur.numC }};pointer-events:none">{{ cur.num }}</div>
 </div>
 <div style="margin-top:20px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap">
 <div style="display:flex;gap:8px;align-items:center"><sc-for list="{{ dots }}" as="d" hint-placeholder-count="6"><button onClick="{{ d.go }}" style="width:{{ d.w }};height:10px;border-radius:999px;border:none;padding:0;background:{{ d.bg }};cursor:pointer;transition:width .3s,background .3s"></button></sc-for></div>
-<div style="display:flex;gap:10px"><button onClick="{{ prevPick }}" style="width:48px;height:48px;border-radius:50%;border:1px solid rgba(244,239,230,.35);background:none;color:#F4EFE6;font:400 18px/1 Lato,sans-serif;cursor:pointer" style-hover="background:#D42A2E;border-color:#D42A2E">←</button><button onClick="{{ nextPick }}" style="height:48px;padding:0 22px;border-radius:999px;border:1px solid rgba(244,239,230,.35);background:none;color:#F4EFE6;font:500 14px/1 Lato,sans-serif;cursor:pointer" style-hover="background:#D42A2E;border-color:#D42A2E">{{ nextLabel }}</button></div>
+<div style="display:flex;gap:10px"><button onClick="{{ prevPick }}" style="width:48px;height:48px;border-radius:50%;border:1px solid rgba(244,239,230,.35);background:none;color:#F4EFE6;font:400 18px/1 'Familjen Grotesk',sans-serif;cursor:pointer" style-hover="background:#D42A2E;border-color:#D42A2E">←</button><button onClick="{{ nextPick }}" style="height:48px;padding:0 22px;border-radius:999px;border:1px solid rgba(244,239,230,.35);background:none;color:#F4EFE6;font:500 14px/1 'Familjen Grotesk',sans-serif;cursor:pointer" style-hover="background:#D42A2E;border-color:#D42A2E">{{ nextLabel }}</button></div>
 </div>
 </div>
 </section>
@@ -122,15 +119,15 @@
 <footer id="say-hi" style="margin-top:clamp(90px,10cqw,140px);padding:clamp(80px,9cqw,120px) clamp(20px,5.5cqw,80px) 32px;background:#24211E">
 <div data-reveal="1">
 <div style="font:400 22px/1.3 'Caveat Brush',cursive;color:#D42A2E">— got a thought worth exploring?</div>
-<h2 style="margin:18px 0 0;font:400 clamp(32px,5.4cqw,80px)/1.18 'Tenor Sans',serif;letter-spacing:-.015em;color:#D42A2E;cursor:default">Let's make <span style="color:#F4EFE6">{{ ctaWord }}</span><br><span style="color:#F4EFE6">great together.</span></h2>
+<h2 style="margin:18px 0 0;font:400 clamp(32px,5.4cqw,80px)/1.18 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;color:#D42A2E;cursor:default">Let's make <span style="color:#F4EFE6">{{ ctaWord }}</span><br><span style="color:#F4EFE6">great together.</span></h2>
 </div>
 <div ref="{{ footLineRef }}" data-reveal="1" style="margin:48px 0 56px;display:flex;flex-wrap:wrap;gap:16px 32px;align-items:center">
-<button onClick="{{ copy }}" style="display:flex;align-items:center;gap:16px;height:64px;padding:0 10px 0 28px;border-radius:999px;border:1px solid rgba(244,239,230,.35);background:none;color:#F4EFE6;cursor:pointer;font:500 clamp(17px,1.6cqw,21px)/1 Lato,sans-serif" style-hover="border-color:#D42A2E">contactreeva@gmail.com<span style="height:46px;padding:0 18px;border-radius:999px;background:{{ copyBg }};display:inline-flex;align-items:center;font:500 14px/1 Lato,sans-serif;transition:background .2s">{{ copyLabel }}</span></button>
-<div style="display:flex;flex-wrap:wrap;gap:12px 28px;font:500 17px/1.2 Lato,sans-serif"><a href="#">LinkedIn ↗</a><a href="#">Behance ↗</a><a href="#">Résumé ↓</a></div>
+<button onClick="{{ copy }}" style="display:flex;align-items:center;gap:16px;height:64px;padding:0 10px 0 28px;border-radius:999px;border:1px solid rgba(244,239,230,.35);background:none;color:#F4EFE6;cursor:pointer;font:500 clamp(17px,1.6cqw,21px)/1 'Familjen Grotesk',sans-serif" style-hover="border-color:#D42A2E">contactreeva@gmail.com<span style="height:46px;padding:0 18px;border-radius:999px;background:{{ copyBg }};display:inline-flex;align-items:center;font:500 14px/1 'Familjen Grotesk',sans-serif;transition:background .2s">{{ copyLabel }}</span></button>
+<div style="display:flex;flex-wrap:wrap;gap:12px 28px;font:500 17px/1.2 'Familjen Grotesk',sans-serif"><a href="#">LinkedIn ↗</a><a href="#">Behance ↗</a><a href="#">Résumé ↓</a></div>
 </div>
 <div style="border-top:1px solid rgba(244,239,230,.18);padding-top:24px;display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:center">
-<nav style="display:flex;flex-wrap:wrap;gap:16px 36px;font:400 17px/1 Lato,sans-serif"><a href="index.html">Home</a><a href="about.html">About</a><a href="#say-hi">Say Hi</a></nav>
-<div style="font:500 15px/1 Lato,sans-serif">© 2026 <a href="index.html" style="text-decoration:underline;font-weight:700">Reeva</a></div>
+<nav style="display:flex;flex-wrap:wrap;gap:16px 36px;font:400 17px/1 'Familjen Grotesk',sans-serif"><a href="index.html">Home</a><a href="about.html">About</a><a href="#say-hi">Say Hi</a></nav>
+<div style="font:500 15px/1 'Familjen Grotesk',sans-serif">© 2024 <a href="index.html" style="text-decoration:underline;font-weight:700">Reeva</a></div>
 </div>
 </footer>
 </div>
