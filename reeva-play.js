@@ -5,7 +5,7 @@
   async function mount(el, o) {
     o = o || {};
     const [THREE, C] = await Promise.all([import(T3), import(CN)]);
-    try { await document.fonts.load('600 160px "Familjen Grotesk"'); await document.fonts.load('400 80px "Caveat Brush"'); } catch (e) {}
+    try { await document.fonts.load('700 160px Lato'); await document.fonts.load('400 80px "Caveat Brush"'); } catch (e) {}
     const r = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     r.setPixelRatio(Math.min(2, devicePixelRatio || 1)); r.shadowMap.enabled = true; r.shadowMap.type = THREE.PCFSoftShadowMap;
     const cv = r.domElement; cv.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none'; el.appendChild(cv);
@@ -37,7 +37,7 @@
       const b = new C.Body({ mass, material: pm, shape, linearDamping: .02, angularDamping: .08, sleepSpeedLimit: .2 });
       b.kind = kind; b.lastHit = 0; world.addBody(b);
       const tag = document.createElement('div'); tag.textContent = label;
-      tag.style.cssText = 'position:absolute;left:0;top:0;padding:7px 12px 6px;border-radius:999px;background:rgba(20,20,20,.82);border:1px solid rgba(255,255,255,.14);color:#fff;font:500 12px/1 "Familjen Grotesk",sans-serif;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;will-change:transform;transition:opacity .25s';
+      tag.style.cssText = 'position:absolute;left:0;top:0;padding:7px 12px 6px;border-radius:999px;background:rgba(20,20,20,.82);border:1px solid rgba(255,255,255,.14);color:#fff;font:500 12px/1 Lato,sans-serif;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;will-change:transform;transition:opacity .25s';
       labels.appendChild(tag);
       const it = { kind, m, b, tag, hover: true, spot: new THREE.Vector3(), ph: Math.random() * 6, half: geo.parameters.height / 2 }; m.userData.it = it; items.push(it); return it;
     }
@@ -50,15 +50,15 @@
       items.forEach(it => { scene.remove(it.m); world.removeBody(it.b); it.tag.remove(); }); items.length = 0;
       const s = 1.3 * U, d = .24 * U, box = (w, h, dd) => new THREE.BoxGeometry(w, h, dd);
       { const w = 2.1 * U, h = 1.4 * U, dd = .16 * U;
-        const front = cnv(384, 256, (g, W, H) => { g.fillStyle = CREAM; g.fillRect(0, 0, W, H); g.strokeStyle = '#cfc6b4'; g.lineWidth = 6; g.beginPath(); g.moveTo(10, 14); g.lineTo(W / 2, H * .58); g.lineTo(W - 10, 14); g.stroke(); g.fillStyle = RED; g.beginPath(); g.arc(W / 2, H * .58, 40, 0, 7); g.fill(); txt(g, '@', '600 52px "Familjen Grotesk", sans-serif', '#fff', W / 2, H * .58 + 2); });
+        const front = cnv(384, 256, (g, W, H) => { g.fillStyle = CREAM; g.fillRect(0, 0, W, H); g.strokeStyle = '#cfc6b4'; g.lineWidth = 6; g.beginPath(); g.moveTo(10, 14); g.lineTo(W / 2, H * .58); g.lineTo(W - 10, 14); g.stroke(); g.fillStyle = RED; g.beginPath(); g.arc(W / 2, H * .58, 40, 0, 7); g.fill(); txt(g, '@', '600 52px Lato, sans-serif', '#fff', W / 2, H * .58 + 2); });
         const sd = M(CREAM, .7); add('mail', 'Email', box(w, h, dd), [sd, sd, sd, sd, front, sd], new C.Box(new C.Vec3(w / 2, h / 2, dd / 2)), .7); }
       const side = c => M(c, .45);
-      { const f = tile('#0a66c2', (g, w, h) => txt(g, 'in', '700 150px "Familjen Grotesk", sans-serif', '#fff', w / 2, h / 2 + 6)); icon('token:LinkedIn', 'LinkedIn', f, '#084e96', s, d); }
-      { const f = tile('#1769ff', (g, w, h) => txt(g, 'Bē', '700 128px "Familjen Grotesk", sans-serif', '#fff', w / 2, h / 2 + 4)); icon('token:Behance', 'Behance', f, '#1150c4', s, d); }
+      { const f = tile('#0a66c2', (g, w, h) => txt(g, 'in', '700 150px Lato, sans-serif', '#fff', w / 2, h / 2 + 6)); icon('token:LinkedIn', 'LinkedIn', f, '#084e96', s, d); }
+      { const f = tile('#1769ff', (g, w, h) => txt(g, 'Bē', '700 128px Lato, sans-serif', '#fff', w / 2, h / 2 + 4)); icon('token:Behance', 'Behance', f, '#1150c4', s, d); }
       { const f = tile((g, w, h) => { const gr = g.createLinearGradient(0, h, w, 0); gr.addColorStop(0, '#feda75'); gr.addColorStop(.35, '#fa7e1e'); gr.addColorStop(.65, '#d62976'); gr.addColorStop(1, '#4f5bd5'); return gr; }, (g, w, h) => { g.strokeStyle = '#fff'; g.lineWidth = 16; rr(g, 58, 58, 140, 140, 40); g.stroke(); g.beginPath(); g.arc(128, 128, 34, 0, 7); g.stroke(); g.fillStyle = '#fff'; g.beginPath(); g.arc(170, 86, 10, 0, 7); g.fill(); });
         icon('token:Instagram', 'Instagram', f, '#b02a78', s, d); }
       { const w = 1.3 * U, h = 1.75 * U, dd = .06 * U;
-        const f = cnv(260, 350, (g, W, H) => { g.fillStyle = '#fbf9f4'; g.fillRect(0, 0, W, H); g.fillStyle = RED; g.fillRect(0, 0, W, 64); txt(g, 'REEVA · CV', '600 26px "Familjen Grotesk", sans-serif', '#fff', W / 2, 34); g.fillStyle = '#d9d3c6'; [100, 128, 156, 200, 228, 256, 300].forEach((y, i) => g.fillRect(24, y, i % 3 === 2 ? 120 : W - 48, 10)); });
+        const f = cnv(260, 350, (g, W, H) => { g.fillStyle = '#fbf9f4'; g.fillRect(0, 0, W, H); g.fillStyle = RED; g.fillRect(0, 0, W, 64); txt(g, 'REEVA · CV', '600 26px Lato, sans-serif', '#fff', W / 2, 34); g.fillStyle = '#d9d3c6'; [100, 128, 156, 200, 228, 256, 300].forEach((y, i) => g.fillRect(24, y, i % 3 === 2 ? 120 : W - 48, 10)); });
         const sd = M('#fbf9f4', .8); add('token:Résumé', 'Résumé', box(w, h, dd), [sd, sd, sd, sd, f, sd], new C.Box(new C.Vec3(w / 2, h / 2, dd / 2)), .4); }
       { const f = tile(INK, (g, w, h) => { txt(g, 'call', "400 92px 'Caveat Brush', cursive", '#fff', w / 2, h / 2 - 8); g.fillStyle = RED; g.beginPath(); g.arc(w / 2, h / 2 + 62, 10, 0, 7); g.fill(); });
         icon('token:Phone', 'Phone', f, '#111111', s, d); }

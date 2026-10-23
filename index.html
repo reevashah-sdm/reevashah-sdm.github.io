@@ -1,7 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="utf-8">
+<title>Reeva Shah · Strategy &amp; Design Portfolio</title>
+<meta name="description" content="Portfolio of Reeva Shah, a designer working across strategy, research and visual communication.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23161412'/%3E%3Ctext x='29' y='45' text-anchor='middle' font-family='Georgia,serif' font-size='38' fill='%23F4EFE6'%3ER%3C/text%3E%3Ccircle cx='48' cy='42' r='4.5' fill='%23D42A2E'/%3E%3C/svg%3E">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
 </head>
@@ -9,12 +12,12 @@
 <x-dc>
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&amp;family=Caveat+Brush&amp;family=Big+Shoulders+Stencil+Display:wght@700;900&amp;family=Quicksand:wght@600;700&amp;family=Zilla+Slab:ital,wght@1,500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&amp;family=Lato:ital,wght@0,400;0,700;0,900;1,400&amp;family=Caveat+Brush&amp;family=Big+Shoulders+Stencil+Display:wght@700;900&amp;display=swap" rel="stylesheet">
 <style>body{margin:0;background:#161412}*{box-sizing:border-box}html{scroll-behavior:smooth}a{color:inherit;text-decoration:none;transition:color .2s}a:hover{color:#D42A2E}::selection{background:#D42A2E;color:#F4EFE6}html.lens,html.lens *{cursor:none!important}@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}html{scroll-behavior:auto!important}}</style>
 <script src="reeva-face.js"></script>
 <script src="reeva-hero.js"></script>
 </helmet>
-<div style="min-height:100vh;background:#161412;font-family:'Familjen Grotesk',sans-serif">
+<div style="min-height:100vh;background:#161412;font-family:Lato,sans-serif">
 
 <div ref="{{ peekRef }}" style="position:fixed;left:0;top:0;width:0;height:0;overflow:hidden;z-index:45;pointer-events:none"><div ref="{{ canvasRef }}" style="position:absolute;left:0;top:0;width:0;height:0"></div></div>
 <div ref="{{ bubbleRef }}" style="position:fixed;left:0;top:0;z-index:46;pointer-events:none;opacity:0;transition:opacity .3s;padding:10px 16px 8px;border-radius:999px;background:#F4EFE6;color:#1F1C1A;font:400 20px/1 'Caveat Brush',cursive;white-space:nowrap;box-shadow:0 10px 30px rgba(0,0,0,.25)"></div>
@@ -23,24 +26,24 @@
 
 <header style="position:relative;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:28px clamp(20px,5.5cqw,80px)">
 
-<sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}"><nav style="display:flex;gap:40px;font:400 17px/1 'Familjen Grotesk',sans-serif"><a href="index.html" style="color:#D42A2E">Home</a><a href="about.html">About</a><a href="say-hi.html">Say Hi →</a></nav></sc-if>
-<sc-if value="{{ isMobile }}"><button onClick="{{ toggleMenu }}" style="background:none;border:1px solid rgba(244,239,230,.35);color:#F4EFE6;border-radius:999px;padding:0 18px;height:44px;font:500 14px/1 'Familjen Grotesk',sans-serif;cursor:pointer">Menu</button></sc-if>
+<sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}"><nav style="display:flex;gap:40px;font:400 17px/1 Lato,sans-serif"><a href="index.html" style="color:#D42A2E">Home</a><a href="about.html">About</a><a href="say-hi.html">Say Hi →</a></nav></sc-if>
+<sc-if value="{{ isMobile }}"><button onClick="{{ toggleMenu }}" style="background:none;border:1px solid rgba(244,239,230,.35);color:#F4EFE6;border-radius:999px;padding:0 18px;height:44px;font:500 14px/1 Lato,sans-serif;cursor:pointer">Menu</button></sc-if>
 </header>
 <sc-if value="{{ menuOpen }}"><div style="position:absolute;inset:0;z-index:30;background:#D42A2E;padding:28px 24px;display:flex;flex-direction:column;gap:6px">
-<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:56px"><span style="font:700 26px/1 'Familjen Grotesk',sans-serif;letter-spacing:-.015em">REEVA.</span><button onClick="{{ toggleMenu }}" style="background:#F4EFE6;border:none;color:#D42A2E;border-radius:999px;padding:0 18px;height:44px;font:600 14px/1 'Familjen Grotesk',sans-serif;cursor:pointer">Close</button></div>
-<a href="index.html" style="font:400 52px/1.2 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;color:#F4EFE6">Home</a><a href="about.html" style="font:400 52px/1.2 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;color:#F4EFE6">About</a><a href="say-hi.html" style="font:400 52px/1.2 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;color:#F4EFE6">Say hi</a>
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:56px"><span style="font:400 26px/1 'Tenor Sans',serif;letter-spacing:-.015em">REEVA.</span><button onClick="{{ toggleMenu }}" style="background:#F4EFE6;border:none;color:#D42A2E;border-radius:999px;padding:0 18px;height:44px;font:600 14px/1 Lato,sans-serif;cursor:pointer">Close</button></div>
+<a href="index.html" style="font:400 52px/1.2 'Tenor Sans',serif;letter-spacing:-.015em;color:#F4EFE6">Home</a><a href="about.html" style="font:400 52px/1.2 'Tenor Sans',serif;letter-spacing:-.015em;color:#F4EFE6">About</a><a href="say-hi.html" style="font:400 52px/1.2 'Tenor Sans',serif;letter-spacing:-.015em;color:#F4EFE6">Say hi</a>
 </div></sc-if>
 
 <section ref="{{ heroRef }}" style="position:relative;overflow:hidden">
 <div style="position:relative;z-index:1;padding:clamp(24px,3cqw,40px) clamp(20px,5.5cqw,80px) clamp(96px,9cqw,130px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:clamp(56px,6cqw,96px);align-items:center">
 <div>
 <div data-cycle="strategic designer|storyteller at heart" style="font:400 clamp(18px,1.6cqw,22px)/1.3 'Caveat Brush',cursive;color:#D42A2E;min-height:1.3em">strategic designer</div>
-<div style="margin-top:28px;font:400 clamp(22px,2.2cqw,32px)/1 'Familjen Grotesk',sans-serif;letter-spacing:-.015em">Hi, I'm</div>
-<h1 style="margin:8px 0 0;font:400 clamp(40px,4.4cqw,64px)/1 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;display:flex;user-select:none"><span data-nl="1" style="display:inline-block;will-change:transform;opacity:0;cursor:pointer">R</span><span data-nl="1" style="display:inline-block;will-change:transform;opacity:0;cursor:pointer">E</span><span data-nl="1" style="display:inline-block;will-change:transform;opacity:0;cursor:pointer">E</span><span data-nl="1" style="display:inline-block;will-change:transform;opacity:0;cursor:pointer">V</span><span data-nl="1" style="display:inline-block;will-change:transform;opacity:0;cursor:pointer">A</span><span data-nl="1" style="display:inline-block;will-change:transform;color:#D42A2E;opacity:0">.</span><span style="position:relative;display:inline-block;width:1.6em;height:1.6em;margin:-.3em 0 -.3em .12em;flex:none"><span ref="{{ avatarRef }}" style="position:absolute;left:-25%;top:-25%;width:150%;height:150%;pointer-events:none"></span><span style="position:absolute;left:100%;top:.25em;font:400 20px/1 'Caveat Brush',cursive;letter-spacing:0;color:#9D958A;white-space:nowrap;transform:rotate(-6deg)">{{ avNote }}</span></span></h1>
-<h2 style="margin:24px 0 0;max-width:560px;font:400 clamp(28px,3cqw,42px)/1.18 'Familjen Grotesk',sans-serif;perspective:700px;display:flex;flex-wrap:wrap;column-gap:.26em"><span data-fw="1" data-a="Strategy" data-b="Thinking" data-col-a="" data-col-b="#D42A2E" style="display:inline-block;cursor:default;will-change:transform">Strategy</span><span data-fw="1" data-a="and" data-b="and" data-col-a="" data-col-b="#D42A2E" style="display:inline-block;cursor:default;will-change:transform">and</span><span data-fw="1" data-a="design," data-b="making," data-col-a="" data-col-b="#D42A2E" style="display:inline-block;cursor:default;will-change:transform">design,</span><span data-fw="1" data-a="in the same head." data-b="in one practice." data-col-a="#D42A2E" data-col-b="#F4EFE6" style="display:inline-block;cursor:default;will-change:transform;color:#D42A2E">in the same head.</span></h2>
-<p style="margin:18px 0 0;max-width:520px;font:400 17px/1.65 'Familjen Grotesk',sans-serif;color:#90887D;text-wrap:pretty">There's always another side to the story. Sometimes, all it takes is a different pair of eyes to see what was right there all along.</p>
+<div style="margin-top:28px;font:400 clamp(22px,2.2cqw,32px)/1 'Tenor Sans',serif;letter-spacing:-.015em">Hi, I'm</div>
+<h1 style="margin:8px 0 0;font:400 clamp(40px,4.4cqw,64px)/1 'Tenor Sans',serif;letter-spacing:-.015em;display:flex;user-select:none"><span data-nl="1" style="display:inline-block;will-change:transform;opacity:0;cursor:pointer">R</span><span data-nl="1" style="display:inline-block;will-change:transform;opacity:0;cursor:pointer">E</span><span data-nl="1" style="display:inline-block;will-change:transform;opacity:0;cursor:pointer">E</span><span data-nl="1" style="display:inline-block;will-change:transform;opacity:0;cursor:pointer">V</span><span data-nl="1" style="display:inline-block;will-change:transform;opacity:0;cursor:pointer">A</span><span data-nl="1" style="display:inline-block;will-change:transform;color:#D42A2E;opacity:0">.</span><span style="position:relative;display:inline-block;width:1.6em;height:1.6em;margin:-.3em 0 -.3em .12em;flex:none"><span ref="{{ avatarRef }}" style="position:absolute;left:-25%;top:-25%;width:150%;height:150%;pointer-events:none"></span><span style="position:absolute;left:100%;top:.25em;font:400 20px/1 'Caveat Brush',cursive;letter-spacing:0;color:#9D958A;white-space:nowrap;transform:rotate(-6deg)">{{ avNote }}</span></span></h1>
+<h2 style="margin:24px 0 0;max-width:560px;font:400 clamp(28px,3cqw,42px)/1.18 'Tenor Sans',serif;perspective:700px;display:flex;flex-wrap:wrap;column-gap:.26em"><span data-fw="1" data-a="Strategy" data-b="Thinking" data-col-a="" data-col-b="#D42A2E" style="display:inline-block;cursor:default;will-change:transform">Strategy</span><span data-fw="1" data-a="and" data-b="and" data-col-a="" data-col-b="#D42A2E" style="display:inline-block;cursor:default;will-change:transform">and</span><span data-fw="1" data-a="design," data-b="making," data-col-a="" data-col-b="#D42A2E" style="display:inline-block;cursor:default;will-change:transform">design,</span><span data-fw="1" data-a="in the same head." data-b="in one practice." data-col-a="#D42A2E" data-col-b="#F4EFE6" style="display:inline-block;cursor:default;will-change:transform;color:#D42A2E">in the same head.</span></h2>
+<p style="margin:18px 0 0;max-width:520px;font:400 17px/1.65 Lato,sans-serif;color:#90887D;text-wrap:pretty">There's always another side to the story. Sometimes, all it takes is a different pair of eyes to see what was right there all along.</p>
 <div style="margin-top:22px;transform:rotate(-1.5deg);transform-origin:left"><span style="font:400 19px/1.1 'Caveat Brush',cursive;color:#F4EFE6">psst… drag the circles into <span style="color:#D42A2E">one</span> and watch the headline</span></div>
-<div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:28px"><a href="#work" style="display:inline-flex;align-items:center;height:52px;padding:0 26px;border-radius:999px;background:#D42A2E;color:#F4EFE6;font:500 16px/1 'Familjen Grotesk',sans-serif" style-hover="background:#F4EFE6;color:#D42A2E">Explore my work ↓</a><a href="about.html" style="display:inline-flex;align-items:center;height:52px;padding:0 26px;border-radius:999px;border:1px solid rgba(244,239,230,.4);font:500 16px/1 'Familjen Grotesk',sans-serif">About me</a></div>
+<div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:28px"><a href="#work" style="display:inline-flex;align-items:center;height:52px;padding:0 26px;border-radius:999px;background:#D42A2E;color:#F4EFE6;font:500 16px/1 Lato,sans-serif" style-hover="background:#F4EFE6;color:#D42A2E">Explore my work ↓</a><a href="about.html" style="display:inline-flex;align-items:center;height:52px;padding:0 26px;border-radius:999px;border:1px solid rgba(244,239,230,.4);font:500 16px/1 Lato,sans-serif">About me</a></div>
 </div>
 <div data-venn="1" style="position:relative;width:100%;max-width:560px;aspect-ratio:1/.82;margin:0 auto;touch-action:none;user-select:none">
 <svg viewBox="0 0 560 459" style="position:absolute;inset:0;width:100%;height:100%;overflow:visible">
@@ -49,15 +52,15 @@
 <circle data-ca="1" cx="173.6" cy="201" r="173.6" style="fill:none;stroke:rgba(244,239,230,.6);stroke-width:1.5"></circle>
 <circle data-cb="1" cx="386.4" cy="201" r="173.6" style="fill:none;stroke:#D42A2E;stroke-width:1.5"></circle>
 </svg>
-<div data-la="1" style="position:absolute;left:0;top:0;font:400 clamp(12px,1.1cqw,15px)/1 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;color:#CAC3B8;pointer-events:none;white-space:nowrap">THINKING</div>
-<div data-lb="1" style="position:absolute;left:0;top:0;font:400 clamp(12px,1.1cqw,15px)/1 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;color:#D42A2E;pointer-events:none;white-space:nowrap">MAKING</div>
+<div data-la="1" style="position:absolute;left:0;top:0;font:400 clamp(12px,1.1cqw,15px)/1 Lato,sans-serif;letter-spacing:-.015em;color:#CAC3B8;pointer-events:none;white-space:nowrap">THINKING</div>
+<div data-lb="1" style="position:absolute;left:0;top:0;font:400 clamp(12px,1.1cqw,15px)/1 Lato,sans-serif;letter-spacing:-.015em;color:#D42A2E;pointer-events:none;white-space:nowrap">MAKING</div>
 <div data-lc="1" style="position:absolute;left:0;top:0;text-align:center;font:400 clamp(16px,1.6cqw,22px)/1.1 'Caveat Brush',cursive;color:#F4EFE6;pointer-events:none;white-space:nowrap;transition:transform .2s">where I<br>work</div>
 <div style="position:absolute;left:0;right:0;bottom:-28px;display:flex;flex-direction:column;align-items:center;gap:10px">
 <div data-vline="1" style="min-height:1.3em;text-align:center;font:400 20px/1.3 'Caveat Brush',cursive;color:#CAC3B8;pointer-events:none;transition:color .3s">where I work: in the overlap</div>
 <div style="display:flex;gap:4px;padding:4px;border:1px solid rgba(244,239,230,.2);border-radius:999px;background:#1F1C1A">
-<button data-stop="186" style="height:34px;padding:0 16px;border:none;border-radius:999px;background:transparent;color:#CAC3B8;font:500 13px/1 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;cursor:pointer;transition:background .25s,color .25s">APART</button>
-<button data-stop="106.4" style="height:34px;padding:0 16px;border:none;border-radius:999px;background:#D42A2E;color:#F4EFE6;font:500 13px/1 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;cursor:pointer;transition:background .25s,color .25s">OVERLAP</button>
-<button data-stop="0" style="height:34px;padding:0 16px;border:none;border-radius:999px;background:transparent;color:#CAC3B8;font:500 13px/1 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;cursor:pointer;transition:background .25s,color .25s">ONE</button>
+<button data-stop="186" style="height:34px;padding:0 16px;border:none;border-radius:999px;background:transparent;color:#CAC3B8;font:500 13px/1 Lato,sans-serif;letter-spacing:-.015em;cursor:pointer;transition:background .25s,color .25s">APART</button>
+<button data-stop="106.4" style="height:34px;padding:0 16px;border:none;border-radius:999px;background:#D42A2E;color:#F4EFE6;font:500 13px/1 Lato,sans-serif;letter-spacing:-.015em;cursor:pointer;transition:background .25s,color .25s">OVERLAP</button>
+<button data-stop="0" style="height:34px;padding:0 16px;border:none;border-radius:999px;background:transparent;color:#CAC3B8;font:500 13px/1 Lato,sans-serif;letter-spacing:-.015em;cursor:pointer;transition:background .25s,color .25s">ONE</button>
 </div>
 </div>
 </div>
@@ -66,12 +69,12 @@
 <div style="padding:clamp(24px,3cqw,40px) clamp(20px,5.5cqw,80px) clamp(96px,9cqw,130px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:clamp(56px,6cqw,96px);align-items:center">
 <div>
 <div style="font:400 clamp(18px,1.6cqw,22px)/1.3 'Caveat Brush',cursive;color:#F4EFE6;min-height:1.3em">storyteller at heart</div>
-<div style="margin-top:28px;font:400 clamp(22px,2.2cqw,32px)/1 'Familjen Grotesk',sans-serif;letter-spacing:-.015em">Hi, I'm</div>
-<h1 style="margin:8px 0 0;font:400 clamp(40px,4.4cqw,64px)/1 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;display:flex"><span data-nl2="1" style="display:inline-block;will-change:transform">R</span><span data-nl2="1" style="display:inline-block;will-change:transform">E</span><span data-nl2="1" style="display:inline-block;will-change:transform">E</span><span data-nl2="1" style="display:inline-block;will-change:transform">V</span><span data-nl2="1" style="display:inline-block;will-change:transform">A</span><span data-nl2="1" style="display:inline-block;will-change:transform;color:#F4EFE6">.</span></h1>
-<h2 style="margin:24px 0 0;max-width:560px;font:400 clamp(28px,3cqw,42px)/1.18 'Familjen Grotesk',sans-serif">Thinking and making, <span style="color:#F4EFE6">in one practice.</span></h2>
-<p style="margin:18px 0 0;max-width:520px;font:400 17px/1.65 'Familjen Grotesk',sans-serif;color:#1F1C1A;text-wrap:pretty">There's always another side to the story. Sometimes, all it takes is a different pair of eyes to see what was right there all along.</p>
+<div style="margin-top:28px;font:400 clamp(22px,2.2cqw,32px)/1 'Tenor Sans',serif;letter-spacing:-.015em">Hi, I'm</div>
+<h1 style="margin:8px 0 0;font:400 clamp(40px,4.4cqw,64px)/1 'Tenor Sans',serif;letter-spacing:-.015em;display:flex"><span data-nl2="1" style="display:inline-block;will-change:transform">R</span><span data-nl2="1" style="display:inline-block;will-change:transform">E</span><span data-nl2="1" style="display:inline-block;will-change:transform">E</span><span data-nl2="1" style="display:inline-block;will-change:transform">V</span><span data-nl2="1" style="display:inline-block;will-change:transform">A</span><span data-nl2="1" style="display:inline-block;will-change:transform;color:#F4EFE6">.</span></h1>
+<h2 style="margin:24px 0 0;max-width:560px;font:400 clamp(28px,3cqw,42px)/1.18 'Tenor Sans',serif">Thinking and making, <span style="color:#F4EFE6">in one practice.</span></h2>
+<p style="margin:18px 0 0;max-width:520px;font:400 17px/1.65 Lato,sans-serif;color:#1F1C1A;text-wrap:pretty">There's always another side to the story. Sometimes, all it takes is a different pair of eyes to see what was right there all along.</p>
 <div style="margin-top:22px;transform:rotate(-1.5deg);transform-origin:left"><span style="font:400 19px/1.1 'Caveat Brush',cursive;color:#1F1C1A">you found the <span style="color:#F4EFE6">other side</span></span></div>
-<div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:28px"><span style="display:inline-flex;align-items:center;height:52px;padding:0 26px;border-radius:999px;background:#1F1C1A;color:#F4EFE6;font:500 16px/1 'Familjen Grotesk',sans-serif">Explore my work ↓</span><span style="display:inline-flex;align-items:center;height:52px;padding:0 26px;border-radius:999px;border:1px solid #1F1C1A;font:500 16px/1 'Familjen Grotesk',sans-serif">About me</span></div>
+<div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:28px"><span style="display:inline-flex;align-items:center;height:52px;padding:0 26px;border-radius:999px;background:#1F1C1A;color:#F4EFE6;font:500 16px/1 Lato,sans-serif">Explore my work ↓</span><span style="display:inline-flex;align-items:center;height:52px;padding:0 26px;border-radius:999px;border:1px solid #1F1C1A;font:500 16px/1 Lato,sans-serif">About me</span></div>
 </div>
 <div style="position:relative;width:100%;max-width:560px;aspect-ratio:1/.82;margin:0 auto">
 <div style="position:absolute;left:0;top:6%;width:62%;aspect-ratio:1;border-radius:50%;border:1.5px solid #1F1C1A"></div>
@@ -84,48 +87,48 @@
 </section>
 
 <sc-if value="{{ showMarquee }}" hint-placeholder-val="{{ true }}"><div style="overflow:hidden;padding:20px 0">
-<div ref="{{ marqRef }}" style="display:flex;width:max-content;font:400 clamp(22px,2.4cqw,34px)/1 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;white-space:nowrap;will-change:transform">
+<div ref="{{ marqRef }}" style="display:flex;width:max-content;font:400 clamp(22px,2.4cqw,34px)/1 'Tenor Sans',serif;letter-spacing:-.015em;white-space:nowrap;will-change:transform">
 <sc-for list="{{ marquee }}" as="m" hint-placeholder-count="12"><span style="display:flex;align-items:center;gap:28px;padding-right:28px">{{ m }}<span style="width:8px;height:8px;border-radius:50%;background:#D42A2E;flex:none"></span></span></sc-for>
 </div>
 </div></sc-if>
 
 <section id="work" style="margin-top:clamp(90px,10cqw,140px);background:#F4EFE6;color:#1F1C1A;padding:clamp(56px,7cqw,90px) clamp(20px,5.5cqw,80px)">
-<div data-reveal="1" style="display:flex;justify-content:space-between;align-items:flex-end;font:500 19px/1 'Familjen Grotesk',sans-serif"><span style="font:400 26px/1 'Caveat Brush',cursive;color:#D42A2E">Selected Work</span></div>
-<div data-reveal="1" style="margin-top:56px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px"><h2 style="margin:0;position:relative;font:400 clamp(40px,6.4cqw,92px)/1.12 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;color:#D42A2E;cursor:default"><sc-for list="{{ workLines }}" as="ln" hint-placeholder-count="2"><span style="display:block"><sc-for list="{{ ln.chars }}" as="c" hint-placeholder-count="8"><span style="white-space:pre">{{ c }}</span></sc-for></span></sc-for></h2></div>
+<div data-reveal="1" style="display:flex;justify-content:space-between;align-items:flex-end;font:500 19px/1 Lato,sans-serif"><span style="font:400 26px/1 'Caveat Brush',cursive;color:#D42A2E">Selected Work</span></div>
+<div data-reveal="1" style="margin-top:56px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px"><h2 style="margin:0;position:relative;font:400 clamp(40px,6.4cqw,92px)/1.12 'Tenor Sans',serif;letter-spacing:-.015em;color:#D42A2E;cursor:default"><sc-for list="{{ workLines }}" as="ln" hint-placeholder-count="2"><span style="display:block"><sc-for list="{{ ln.chars }}" as="c" hint-placeholder-count="8"><span style="white-space:pre">{{ c }}</span></sc-for></span></sc-for></h2></div>
 </section>
 <section style="position:relative;background:#161412">
 <div style="position:absolute;inset:0;z-index:3;pointer-events:none"><div style="position:sticky;top:{{ sqTop }};height:min(60cqw,420px);padding-left:{{ sqLeft }};pointer-events:none">
 <div ref="{{ sqRef }}" data-wipe="1" style="position:relative;width:min(60cqw,420px);aspect-ratio:1;box-shadow:0 40px 80px rgba(0,0,0,.45);perspective:1200px">
 <div style="position:absolute;inset:0;transform-style:preserve-3d;transition:transform .9s cubic-bezier(.3,1.3,.5,1);transform:rotateY({{ cardRot }}deg)">
 <div style="position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden">
-<sc-for list="{{ projects }}" as="p" hint-placeholder-count="4"><div style="position:absolute;inset:0;background:{{ p.bg }};display:grid;place-items:center;opacity:{{ p.op }};transform:scale({{ p.sc }});transition:opacity .55s ease, transform .55s ease"><span style="font:400 12px/1 'Familjen Grotesk',sans-serif;color:{{ p.labelC }}">{{ p.label }}</span><sc-if value="{{ p.hbs }}"><div aria-label="Law and Life: a human behaviour study" style="position:absolute;inset:0;overflow:hidden;container-type:size;background:#1E130D;color:#ECE3CF">
+<sc-for list="{{ projects }}" as="p" hint-placeholder-count="4"><div style="position:absolute;inset:0;background:{{ p.bg }};display:grid;place-items:center;opacity:{{ p.op }};transform:scale({{ p.sc }});transition:opacity .55s ease, transform .55s ease"><span style="font:400 12px/1 Lato,sans-serif;color:{{ p.labelC }}">{{ p.label }}</span><sc-if value="{{ p.hbs }}"><div aria-label="Law and Life: a human behaviour study" style="position:absolute;inset:0;overflow:hidden;container-type:size;background:#1E130D;color:#ECE3CF">
 <div style="position:absolute;inset:-2%;background:url(human-behaviour-study/img/photo-corridor-4.png) 50% 30%/cover;filter:grayscale(1) contrast(1.2) brightness(.85)"></div>
 <div style="position:absolute;inset:0;background:#8A5530;mix-blend-mode:multiply;opacity:.6"></div>
 <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(30,19,13,.55) 0%,rgba(30,19,13,0) 22%,rgba(30,19,13,0) 55%,rgba(30,19,13,.92) 100%)"></div>
 <div style="position:absolute;inset:0;opacity:.22;mix-blend-mode:overlay;background:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E&quot;)"></div>
-<div style="position:absolute;left:6cqi;right:6cqi;top:5cqi;display:flex;justify-content:space-between;padding-bottom:2.4cqi;border-bottom:1px solid rgba(236,227,207,.35);font:700 2.7cqi/1 Quicksand,sans-serif;letter-spacing:.2em">
+<div style="position:absolute;left:6cqi;right:6cqi;top:5cqi;display:flex;justify-content:space-between;padding-bottom:2.4cqi;border-bottom:1px solid rgba(236,227,207,.35);font:700 2.7cqi/1 Lato,sans-serif;letter-spacing:.2em">
 <span>CAUSE LIST · GANDHINAGAR</span><span>ITEM 02</span></div>
 <div style="position:absolute;left:30cqi;top:12cqi;width:1.5px;height:12cqi;background:#C8322A;box-shadow:0 0 6px rgba(200,50,42,.6)"></div>
 <div style="position:absolute;left:8cqi;top:22cqi;width:60cqi;padding:4.5cqi 5cqi 4cqi;background:#ECE3CF;color:#1E1611;transform:rotate(-3deg);transform-origin:50% 0;box-shadow:0 2.5cqi 5cqi rgba(0,0,0,.45),0 .4cqi 0 rgba(0,0,0,.08)">
 <div style="position:absolute;left:50%;top:-2cqi;width:14cqi;height:4cqi;transform:translateX(-50%) rotate(4deg);background:rgba(255,255,255,.45);box-shadow:0 0 0 1px rgba(255,255,255,.25)"></div>
-<div style="font:700 2.4cqi/1 Quicksand,sans-serif;letter-spacing:.2em;color:#5E4D3E">IN THE MATTER OF</div>
+<div style="font:700 2.4cqi/1 Lato,sans-serif;letter-spacing:.2em;color:#5E4D3E">IN THE MATTER OF</div>
 <div style="margin-top:2.2cqi;font:900 14cqi/.84 'Big Shoulders Stencil Display',sans-serif;letter-spacing:.01em;white-space:nowrap">LAW <span style="color:#A3261D">&amp;</span><br>LIFE</div>
-<div style="margin-top:3.2cqi;padding-top:2.4cqi;border-top:1.5px solid #1E1611;font:italic 500 3.4cqi/1.3 'Zilla Slab',serif;white-space:nowrap">The waiting public<br><span style="font:700 2.4cqi/1 Quicksand,sans-serif;color:#A3261D;letter-spacing:.12em;font-style:normal">VS </span> the courtroom</div>
+<div style="margin-top:3.2cqi;padding-top:2.4cqi;border-top:1.5px solid #1E1611;font:italic 400 3.4cqi/1.3 Lato,sans-serif;white-space:nowrap">The waiting public<br><span style="font:700 2.4cqi/1 Lato,sans-serif;color:#A3261D;letter-spacing:.12em;font-style:normal">VS </span> the courtroom</div>
 <div style="position:absolute;right:3.5cqi;bottom:4.5cqi;padding:1.2cqi 2cqi;border:.5cqi solid #A3261D;border-radius:.8cqi;color:#A3261D;font:900 4.4cqi/1 'Big Shoulders Stencil Display',sans-serif;letter-spacing:.14em;transform:rotate(-9deg);opacity:.85;mix-blend-mode:multiply">PENDING</div>
 </div>
 <div style="position:absolute;left:6cqi;bottom:6cqi;right:22cqi">
 <div style="font:400 6.4cqi/1 'Caveat Brush',cursive;transform:rotate(-2deg);transform-origin:left">a human behaviour study</div>
-<div style="margin-top:2.2cqi;font:700 2.4cqi/1.4 Quicksand,sans-serif;letter-spacing:.16em;color:rgba(236,227,207,.75)">HIGH COURT OF GUJARAT · FAMILY COURT</div>
+<div style="margin-top:2.2cqi;font:700 2.4cqi/1.4 Lato,sans-serif;letter-spacing:.16em;color:rgba(236,227,207,.75)">HIGH COURT OF GUJARAT · FAMILY COURT</div>
 </div>
 </div></sc-if><span style="position:absolute;right:16px;bottom:16px;width:44px;height:44px;border-radius:50%;background:#D42A2E;color:#F4EFE6;display:grid;place-items:center;font:400 18px/1 'Caveat Brush',cursive">{{ p.num }}</span></div></sc-for>
 </div>
 <div style="position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;transform:rotateY(180deg);background:#D42A2E;color:#F4EFE6;padding:clamp(20px,3cqw,32px);box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between;gap:16px">
-<div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px"><span style="font:400 24px/1 'Caveat Brush',cursive">what I saw</span><span style="font:500 12px/1 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;text-transform:uppercase">{{ cur.title }}</span></div>
-<div style="font:500 clamp(18px,2.2cqw,26px)/1.3 'Familjen Grotesk',sans-serif;text-wrap:pretty">{{ cur.saw }}</div>
-<div style="font:400 13px/1.5 'Familjen Grotesk',sans-serif;color:#1F1C1A"><span style="font-weight:600">The brief:</span> {{ cur.asked }}</div>
+<div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px"><span style="font:400 24px/1 'Caveat Brush',cursive">what I saw</span><span style="font:500 12px/1 Lato,sans-serif;letter-spacing:-.015em;text-transform:uppercase">{{ cur.title }}</span></div>
+<div style="font:500 clamp(18px,2.2cqw,26px)/1.3 Lato,sans-serif;text-wrap:pretty">{{ cur.saw }}</div>
+<div style="font:400 13px/1.5 Lato,sans-serif;color:#1F1C1A"><span style="font-weight:600">The brief:</span> {{ cur.asked }}</div>
 </div>
 </div>
-<div style="position:absolute;left:0;top:-28px;font:500 13px/1 'Familjen Grotesk',sans-serif;color:#F4EFE6">{{ counter }}</div>
+<div style="position:absolute;left:0;top:-28px;font:500 13px/1 Lato,sans-serif;color:#F4EFE6">{{ counter }}</div>
 </div>
 </div>
 </div>
@@ -134,30 +137,30 @@
 <div style="position:absolute;inset:0;background:rgba(20,20,20,.45)"></div>
 <div style="position:relative;width:{{ textW }};color:#F4EFE6">
 <div style="font:400 26px/1 'Caveat Brush',cursive;color:#F4EFE6;transform:rotate(-2deg);transform-origin:left">{{ p.cat }}</div>
-<a href="{{ p.href }}" style="display:block;margin:14px 0 10px;font:600 clamp(34px,4cqw,58px)/1 'Familjen Grotesk',sans-serif;letter-spacing:-.025em">{{ p.title }}</a>
-<p style="margin:0 0 18px;font:400 16px/1.6 'Familjen Grotesk',sans-serif;color:#E6E0D6">{{ p.blurb }}</p>
-<a href="{{ p.href }}" style="font:500 15px/1 'Familjen Grotesk',sans-serif;border-bottom:2px solid #D42A2E;padding-bottom:4px">Look closer →</a>
+<a href="{{ p.href }}" style="display:block;margin:14px 0 10px;font:400 clamp(34px,4cqw,58px)/1 'Tenor Sans',serif;letter-spacing:-.025em">{{ p.title }}</a>
+<p style="margin:0 0 18px;font:400 16px/1.6 Lato,sans-serif;color:#E6E0D6">{{ p.blurb }}</p>
+<a href="{{ p.href }}" style="font:500 15px/1 Lato,sans-serif;border-bottom:2px solid #D42A2E;padding-bottom:4px">Look closer →</a>
 </div>
 </div></sc-for>
 </section>
 
 <section ref="{{ howRef }}" style="padding:clamp(80px,9cqw,130px) clamp(20px,5.5cqw,80px) 0">
-<div data-reveal="1" style="display:flex;justify-content:space-between;align-items:flex-end;font:500 19px/1 'Familjen Grotesk',sans-serif"><span style="font:400 26px/1 'Caveat Brush',cursive;color:#D42A2E">How I Work</span></div>
+<div data-reveal="1" style="display:flex;justify-content:space-between;align-items:flex-end;font:500 19px/1 Lato,sans-serif"><span style="font:400 26px/1 'Caveat Brush',cursive;color:#D42A2E">How I Work</span></div>
 <div data-reveal="1" style="margin-top:48px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px 64px">
-<h2 style="margin:0;position:relative;font:400 min(67px,9.5cqw)/1.1 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;color:#D42A2E">Behind what<br>you see</h2>
-<p style="margin:0;max-width:440px;font:400 17px/1.65 'Familjen Grotesk',sans-serif;color:#CAC3B8">Shaped by two disciplines and one way of seeing. This is roughly how an idea travels from a question to something you can feel.</p>
+<h2 style="margin:0;position:relative;font:400 min(67px,9.5cqw)/1.1 'Tenor Sans',serif;letter-spacing:-.015em;color:#D42A2E">Behind what<br>you see</h2>
+<p style="margin:0;max-width:440px;font:400 17px/1.65 Lato,sans-serif;color:#CAC3B8">Shaped by two disciplines and one way of seeing. This is roughly how an idea travels from a question to something you can feel.</p>
 </div>
 <div ref="{{ trackRef }}" style="position:relative;height:320vh;margin-top:24px">
 <div style="position:sticky;top:0;height:100vh;display:flex;flex-direction:column;justify-content:center;gap:clamp(20px,4vh,44px)">
 <div style="position:relative;height:clamp(130px,20vh,190px);margin:0 calc(-1 * clamp(20px,5.5cqw,80px))">
 <svg viewBox="0 0 1000 200" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%;overflow:visible"><path d="M0,140 C80,140 110,100 170,100 S330,20 500,60 S700,150 830,110 S960,40 1000,70" fill="none" stroke="rgba(244,239,230,.14)" stroke-width="1.5" stroke-dasharray="4 6" vector-effect="non-scaling-stroke"></path><path ref="{{ threadRef }}" d="M0,140 C80,140 110,100 170,100 S330,20 500,60 S700,150 830,110 S960,40 1000,70" fill="none" stroke="#D42A2E" stroke-width="3" stroke-linecap="round" style="clip-path:inset(-20px 100% -20px 0)" vector-effect="non-scaling-stroke"></path></svg>
-<sc-for list="{{ knots }}" as="k" hint-placeholder-count="3"><button onClick="{{ k.onClick }}" style="position:absolute;left:{{ k.x }};top:{{ k.y }};transform:translate(-50%,-50%);background:none;border:none;padding:0;cursor:pointer;color:{{ k.fg }};display:flex;flex-direction:column;align-items:center;transition:color .4s"><span style="width:22px;height:22px;border-radius:50%;border:2px solid #D42A2E;background:{{ k.dot }};box-shadow:{{ k.ring }};transition:background .4s,box-shadow .5s"></span><span style="position:absolute;top:34px;white-space:nowrap;display:flex;flex-direction:column;align-items:center;gap:6px"><span style="font:400 12px/1 'Familjen Grotesk',sans-serif;opacity:.7">{{ k.n }}</span><span style="font:500 clamp(14px,1.6cqw,20px)/1 'Familjen Grotesk',sans-serif;letter-spacing:-.015em">{{ k.title }}</span></span></button></sc-for>
+<sc-for list="{{ knots }}" as="k" hint-placeholder-count="3"><button onClick="{{ k.onClick }}" style="position:absolute;left:{{ k.x }};top:{{ k.y }};transform:translate(-50%,-50%);background:none;border:none;padding:0;cursor:pointer;color:{{ k.fg }};display:flex;flex-direction:column;align-items:center;transition:color .4s"><span style="width:22px;height:22px;border-radius:50%;border:2px solid #D42A2E;background:{{ k.dot }};box-shadow:{{ k.ring }};transition:background .4s,box-shadow .5s"></span><span style="position:absolute;top:34px;white-space:nowrap;display:flex;flex-direction:column;align-items:center;gap:6px"><span style="font:400 12px/1 Lato,sans-serif;opacity:.7">{{ k.n }}</span><span style="font:500 clamp(14px,1.6cqw,20px)/1 Lato,sans-serif;letter-spacing:-.015em">{{ k.title }}</span></span></button></sc-for>
 </div>
 <div style="margin:12px calc(-1 * clamp(20px,5.5cqw,80px)) 0;display:grid;grid-template-columns:{{ colsT }};min-height:clamp(220px,34vh,320px)">
 <sc-for list="{{ cols }}" as="c" hint-placeholder-count="3"><div style="display:{{ c.disp }};flex-direction:column;align-items:center;text-align:center;padding:0 clamp(16px,2.4cqw,40px);opacity:{{ c.op }};filter:blur({{ c.blur }});transform:translateY({{ c.y }});transition:opacity .6s ease,filter .6s ease,transform .7s cubic-bezier(.2,.75,.2,1)">
 <div style="font:400 clamp(26px,2.6cqw,36px)/1 'Caveat Brush',cursive;color:#D42A2E;transform:rotate(-3deg)">{{ c.kicker }}</div>
-<div style="margin-top:18px;max-width:340px;min-height:6em;font:400 clamp(17px,1.5cqw,21px)/1.5 'Familjen Grotesk',sans-serif;color:#EEE8DE;text-wrap:pretty">{{ c.body }}</div>
-<div style="margin-top:24px;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:10px 12px;font:400 italic 16px/1 'Familjen Grotesk',sans-serif;color:#D8D1C6"><sc-for list="{{ c.chips }}" as="t" hint-placeholder-count="4"><span style="display:flex;align-items:center;gap:12px"><span style="cursor:default;padding-bottom:3px;border-bottom:1px solid transparent;transition:color .2s,border-color .2s" style-hover="color:#F4EFE6;border-color:#D42A2E">{{ t.t }}</span></span></sc-for></div>
+<div style="margin-top:18px;max-width:340px;min-height:6em;font:400 clamp(17px,1.5cqw,21px)/1.5 Lato,sans-serif;color:#EEE8DE;text-wrap:pretty">{{ c.body }}</div>
+<div style="margin-top:24px;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:10px 12px;font:400 italic 16px/1 Lato,sans-serif;color:#D8D1C6"><sc-for list="{{ c.chips }}" as="t" hint-placeholder-count="4"><span style="display:flex;align-items:center;gap:12px"><span style="cursor:default;padding-bottom:3px;border-bottom:1px solid transparent;transition:color .2s,border-color .2s" style-hover="color:#F4EFE6;border-color:#D42A2E">{{ t.t }}</span></span></sc-for></div>
 </div></sc-for>
 </div>
 </div>
@@ -168,17 +171,17 @@
 <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:40px">
 <div data-reveal="1" style="flex:1 1 520px">
 <div style="font:400 22px/1.3 'Caveat Brush',cursive;color:#D42A2E">— got a thought worth exploring?</div>
-<h2 style="margin:18px 0 0;font:400 clamp(32px,5.4cqw,80px)/1.18 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;color:#D42A2E;cursor:default">Let's make <span style="color:#F4EFE6">{{ ctaWord }}</span><br><span style="color:#F4EFE6">great together.</span></h2>
+<h2 style="margin:18px 0 0;font:400 clamp(32px,5.4cqw,80px)/1.18 'Tenor Sans',serif;letter-spacing:-.015em;color:#D42A2E;cursor:default">Let's make <span style="color:#F4EFE6">{{ ctaWord }}</span><br><span style="color:#F4EFE6">great together.</span></h2>
 </div>
 
 </div>
 <div data-reveal="1" style="margin:48px 0 56px;display:flex;flex-wrap:wrap;gap:16px 32px;align-items:center">
-<button onClick="{{ copy }}" style="display:flex;align-items:center;gap:16px;height:64px;padding:0 10px 0 28px;border-radius:999px;border:1px solid rgba(244,239,230,.35);background:none;color:#F4EFE6;cursor:pointer;font:500 clamp(17px,1.6cqw,21px)/1 'Familjen Grotesk',sans-serif" style-hover="border-color:#D42A2E">contactreeva@gmail.com<span style="height:46px;padding:0 18px;border-radius:999px;background:{{ copyBg }};display:inline-flex;align-items:center;font:500 14px/1 'Familjen Grotesk',sans-serif;transition:background .2s">{{ copyLabel }}</span></button>
-<div style="display:flex;flex-wrap:wrap;gap:12px 28px;font:500 17px/1.2 'Familjen Grotesk',sans-serif"><a href="#">LinkedIn ↗</a><a href="#">Behance ↗</a><a href="#">Résumé ↓</a></div>
+<button onClick="{{ copy }}" style="display:flex;align-items:center;gap:16px;height:64px;padding:0 10px 0 28px;border-radius:999px;border:1px solid rgba(244,239,230,.35);background:none;color:#F4EFE6;cursor:pointer;font:500 clamp(17px,1.6cqw,21px)/1 Lato,sans-serif" style-hover="border-color:#D42A2E">contactreeva@gmail.com<span style="height:46px;padding:0 18px;border-radius:999px;background:{{ copyBg }};display:inline-flex;align-items:center;font:500 14px/1 Lato,sans-serif;transition:background .2s">{{ copyLabel }}</span></button>
+<div style="display:flex;flex-wrap:wrap;gap:12px 28px;font:500 17px/1.2 Lato,sans-serif"><a href="#">LinkedIn ↗</a><a href="#">Behance ↗</a><a href="#">Résumé ↓</a></div>
 </div>
 <div ref="{{ footLineRef }}" style="border-top:1px solid rgba(244,239,230,.18);padding-top:24px;display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:center">
-<nav style="display:flex;flex-wrap:wrap;gap:16px 36px;font:400 17px/1 'Familjen Grotesk',sans-serif"><a href="index.html">Home</a><a href="about.html">About</a><a href="say-hi.html">Say Hi</a></nav>
-<div style="font:500 15px/1 'Familjen Grotesk',sans-serif">© 2024 <a href="index.html" style="text-decoration:underline;font-weight:700">Reeva</a></div>
+<nav style="display:flex;flex-wrap:wrap;gap:16px 36px;font:400 17px/1 Lato,sans-serif"><a href="index.html">Home</a><a href="about.html">About</a><a href="say-hi.html">Say Hi</a></nav>
+<div style="font:500 15px/1 Lato,sans-serif">© 2026 <a href="index.html" style="text-decoration:underline;font-weight:700">Reeva</a></div>
 </div>
 </footer>
 </div>
@@ -206,8 +209,8 @@ const STEPS = [
 ];
 const PROJECTS = [
   { num: '1', title: 'Twasa', cat: 'A quiet confidence', tint: '#EE7A22', labelC: 'rgba(244,239,230,.85)', label: 'twasa key visual', blurb: 'What happens when science wants to feel human? A story of balance, told in colour.' },
-  { num: '2', title: 'Human Behaviour Study', cat: 'Law & Life', tint: '#5A3A24', labelC: 'rgba(244,239,230,.85)', label: '', hbs: true, bgImg: 'linear-gradient(rgba(30,19,13,.35),rgba(30,19,13,.35)), url(human-behaviour-study/img/photo-corridor-4.png) 50% 40%/cover', blurb: 'The waiting public vs a courtroom that tells them almost nothing. What happens to people while they wait for justice.', href: 'human-behaviour-study/' },
-  { num: '3', title: 'Adventure Tourism of India', cat: 'Chalega, nahi chalega', tint: '#1B1830', labelC: 'rgba(244,239,230,.7)', label: 'night photo', blurb: "How India's fast-growing adventure tourism industry negotiates safety, and where tourist trust breaks between what is promised and what happens on the ground.", href: 'adventure-tourism/' },
+  { num: '2', title: 'Human Behaviour Study', cat: 'Law & Life', tint: '#5A3A24', labelC: 'rgba(244,239,230,.85)', label: '', hbs: true, bgImg: 'linear-gradient(rgba(30,19,13,.35),rgba(30,19,13,.35)), url(human-behaviour-study/img/photo-corridor-4.png) 50% 40%/cover', blurb: 'The waiting public vs a courtroom that tells them almost nothing. What happens to people while they wait for justice.', href: 'human-behaviour-study/', asked: 'Study how people behave while they wait inside the High Court of Gujarat and a Gandhinagar district court.', saw: 'The door is the only window: 78 people stood at the doorway for three hours, because watching the dais was the only way to know when they would be called.'  },
+  { num: '3', title: 'Adventure Tourism of India', cat: 'Chalega, nahi chalega', tint: '#1B1830', labelC: 'rgba(244,239,230,.7)', label: 'night photo', blurb: "How India's fast-growing adventure tourism industry negotiates safety, and where tourist trust breaks between what is promised and what happens on the ground.", href: 'adventure-tourism/', asked: "Understand how India's adventure tourism industry negotiates safety, and where tourist trust breaks.", saw: 'Safety rests on the guide’s own judgement and briefings are mostly verbal. A shorter, friendlier briefing quietly lowers how much risk people perceive.'  },
   { num: '4', title: 'One Café', cat: 'Small, but considered', tint: '#D9D4CA', labelC: 'rgba(35,35,35,.7)', label: 'one café key visual', blurb: 'A neighbourhood ritual, given a voice that never needs to raise itself.' },
 ];
 PROJECTS.forEach(p => { p.href = p.href || '#work'; p.asked = p.asked || 'Add what the client asked for.'; p.saw = p.saw || 'Add what you saw: the insight that changed the direction.'; });
