@@ -44,6 +44,14 @@ em{font-family:var(--disp);font-style:normal;color:var(--gold)}
 .bar .wrap{display:flex;justify-content:space-between;align-items:center;padding-top:20px;padding-bottom:20px}
 .bar .wrap > *{pointer-events:auto}
 .back{font:700 12px/1 var(--body);letter-spacing:.1em}
+/* breadcrumb: Work / NOU / the chapter on screen */
+.crumb{display:flex;align-items:baseline;gap:10px;font:400 13px/1 var(--body)}
+.crumb i{font-style:normal;opacity:.4}
+.crumb > a:not(.back){opacity:.75;transition:opacity .3s}
+.crumb a:hover{opacity:1}
+.crc{display:flex;gap:10px;align-items:baseline;opacity:0;transform:translateY(6px);transition:opacity .4s,transform .5s var(--ease)}
+.crc.on{opacity:1;transform:none}
+.crc a{font-style:italic}
 .brandmark{display:flex;align-items:center;gap:10px;font:italic 400 14.5px/1 var(--body);}
 .brandmark .mk{width:24px}
 .idx-btn{font:italic 400 14.5px/1 var(--body);display:flex;align-items:center;gap:10px}
@@ -116,28 +124,6 @@ em{font-family:var(--disp);font-style:normal;color:var(--gold)}
 .mside figure{aspect-ratio:3/4;border-radius:4px;overflow:hidden}
 .mside figure img{width:100%;height:120%;object-fit:cover}
 .mside figcaption{font-size:12px;color:var(--sub);margin-top:10px}
-/* chapter index: big names stacked; the active one opens like a drawer onto an image and a line */
-.manifesto{flex-direction:column;justify-content:center}
-.chx{position:relative;z-index:2;width:100%;margin-top:clamp(80px,9vw,140px)}
-.chap-k{font:italic 400 14px/1.4 var(--body);color:var(--ember);margin-bottom:18px}
-.chx ol{list-style:none;border-top:1px solid var(--line)}
-.chx li{border-bottom:1px solid var(--line)}
-.chh{display:grid;grid-template-columns:clamp(40px,5vw,72px) minmax(0,1fr) auto;align-items:center;padding:clamp(12px,1.4vw,18px) 0}
-.chh b{font:400 13px/1 var(--body);letter-spacing:.06em;color:var(--sub);font-variant-numeric:tabular-nums;transition:color .4s}
-.chh span{font:300 clamp(30px,4.4vw,68px)/1.05 var(--disp);letter-spacing:-.015em;color:rgba(241,232,220,.42);transition:color .5s var(--ease),transform .6s var(--ease)}
-.chh i{font-style:normal;font-size:clamp(18px,1.8vw,26px);color:var(--gold);opacity:0;transform:translateX(-14px) rotate(-45deg);transition:opacity .4s,transform .6s var(--ease)}
-.chb{display:grid;grid-template-rows:0fr;transition:grid-template-rows .7s var(--ease)}
-.chi{min-height:0;overflow:hidden;display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:clamp(20px,3vw,48px);align-items:end;padding-left:clamp(40px,5vw,72px)}
-.chi img{width:100%;height:clamp(150px,17vw,250px);object-fit:cover;object-position:50% 35%;border-radius:4px;margin-bottom:clamp(18px,2vw,26px);transform:scale(1.08);opacity:0;transition:transform 1s var(--ease),opacity .6s}
-.chi p{font:400 15px/1.6 var(--body);color:var(--sub);max-width:34ch;margin-bottom:clamp(18px,2vw,26px);opacity:0;transform:translateY(10px);transition:opacity .5s .1s,transform .7s .1s var(--ease)}
-.chi p a{display:block;margin-top:12px;font:italic 400 14px/1 var(--body);color:var(--gold)}
-.chx li.on .chb{grid-template-rows:1fr}
-.chx li.on .chh b{color:var(--ember)}
-.chx li.on .chh span{color:var(--fg);transform:translateX(8px)}
-.chx li.on .chh i{opacity:1;transform:none}
-.chx li.on .chi img{transform:none;opacity:1}
-.chx li.on .chi p{opacity:1;transform:none}
-@media (max-width:700px){.chi{grid-template-columns:1fr;gap:0;padding-left:0}.chi img{margin-bottom:14px}.chh i{opacity:.5;transform:none}}
 
 /* chapter head: one aligned pattern */
 .cn{font:italic 400 15.5px/1 var(--body);color:var(--acc);display:block;margin-bottom:18px}
@@ -709,7 +695,9 @@ em{font-style:normal}
 <div class="cur" id="cur" aria-hidden="true"><b></b><span id="curL"></span></div>
 
 <header class="bar"><div class="wrap">
-  <a class="back" href="../#work">← WORK</a>
+  <nav class="crumb" aria-label="Breadcrumb">
+    <a class="back" href="../#work">← WORK</a><i>/</i><a href="#top">NOU</a><span class="crc" id="crumb"><i>/</i><a href="#research" id="crumbA"></a></span>
+  </nav>
 </div></header>
 
 
@@ -736,17 +724,6 @@ em{font-style:normal}
   </div>
   <figure class="mph"><div class="mfr"><img src="img/emboss.jpg" alt="The NOU mark debossed into a suede tongue tab" id="mImg"></div><figcaption>The mark, debossed on a suede tongue tab.</figcaption></figure>
   </div>
-  <nav class="wrap chx" aria-label="Chapters">
-    <p class="chap-k">The case study, in six chapters</p>
-    <ol id="chx">
-      <li class="on"><a class="chh" href="#research"><b>01</b><span>Research</span><i aria-hidden="true">→</i></a><div class="chb"><div class="chi"><img src="img/cx-hush.jpg" alt="" loading="lazy"><p>Market size, buyer preferences and what the shelf was missing.<a href="#research">Open chapter →</a></p></div></div></li>
-      <li><a class="chh" href="#strategy"><b>02</b><span>Strategy</span><i aria-hidden="true">→</i></a><div class="chb"><div class="chi"><img src="img/p2.jpg" alt="" loading="lazy"><p>Competitor audit, positioning map, personas and the brand voice.<a href="#strategy">Open chapter →</a></p></div></div></li>
-      <li><a class="chh" href="#identity"><b>03</b><span>Identity</span><i aria-hidden="true">→</i></a><div class="chb"><div class="chi"><img src="img/construct.jpg" alt="" loading="lazy"><p>The mark and its construction, lockups, colour and type.<a href="#identity">Open chapter →</a></p></div></div></li>
-      <li><a class="chh" href="#system"><b>04</b><span>System</span><i aria-hidden="true">→</i></a><div class="chb"><div class="chi"><img src="img/signage.jpg" alt="" loading="lazy"><p>Guidelines, packaging, stationery and signage.<a href="#system">Open chapter →</a></p></div></div></li>
-      <li><a class="chh" href="#ux"><b>05</b><span>UX</span><i aria-hidden="true">→</i></a><div class="chb"><div class="chi"><img src="img/plp.jpg" alt="" loading="lazy"><p>One buyer’s journey, and the sitemap built around him.<a href="#ux">Open chapter →</a></p></div></div></li>
-      <li><a class="chh" href="#ui"><b>06</b><span>UI</span><i aria-hidden="true">→</i></a><div class="chb"><div class="chi"><img src="img/home.jpg" alt="" loading="lazy"><p>The finished e‑commerce store, ready to click through.<a href="#ui">Open chapter →</a></p></div></div></li>
-    </ol>
-  </nav>
 </section>
 
 <!-- 01 RESEARCH -->
@@ -1150,18 +1127,17 @@ em{font-style:normal}
     gsap.from('.mtext',{opacity:0,y:30,duration:1.2,ease:'power3.out',scrollTrigger:{trigger:'.mtext',start:'top 85%'}}); }
   else sts.forEach(function(s){ s.classList.add('in'); });
 
-  /* chapter index: one row is always open, so the page height never jumps under the pinned sections below */
+  /* breadcrumb: the last chapter whose top has passed the middle of the screen */
   (function(){
-    var items=$$('#chx li'); if(!items.length) return;
-    var hover=matchMedia('(hover:hover)').matches;
-    var t=0;
-    function open(li){ clearTimeout(t); items.forEach(function(x){ x.classList.toggle('on',x===li); }); }
-    items.forEach(function(li){
-      /* a short pause before opening, so sweeping the cursor past rows doesn't set them flapping */
-      if(hover){ li.addEventListener('mouseenter',function(){ clearTimeout(t); t=setTimeout(function(){ open(li); },140); });
-        li.addEventListener('mouseleave',function(){ clearTimeout(t); }); }
-      li.querySelector('.chh').addEventListener('click',function(e){ if(!li.classList.contains('on')){ e.preventDefault(); open(li); } });
-    });
+    var C=[['#research','Research'],['#strategy','Strategy'],['#identity','Identity'],['#system','System'],['#ux','UX'],['#ui','UI'],['.process','Process']]
+      .map(function(c){ return {el:$(c[0]),id:c[0].charAt(0)==='#'?c[0]:'',name:c[1]}; }).filter(function(c){ return c.el; });
+    var box=$('#crumb'), a=$('#crumbA'), cur=null, tick=0;
+    function upd(){ tick=0; var mid=innerHeight/2, hit=null;
+      C.forEach(function(c){ if(c.el.getBoundingClientRect().top<mid) hit=c; });
+      if(hit===cur) return; cur=hit; box.classList.toggle('on',!!hit);
+      if(hit){ a.textContent=hit.name; if(hit.id) a.setAttribute('href',hit.id); } }
+    addEventListener('scroll',function(){ if(!tick) tick=requestAnimationFrame(upd); },{passive:true});
+    addEventListener('resize',upd); upd();
   })();
 
   /* counters */
