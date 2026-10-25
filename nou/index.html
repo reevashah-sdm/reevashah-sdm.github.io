@@ -116,22 +116,28 @@ em{font-family:var(--disp);font-style:normal;color:var(--gold)}
 .mside figure{aspect-ratio:3/4;border-radius:4px;overflow:hidden}
 .mside figure img{width:100%;height:120%;object-fit:cover}
 .mside figcaption{font-size:12px;color:var(--sub);margin-top:10px}
-/* chapter row: six columns across the full width, each led by a large outlined numeral */
+/* chapter index: big names stacked; the active one opens like a drawer onto an image and a line */
 .manifesto{flex-direction:column;justify-content:center}
-.chrow{position:relative;z-index:2;width:100%;margin-top:clamp(80px,9vw,140px)}
-.chap-k{font:italic 400 14px/1.4 var(--body);color:var(--ember);margin-bottom:22px}
-.chrow ol{list-style:none;display:grid;grid-template-columns:repeat(6,minmax(0,1fr))}
-.chrow a{position:relative;display:block;height:100%;padding:26px clamp(12px,1.4vw,22px) 6px;border-left:1px solid var(--line)}
-.chrow li:first-child a{border-left:0;padding-left:0}
-.chrow a::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:var(--line)}
-.chrow a::after{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:var(--ember);transform:scaleX(0);transform-origin:left;transition:transform .6s var(--ease)}
-.chrow b{display:block;font:300 clamp(46px,5vw,84px)/.9 var(--disp);letter-spacing:-.02em;color:transparent;-webkit-text-stroke:1px rgba(241,232,220,.38);transition:color .5s var(--ease),-webkit-text-stroke-color .5s}
-.chrow span{display:block;margin-top:clamp(18px,2vw,28px);font:400 clamp(16px,1.3vw,19px)/1.2 var(--disp);color:var(--fg)}
-.chrow em{display:block;margin-top:6px;font:italic 400 13px/1.4 var(--body);color:var(--sub)}
-.chrow a:hover::after,.chrow a:focus-visible::after{transform:scaleX(1)}
-.chrow a:hover b,.chrow a:focus-visible b{color:var(--gold);-webkit-text-stroke-color:var(--gold)}
-@media (max-width:900px){.chrow ol{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:30px}.chrow li:nth-child(4) a{border-left:0;padding-left:0}}
-@media (max-width:600px){.chrow ol{grid-template-columns:repeat(2,minmax(0,1fr))}.chrow li:nth-child(4) a{border-left:1px solid var(--line);padding-left:clamp(12px,1.4vw,22px)}.chrow li:nth-child(odd) a{border-left:0;padding-left:0}}
+.chx{position:relative;z-index:2;width:100%;margin-top:clamp(80px,9vw,140px)}
+.chap-k{font:italic 400 14px/1.4 var(--body);color:var(--ember);margin-bottom:18px}
+.chx ol{list-style:none;border-top:1px solid var(--line)}
+.chx li{border-bottom:1px solid var(--line)}
+.chh{display:grid;grid-template-columns:clamp(40px,5vw,72px) minmax(0,1fr) auto;align-items:center;padding:clamp(12px,1.4vw,18px) 0}
+.chh b{font:400 13px/1 var(--body);letter-spacing:.06em;color:var(--sub);font-variant-numeric:tabular-nums;transition:color .4s}
+.chh span{font:300 clamp(30px,4.4vw,68px)/1.05 var(--disp);letter-spacing:-.015em;color:rgba(241,232,220,.42);transition:color .5s var(--ease),transform .6s var(--ease)}
+.chh i{font-style:normal;font-size:clamp(18px,1.8vw,26px);color:var(--gold);opacity:0;transform:translateX(-14px) rotate(-45deg);transition:opacity .4s,transform .6s var(--ease)}
+.chb{display:grid;grid-template-rows:0fr;transition:grid-template-rows .7s var(--ease)}
+.chi{min-height:0;overflow:hidden;display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:clamp(20px,3vw,48px);align-items:end;padding-left:clamp(40px,5vw,72px)}
+.chi img{width:100%;height:clamp(150px,17vw,250px);object-fit:cover;object-position:50% 35%;border-radius:4px;margin-bottom:clamp(18px,2vw,26px);transform:scale(1.08);opacity:0;transition:transform 1s var(--ease),opacity .6s}
+.chi p{font:400 15px/1.6 var(--body);color:var(--sub);max-width:34ch;margin-bottom:clamp(18px,2vw,26px);opacity:0;transform:translateY(10px);transition:opacity .5s .1s,transform .7s .1s var(--ease)}
+.chi p a{display:block;margin-top:12px;font:italic 400 14px/1 var(--body);color:var(--gold)}
+.chx li.on .chb{grid-template-rows:1fr}
+.chx li.on .chh b{color:var(--ember)}
+.chx li.on .chh span{color:var(--fg);transform:translateX(8px)}
+.chx li.on .chh i{opacity:1;transform:none}
+.chx li.on .chi img{transform:none;opacity:1}
+.chx li.on .chi p{opacity:1;transform:none}
+@media (max-width:700px){.chi{grid-template-columns:1fr;gap:0;padding-left:0}.chi img{margin-bottom:14px}.chh i{opacity:.5;transform:none}}
 
 /* chapter head: one aligned pattern */
 .cn{font:italic 400 15.5px/1 var(--body);color:var(--acc);display:block;margin-bottom:18px}
@@ -730,15 +736,15 @@ em{font-style:normal}
   </div>
   <figure class="mph"><div class="mfr"><img src="img/emboss.jpg" alt="The NOU mark debossed into a suede tongue tab" id="mImg"></div><figcaption>The mark, debossed on a suede tongue tab.</figcaption></figure>
   </div>
-  <nav class="wrap chrow" aria-label="Chapters">
+  <nav class="wrap chx" aria-label="Chapters">
     <p class="chap-k">The case study, in six chapters</p>
-    <ol>
-      <li><a href="#research"><b>01</b><span>Research</span><em>Market and buyers</em></a></li>
-      <li><a href="#strategy"><b>02</b><span>Strategy</span><em>Positioning and personas</em></a></li>
-      <li><a href="#identity"><b>03</b><span>Identity</span><em>Logo, colour, type</em></a></li>
-      <li><a href="#system"><b>04</b><span>System</span><em>Brand touchpoints</em></a></li>
-      <li><a href="#ux"><b>05</b><span>UX</span><em>Journey and sitemap</em></a></li>
-      <li><a href="#ui"><b>06</b><span>UI</span><em>The finished store</em></a></li>
+    <ol id="chx">
+      <li class="on"><a class="chh" href="#research"><b>01</b><span>Research</span><i aria-hidden="true">→</i></a><div class="chb"><div class="chi"><img src="img/cx-hush.jpg" alt="" loading="lazy"><p>Market size, buyer preferences and what the shelf was missing.<a href="#research">Open chapter →</a></p></div></div></li>
+      <li><a class="chh" href="#strategy"><b>02</b><span>Strategy</span><i aria-hidden="true">→</i></a><div class="chb"><div class="chi"><img src="img/p2.jpg" alt="" loading="lazy"><p>Competitor audit, positioning map, personas and the brand voice.<a href="#strategy">Open chapter →</a></p></div></div></li>
+      <li><a class="chh" href="#identity"><b>03</b><span>Identity</span><i aria-hidden="true">→</i></a><div class="chb"><div class="chi"><img src="img/construct.jpg" alt="" loading="lazy"><p>The mark and its construction, lockups, colour and type.<a href="#identity">Open chapter →</a></p></div></div></li>
+      <li><a class="chh" href="#system"><b>04</b><span>System</span><i aria-hidden="true">→</i></a><div class="chb"><div class="chi"><img src="img/signage.jpg" alt="" loading="lazy"><p>Guidelines, packaging, stationery and signage.<a href="#system">Open chapter →</a></p></div></div></li>
+      <li><a class="chh" href="#ux"><b>05</b><span>UX</span><i aria-hidden="true">→</i></a><div class="chb"><div class="chi"><img src="img/plp.jpg" alt="" loading="lazy"><p>One buyer’s journey, and the sitemap built around him.<a href="#ux">Open chapter →</a></p></div></div></li>
+      <li><a class="chh" href="#ui"><b>06</b><span>UI</span><i aria-hidden="true">→</i></a><div class="chb"><div class="chi"><img src="img/home.jpg" alt="" loading="lazy"><p>The finished e‑commerce store, ready to click through.<a href="#ui">Open chapter →</a></p></div></div></li>
     </ol>
   </nav>
 </section>
@@ -1143,6 +1149,20 @@ em{font-style:normal}
     gsap.fromTo('#mImg',{yPercent:-10},{yPercent:0,ease:'none',scrollTrigger:{trigger:'.manifesto',start:'top bottom',end:'bottom top',scrub:true}});
     gsap.from('.mtext',{opacity:0,y:30,duration:1.2,ease:'power3.out',scrollTrigger:{trigger:'.mtext',start:'top 85%'}}); }
   else sts.forEach(function(s){ s.classList.add('in'); });
+
+  /* chapter index: one row is always open, so the page height never jumps under the pinned sections below */
+  (function(){
+    var items=$$('#chx li'); if(!items.length) return;
+    var hover=matchMedia('(hover:hover)').matches;
+    var t=0;
+    function open(li){ clearTimeout(t); items.forEach(function(x){ x.classList.toggle('on',x===li); }); }
+    items.forEach(function(li){
+      /* a short pause before opening, so sweeping the cursor past rows doesn't set them flapping */
+      if(hover){ li.addEventListener('mouseenter',function(){ clearTimeout(t); t=setTimeout(function(){ open(li); },140); });
+        li.addEventListener('mouseleave',function(){ clearTimeout(t); }); }
+      li.querySelector('.chh').addEventListener('click',function(e){ if(!li.classList.contains('on')){ e.preventDefault(); open(li); } });
+    });
+  })();
 
   /* counters */
   function fmt(el,v){ var dec=+(el.dataset.dec||0); return dec?v.toFixed(dec):Math.round(v).toLocaleString(el.dataset.fmt==='in'?'en-IN':'en-US'); }
