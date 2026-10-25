@@ -14,7 +14,7 @@
   html,body{margin:0;background:#fff}
   body{font-family:'Lato',sans-serif;color:var(--text);font-size:10.7px;line-height:1.6;-webkit-print-color-adjust:exact;print-color-adjust:exact}
   a{color:inherit;text-decoration:none}
-  .page{width:210mm;height:297mm;margin:0 auto;overflow:hidden}
+  .page{width:210mm;height:297mm;margin:0 auto;overflow:hidden;display:flex;flex-direction:column}
 
   /* the one coloured surface: a pale lavender-to-blush wash behind the name */
   header{padding:15mm 16mm 9mm;background:linear-gradient(115deg,#ece4f6 0%,#f4edf6 55%,#f9f3f3 100%);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:end}
@@ -25,7 +25,10 @@
   .contact{display:grid;grid-template-columns:12px auto;column-gap:9px;row-gap:5px;align-items:center;font-size:10px;line-height:1.3;color:var(--ink)}
   .contact svg{width:12px;height:12px;stroke:var(--plum);fill:none;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
 
-  .body{padding:7mm 16mm 0}
+  /* the sections share out the spare height of the sheet, so the gaps between them grow evenly and the page ends near the bottom */
+  .body{padding:7mm 16mm 12mm;flex:1;display:flex;flex-direction:column}
+  .body > section{flex:1 1 auto}
+  .body > section:last-child{flex:0 0 auto}
   /* label column + content column; dates live in the label column of each entry */
   /* no rules across the page: one fine vertical thread runs down between the two columns,
      and each section hangs a small ombre circle on it, level with its name */
