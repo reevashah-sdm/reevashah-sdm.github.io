@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reeva Shah · Resume</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#1e1a24;--text:#3b3742;--sub:#75707d;--line:#dcd6e2;--plum:#4b2f7d}
+  @page{size:A4;margin:0}
+  *{box-sizing:border-box}
+  html,body{margin:0;background:#fff}
+  body{font-family:'Lato',sans-serif;color:var(--text);font-size:10.7px;line-height:1.6;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  a{color:inherit;text-decoration:none}
+  .page{width:210mm;height:297mm;margin:0 auto;overflow:hidden}
+
+  /* the one coloured surface: a pale lavender-to-blush wash behind the name */
+  header{padding:15mm 16mm 9mm;background:linear-gradient(115deg,#ece4f6 0%,#f4edf6 55%,#f9f3f3 100%);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:end}
+  h1{margin:0;font-size:34px;line-height:1;font-weight:300;color:var(--ink);letter-spacing:-.01em}
+  h1 b{font-weight:700}
+  .role{margin:8px 0 0;font-size:11.5px;color:var(--plum)}
+  /* contact: icons in their own column so every line starts on the same edge */
+  .contact{display:grid;grid-template-columns:12px auto;column-gap:9px;row-gap:5px;align-items:center;font-size:10px;line-height:1.3;color:var(--ink)}
+  .contact svg{width:12px;height:12px;stroke:var(--plum);fill:none;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+
+  .body{padding:7mm 16mm 0}
+  /* label column + content column; dates live in the label column of each entry */
+  /* no rules across the page: one fine vertical thread runs down between the two columns,
+     and each section hangs a small ombre circle on it, level with its name */
+  section{position:relative;display:grid;grid-template-columns:30mm minmax(0,1fr);column-gap:9mm;padding:0 0 23px}
+  section::before{content:"";position:absolute;z-index:1;left:calc(30mm + 4.5mm - 5px);top:3px;width:10px;height:10px;border-radius:50%;box-sizing:border-box;border:1.4px solid var(--plum);background:linear-gradient(135deg,#e4d8f3,#f6ecf2)}
+  section::after{content:"";position:absolute;left:calc(30mm + 4.5mm - .5px);top:8px;bottom:-11px;width:1px;background:linear-gradient(#cbbbe2,#e6dcef)}
+  section:last-child::after{display:none}
+  h2{margin:0;font-size:11px;font-weight:700;color:var(--plum)}
+  .col{min-width:0}
+  p{margin:0}
+
+  .skills{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 6mm}
+  .skills h3{margin:0 0 3px;font-size:10.4px;font-weight:700;color:var(--ink)}
+  .skills p{color:var(--text);line-height:1.6}
+
+  .entry{padding-top:12px}
+  .hd{display:flex;justify-content:space-between;align-items:baseline;gap:14px}
+  .entry:first-of-type{padding-top:0}
+  .when{font-size:9.8px;color:var(--sub);line-height:1.5;padding-top:1.5px;white-space:nowrap}
+  h4{margin:0;font-size:11.2px;font-weight:700;color:var(--ink)}
+  .org{color:var(--sub)}
+  ul{margin:4px 0 0;padding-left:13px}
+  li{margin:0 0 1.5px;padding-left:1px}
+  li::marker{color:var(--plum);font-size:9px}
+  .note{font-style:italic;color:var(--plum)}
+  .entries{display:flex;flex-direction:column}
+
+  /* ---- variations, picked with #b, #c or #d on the address (A is the default above) ---- */
+  /* B: the spine moves out to the page's left margin; solid ombre dots, the line fading as it falls */
+  body.b section::before{left:-9mm;top:3px;width:11px;height:11px;border:0;background:linear-gradient(135deg,#4b2f7d,#a47bcf)}
+  body.b section::after{left:calc(-9mm + 5px);width:1.2px;background:linear-gradient(#a47bcf,#e7dcf0)}
+  /* C: no section markers; the line and circles trace the roles and degrees themselves */
+  body.c section::before,body.c section::after{display:none}
+  body.c .entries{position:relative}
+  body.c .entries::before{content:"";position:absolute;left:-17px;top:8px;bottom:8px;width:1px;background:linear-gradient(#cbbbe2,#ece4f3)}
+  body.c .entry{position:relative}
+  body.c .entry::before{content:"";position:absolute;left:-22px;top:3.5px;width:11px;height:11px;border-radius:50%;box-sizing:border-box;border:1.4px solid var(--plum);background:linear-gradient(135deg,#e4d8f3,#f6ecf2)}
+  body.c .entries .entry:not(:first-child)::before{top:calc(12px + 3.5px)}
+  body.c .entries .entry:first-child::before{background:var(--plum)}
+  /* D: a stitched thread with eyelets: a dashed line, each circle a ring with a plum centre */
+  body.d section::before{width:13px;height:13px;left:calc(30mm + 4.5mm - 6.5px);top:2px;border:1.3px solid var(--plum);background:radial-gradient(circle,var(--plum) 0 2px,#fff 2.4px)}
+  body.d section::after{width:1.2px;background:repeating-linear-gradient(to bottom,#b9a5d8 0 3px,transparent 3px 6.5px)}
+
+  /* ---- web viewer only: a bar with back + download, the sheet floating on a soft ground ---- */
+  @media screen{
+    html,body{background:#ebe7ee}
+    .bar{position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px max(16px,calc((100vw - 210mm)/2));background:rgba(25,23,21,.94);font:500 14px/1 'Familjen Grotesk',sans-serif;color:#F4EFE6}
+    .bar a{display:inline-flex;align-items:center;gap:8px}
+    .bar .back{opacity:.8}
+    .bar .back:hover{opacity:1}
+    .bar .dl{padding:10px 16px;border-radius:999px;background:#D42A2E;color:#fff}
+    .bar .dl:hover{background:#b8221f}
+    .sheet{padding:28px 16px 56px}
+    .page{background:#fff;box-shadow:0 18px 50px -24px rgba(40,20,70,.4)}
+  }
+  @media print{.bar{display:none}.sheet{padding:0}}
+</style>
+</head>
+<body class="d">
+<nav class="bar"><a class="back" href="../">← Back to portfolio</a><a class="dl" href="Reeva-Shah-Resume.pdf" download="Reeva-Shah-Resume.pdf">Download PDF <span aria-hidden="true">↓</span></a></nav>
+<div class="sheet">
+<main class="page">
+  <header>
+    <div>
+      <h1>Reeva <b>Shah</b></h1>
+      <p class="role">Strategic Design Management, UI/UX Design and Communication Design</p>
+    </div>
+    <div class="contact">
+      <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6 11s4-3.6 4-6.4A4 4 0 0 0 2 4.6C2 7.4 6 11 6 11z"/><circle cx="6" cy="4.7" r="1.3"/></svg><span>Ahmedabad, Gujarat, India</span>
+      <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.5h2l1 2.5-1.3.9a6 6 0 0 0 2.4 2.4l.9-1.3 2.5 1v2a1.5 1.5 0 0 1-1.5 1.5A8.5 8.5 0 0 1 1.5 3 1.5 1.5 0 0 1 3 1.5z"/></svg><a href="tel:+919106626600">+91 91066 26600</a>
+      <svg viewBox="0 0 12 12" aria-hidden="true"><rect x="1.2" y="2.5" width="9.6" height="7" rx="1"/><path d="M1.5 3l4.5 3.5L10.5 3"/></svg><a href="mailto:contactreeva@gmail.com">contactreeva@gmail.com</a>
+      <svg viewBox="0 0 12 12" aria-hidden="true"><circle cx="6" cy="6" r="4.8"/><path d="M1.2 6h9.6M6 1.2c1.5 1.4 2.2 3 2.2 4.8S7.5 9.4 6 10.8C4.5 9.4 3.8 7.8 3.8 6S4.5 2.6 6 1.2z"/></svg><a href="https://reevashah-sdm.github.io">reevashah-sdm.github.io</a>
+    </div>
+  </header>
+
+  <div class="body">
+    <section>
+      <h2>Profile</h2>
+      <p>A communication designer by foundation and a strategic thinker in the making. My journey has taken me from shaping visuals to shaping digital experiences. I’m interested in the interplay between how things look, how they work, and why people respond to them the way they do, and I enjoy connecting the details with the bigger picture.</p>
+    </section>
+
+    <section>
+      <h2>Skills</h2>
+      <div class="skills">
+        <div><h3>Research &amp; Strategy</h3><p>User Research, Competitor Analysis, Design Thinking, Problem Framing, Brand Strategy, Stakeholder Communication</p></div>
+        <div><h3>Product &amp; UX Design</h3><p>User Flows, Information Architecture, Wireframing, Prototyping, Usability Testing, Responsive Web Design</p></div>
+        <div><h3>Visual &amp; Brand Design</h3><p>Brand Identity, Design Systems, Typography, Packaging Design, Motion Graphics, Video Editing, Wayfinding and Signage</p></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Experience</h2>
+      <div class="col entries">
+        <div class="entry">
+          <div><div class="hd"><h4>UI/UX Designer</h4><span class="when">July 2024 –&nbsp;June 2025</span></div><span class="org">Zero Gravity Communications, Ahmedabad</span>
+            <ul>
+              <li>Designed website and digital product experiences, translating project requirements into intuitive layouts and user flows.</li>
+              <li>Connected business objectives with interface decisions, information architecture, and user experience.</li>
+              <li>Built and maintained Figma component libraries and style guides to ensure consistency across digital products.</li>
+              <li>Collaborated with developers to address design feasibility, responsiveness, and implementation requirements.</li>
+            </ul></div>
+        </div>
+        <div class="entry">
+          <div><div class="hd"><h4>UI/UX Designer (Internship)</h4><span class="when">January 2024 –&nbsp;July 2024</span></div><span class="org">Zero Gravity Communications, Ahmedabad</span>
+            <ul>
+              <li>Designed responsive web and mobile interfaces using Figma and Adobe XD.</li>
+              <li>Supported competitor analysis and user research to inform interface layouts and user journeys.</li>
+            </ul></div>
+        </div>
+        <div class="entry">
+          <div><div class="hd"><h4>Communication Designer (Internship)</h4><span class="when">June 2023 –&nbsp;July 2023</span></div><span class="org">Web Plus Info Tech Pvt Ltd</span>
+            <ul>
+              <li>Created visual communication assets and promotional creatives for digital applications.</li>
+              <li>Contributed to website layouts and explored motion graphics across design projects.</li>
+            </ul></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Project</h2>
+      <div class="col entries">
+        <div class="entry">
+          <div><div class="hd"><h4>Redesigning Signages at Kalupur Railway Station</h4><span class="when">August 2023 –&nbsp;November 2023</span></div><span class="org">Wayfinding and Environmental Graphic Design</span>
+            <ul>
+              <li>Conducted field research and commuter observation at a high-footfall railway station; proposed a wayfinding system with clearer hierarchy, pictograms and colour coding.</li>
+              <li>Authored the research report; <span class="note">the work has been selected for article publication.</span></li>
+            </ul></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Education</h2>
+      <div class="col entries">
+        <div class="entry">
+          <div><div class="hd"><h4>Masters in Strategic Design Management</h4><span class="when">Ongoing</span></div><span class="org">National Institute of Design (NID), Gandhinagar</span></div>
+        </div>
+        <div class="entry">
+          <div><div class="hd"><h4>Bachelor of Communication Design</h4><span class="when">2020 – 2024</span></div><span class="org">Anant National University, Ahmedabad</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Tools</h2>
+      <p>Figma, Adobe XD, Adobe Illustrator, Adobe Photoshop, Adobe InDesign, Adobe After Effects, Adobe Premiere Pro, Adobe Audition</p>
+    </section>
+
+    <section>
+      <h2>Languages</h2>
+      <p>English, Hindi, Gujarati</p>
+    </section>
+  </div>
+</main>
+</div>
+<script>
+  // phones: shrink the A4 sheet to fit the screen instead of scrolling sideways
+  (function(){ var p=document.querySelector(".page"); function fit(){ var s=Math.min(1,(window.innerWidth-32)/794); p.style.zoom=s<1?s:""; } fit(); window.addEventListener("resize",fit); })();
+</script>
+</body>
+</html>
