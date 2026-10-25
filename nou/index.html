@@ -116,25 +116,22 @@ em{font-family:var(--disp);font-style:normal;color:var(--gold)}
 .mside figure{aspect-ratio:3/4;border-radius:4px;overflow:hidden}
 .mside figure img{width:100%;height:120%;object-fit:cover}
 .mside figcaption{font-size:12px;color:var(--sub);margin-top:10px}
-/* chapter index: a contents list; hovering a row fills it with a warm wash and slides the title */
-.chap2{position:relative;z-index:3;margin-top:clamp(44px,5vw,72px);max-width:560px}
-.chpv{position:absolute;left:0;top:0;width:220px;aspect-ratio:4/3;border-radius:6px;overflow:hidden;pointer-events:none;box-shadow:0 30px 60px -20px rgba(0,0,0,.7);opacity:0;clip-path:inset(50% 0 50% 0 round 6px);transition:opacity .35s,clip-path .55s var(--ease);will-change:transform}
-.chpv.on{opacity:1;clip-path:inset(0 0 0 0 round 6px)}
-.chpv img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%;opacity:0;transform:scale(1.12);transition:opacity .4s,transform .8s var(--ease)}
-.chpv img.on{opacity:1;transform:none}
-.chap-k{font:italic 400 14px/1.4 var(--body);color:var(--ember);margin-bottom:14px}
-.chapters{list-style:none;border-top:1px solid var(--line)}
-.chapters a{position:relative;display:grid;grid-template-columns:44px minmax(0,1fr) auto 22px;align-items:baseline;gap:14px;padding:15px 6px;border-bottom:1px solid var(--line);overflow:hidden;isolation:isolate}
-.chapters a::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(181,104,62,.22),rgba(181,104,62,0));transform:scaleX(0);transform-origin:left;transition:transform .6s var(--ease)}
-.chapters b{font:300 13px/1 var(--body);letter-spacing:.06em;color:var(--sub);font-variant-numeric:tabular-nums;transition:color .3s}
-.chapters span{font:300 clamp(20px,1.7vw,25px)/1.2 var(--disp);color:var(--fg);transition:transform .5s var(--ease),color .3s}
-.chapters em{font:italic 400 13.5px/1.3 var(--body);color:var(--sub);text-align:right}
-.chapters i{font-style:normal;color:var(--gold);opacity:0;transform:translateX(-8px);transition:opacity .3s,transform .5s var(--ease)}
-.chapters a:hover::before,.chapters a:focus-visible::before{transform:scaleX(1)}
-.chapters a:hover b{color:var(--ember)}
-.chapters a:hover span{transform:translateX(6px);color:var(--gold)}
-.chapters a:hover i{opacity:1;transform:none}
-@media (max-width:600px){.chapters a{grid-template-columns:34px minmax(0,1fr) 18px;row-gap:2px}.chapters em{grid-column:2;grid-row:2;text-align:left}.chapters i{grid-row:1/3;grid-column:3;opacity:.6;transform:none;align-self:center}}
+/* chapter row: six columns across the full width, each led by a large outlined numeral */
+.manifesto{flex-direction:column;justify-content:center}
+.chrow{position:relative;z-index:2;width:100%;margin-top:clamp(80px,9vw,140px)}
+.chap-k{font:italic 400 14px/1.4 var(--body);color:var(--ember);margin-bottom:22px}
+.chrow ol{list-style:none;display:grid;grid-template-columns:repeat(6,minmax(0,1fr))}
+.chrow a{position:relative;display:block;height:100%;padding:26px clamp(12px,1.4vw,22px) 6px;border-left:1px solid var(--line)}
+.chrow li:first-child a{border-left:0;padding-left:0}
+.chrow a::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:var(--line)}
+.chrow a::after{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:var(--ember);transform:scaleX(0);transform-origin:left;transition:transform .6s var(--ease)}
+.chrow b{display:block;font:300 clamp(46px,5vw,84px)/.9 var(--disp);letter-spacing:-.02em;color:transparent;-webkit-text-stroke:1px rgba(241,232,220,.38);transition:color .5s var(--ease),-webkit-text-stroke-color .5s}
+.chrow span{display:block;margin-top:clamp(18px,2vw,28px);font:400 clamp(16px,1.3vw,19px)/1.2 var(--disp);color:var(--fg)}
+.chrow em{display:block;margin-top:6px;font:italic 400 13px/1.4 var(--body);color:var(--sub)}
+.chrow a:hover::after,.chrow a:focus-visible::after{transform:scaleX(1)}
+.chrow a:hover b,.chrow a:focus-visible b{color:var(--gold);-webkit-text-stroke-color:var(--gold)}
+@media (max-width:900px){.chrow ol{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:30px}.chrow li:nth-child(4) a{border-left:0;padding-left:0}}
+@media (max-width:600px){.chrow ol{grid-template-columns:repeat(2,minmax(0,1fr))}.chrow li:nth-child(4) a{border-left:1px solid var(--line);padding-left:clamp(12px,1.4vw,22px)}.chrow li:nth-child(odd) a{border-left:0;padding-left:0}}
 
 /* chapter head: one aligned pattern */
 .cn{font:italic 400 15.5px/1 var(--body);color:var(--acc);display:block;margin-bottom:18px}
@@ -730,21 +727,20 @@ em{font-style:normal}
   <div class="wrap"><div class="mcol">
     <span class="tag">The brief</span>
     <p class="mtext">In 2024 India spent <span class="st gold">₹2,18,904 crore</span> on footwear. Buyers wanted shoes <span class="st">that last</span>, but the shelf made them choose: premium <em>or</em> handcrafted. NOU was made to be <span class="st gold">both</span>.</p>
-    <div class="chap2">
-      <p class="chap-k">The case study, in six chapters</p>
-      <nav aria-label="Chapters"><ol class="chapters">
-        <li><a href="#research" data-img="img/cx-hush.jpg"><b>01</b><span>Research</span><em>Market and buyers</em><i aria-hidden="true">→</i></a></li>
-        <li><a href="#strategy" data-img="img/p2.jpg"><b>02</b><span>Strategy</span><em>Positioning and personas</em><i aria-hidden="true">→</i></a></li>
-        <li><a href="#identity" data-img="img/construct.jpg"><b>03</b><span>Identity</span><em>Logo, colour, type</em><i aria-hidden="true">→</i></a></li>
-        <li><a href="#system" data-img="img/signage.jpg"><b>04</b><span>System</span><em>Brand touchpoints</em><i aria-hidden="true">→</i></a></li>
-        <li><a href="#ux" data-img="img/plp.jpg"><b>05</b><span>UX</span><em>Journey and sitemap</em><i aria-hidden="true">→</i></a></li>
-        <li><a href="#ui" data-img="img/home.jpg"><b>06</b><span>UI</span><em>The finished store</em><i aria-hidden="true">→</i></a></li>
-      </ol></nav>
-      <div class="chpv" id="chpv" aria-hidden="true"></div>
-    </div>
   </div>
   <figure class="mph"><div class="mfr"><img src="img/emboss.jpg" alt="The NOU mark debossed into a suede tongue tab" id="mImg"></div><figcaption>The mark, debossed on a suede tongue tab.</figcaption></figure>
   </div>
+  <nav class="wrap chrow" aria-label="Chapters">
+    <p class="chap-k">The case study, in six chapters</p>
+    <ol>
+      <li><a href="#research"><b>01</b><span>Research</span><em>Market and buyers</em></a></li>
+      <li><a href="#strategy"><b>02</b><span>Strategy</span><em>Positioning and personas</em></a></li>
+      <li><a href="#identity"><b>03</b><span>Identity</span><em>Logo, colour, type</em></a></li>
+      <li><a href="#system"><b>04</b><span>System</span><em>Brand touchpoints</em></a></li>
+      <li><a href="#ux"><b>05</b><span>UX</span><em>Journey and sitemap</em></a></li>
+      <li><a href="#ui"><b>06</b><span>UI</span><em>The finished store</em></a></li>
+    </ol>
+  </nav>
 </section>
 
 <!-- 01 RESEARCH -->
@@ -1147,21 +1143,6 @@ em{font-style:normal}
     gsap.fromTo('#mImg',{yPercent:-10},{yPercent:0,ease:'none',scrollTrigger:{trigger:'.manifesto',start:'top bottom',end:'bottom top',scrub:true}});
     gsap.from('.mtext',{opacity:0,y:30,duration:1.2,ease:'power3.out',scrollTrigger:{trigger:'.mtext',start:'top 85%'}}); }
   else sts.forEach(function(s){ s.classList.add('in'); });
-
-  /* chapter index: a preview of each chapter trails the cursor, leaning with its motion */
-  (function(){
-    var box=$('#chpv'), list=$('.chapters'); if(!box||!list||!matchMedia('(hover:hover) and (min-width:900px)').matches) return;
-    var rows=$$('a',list), wrap=box.parentNode;
-    box.innerHTML=rows.map(function(a){ return '<img src="'+a.dataset.img+'" alt="">'; }).join('');
-    var imgs=$$('img',box), tx=0, ty=0, x=0, y=0, on=false, raf=0;
-    function loop(){ var dx=tx-x; x+=dx*.16; y+=(ty-y)*.16; box.style.transform='translate('+x+'px,'+y+'px) rotate('+Math.max(-8,Math.min(8,dx*.12))+'deg)'; raf=(on||Math.abs(dx)>.5)?requestAnimationFrame(loop):0; }
-    /* it rides just past the list's right edge, so the rows stay readable */
-    function aim(e){ var r=wrap.getBoundingClientRect(); tx=r.width+28+(e.clientX-r.left)*.08; ty=e.clientY-r.top-box.offsetHeight/2; }
-    function move(e){ aim(e); if(!raf) raf=requestAnimationFrame(loop); }
-    rows.forEach(function(a,i){ a.addEventListener('mouseenter',function(e){ imgs.forEach(function(m,j){ m.classList.toggle('on',i===j); }); if(!on){ aim(e); x=tx; y=ty; } on=true; box.classList.add('on'); }); });
-    list.addEventListener('mousemove',move);
-    list.addEventListener('mouseleave',function(){ on=false; box.classList.remove('on'); });
-  })();
 
   /* counters */
   function fmt(el,v){ var dec=+(el.dataset.dec||0); return dec?v.toFixed(dec):Math.round(v).toLocaleString(el.dataset.fmt==='in'?'en-IN':'en-US'); }
