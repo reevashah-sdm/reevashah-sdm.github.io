@@ -297,11 +297,11 @@ html:not(.gs) .dcount span{position:static;display:block}
 
 .lines{padding:clamp(80px,10vw,140px) 0;overflow:hidden}
 .lines .wrap .tag{margin-bottom:18px}
-/* two statements, each under its own label, the second set in from the left */
-.say2{display:grid;gap:clamp(56px,7vw,110px);margin-bottom:clamp(90px,10vw,150px)}
-.say2 > div:nth-child(2){padding-left:clamp(0px,12vw,200px)}
-.ln{font:400 clamp(44px,7vw,116px)/1.05 var(--disp)}
-.ln.ln2{color:var(--gold)}
+.ln{font:400 clamp(70px,13vw,240px)/1 var(--disp);white-space:nowrap;padding-left:var(--edge)}
+/* room around each drifting line: label, line, then a clear pause before the next */
+.lines .wrap .tag{margin-bottom:clamp(26px,3vw,48px)!important}
+.ln.ln1{margin-bottom:clamp(90px,11vw,180px)}
+.ln.ln2{color:var(--gold);margin-bottom:clamp(100px,12vw,190px)}
 .platform{display:flex;gap:6px;height:clamp(300px,46vh,440px)}
 .pl{position:relative;flex:1;min-width:0;border-radius:18px;background:rgba(241,232,220,.05);border:1px solid var(--line);padding:22px;display:flex;flex-direction:column;justify-content:flex-start;gap:16px;text-align:left;transition:flex-grow .7s var(--ease),background .5s;overflow:hidden}
 .pl b{font:600 10px/1 var(--body);letter-spacing:.2em;color:var(--sub)}
@@ -852,10 +852,10 @@ em{font-style:normal}
 </section>
 
 <section class="lines" data-tone="ink">
-  <div class="wrap say2">
-    <div><p class="tag">Positioning</p><div class="ln ln1">Mean more.</div></div>
-    <div><p class="tag">Brand narrative</p><div class="ln ln2">Wear your narrative.</div></div>
-  </div>
+  <div class="wrap"><p class="tag">Positioning</p></div>
+  <div class="ln ln1" data-dir="-1">Mean more. Mean more.</div>
+  <div class="wrap"><p class="tag">Brand narrative</p></div>
+  <div class="ln ln2" data-dir="1">Wear your narrative.</div>
   <div class="wrap">
     <p class="tag">Brand platform · hover each step</p>
     <div class="platform" id="platform">
@@ -1241,7 +1241,7 @@ em{font-style:normal}
       tl.from(words,{opacity:0,y:16,duration:.5,stagger:.035,ease:'power3.out'}).to({},{duration:.3});
       finish(tl);
       ScrollTrigger.create({trigger:'#stage',start:'top 45%',animation:tl,toggleActions:'play none none none'}); });
-    $$('.say2 > div').forEach(function(l){ gsap.from(l,{y:40,opacity:0,duration:1.2,ease:'power3.out',scrollTrigger:{trigger:l,start:'top 82%'}}); });
+    $$('.lines .ln').forEach(function(l){ var dir=+l.dataset.dir; gsap.fromTo(l,{xPercent:dir<0?4:-20},{xPercent:dir<0?-26:2,ease:'none',scrollTrigger:{trigger:l,start:'top bottom',end:'bottom top',scrub:true}}); });
   }
   $$('.pl').forEach(function(p){ function on(){ $$('.pl').forEach(function(x){x.classList.toggle('on',x===p);}); } p.addEventListener('mouseenter',on); p.addEventListener('focus',on); });
 
