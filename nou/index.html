@@ -49,28 +49,24 @@ em{font-family:var(--disp);font-style:normal;color:var(--gold)}
 .crumb i{font-style:normal;opacity:.4}
 .crumb > a:not(.back){opacity:.75;transition:opacity .3s}
 .crumb a:hover{opacity:1}
-/* chapter rail: stitched seam on the right edge, a stitch per chapter, the thread filling as you read */
-.rail{position:fixed;right:clamp(16px,2vw,30px);top:50%;transform:translateY(-50%);z-index:79;height:min(56vh,460px);width:14px;display:flex;flex-direction:column;justify-content:space-between;align-items:center;color:#F1E8DC;mix-blend-mode:difference;opacity:0;pointer-events:none;transition:opacity .6s}
-.rail.show{opacity:1;pointer-events:auto}
-.rail .seam{position:absolute;left:50%;top:0;bottom:0;width:0;border-left:1.5px dashed rgba(241,232,220,.35)}
-.rail .thread{position:absolute;left:-1.5px;top:0;width:1.5px;height:100%;background:currentColor;transform:scaleY(var(--p,0));transform-origin:top}
-.rail a{position:relative;width:14px;height:14px;display:grid;place-items:center}
-.rail a::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.55;transition:transform .5s var(--ease),opacity .3s}
-.rail span{position:absolute;right:26px;top:50%;transform:translate(8px,-50%);white-space:nowrap;font:italic 400 13px/1 var(--body);opacity:0;transition:opacity .35s,transform .5s var(--ease);pointer-events:none}
-.rail a:hover::before{opacity:1;transform:scale(1.5)}
-.rail a:hover span{opacity:.7;transform:translate(0,-50%)}
-.rail a.on::before{opacity:1;transform:scale(2)}
-.rail a.on span{opacity:1;transform:translate(0,-50%)}
-.pill{display:none}
-@media (max-width:900px){
-  .rail{display:none}
-  .pill{position:fixed;left:50%;bottom:16px;z-index:79;display:flex;align-items:center;gap:2px;padding:5px;border-radius:999px;background:rgba(18,8,6,.78);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border:1px solid rgba(241,232,220,.14);color:#F1E8DC;box-shadow:0 14px 34px -14px rgba(0,0,0,.7);transform:translate(-50%,140%);transition:transform .6s var(--ease)}
-  .pill.show{transform:translate(-50%,0)}
-  .pill button{width:36px;height:36px;border-radius:50%;font:300 22px/1 var(--body);color:inherit}
-  .pill button:disabled{opacity:.25}
-  .pill a{display:flex;align-items:baseline;gap:8px;padding:0 10px;min-width:120px;justify-content:center;font:italic 400 14px/1 var(--body)}
-  .pill b{font:700 10.5px/1 var(--body);letter-spacing:.08em;color:var(--gold);font-style:normal}
-}
+/* chapter label: a printed shoebox end-label pinned bottom-left; the barcode is the chapter list */
+.slab{position:fixed;left:clamp(16px,2vw,30px);bottom:clamp(16px,2vw,26px);z-index:79;width:196px;padding:11px 13px 9px;background:#F4EDE3;color:#1A0906;border-radius:3px;box-shadow:0 18px 40px -16px rgba(0,0,0,.65),0 0 0 1px rgba(26,9,6,.08);transform:translateY(calc(100% + 40px)) rotate(-2deg);transition:transform .8s var(--ease)}
+.slab.show{transform:none}
+.slab-top{display:flex;align-items:center;justify-content:space-between;font:400 11px/1 var(--body);color:rgba(26,9,6,.6)}
+.slab-top .mk{width:16px;color:#1A0906}
+.slab-top b{font-weight:700;color:#1A0906;font-variant-numeric:tabular-nums}
+.slab-name{margin:9px 0 10px;font:300 22px/1 var(--disp);letter-spacing:-.01em;height:22px;overflow:hidden}
+.slab-name.swap{animation:slSwap .5s var(--ease)}
+@keyframes slSwap{from{transform:translateY(60%);opacity:0}to{transform:none;opacity:1}}
+.code{display:flex;align-items:stretch;gap:5px;height:30px}
+.code a{flex:1;display:flex;align-items:stretch;justify-content:space-between;opacity:.28;transition:opacity .3s,transform .4s var(--ease);transform-origin:bottom}
+.code a i{display:block;background:currentColor}
+.code a.past{opacity:.85}
+.code a.on{opacity:1;color:var(--ember);transform:scaleY(1.18)}
+.code a:hover{opacity:1;transform:scaleY(1.18)}
+.slab-foot{display:flex;justify-content:space-between;margin-top:7px;font:italic 400 10.5px/1 var(--body);color:rgba(26,9,6,.55)}
+.slab-foot span:last-child{font-style:normal;font-variant-numeric:tabular-nums}
+@media (max-width:600px){.slab{width:168px;padding:9px 11px 8px}.slab-name{font-size:19px;height:20px;margin:7px 0 8px}.code{height:24px}}
 .brandmark{display:flex;align-items:center;gap:10px;font:italic 400 14.5px/1 var(--body);}
 .brandmark .mk{width:24px}
 .idx-btn{font:italic 400 14.5px/1 var(--body);display:flex;align-items:center;gap:10px}
@@ -719,14 +715,14 @@ em{font-style:normal}
   </nav>
 </div></header>
 
-<!-- chapter rail: a stitched seam down the right edge; the thread fills as you read -->
-<nav class="rail" id="rail" aria-label="Chapters">
-  <i class="seam" aria-hidden="true"><i class="thread" id="thread"></i></i>
-  <a href="#research"><span>Research</span></a><a href="#strategy"><span>Strategy</span></a><a href="#identity"><span>Identity</span></a><a href="#system"><span>System</span></a><a href="#ux"><span>UX</span></a><a href="#ui"><span>UI</span></a><a href="#process"><span>Process</span></a>
-</nav>
-<!-- on phones: one pill, previous and next either side of the chapter you're in -->
-<nav class="pill" id="pill" aria-label="Chapter">
-  <button type="button" id="pPrevC" aria-label="Previous chapter">‹</button><a href="#research" id="pCur"><b id="pNum">01</b><span id="pName">Research</span></a><button type="button" id="pNextC" aria-label="Next chapter">›</button>
+<!-- chapter label: a shoebox end-label; its barcode is the chapter list, one block per chapter -->
+<nav class="slab" id="slab" aria-label="Chapters">
+  <div class="slab-top"><i class="mk" aria-hidden="true"></i><span>Chapter <b id="slNo">01</b> of 07</span></div>
+  <div class="slab-name" id="slName">Research</div>
+  <div class="code" id="code">
+    <a href="#research" data-n="Research"></a><a href="#strategy" data-n="Strategy"></a><a href="#identity" data-n="Identity"></a><a href="#system" data-n="System"></a><a href="#ux" data-n="UX"></a><a href="#ui" data-n="UI"></a><a href="#process" data-n="Process"></a>
+  </div>
+  <div class="slab-foot"><span>Handcrafted in India</span><span id="slPct">0%</span></div>
 </nav>
 
 
@@ -1156,26 +1152,24 @@ em{font-style:normal}
     gsap.from('.mtext',{opacity:0,y:30,duration:1.2,ease:'power3.out',scrollTrigger:{trigger:'.mtext',start:'top 85%'}}); }
   else sts.forEach(function(s){ s.classList.add('in'); });
 
-  /* chapter rail and pill: the chapter on screen is the last one whose top has passed the middle */
+  /* chapter label: each barcode block is a chapter; read ones print solid, the current one in ember */
   (function(){
-    var links=$$('#rail a'), C=links.map(function(a){ return {a:a,el:$(a.getAttribute('href')),name:a.textContent}; }).filter(function(c){ return c.el; });
-    var rail=$('#rail'), thread=$('#thread'), pill=$('#pill'), pCur=$('#pCur'), pNum=$('#pNum'), pName=$('#pName'), prev=$('#pPrevC'), next=$('#pNextC');
-    var cur=-1, tick=0, outro=$('.outro');
-    prev.addEventListener('click',function(){ if(cur>0) goTo(C[cur-1].el); });
-    next.addEventListener('click',function(){ goTo(C[Math.min(C.length-1,cur+1)].el); });
+    var slab=$('#slab'); if(!slab) return;
+    var links=$$('#code a'), C=links.map(function(a){ return {a:a,el:$(a.getAttribute('href')),name:a.dataset.n}; }).filter(function(c){ return c.el; });
+    /* bars of a fixed, uneven rhythm so the code reads as print, not as a chart */
+    var W=[[3,1,2,1],[1,2,1,3],[2,1,1,2,1],[1,3,1,1],[2,2,1,1],[1,1,3,1],[3,1,1,2]];
+    links.forEach(function(a,i){ a.innerHTML=W[i%W.length].map(function(w){ return '<i style="width:'+w+'px"></i>'; }).join(''); a.setAttribute('aria-label',a.dataset.n); });
+    var no=$('#slNo'), name=$('#slName'), pct=$('#slPct'), outro=$('.outro'), cur=-1, tick=0, shown=null;
+    function say(t){ if(name.textContent===t) return; name.textContent=t; name.classList.remove('swap'); void name.offsetWidth; name.classList.add('swap'); }
+    links.forEach(function(a){ a.addEventListener('mouseenter',function(){ say(a.dataset.n); }); a.addEventListener('mouseleave',function(){ if(cur>=0) say(C[cur].name); }); });
     function upd(){ tick=0; var mid=innerHeight/2, hit=-1;
       C.forEach(function(c,i){ if(c.el.getBoundingClientRect().top<mid) hit=i; });
-      /* the rail shows from the first chapter until the closing screen */
-      var show=hit>=0&&!(outro&&outro.getBoundingClientRect().top<mid);
-      rail.classList.toggle('show',show); pill.classList.toggle('show',show);
-      /* the thread reaches each stitch just as its chapter starts, then runs on toward the next */
-      var p=0; if(hit>=0){ var a=C[hit].el.getBoundingClientRect().top, b=hit<C.length-1?C[hit+1].el.getBoundingClientRect().top:C[hit].el.getBoundingClientRect().bottom;
-        p=(hit+Math.max(0,Math.min(1,(mid-a)/(b-a))))/(C.length-1); }
-      thread.style.setProperty('--p',Math.min(1,p));
-      if(hit===cur) return; cur=hit;
-      links.forEach(function(a,i){ a.classList.toggle('on',i===hit); });
-      if(hit>=0){ pCur.setAttribute('href',C[hit].a.getAttribute('href')); pNum.textContent=('0'+(hit+1)).slice(-2); pName.textContent=C[hit].name; }
-      prev.disabled=hit<=0; next.disabled=hit>=C.length-1; }
+      var show=hit>=0&&!(outro&&outro.getBoundingClientRect().top<innerHeight*.8);
+      if(show!==shown){ shown=show; slab.classList.toggle('show',show); }
+      var h=d.documentElement.scrollHeight-innerHeight; pct.textContent=Math.round(Math.min(1,scrollY/h)*100)+'%';
+      if(hit===cur||hit<0) return; cur=hit;
+      links.forEach(function(a,i){ a.classList.toggle('on',i===hit); a.classList.toggle('past',i<hit); });
+      no.textContent=('0'+(hit+1)).slice(-2); say(C[hit].name); }
     addEventListener('scroll',function(){ if(!tick) tick=requestAnimationFrame(upd); },{passive:true});
     addEventListener('resize',upd); upd();
   })();
