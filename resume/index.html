@@ -12,7 +12,7 @@
   @page{size:A4;margin:0}
   *{box-sizing:border-box}
   html,body{margin:0;background:#fff}
-  body{font-family:'Lato',sans-serif;color:var(--text);font-size:10.7px;line-height:1.6;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body{font-family:'Lato',sans-serif;color:var(--text);font-size:10.5px;line-height:1.55;-webkit-print-color-adjust:exact;print-color-adjust:exact}
   a{color:inherit;text-decoration:none}
   .page{width:210mm;height:297mm;margin:0 auto;overflow:hidden;display:flex;flex-direction:column}
 
@@ -32,7 +32,7 @@
   /* label column + content column; dates live in the label column of each entry */
   /* no rules across the page: one fine vertical thread runs down between the two columns,
      and each section hangs a small ombre circle on it, level with its name */
-  section{position:relative;display:grid;grid-template-columns:30mm minmax(0,1fr);column-gap:9mm;padding:0 0 23px}
+  section{position:relative;display:grid;grid-template-columns:30mm minmax(0,1fr);column-gap:9mm;padding:0 0 12px}
   section::before{content:"";position:absolute;z-index:1;left:calc(30mm + 4.5mm - 5px);top:3px;width:10px;height:10px;border-radius:50%;box-sizing:border-box;border:1.4px solid var(--plum);background:linear-gradient(135deg,#e4d8f3,#f6ecf2)}
   section::after{content:"";position:absolute;left:calc(30mm + 4.5mm - .5px);top:8px;bottom:-11px;width:1px;background:linear-gradient(#cbbbe2,#e6dcef)}
   section:last-child::after{display:none}
@@ -40,11 +40,11 @@
   .col{min-width:0}
   p{margin:0}
 
-  .skills{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 6mm}
+  .skills{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px 8mm}
   .skills h3{margin:0 0 3px;font-size:10.4px;font-weight:700;color:var(--ink)}
   .skills p{color:var(--text);line-height:1.6}
 
-  .entry{padding-top:12px}
+  .entry{padding-top:9px}
   .hd{display:flex;justify-content:space-between;align-items:baseline;gap:14px}
   .entry:first-of-type{padding-top:0}
   .when{font-size:9.8px;color:var(--sub);line-height:1.5;padding-top:1.5px;white-space:nowrap}
@@ -88,7 +88,7 @@
 </style>
 </head>
 <body class="d">
-<nav class="bar"><a class="back" href="../">← Back to portfolio</a><a class="dl" href="Reeva-Shah-Resume.pdf?v=20261026-2" download="Reeva-Shah-Resume.pdf">Download PDF <span aria-hidden="true">↓</span></a></nav>
+<nav class="bar"><a class="back" href="../">← Back to portfolio</a><a class="dl" href="Reeva-Shah-Resume.pdf?v=20261026-3" download="Reeva-Shah-Resume.pdf">Download PDF <span aria-hidden="true">↓</span></a></nav>
 <div class="sheet">
 <main class="page">
   <header>
@@ -114,9 +114,10 @@
     <section>
       <h2>Skills</h2>
       <div class="skills">
-        <div><h3>Research &amp; Strategy</h3><p>User Research, Competitor Analysis, Design Thinking, Problem Framing, Brand Strategy, Stakeholder Communication</p></div>
-        <div><h3>Product &amp; UX Design</h3><p>User Flows, Information Architecture, Wireframing, Prototyping, Usability Testing, Responsive Web Design</p></div>
-        <div><h3>Visual &amp; Brand Design</h3><p>Brand Identity, Design Systems, Typography, Packaging Design, Motion Graphics, Video Editing, Wayfinding and Signage</p></div>
+        <div><h3>Strategic Design &amp; Research</h3><p>Design Thinking, Problem Framing, User Research, Competitor Analysis, Research Synthesis, Stakeholder Communication</p></div>
+        <div><h3>Human-Centred &amp; Systems Thinking</h3><p>Human Behaviour, Behavioural Research, Systems Thinking, Organisational Design</p></div>
+        <div><h3>UI/UX &amp; Digital Design</h3><p>User Flows, Information Architecture, Wireframing, Prototyping, Usability Testing, Responsive Web Design, Design Systems</p></div>
+        <div><h3>Visual &amp; Communication Design</h3><p>Brand Identity, Typography, Layout Design, Visual Storytelling, Packaging Design, Motion Graphics, Wayfinding &amp; Signage</p></div>
       </div>
     </section>
 
@@ -126,21 +127,21 @@
         <div class="entry">
           <div><div class="hd"><h4>UI/UX Designer</h4><span class="when">July 2024 –&nbsp;June 2025</span></div><span class="org">Zero Gravity Communications, Ahmedabad</span>
             <ul>
-              <li>Designed website and digital product experiences, translating project requirements into intuitive layouts and user flows.</li>
-              <li>Connected business objectives with interface decisions, information architecture, and user experience.</li>
-              <li>Built and maintained Figma component libraries and style guides to ensure consistency across digital products.</li>
-              <li>Collaborated with developers to address design feasibility, responsiveness, and implementation requirements.</li>
+              <li>Translated project requirements into website layouts, user flows and interface designs, balancing usability, visual hierarchy and business objectives.</li>
+              <li>Worked across information architecture, typography, colour and content structure to shape cohesive digital experiences.</li>
+              <li>Built and maintained Figma component libraries and style guides to support consistency across interfaces.</li>
+              <li>Collaborated with developers to address design feasibility, responsive behaviour and implementation requirements.</li>
             </ul></div>
         </div>
         <div class="entry">
-          <div><div class="hd"><h4>UI/UX Designer (Internship)</h4><span class="when">January 2024 –&nbsp;July 2024</span></div><span class="org">Zero Gravity Communications, Ahmedabad</span>
+          <div><div class="hd"><h4>UI/UX Designer Intern</h4><span class="when">January 2024 –&nbsp;July 2024</span></div><span class="org">Zero Gravity Communications, Ahmedabad</span>
             <ul>
               <li>Designed responsive web and mobile interfaces using Figma and Adobe XD.</li>
-              <li>Supported competitor analysis and user research to inform interface layouts and user journeys.</li>
+              <li>Supported competitor analysis and user research to inform interface layouts, content hierarchy and user journeys.</li>
             </ul></div>
         </div>
         <div class="entry">
-          <div><div class="hd"><h4>Communication Designer (Internship)</h4><span class="when">June 2023 –&nbsp;July 2023</span></div><span class="org">Web Plus Info Tech Pvt Ltd</span>
+          <div><div class="hd"><h4>Communication Designer Intern</h4><span class="when">June 2023 –&nbsp;July 2023</span></div><span class="org">Web Plus Info Tech Pvt. Ltd.</span>
             <ul>
               <li>Created visual communication assets and promotional creatives for digital applications.</li>
               <li>Contributed to website layouts and explored motion graphics across design projects.</li>
@@ -153,10 +154,11 @@
       <h2>Project</h2>
       <div class="col entries">
         <div class="entry">
-          <div><div class="hd"><h4>Redesigning Signages at Kalupur Railway Station</h4><span class="when">August 2023 –&nbsp;November 2023</span></div><span class="org">Wayfinding and Environmental Graphic Design</span>
+          <div><div class="hd"><h4>Redesigning Signage at Kalupur Railway Station</h4><span class="when">August –&nbsp;November 2023</span></div><span class="org">Wayfinding &amp; Environmental Graphic Design</span>
             <ul>
-              <li>Conducted field research and commuter observation at a high-footfall railway station; proposed a wayfinding system with clearer hierarchy, pictograms and colour coding.</li>
-              <li>Authored the research report; <span class="note">the work has been selected for article publication.</span></li>
+              <li>Conducted field research and observed commuter movement to investigate navigation challenges in a high-footfall railway environment.</li>
+              <li>Developed a proposed wayfinding system using visual hierarchy, pictograms and colour coding to support clearer navigation.</li>
+              <li>Authored the research report; <span class="note">the project was selected for article publication.</span></li>
             </ul></div>
         </div>
       </div>
