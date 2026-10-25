@@ -49,25 +49,32 @@ em{font-family:var(--disp);font-style:normal;color:var(--gold)}
 .crumb i{font-style:normal;opacity:.4}
 .crumb > a:not(.back){opacity:.75;transition:opacity .3s}
 .crumb a:hover{opacity:1}
-/* chapter navigator: the NOU mark, filling with gold from the bottom as you read; it opens onto every chapter */
-.mnav{position:fixed;right:clamp(16px,2vw,30px);bottom:clamp(16px,2vw,26px);z-index:79;display:flex;flex-direction:column;align-items:flex-end;gap:10px;color:#F1E8DC;transform:translateY(calc(100% + 40px));transition:transform .8s var(--ease)}
-.mnav.show{transform:none}
-.mbtn{display:flex;align-items:center;gap:12px;padding:7px 16px 7px 7px;border-radius:999px;color:inherit;background:rgba(18,8,6,.8);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border:1px solid rgba(241,232,220,.14);box-shadow:0 16px 36px -16px rgba(0,0,0,.7);cursor:pointer}
-.mlogo{position:relative;width:46px;height:46px;border-radius:50%;background:rgba(241,232,220,.06);display:grid;place-items:center;transition:transform .8s var(--ease)}
-.mlogo .mk{position:absolute;width:30px;left:8px;top:50%;margin-top:-12.7px}
-.mlogo .base{opacity:.5}
-.mlogo .fill{color:var(--gold);clip-path:inset(calc((1 - var(--p,0)) * 100%) 0 0 0);transition:clip-path .3s}
-.mbtn:hover .mlogo,.mnav.open .mlogo{transform:rotate(90deg)}
-.mtxt{display:flex;align-items:baseline;gap:8px;font:italic 400 14px/1 var(--body);min-width:86px}
-.mtxt b{font:700 10.5px/1 var(--body);letter-spacing:.08em;color:var(--gold);font-style:normal}
-.mmenu{list-style:none;min-width:200px;padding:8px;border-radius:14px;background:rgba(18,8,6,.9);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1px solid rgba(241,232,220,.14);box-shadow:0 24px 50px -20px rgba(0,0,0,.75);opacity:0;transform:translateY(12px) scale(.97);transform-origin:bottom right;pointer-events:none;transition:opacity .35s,transform .5s var(--ease)}
-.mnav.open .mmenu{opacity:1;transform:none;pointer-events:auto}
-.mmenu a{display:flex;align-items:baseline;gap:12px;padding:10px 12px;border-radius:9px;font:300 17px/1 var(--disp);color:rgba(241,232,220,.55);transition:background .3s,color .3s}
-.mmenu a b{font:400 11px/1 var(--body);letter-spacing:.06em;color:rgba(241,232,220,.4);min-width:18px}
-.mmenu a:hover{background:rgba(241,232,220,.06);color:var(--fg)}
-.mmenu a.past{color:rgba(241,232,220,.8)}
-.mmenu a.on{color:var(--gold);background:rgba(207,180,140,.08)}
-.mmenu a.on b{color:var(--gold)}
+/* chapter rail: eyelets down the right edge, one per chapter; a lace zigzags through them as you read */
+.rail{position:fixed;right:clamp(14px,1.8vw,28px);top:50%;transform:translateY(-50%);z-index:79;height:min(58vh,480px);width:30px;display:flex;flex-direction:column;justify-content:space-between;align-items:center;color:#F1E8DC;mix-blend-mode:difference;opacity:0;pointer-events:none;transition:opacity .6s}
+.rail.show{opacity:1;pointer-events:auto}
+.lace{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+.lace path{fill:none;stroke:currentColor;stroke-linecap:round}
+.lace .ghost{stroke-width:1;stroke-dasharray:2 4;opacity:.28}
+.lace .cord{stroke-width:2.2}
+/* an eyelet: a metal ring with a hole; the lace shows through the read ones */
+.rail a{position:relative;width:16px;height:16px;display:grid;place-items:center}
+.rail a::before{content:"";width:11px;height:11px;border-radius:50%;box-sizing:border-box;border:1.5px solid currentColor;background:#120806;opacity:.5;transition:transform .5s var(--ease),opacity .3s,border-width .3s}
+.rail a.past::before{opacity:.9}
+.rail a.on::before{opacity:1;border-width:3px;transform:scale(1.45)}
+.rail a:hover::before{opacity:1;transform:scale(1.3)}
+.rail span{position:absolute;right:30px;top:50%;transform:translate(8px,-50%);white-space:nowrap;font:italic 400 13px/1 var(--body);opacity:0;transition:opacity .35s,transform .5s var(--ease);pointer-events:none}
+.rail a:hover span{opacity:.7;transform:translate(0,-50%)}
+.rail a.on span{opacity:1;transform:translate(0,-50%)}
+.pill{display:none}
+@media (max-width:900px){
+  .rail{display:none}
+  .pill{position:fixed;left:50%;bottom:16px;z-index:79;display:flex;align-items:center;gap:2px;padding:5px;border-radius:999px;background:rgba(18,8,6,.78);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border:1px solid rgba(241,232,220,.14);color:#F1E8DC;box-shadow:0 14px 34px -14px rgba(0,0,0,.7);transform:translate(-50%,140%);transition:transform .6s var(--ease)}
+  .pill.show{transform:translate(-50%,0)}
+  .pill button{width:36px;height:36px;border-radius:50%;font:300 22px/1 var(--body);color:inherit}
+  .pill button:disabled{opacity:.25}
+  .pill a{display:flex;align-items:baseline;gap:8px;padding:0 10px;min-width:120px;justify-content:center;font:italic 400 14px/1 var(--body)}
+  .pill b{font:700 10.5px/1 var(--body);letter-spacing:.08em;color:var(--gold);font-style:normal}
+}
 .brandmark{display:flex;align-items:center;gap:10px;font:italic 400 14.5px/1 var(--body);}
 .brandmark .mk{width:24px}
 .idx-btn{font:italic 400 14.5px/1 var(--body);display:flex;align-items:center;gap:10px}
@@ -716,15 +723,14 @@ em{font-style:normal}
   </nav>
 </div></header>
 
-<!-- chapter navigator: the NOU mark fills with gold as you read; tap it for every chapter -->
-<nav class="mnav" id="mnav" aria-label="Chapters">
-  <ol class="mmenu" id="mmenu">
-    <li><a href="#research"><b>01</b>Research</a></li><li><a href="#strategy"><b>02</b>Strategy</a></li><li><a href="#identity"><b>03</b>Identity</a></li><li><a href="#system"><b>04</b>System</a></li><li><a href="#ux"><b>05</b>UX</a></li><li><a href="#ui"><b>06</b>UI</a></li><li><a href="#process"><b>07</b>Process</a></li>
-  </ol>
-  <button type="button" class="mbtn" id="mbtn" aria-expanded="false" aria-controls="mmenu">
-    <span class="mlogo" aria-hidden="true"><i class="mk base"></i><i class="mk fill" id="mfill"></i></span>
-    <span class="mtxt"><b id="mNo">01</b><span id="mName">Research</span></span>
-  </button>
+<!-- chapter rail: a shoe's eyelets down the right edge; the lace threads through them as you read -->
+<nav class="rail" id="rail" aria-label="Chapters">
+  <svg class="lace" id="lace" aria-hidden="true"><path class="ghost" id="laceG"/><path class="cord" id="laceC"/></svg>
+  <a href="#research"><span>Research</span></a><a href="#strategy"><span>Strategy</span></a><a href="#identity"><span>Identity</span></a><a href="#system"><span>System</span></a><a href="#ux"><span>UX</span></a><a href="#ui"><span>UI</span></a><a href="#process"><span>Process</span></a>
+</nav>
+<!-- on phones: one pill, previous and next either side of the chapter you're in -->
+<nav class="pill" id="pill" aria-label="Chapter">
+  <button type="button" id="pPrevC" aria-label="Previous chapter">‹</button><a href="#research" id="pCur"><b id="pNum">01</b><span id="pName">Research</span></a><button type="button" id="pNextC" aria-label="Next chapter">›</button>
 </nav>
 
 
@@ -1154,29 +1160,38 @@ em{font-style:normal}
     gsap.from('.mtext',{opacity:0,y:30,duration:1.2,ease:'power3.out',scrollTrigger:{trigger:'.mtext',start:'top 85%'}}); }
   else sts.forEach(function(s){ s.classList.add('in'); });
 
-  /* chapter navigator: the chapter on screen is the last one whose top has passed the middle */
+  /* chapter rail and pill: the chapter on screen is the last one whose top has passed the middle */
   (function(){
-    var nav=$('#mnav'); if(!nav) return;
-    var links=$$('#mmenu a'), C=links.map(function(a){ return {a:a,el:$(a.getAttribute('href')),name:a.lastChild.textContent}; }).filter(function(c){ return c.el; });
-    var btn=$('#mbtn'), fill=$('#mfill'), no=$('#mNo'), nm=$('#mName'), outro=$('.outro'), cur=-1, tick=0;
-    function setOpen(o){ nav.classList.toggle('open',o); btn.setAttribute('aria-expanded',o); }
-    btn.addEventListener('click',function(e){ e.stopPropagation(); setOpen(!nav.classList.contains('open')); });
-    links.forEach(function(a){ a.addEventListener('click',function(){ setOpen(false); }); });
-    d.addEventListener('click',function(e){ if(!nav.contains(e.target)) setOpen(false); });
-    d.addEventListener('keydown',function(e){ if(e.key==='Escape') setOpen(false); });
+    var links=$$('#rail a'), C=links.map(function(a){ return {a:a,el:$(a.getAttribute('href')),name:a.textContent}; }).filter(function(c){ return c.el; });
+    var rail=$('#rail'), svg=$('#lace'), ghost=$('#laceG'), cord=$('#laceC'), pill=$('#pill'), pCur=$('#pCur'), pNum=$('#pNum'), pName=$('#pName'), prev=$('#pPrevC'), next=$('#pNextC');
+    var cur=-1, tick=0, outro=$('.outro'), len=0, segs=[];
+    prev.addEventListener('click',function(){ if(cur>0) goTo(C[cur-1].el); });
+    next.addEventListener('click',function(){ goTo(C[Math.min(C.length-1,cur+1)].el); });
+    /* the lace: from each eyelet it swings out to one side and back into the next, alternating, like a laced shoe */
+    function lace(){ var w=rail.clientWidth, h=rail.clientHeight, cx=w/2, ys=links.map(function(a){ return a.offsetTop+a.offsetHeight/2; });
+      svg.setAttribute('viewBox','0 0 '+w+' '+h);
+      var dpath='M'+cx+' '+ys[0];
+      for(var i=1;i<ys.length;i++){ var y0=ys[i-1], y1=ys[i], sx=i%2?w*1.15:-w*.15, k=(y1-y0)*.35; dpath+=' C'+sx+' '+(y0+k)+' '+sx+' '+(y1-k)+' '+cx+' '+y1; }
+      ghost.setAttribute('d',dpath); cord.setAttribute('d',dpath);
+      len=cord.getTotalLength(); cord.style.strokeDasharray=len; cord.style.strokeDashoffset=len;
+      /* where along the lace each eyelet falls, so the cord reaches it exactly as its chapter begins */
+      segs=[0]; var acc=0, n=200, prevPt=cord.getPointAtLength(0), j=1;
+      for(var s=1;s<=n;s++){ var pt=cord.getPointAtLength(len*s/n); acc=len*s/n; if(j<ys.length&&pt.y>=ys[j]-.5&&Math.abs(pt.x-cx)<2){ segs.push(acc); j++; } prevPt=pt; }
+      while(segs.length<ys.length) segs.push(len*segs.length/(ys.length-1)); }
     function upd(){ tick=0; var mid=innerHeight/2, hit=-1;
       C.forEach(function(c,i){ if(c.el.getBoundingClientRect().top<mid) hit=i; });
-      var show=hit>=0&&!(outro&&outro.getBoundingClientRect().top<innerHeight*.8);
-      nav.classList.toggle('show',show); if(!show) setOpen(false);
-      /* the mark fills one seventh per chapter, smoothly through each */
-      var p=0; if(hit>=0){ var a=C[hit].el.getBoundingClientRect().top, b=hit<C.length-1?C[hit+1].el.getBoundingClientRect().top:C[hit].el.getBoundingClientRect().bottom;
-        p=(hit+Math.max(0,Math.min(1,(mid-a)/(b-a))))/C.length; }
-      fill.style.setProperty('--p',Math.min(1,p));
-      if(hit===cur||hit<0) return; cur=hit;
+      /* the rail shows from the first chapter until the closing screen */
+      var show=hit>=0&&!(outro&&outro.getBoundingClientRect().top<mid);
+      rail.classList.toggle('show',show); pill.classList.toggle('show',show);
+      var at=0; if(hit>=0){ var a=C[hit].el.getBoundingClientRect().top, b=hit<C.length-1?C[hit+1].el.getBoundingClientRect().top:C[hit].el.getBoundingClientRect().bottom,
+        f=Math.max(0,Math.min(1,(mid-a)/(b-a))), s0=segs[hit]||0, s1=hit<segs.length-1?segs[hit+1]:len; at=s0+(s1-s0)*f; }
+      if(len) cord.style.strokeDashoffset=len-at;
+      if(hit===cur) return; cur=hit;
       links.forEach(function(a,i){ a.classList.toggle('on',i===hit); a.classList.toggle('past',i<hit); });
-      no.textContent=('0'+(hit+1)).slice(-2); nm.textContent=C[hit].name; }
+      if(hit>=0){ pCur.setAttribute('href',C[hit].a.getAttribute('href')); pNum.textContent=('0'+(hit+1)).slice(-2); pName.textContent=C[hit].name; }
+      prev.disabled=hit<=0; next.disabled=hit>=C.length-1; }
     addEventListener('scroll',function(){ if(!tick) tick=requestAnimationFrame(upd); },{passive:true});
-    addEventListener('resize',upd); upd();
+    addEventListener('resize',function(){ lace(); cur=-2; upd(); }); lace(); upd();
   })();
 
   /* counters */
