@@ -49,17 +49,27 @@ em{font-family:var(--disp);font-style:normal;color:var(--gold)}
 .crumb i{font-style:normal;opacity:.4}
 .crumb > a:not(.back){opacity:.75;transition:opacity .3s}
 .crumb a:hover{opacity:1}
-.chnav{display:flex;gap:clamp(14px,1.8vw,26px);font:400 13px/1 var(--body)}
-.chnav a{position:relative;padding:6px 0;opacity:.5;transition:opacity .3s}
-.chnav a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
-.chnav a:hover{opacity:.85}
-.chnav a.on{opacity:1}
-.chnav a.on::after{transform:scaleX(1)}
+/* chapter rail: stitched seam on the right edge, a stitch per chapter, the thread filling as you read */
+.rail{position:fixed;right:clamp(16px,2vw,30px);top:50%;transform:translateY(-50%);z-index:79;height:min(56vh,460px);width:14px;display:flex;flex-direction:column;justify-content:space-between;align-items:center;color:#F1E8DC;mix-blend-mode:difference;opacity:0;pointer-events:none;transition:opacity .6s}
+.rail.show{opacity:1;pointer-events:auto}
+.rail .seam{position:absolute;left:50%;top:0;bottom:0;width:0;border-left:1.5px dashed rgba(241,232,220,.35)}
+.rail .thread{position:absolute;left:-1.5px;top:0;width:1.5px;height:100%;background:currentColor;transform:scaleY(var(--p,0));transform-origin:top}
+.rail a{position:relative;width:14px;height:14px;display:grid;place-items:center}
+.rail a::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.55;transition:transform .5s var(--ease),opacity .3s}
+.rail span{position:absolute;right:26px;top:50%;transform:translate(8px,-50%);white-space:nowrap;font:italic 400 13px/1 var(--body);opacity:0;transition:opacity .35s,transform .5s var(--ease);pointer-events:none}
+.rail a:hover::before{opacity:1;transform:scale(1.5)}
+.rail a:hover span{opacity:.7;transform:translate(0,-50%)}
+.rail a.on::before{opacity:1;transform:scale(2)}
+.rail a.on span{opacity:1;transform:translate(0,-50%)}
+.pill{display:none}
 @media (max-width:900px){
-  .bar .wrap{flex-direction:column;align-items:flex-start;gap:12px}
-  .chnav{max-width:100%;overflow-x:auto;scrollbar-width:none;gap:16px;font-size:12px;-webkit-mask-image:linear-gradient(90deg,#000 85%,transparent);mask-image:linear-gradient(90deg,#000 85%,transparent)}
-  .chnav::-webkit-scrollbar{display:none}
-  .chnav a{flex:none}
+  .rail{display:none}
+  .pill{position:fixed;left:50%;bottom:16px;z-index:79;display:flex;align-items:center;gap:2px;padding:5px;border-radius:999px;background:rgba(18,8,6,.78);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border:1px solid rgba(241,232,220,.14);color:#F1E8DC;box-shadow:0 14px 34px -14px rgba(0,0,0,.7);transform:translate(-50%,140%);transition:transform .6s var(--ease)}
+  .pill.show{transform:translate(-50%,0)}
+  .pill button{width:36px;height:36px;border-radius:50%;font:300 22px/1 var(--body);color:inherit}
+  .pill button:disabled{opacity:.25}
+  .pill a{display:flex;align-items:baseline;gap:8px;padding:0 10px;min-width:120px;justify-content:center;font:italic 400 14px/1 var(--body)}
+  .pill b{font:700 10.5px/1 var(--body);letter-spacing:.08em;color:var(--gold);font-style:normal}
 }
 .brandmark{display:flex;align-items:center;gap:10px;font:italic 400 14.5px/1 var(--body);}
 .brandmark .mk{width:24px}
@@ -707,10 +717,17 @@ em{font-style:normal}
   <nav class="crumb" aria-label="Breadcrumb">
     <a class="back" href="../#work">← WORK</a><i>/</i><a href="#top">NOU</a>
   </nav>
-  <nav class="chnav" id="chnav" aria-label="Chapters">
-    <a href="#research">Research</a><a href="#strategy">Strategy</a><a href="#identity">Identity</a><a href="#system">System</a><a href="#ux">UX</a><a href="#ui">UI</a><a href="#process">Process</a>
-  </nav>
 </div></header>
+
+<!-- chapter rail: a stitched seam down the right edge; the thread fills as you read -->
+<nav class="rail" id="rail" aria-label="Chapters">
+  <i class="seam" aria-hidden="true"><i class="thread" id="thread"></i></i>
+  <a href="#research"><span>Research</span></a><a href="#strategy"><span>Strategy</span></a><a href="#identity"><span>Identity</span></a><a href="#system"><span>System</span></a><a href="#ux"><span>UX</span></a><a href="#ui"><span>UI</span></a><a href="#process"><span>Process</span></a>
+</nav>
+<!-- on phones: one pill, previous and next either side of the chapter you're in -->
+<nav class="pill" id="pill" aria-label="Chapter">
+  <button type="button" id="pPrevC" aria-label="Previous chapter">‹</button><a href="#research" id="pCur"><b id="pNum">01</b><span id="pName">Research</span></a><button type="button" id="pNextC" aria-label="Next chapter">›</button>
+</nav>
 
 
 <main>
@@ -1139,16 +1156,26 @@ em{font-style:normal}
     gsap.from('.mtext',{opacity:0,y:30,duration:1.2,ease:'power3.out',scrollTrigger:{trigger:'.mtext',start:'top 85%'}}); }
   else sts.forEach(function(s){ s.classList.add('in'); });
 
-  /* chapter nav: mark the last chapter whose top has passed the middle of the screen */
+  /* chapter rail and pill: the chapter on screen is the last one whose top has passed the middle */
   (function(){
-    var links=$$('#chnav a'), C=links.map(function(a){ return {a:a,el:$(a.getAttribute('href'))}; }).filter(function(c){ return c.el; });
-    var cur=null, tick=0;
-    function upd(){ tick=0; var mid=innerHeight/2, hit=null;
-      C.forEach(function(c){ if(c.el.getBoundingClientRect().top<mid) hit=c; });
+    var links=$$('#rail a'), C=links.map(function(a){ return {a:a,el:$(a.getAttribute('href')),name:a.textContent}; }).filter(function(c){ return c.el; });
+    var rail=$('#rail'), thread=$('#thread'), pill=$('#pill'), pCur=$('#pCur'), pNum=$('#pNum'), pName=$('#pName'), prev=$('#pPrevC'), next=$('#pNextC');
+    var cur=-1, tick=0, outro=$('.outro');
+    prev.addEventListener('click',function(){ if(cur>0) goTo(C[cur-1].el); });
+    next.addEventListener('click',function(){ goTo(C[Math.min(C.length-1,cur+1)].el); });
+    function upd(){ tick=0; var mid=innerHeight/2, hit=-1;
+      C.forEach(function(c,i){ if(c.el.getBoundingClientRect().top<mid) hit=i; });
+      /* the rail shows from the first chapter until the closing screen */
+      var show=hit>=0&&!(outro&&outro.getBoundingClientRect().top<mid);
+      rail.classList.toggle('show',show); pill.classList.toggle('show',show);
+      /* the thread reaches each stitch just as its chapter starts, then runs on toward the next */
+      var p=0; if(hit>=0){ var a=C[hit].el.getBoundingClientRect().top, b=hit<C.length-1?C[hit+1].el.getBoundingClientRect().top:C[hit].el.getBoundingClientRect().bottom;
+        p=(hit+Math.max(0,Math.min(1,(mid-a)/(b-a))))/(C.length-1); }
+      thread.style.setProperty('--p',Math.min(1,p));
       if(hit===cur) return; cur=hit;
-      links.forEach(function(a){ a.classList.toggle('on',!!hit&&a===hit.a); });
-      /* on narrow screens the row scrolls sideways; keep the marked chapter in view */
-      if(hit){ var nav=hit.a.parentNode; if(nav.scrollWidth>nav.clientWidth) nav.scrollTo({left:hit.a.offsetLeft-nav.clientWidth/3,behavior:'smooth'}); } }
+      links.forEach(function(a,i){ a.classList.toggle('on',i===hit); });
+      if(hit>=0){ pCur.setAttribute('href',C[hit].a.getAttribute('href')); pNum.textContent=('0'+(hit+1)).slice(-2); pName.textContent=C[hit].name; }
+      prev.disabled=hit<=0; next.disabled=hit>=C.length-1; }
     addEventListener('scroll',function(){ if(!tick) tick=requestAnimationFrame(upd); },{passive:true});
     addEventListener('resize',upd); upd();
   })();
