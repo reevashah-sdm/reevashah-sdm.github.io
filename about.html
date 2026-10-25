@@ -11,9 +11,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&amp;family=Caveat+Brush&amp;display=swap" rel="stylesheet">
 <style>.xs-track{position:relative;height:260vh}
-.xs-pin{position:sticky;top:0;height:100vh;display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.6fr);gap:clamp(32px,4.5cqw,80px);align-items:center}
-.xs-year{display:flex;font:500 clamp(96px,12.5cqw,200px)/1 'Familjen Grotesk',sans-serif;letter-spacing:-.05em;color:#F4EFE6}
-.xs-roll{flex:none;display:inline-block;height:1em;overflow:hidden;color:#D42A2E}
+.xs-pin{position:sticky;top:0;height:100vh;display:grid;grid-template-columns:minmax(0,.72fr) minmax(0,1.6fr);gap:clamp(32px,5cqw,88px);align-items:center}
+.xs-year{display:flex;font:500 clamp(96px,14cqw,220px)/1 'Familjen Grotesk',sans-serif;letter-spacing:-.055em;color:#F4EFE6}
+.xs-roll{display:inline-block;height:1em;overflow:hidden;color:#D42A2E}
 .xs-reel{display:flex;flex-direction:column;transition:transform .9s cubic-bezier(.3,1.25,.5,1)}
 .xs-reel span{display:block;height:1em}
 .xs-when{margin-top:18px;font:400 clamp(20px,1.8cqw,26px)/1.1 'Caveat Brush',cursive;color:#F4EFE6;transform:rotate(-2deg);transform-origin:left}
@@ -37,23 +37,43 @@
 .xs-d li{position:relative;padding-left:22px;font:400 15px/1.6 'Familjen Grotesk',sans-serif;color:#C2BBB0;opacity:0;transform:translateY(14px);transition:opacity .5s,transform .65s cubic-bezier(.2,.7,.2,1)}
 .xs-d li::before{content:"";position:absolute;left:0;top:.8em;width:11px;height:1px;background:#D42A2E}
 .xs-d.on li{opacity:1;transform:none}
-.dk-wrap{position:relative;margin-top:clamp(36px,4cqw,56px)}
-.dk-desk{position:relative;height:clamp(160px,15cqw,196px)}
-.dk-win{position:absolute;bottom:20px;width:236px;border-radius:12px;background:#2C2825;border:1px solid #3A3531;box-shadow:0 22px 50px rgba(0,0,0,.45);overflow:hidden;pointer-events:none;opacity:0;transform:translate(-50%,26px) scale(.86) rotate(-3deg);transition:opacity .25s,transform .5s cubic-bezier(.3,1.5,.5,1),left .4s cubic-bezier(.2,.7,.2,1)}
-.dk-win.on{opacity:1;transform:translate(-50%,0) scale(1) rotate(-1.5deg)}
-.dk-bar{height:30px;display:flex;align-items:center;gap:5px;padding:0 10px;background:#24211E;font:400 12px/1 'Familjen Grotesk',sans-serif;color:#9D958A}
-.dk-bar i{flex:none;width:8px;height:8px;border-radius:50%;background:#4a4a4a}
-.dk-bar span{margin-left:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.dk-body{display:flex;flex-direction:column;gap:6px;padding:14px 16px 16px}
-.dk-nm{font:500 16px/1.2 'Familjen Grotesk',sans-serif;color:#F4EFE6}
-.dk-nt{font:400 23px/1.05 'Caveat Brush',cursive;color:#D42A2E}
-.dk{--b:min(58px,calc((100cqw - 2*clamp(20px,5.5cqw,80px) - 26px - 7*10px)/8));display:flex;align-items:flex-end;justify-content:center;gap:10px;width:max-content;max-width:100%;margin:0 auto;padding:11px 13px 13px;border-radius:24px;background:rgba(244,239,230,.06);border:1px solid rgba(244,239,230,.12);box-shadow:0 18px 40px -20px rgba(0,0,0,.6)}
-.dk-i{position:relative;flex:none;width:calc(var(--b)*var(--z,1));height:calc(var(--b)*var(--z,1));padding:0;border:0;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:width .16s ease-out,height .16s ease-out}
-.dk-i svg,.dk-ad{display:block;width:100%;height:100%;border-radius:23%}
-.dk-ad{display:grid;place-items:center;font:600 calc(var(--b)*var(--z,1)*.44)/1 'Familjen Grotesk',sans-serif;letter-spacing:-.02em}
-.dk-dot{position:absolute;left:50%;bottom:-8px;width:4px;height:4px;margin-left:-2px;border-radius:50%;background:transparent;transition:background .3s}
-.dk-dot.on{background:#F4EFE6}
-@container (max-width:700px){.xs-track{height:auto}.xs-pin{position:relative;height:auto;grid-template-columns:minmax(0,1fr);gap:26px;padding-top:44px}.xs-year{font-size:104px}.xs-d ul{grid-template-columns:minmax(0,1fr)}.dk{gap:6px;padding:8px 9px 10px;border-radius:18px;--b:calc((100cqw - 40px - 20px - 7*6px)/8)}.dk-win{width:210px}}
+@container (max-width:700px){.xs-track{height:auto}.xs-pin{position:relative;height:auto;grid-template-columns:minmax(0,1fr);gap:26px;padding-top:44px}.xs-year{font-size:104px}.xs-d ul{grid-template-columns:minmax(0,1fr)}}
+.wk{position:relative;margin-top:clamp(36px,4cqw,56px);padding:30px 0 6px;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+.wk-row{display:flex;align-items:center;width:max-content;will-change:transform}
+.wk-i{position:relative;flex:none;display:flex;align-items:center;height:clamp(110px,10cqw,140px);padding:0 clamp(30px,3.4cqw,58px);cursor:default;transition:transform .45s cubic-bezier(.3,1.5,.5,1)}
+.wk-i::before{content:"";position:absolute;right:-3px;top:50%;width:6px;height:6px;margin-top:-3px;border-radius:50%;background:#D42A2E}
+.wk-i[data-tag]::after{content:attr(data-tag);position:absolute;left:50%;top:-22px;padding:7px 13px 5px;border-radius:999px;background:#F4EFE6;color:#1F1C1A;font:400 18px/1 'Caveat Brush',cursive;white-space:nowrap;pointer-events:none;opacity:0;transform:translate(-50%,10px) rotate(-3deg) scale(.8);transition:opacity .25s,transform .45s cubic-bezier(.3,1.6,.5,1)}
+.wk-i:hover{transform:scale(1.06)}
+.wk-i:hover::after{opacity:1;transform:translate(-50%,0) rotate(-3deg)}
+.wm-ct{display:flex;flex-direction:column;align-items:flex-start;white-space:nowrap}
+.wm-ct{display:flex;flex-direction:column;white-space:nowrap}
+.wk-st{display:flex;align-items:center;padding:clamp(12px,1.2cqw,16px) clamp(16px,1.7cqw,24px);border-radius:16px;background:#F4EFE6;box-shadow:0 14px 26px -14px rgba(0,0,0,.7),inset 0 -2px 0 rgba(0,0,0,.06);transform:rotate(var(--r,0deg));transition:transform .5s cubic-bezier(.3,1.6,.5,1),box-shadow .4s}
+.wk-st img{display:block;width:auto;max-width:none}
+.wk-i:hover .wk-st{transform:rotate(0deg) translateY(-4px);box-shadow:0 22px 34px -14px rgba(0,0,0,.75)}
+.wm-kp{display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 20px 9px;border-radius:5px;background:#F2C230;color:#151311;box-shadow:inset 0 0 0 3px #F2C230,inset 0 0 0 5px #151311;transform:rotate(-1.5deg);transition:transform .5s cubic-bezier(.3,1.6,.5,1)}
+.wm-kp span{font:600 15px/1.1 'Familjen Grotesk',sans-serif}
+.wm-kp span:last-child{font:700 21px/1 'Familjen Grotesk',sans-serif;letter-spacing:.08em}
+.wk-i:hover .wm-kp{transform:rotate(2deg)}
+.wm-ct{padding:8px 0 7px;border-top:1px solid rgba(244,239,230,.5);border-bottom:1px solid rgba(244,239,230,.5);align-items:center}
+.wm-ct small{font:400 13px/1 Georgia,'Times New Roman',serif;font-style:italic;color:#ABA398}
+.wm-ct>span{margin-top:5px;font:400 clamp(22px,2.2cqw,30px)/1 Georgia,'Times New Roman',serif;letter-spacing:.1em;text-transform:uppercase;color:#F4EFE6}
+.hand{position:relative;--cw:clamp(130px,15.5cqw,210px);--step:7.4deg;height:calc(var(--cw)*1.4 + 110px);margin-top:clamp(28px,3cqw,44px)}
+.cd{position:absolute;left:50%;top:60px;width:var(--cw);aspect-ratio:5/7;margin-left:calc(var(--cw)/-2);padding:calc(var(--cw)*.09);border-radius:14px;background:#2C2825;border:1px solid #3A3531;box-shadow:0 18px 40px -14px rgba(0,0,0,.6);cursor:pointer;-webkit-tap-highlight-color:transparent;transform-origin:50% 330%;transform:rotate(calc((var(--i) - 3.5) * var(--step) + var(--push,0deg))) translateY(var(--lift,0px));transition:transform .6s cubic-bezier(.3,1.3,.5,1),background .35s,border-color .35s}
+.cd:nth-child(1){--i:0}.cd:nth-child(2){--i:1}.cd:nth-child(3){--i:2}.cd:nth-child(4){--i:3}.cd:nth-child(5){--i:4}.cd:nth-child(6){--i:5}.cd:nth-child(7){--i:6}.cd:nth-child(8){--i:7}
+.cd.l{--push:-4.5deg}.cd.r{--push:4.5deg}
+.cd.up{--lift:-50px;background:#D42A2E;border-color:#D42A2E;z-index:20}
+.cd-ic{width:calc(var(--cw)*.3);height:calc(var(--cw)*.3)}
+.cd-ic svg,.cd-ad{display:block;width:100%;height:100%;border-radius:23%}
+.cd-ad{display:grid;place-items:center;font:600 calc(var(--cw)*.13)/1 'Familjen Grotesk',sans-serif;letter-spacing:-.02em}
+.cd-n{position:absolute;right:calc(var(--cw)*.09);top:calc(var(--cw)*.1);font:400 12px/1 'Familjen Grotesk',sans-serif;color:#90887D;transition:color .3s}
+.cd-nm{margin-top:calc(var(--cw)*.1);font:500 clamp(14px,1.3cqw,17px)/1.15 'Familjen Grotesk',sans-serif;color:#F4EFE6}
+.cd-k{margin-top:4px;font:400 13px/1 'Familjen Grotesk',sans-serif;color:#9D958A;transition:color .3s}
+.cd-nt{position:absolute;left:calc(var(--cw)*.09);right:calc(var(--cw)*.09);bottom:calc(var(--cw)*.1);font:400 clamp(17px,1.6cqw,21px)/1.05 'Caveat Brush',cursive;color:#F4EFE6;opacity:0;transform:translateY(8px);transition:opacity .3s,transform .45s cubic-bezier(.3,1.5,.5,1)}
+.cd.up .cd-n,.cd.up .cd-k{color:rgba(244,239,230,.8)}
+.cd-nm,.cd-k{opacity:0;transform:translateY(6px);transition:opacity .3s,transform .45s cubic-bezier(.3,1.5,.5,1),color .3s}
+.cd.up .cd-nm,.cd.up .cd-k{opacity:1;transform:none}
+.cd.up .cd-nt{opacity:1;transform:none}
+@container (max-width:700px){.wk-i{padding:0 26px}.hand{--cw:92px;--step:3.5deg;height:calc(var(--cw)*1.4 + 96px)}.cd{top:52px;border-radius:10px}.cd.up{--lift:-40px}.cd-nm{font-size:12px}.cd-k{display:none}.cd-nt{font-size:15px}.cd-n{display:none}}
 body{margin:0;background:#161412}*{box-sizing:border-box}html{scroll-behavior:smooth}a{color:inherit;text-decoration:none;transition:color .2s}a:hover{color:#D42A2E}::selection{background:#D42A2E;color:#F4EFE6}@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}html{scroll-behavior:auto!important}}</style>
 <script src="reeva-face.js"></script>
 </helmet>
@@ -140,17 +160,44 @@ body{margin:0;background:#161412}*{box-sizing:border-box}html{scroll-behavior:sm
 </div>
 </section>
 
+
 <section style="padding:clamp(60px,6cqw,90px) clamp(20px,5.5cqw,80px) 0">
-<div data-reveal="1" style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px;font:500 19px/1 'Familjen Grotesk',sans-serif"><span style="font:400 26px/1 'Caveat Brush',cursive;color:#D42A2E">What's On My Desk</span><span style="font:400 15px/1 'Familjen Grotesk',sans-serif;color:#9D958A">{{ dkCount }}</span></div>
+<div data-reveal="1" style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px;font:500 19px/1 'Familjen Grotesk',sans-serif"><span style="font:400 26px/1 'Caveat Brush',cursive;color:#D42A2E">Who I've Designed With</span><span style="font:400 15px/1 'Familjen Grotesk',sans-serif;color:#9D958A">{{ wkHint }}</span></div>
+<div data-reveal="1" style="margin-top:48px"><h2 style="margin:0;font:400 clamp(28px,3.6cqw,52px)/1.15 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;color:#F4EFE6">Studios, clients<br><span style="color:#D42A2E">and some unusual sites.</span></h2></div>
+</section>
+<div class="wk" data-reveal="1" onMouseEnter="{{ wkOn }}" onMouseLeave="{{ wkOff }}"><div ref="{{ wkRef }}" class="wk-row">
+<div class="wk-i" data-tag="my studio, 2024 – 25"><span class="wk-st" style="--r:-3deg"><img src="logos/zero-gravity.png" alt="Zero Gravity Communications" style="height:clamp(34px,3.6cqw,48px)"></span></div>
+<div class="wk-i" data-tag="signage redesign"><span class="wm-kp"><span lang="gu">કાલુપુર</span><span lang="hi">कालूपुर</span><span>KALUPUR</span></span></div>
+<div class="wk-i"><span class="wk-st" style="--r:2.5deg"><img src="logos/nid-summer-workshop.png" alt="NID Summer Workshop" style="height:clamp(56px,5.6cqw,76px)"></span></div>
+<div class="wk-i" data-tag="human behaviour study"><span class="wm-ct"><small>courts of</small><span>Gujarat</span></span></div>
+<div class="wk-i"><span class="wk-st" style="--r:-2deg"><img src="logos/induben-khakhrawala.png" alt="Induben Khakhrawala" style="height:clamp(54px,5.4cqw,74px)"></span></div>
+<div class="wk-i" data-tag="my first internship"><span class="wk-st" style="--r:3deg"><img src="logos/webplus-infotech.png" alt="Webplus Infotech" style="height:clamp(60px,6cqw,82px)"></span></div>
+<div class="wk-i" data-tag="human behaviour study"><span class="wm-ct"><small>courts of</small><span>Gandhinagar</span></span></div>
+<div class="wk-i"><span class="wk-st" style="--r:-2.5deg"><img src="logos/gujarat-tourism.png" alt="Gujarat Tourism" style="height:clamp(62px,6.2cqw,84px)"></span></div>
+<div class="wk-i" aria-hidden="true" data-tag="my studio, 2024 – 25"><span class="wk-st" style="--r:-3deg"><img src="logos/zero-gravity.png" alt="" style="height:clamp(34px,3.6cqw,48px)"></span></div>
+<div class="wk-i" aria-hidden="true" data-tag="signage redesign"><span class="wm-kp"><span lang="gu">કાલુપુર</span><span lang="hi">कालूपुर</span><span>KALUPUR</span></span></div>
+<div class="wk-i" aria-hidden="true"><span class="wk-st" style="--r:2.5deg"><img src="logos/nid-summer-workshop.png" alt="" style="height:clamp(56px,5.6cqw,76px)"></span></div>
+<div class="wk-i" aria-hidden="true" data-tag="human behaviour study"><span class="wm-ct"><small>courts of</small><span>Gujarat</span></span></div>
+<div class="wk-i" aria-hidden="true"><span class="wk-st" style="--r:-2deg"><img src="logos/induben-khakhrawala.png" alt="" style="height:clamp(54px,5.4cqw,74px)"></span></div>
+<div class="wk-i" aria-hidden="true" data-tag="my first internship"><span class="wk-st" style="--r:3deg"><img src="logos/webplus-infotech.png" alt="" style="height:clamp(60px,6cqw,82px)"></span></div>
+<div class="wk-i" aria-hidden="true" data-tag="human behaviour study"><span class="wm-ct"><small>courts of</small><span>Gandhinagar</span></span></div>
+<div class="wk-i" aria-hidden="true"><span class="wk-st" style="--r:-2.5deg"><img src="logos/gujarat-tourism.png" alt="" style="height:clamp(62px,6.2cqw,84px)"></span></div>
+</div></div>
+
+<section style="padding:clamp(80px,8cqw,120px) clamp(20px,5.5cqw,80px) 0">
+<div data-reveal="1" style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px;font:500 19px/1 'Familjen Grotesk',sans-serif"><span style="font:400 26px/1 'Caveat Brush',cursive;color:#D42A2E">What's On My Desk</span><span style="font:400 15px/1 'Familjen Grotesk',sans-serif;color:#9D958A">{{ handCount }}</span></div>
 <div data-reveal="1" style="margin-top:48px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px 48px">
-<h2 style="margin:0;font:400 clamp(28px,3.6cqw,52px)/1.15 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;color:#F4EFE6">The apps that<br><span style="color:#D42A2E">never get closed.</span></h2>
-<span style="font:400 20px/1.2 'Caveat Brush',cursive;color:#9D958A">{{ dkHint }}</span>
+<h2 style="margin:0;font:400 clamp(28px,3.6cqw,52px)/1.15 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;color:#F4EFE6">The hand<br><span style="color:#D42A2E">I play with.</span></h2>
+<span style="font:400 20px/1.2 'Caveat Brush',cursive;color:#9D958A">{{ handHint }}</span>
 </div>
-<div ref="{{ dkWrapRef }}" class="dk-wrap" data-reveal="1">
-<div class="dk-desk"><div class="dk-win {{ dk.cls }}" style="left:{{ dk.x }}"><div class="dk-bar"><i></i><i></i><i></i><span>{{ dk.file }}</span></div><div class="dk-body"><div class="dk-nm">{{ dk.name }}</div><div class="dk-nt">{{ dk.note }}</div></div></div></div>
-<div class="dk" onMouseMove="{{ dockMove }}" onMouseLeave="{{ dockLeave }}">
-<sc-for list="{{ dockApps }}" as="t" hint-placeholder-count="8"><button ref="{{ t.ref }}" class="dk-i" aria-label="{{ t.name }}" onMouseEnter="{{ t.on }}" onClick="{{ t.tap }}"><sc-if value="{{ t.fig }}"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x=".75" y=".75" width="62.5" height="62.5" rx="14.5" fill="#2A2A2A" stroke="rgba(255,255,255,.18)" stroke-width="1.5"></rect><path d="M32 14H26a6 6 0 0 0 0 12h6z" fill="#F24E1E"></path><path d="M32 14h6a6 6 0 0 1 0 12h-6z" fill="#FF7262"></path><path d="M32 26H26a6 6 0 0 0 0 12h6z" fill="#A259FF"></path><circle cx="38" cy="32" r="6" fill="#1ABCFE"></circle><path d="M32 38H26a6 6 0 1 0 6 6z" fill="#0ACF83"></path></svg></sc-if><sc-if value="{{ t.ad }}"><span class="dk-ad" style="background:{{ t.bg }};color:{{ t.fg }}">{{ t.m }}</span></sc-if><span class="dk-dot {{ t.dot }}"></span></button></sc-for>
-</div>
+<div class="hand" data-reveal="1" onMouseLeave="{{ handOff }}">
+<sc-for list="{{ cards }}" as="c" hint-placeholder-count="8"><div class="{{ c.cls }}" onMouseEnter="{{ c.on }}" onClick="{{ c.tap }}">
+<div class="cd-ic"><sc-if value="{{ c.fig }}"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x=".75" y=".75" width="62.5" height="62.5" rx="14.5" fill="#2A2A2A" stroke="rgba(255,255,255,.18)" stroke-width="1.5"></rect><path d="M32 14H26a6 6 0 0 0 0 12h6z" fill="#F24E1E"></path><path d="M32 14h6a6 6 0 0 1 0 12h-6z" fill="#FF7262"></path><path d="M32 26H26a6 6 0 0 0 0 12h6z" fill="#A259FF"></path><circle cx="38" cy="32" r="6" fill="#1ABCFE"></circle><path d="M32 38H26a6 6 0 1 0 6 6z" fill="#0ACF83"></path></svg></sc-if><sc-if value="{{ c.ad }}"><span class="cd-ad" style="background:{{ c.bg }};color:{{ c.fg }}">{{ c.m }}</span></sc-if></div>
+<div class="cd-n">{{ c.n }}</div>
+<div class="cd-nm">{{ c.name }}</div>
+<div class="cd-k">{{ c.kind }}</div>
+<div class="cd-nt">{{ c.note }}</div>
+</div></sc-for>
 </div>
 </section>
 
@@ -237,14 +284,14 @@ const ROLES = [
 ];
 const XSEG = [['I started in 2023 as '], ['a communication design intern at Web Plus Info Tech', 0], [', then joined '], ['Zero Gravity Communications as a UI/UX intern', 1], [' in 2024, and stayed on as '], ['their UI/UX Designer', 2], [' until June 2025.']];
 const TOOLS = [
-  { name: 'Figma', fig: true, file: 'brief_v4.fig', note: 'where most things start' },
-  { name: 'Adobe XD', m: 'Xd', bg: '#470137', fg: '#FF61F6', file: 'flow_clickable.xd', note: 'quick clickable prototypes' },
-  { name: 'Illustrator', m: 'Ai', bg: '#330000', fg: '#FF9A00', file: 'pictograms_final.ai', note: 'icons, marks, pictograms' },
-  { name: 'Photoshop', m: 'Ps', bg: '#001E36', fg: '#31A8FF', file: 'retouch_02.psd', note: 'pixels and patience' },
-  { name: 'InDesign', m: 'Id', bg: '#49021F', fg: '#FF3366', file: 'research_report.indd', note: 'reports and long reads' },
-  { name: 'After Effects', m: 'Ae', bg: '#00005B', fg: '#9999FF', file: 'logo_intro.aep', note: 'when it needs to move' },
-  { name: 'Premiere Pro', m: 'Pr', bg: '#00005B', fg: '#9999FF', file: 'cut_v3_FINAL.prproj', note: 'cutting the story together' },
-  { name: 'Audition', m: 'Au', bg: '#00332A', fg: '#00E4BB', file: 'voiceover_clean.sesx', note: 'making it sound right' },
+  { name: 'Figma', kind: 'interface', fig: true, note: 'where most things start' },
+  { name: 'Adobe XD', kind: 'interface', m: 'Xd', bg: '#470137', fg: '#FF61F6', note: 'quick clickable prototypes' },
+  { name: 'Illustrator', kind: 'vector', m: 'Ai', bg: '#330000', fg: '#FF9A00', note: 'icons, marks, pictograms' },
+  { name: 'Photoshop', kind: 'image', m: 'Ps', bg: '#001E36', fg: '#31A8FF', note: 'pixels and patience' },
+  { name: 'InDesign', kind: 'layout', m: 'Id', bg: '#49021F', fg: '#FF3366', note: 'reports and long reads' },
+  { name: 'After Effects', kind: 'motion', m: 'Ae', bg: '#00005B', fg: '#9999FF', note: 'when it needs to move' },
+  { name: 'Premiere Pro', kind: 'video', m: 'Pr', bg: '#00005B', fg: '#9999FF', note: 'cutting the story together' },
+  { name: 'Audition', kind: 'sound', m: 'Au', bg: '#00332A', fg: '#00E4BB', note: 'making it sound right' },
 ];
 
 const SEGS = [
@@ -261,7 +308,7 @@ class Component extends DCLogic {
   schoolsSecRef = React.createRef(); schoolsRef = React.createRef(); schoolsA = React.createRef(); schoolsB = React.createRef();
   spotRef = React.createRef(); lineRef = React.createRef(); pickRef = React.createRef(); footLineRef = React.createRef();
   iconRefs = VALUES.map(() => React.createRef());
-  xpTrackRef = React.createRef(); xpBarRef = React.createRef(); dkWrapRef = React.createRef(); dkRefs = TOOLS.map(() => React.createRef());
+  xpTrackRef = React.createRef(); xpBarRef = React.createRef(); wkRef = React.createRef();
   // Experience: on desktop the pinned story advances with scroll; on phones the highlights are tapped instead.
   xpScroll = () => {
     const tr = this.xpTrackRef.current, bar = this.xpBarRef.current; if (!tr) return;
@@ -275,18 +322,19 @@ class Component extends DCLogic {
     if (innerWidth < 700) { this.setState({ xi: i }, this.xpScroll); return; }
     const b = tr.getBoundingClientRect(); scrollTo({ top: scrollY + b.top + (b.height - innerHeight) * (i + .5) / ROLES.length, behavior: 'smooth' });
   };
-  dockShow = i => {
-    const el = this.dkRefs[i].current, w = this.dkWrapRef.current; if (!el || !w) return;
-    const b = el.getBoundingClientRect(), wb = w.getBoundingClientRect(), half = innerWidth < 700 ? 105 : 118;
-    this.setState({ dk: i, dkX: Math.round(clamp(b.left + b.width / 2 - wb.left, half, wb.width - half)) });
-  };
-  dockMove = e => {
-    if (innerWidth < 700) return;
-    const els = this.dkRefs.map(r => r.current).filter(Boolean);
-    if (!this.dkBase) this.dkBase = els.map(el => { const b = el.getBoundingClientRect(); return b.left + b.width / 2; });
-    els.forEach((el, i) => { const d = Math.abs(e.clientX - this.dkBase[i]), k = d < 160 ? (Math.cos(d / 160 * Math.PI) + 1) / 2 : 0; el.style.setProperty('--z', (1 + .72 * k).toFixed(3)); });
-  };
-  dockLeave = () => { this.dkBase = null; this.dkRefs.forEach(r => r.current && r.current.style.setProperty('--z', '1')); if (innerWidth >= 700) this.setState({ dk: null }); };
+  // The names strip drifts on its own, eases to a stop under the cursor, and spins faster (and the other way) when you scroll.
+  wkTick() {
+    const el = this.wkRef.current; if (!el) return;
+    if (this.wkCalm === undefined) this.wkCalm = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+    if (this.wkCalm) return;
+    const y = scrollY, d = y - (this.wkY === undefined ? y : this.wkY); this.wkY = y;
+    if (Math.abs(d) > 1) { this.wkDir = d > 0 ? 1 : -1; this.wkBoost = Math.min(9, (this.wkBoost || 0) + Math.abs(d) * .06); }
+    this.wkBoost = (this.wkBoost || 0) * .94;
+    this.wkV = lerp(this.wkV === undefined ? 1 : this.wkV, this.wkHover ? 0 : 1 + this.wkBoost, .08);
+    const half = el.scrollWidth / 2; let x = (this.wkX || 0) - .55 * this.wkV * (this.wkDir || 1);
+    if (x <= -half) x += half; if (x > 0) x -= half;
+    this.wkX = x; el.style.transform = `translate3d(${x.toFixed(2)}px,0,0)`;
+  }
   m = { x: -999, y: -999 }; pk = 0; cd = null; clicks = [];
   p(k, d) { const v = this.props[k]; return v === undefined || v === null ? d : v; }
   onScroll = () => {
@@ -296,7 +344,7 @@ class Component extends DCLogic {
     if (this.schoolsA.current) this.schoolsA.current.style.transform = `translateX(-${off}%)`;
     if (this.schoolsB.current) this.schoolsB.current.style.transform = `translateX(${off}%)`;
   };
-  onResize = () => { this.dkBase = null; const d = innerWidth < 700 ? 'mobile' : 'desktop'; if (d !== this.state.device) this.setState({ device: d }); this.onScroll(); };
+  onResize = () => { const d = innerWidth < 700 ? 'mobile' : 'desktop'; if (d !== this.state.device) this.setState({ device: d }); this.onScroll(); };
   heroMove = e => { const b = this.heroRef.current.getBoundingClientRect(); this.m = { x: e.clientX - b.left, y: e.clientY - b.top }; };
   heroLeave = () => { this.m = { x: -999, y: -999 }; };
   spotMove = e => { const el = this.spotRef.current; if (!el) return; const b = el.getBoundingClientRect(); el.style.clipPath = `circle(${this.p('spotSize', 110)}px at ${e.clientX - b.left}px ${e.clientY - b.top}px)`; };
@@ -374,7 +422,7 @@ class Component extends DCLogic {
     }
   }
   ringTextRef = React.createRef();
-  tick = () => { const t = performance.now() / 1000; const rg = this.ringTextRef.current; if (rg) rg.style.transform = `rotate(${(t * 6 + scrollY * .08) % 360}deg)`; try { this.drawDots(); this.frame(t); } catch (e) { if (!this.err) { this.err = 1; console.error(e); } } this.raf = requestAnimationFrame(this.tick); };
+  tick = () => { const t = performance.now() / 1000; const rg = this.ringTextRef.current; if (rg) rg.style.transform = `rotate(${(t * 6 + scrollY * .08) % 360}deg)`; try { this.wkTick(); this.drawDots(); this.frame(t); } catch (e) { if (!this.err) { this.err = 1; console.error(e); } } this.raf = requestAnimationFrame(this.tick); };
   setupReveal() {
     if (this.io) this.io.disconnect();
     const els = document.querySelectorAll('[data-reveal]'), on = this.p('scrollReveal', false);
@@ -434,14 +482,12 @@ class Component extends DCLogic {
         xpSegs: XSEG.map(([t, k], j) => k === undefined ? { t, cls: 'xs-p' + (j <= at || last ? ' read' : ''), go: null } : { t, cls: 'xs-k' + (k === xi ? ' on' : k < xi ? ' done' : ''), go: () => this.xpGo(k) }),
         roles: ROLES.map((r, i) => ({ ...r, cls: i === xi ? 'on' : '', pts: r.pts.map((t, j) => ({ t, d: i === xi ? (.18 + j * .08).toFixed(2) + 's' : '0s' })) })),
       }; })(),
-      // The dock: icons swell under the cursor; hovering or tapping one pops its little window, clicking "opens" it.
-      dkWrapRef: this.dkWrapRef, dockMove: this.dockMove, dockLeave: this.dockLeave,
-      dkHint: mob ? 'tap an app' : 'hover the dock, click to open',
-      dkCount: (() => { const n = Object.keys(s.dkOpen || {}).length; return n ? n + ' of ' + TOOLS.length + ' open' : TOOLS.length + ' apps, always open'; })(),
-      dk: (() => { const t = TOOLS[s.dk == null ? 0 : s.dk]; return { cls: s.dk == null ? '' : 'on', x: (s.dkX || 0) + 'px', file: t.file, name: t.name, note: t.note }; })(),
-      dockApps: TOOLS.map((t, i) => ({ ...t, ad: !t.fig, fig: !!t.fig, ref: this.dkRefs[i], dot: (s.dkOpen || {})[i] ? 'on' : '',
-        on: () => { if (!mob) this.dockShow(i); },
-        tap: () => { this.dockShow(i); this.setState(x => ({ dkOpen: { ...(x.dkOpen || {}), [i]: true } })); const el = this.dkRefs[i].current; if (el && el.animate) el.animate([{ transform: 'translateY(0)' }, { transform: 'translateY(-26px)' }, { transform: 'translateY(0)' }, { transform: 'translateY(-11px)' }, { transform: 'translateY(0)' }], { duration: 760, easing: 'ease-out' }); } })),
+      wkRef: this.wkRef, wkOn: () => { this.wkHover = true; }, wkOff: () => { this.wkHover = false; }, wkHint: mob ? 'scroll to spin it' : 'hover to pause, scroll to spin',
+      // The tools, fanned out like a hand of cards: hover (or tap) one to pull it out of the hand.
+      handOff: () => { if (!mob) this.setState({ hc: null }); }, handHint: mob ? 'tap a card' : 'pick a card', handCount: '0' + TOOLS.length + ' cards in my hand',
+      cards: TOOLS.map((t, i) => { const h = s.hc; return { ...t, ad: !t.fig, fig: !!t.fig, n: '0' + (i + 1),
+        cls: 'cd' + (h == null ? '' : h === i ? ' up' : i < h ? ' l' : ' r'),
+        on: () => { if (!mob) this.setState({ hc: i }); }, tap: () => this.setState(x => ({ hc: mob && x.hc === i ? null : i })) }; }),
 
       ctaOn: this.ctaOn, ctaOff: this.ctaOff, ctaWord: CTA[s.cta || 0], ctaHint: (s.cta || 0) === 0 ? 'hover the headline' : 'you tell me the rest',
       copy: () => { try { navigator.clipboard && navigator.clipboard.writeText('contactreeva@gmail.com'); } catch (e) {} this.setState({ copied: true }); clearTimeout(this.ct); this.ct = setTimeout(() => this.setState({ copied: false }), 1800); },
