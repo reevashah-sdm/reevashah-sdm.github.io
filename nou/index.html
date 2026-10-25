@@ -10,13 +10,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ink:#120806; --leather:#2A130B; --cognac:#8A4A2A; --ember:#C8622E; --gold:#D9B27C; --paper:#D7D1C0; --bone:#EFEEED; --white:#F7F7F7; --tan:#B07446; --tan2:#C98F5E;
+  --ink:#120806; --leather:#2A130B; --cognac:#8A4A2A; --ember:#B5683E; --gold:#CFB48C; --paper:#D7D1C0; --bone:#EFEEED; --white:#F7F7F7; --tan:#B07446; --tan2:#C98F5E;
   --bg:var(--ink); --fg:#F1E8DC; --sub:rgba(241,232,220,.6); --line:rgba(241,232,220,.16); --acc:var(--ember);
   --disp:'Lato',system-ui,sans-serif; --sans:'Lato',system-ui,sans-serif; --body:'Lato',system-ui,sans-serif;
   --gut:clamp(20px,4vw,40px); --max:1240px; --ease:cubic-bezier(.2,.75,.15,1);
   --edge:max(var(--gut),calc((100vw - var(--max))/2 + var(--gut)));
 }
-body[data-tone="ember"],html:not(.gs) [data-tone="ember"]{--bg:#C8622E;--fg:#170805;--sub:rgba(23,8,5,.7);--line:rgba(23,8,5,.2);--acc:#170805}
+body[data-tone="ember"],html:not(.gs) [data-tone="ember"]{--bg:#7B3A22;--fg:#F1E8DC;--sub:rgba(241,232,220,.65);--line:rgba(241,232,220,.18);--acc:var(--gold)}
 body[data-tone="bone"],html:not(.gs) [data-tone="bone"]{--bg:#EFEEED;--fg:#1A0906;--sub:rgba(26,9,6,.6);--line:rgba(26,9,6,.14);--acc:var(--ember)}
 body[data-tone="leather"],html:not(.gs) [data-tone="leather"]{--bg:#1E0E08;--fg:#F1E8DC;--sub:rgba(241,232,220,.6);--line:rgba(241,232,220,.16)}
 html:not(.gs) [data-tone]{background:var(--bg);color:var(--fg)}
@@ -177,7 +177,7 @@ em{font-family:var(--disp);font-style:normal;color:var(--gold)}
 .bars{display:flex;align-items:flex-end;gap:clamp(8px,1.2vw,18px);height:clamp(150px,26vh,240px);width:100%;max-width:520px}
 .bars div{flex:1;min-width:0;height:100%;display:flex;flex-direction:column;justify-content:flex-end;gap:10px}
 .bars i{display:block;height:var(--h);min-height:3px;background:linear-gradient(180deg,var(--gold),var(--cognac));border-radius:6px 6px 0 0;transform-origin:bottom;transform:scaleY(0);transition:transform 1.2s var(--ease)}
-.bars div:first-child i{background:linear-gradient(180deg,#ffb27a,var(--ember))}
+.bars div:first-child i{background:linear-gradient(180deg,#E0A57A,var(--ember))}
 .bars b{font:400 clamp(16px,1.5vw,22px)/1 var(--disp)}
 .bars span{font:500 11px/1.2 var(--body);color:var(--sub);min-height:2.4em}
 .on .bars i{transform:none}
@@ -242,6 +242,7 @@ em{font-family:var(--disp);font-style:normal;color:var(--gold)}
 .who{min-height:100svh;padding-top:clamp(90px,10vw,140px);padding-bottom:clamp(90px,10vw,140px);display:grid;grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr);gap:clamp(30px,5vw,80px);align-items:center}
 .h-mid{font:400 clamp(30px,3.2vw,52px)/1 var(--disp);margin:18px 0 22px}
 .h-mid em{display:block;text-transform:none;color:#F4EDE3}
+#who .h-mid{color:rgba(241,232,220,.55)}
 .who p.sm{font-size:16px;max-width:36ch;color:var(--sub)}
 .who-nav{display:flex;align-items:center;gap:14px;margin-top:30px}
 .who-nav button{width:54px;height:54px;border-radius:50%;border:1px solid var(--fg);font-size:18px;transition:background .3s,color .3s}
@@ -964,7 +965,7 @@ em{font-style:normal}
       <p>The journey of one <a href="#who">Regular buyer</a>, Himanshu Roy, 35: from the first ad he sees to the friends he tells.</p>
     </div>
     <div class="jline" id="curve">
-      <div class="mood" id="mood" aria-hidden="true"><svg id="moodSvg"><defs><linearGradient id="jg" x1="0" x2="1"><stop offset="0" stop-color="#8A4A2A"/><stop offset=".6" stop-color="#C8622E"/><stop offset="1" stop-color="#D9B27C"/></linearGradient></defs><g id="moodG"></g></svg></div>
+      <div class="mood" id="mood" aria-hidden="true"><svg id="moodSvg"><defs><linearGradient id="jg" x1="0" x2="1"><stop offset="0" stop-color="#8A4A2A"/><stop offset=".6" stop-color="#B5683E"/><stop offset="1" stop-color="#D9B27C"/></linearGradient></defs><g id="moodG"></g></svg></div>
       <div class="jgrid" id="jgrid"></div>
     </div>
   </div>
