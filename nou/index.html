@@ -7,12 +7,12 @@
 <meta name="description" content="Brand strategy, identity and UI/UX for NOU, a men's footwear label handcrafted in 100% Indian leather.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&family=Montserrat:wght@400;500;600&family=Quicksand:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
 :root{
   --ink:#120806; --leather:#2A130B; --cognac:#8A4A2A; --ember:#C8622E; --gold:#D9B27C; --paper:#D7D1C0; --bone:#EFEEED; --white:#F7F7F7; --tan:#B07446; --tan2:#C98F5E;
   --bg:var(--ink); --fg:#F1E8DC; --sub:rgba(241,232,220,.6); --line:rgba(241,232,220,.16); --acc:var(--ember);
-  --disp:'Lato',system-ui,sans-serif; --sans:'Montserrat',system-ui,sans-serif; --body:'Lato',system-ui,sans-serif;
+  --disp:'Lato',system-ui,sans-serif; --sans:'Lato',system-ui,sans-serif; --body:'Lato',system-ui,sans-serif;
   --gut:clamp(20px,4vw,40px); --max:1240px; --ease:cubic-bezier(.2,.75,.15,1);
   --edge:max(var(--gut),calc((100vw - var(--max))/2 + var(--gut)));
 }
@@ -43,7 +43,7 @@ em{font-family:var(--disp);font-style:normal;color:var(--gold)}
 .bar{position:fixed;inset:0 0 auto 0;z-index:80;color:#F1E8DC;mix-blend-mode:difference;pointer-events:none}
 .bar .wrap{display:flex;justify-content:space-between;align-items:center;padding-top:20px;padding-bottom:20px}
 .bar .wrap > *{pointer-events:auto}
-.back{font:600 12px/1 'Quicksand',sans-serif;letter-spacing:.1em}
+.back{font:700 12px/1 var(--body);letter-spacing:.1em}
 .brandmark{display:flex;align-items:center;gap:10px;font:italic 400 14.5px/1 var(--body);}
 .brandmark .mk{width:24px}
 .idx-btn{font:italic 400 14.5px/1 var(--body);display:flex;align-items:center;gap:10px}
@@ -107,9 +107,11 @@ em{font-family:var(--disp);font-style:normal;color:var(--gold)}
 .chap a{color:var(--fg);border-bottom:1px solid var(--line);white-space:nowrap;transition:color .3s,border-color .3s}
 .chap a:hover{color:var(--ember);border-color:var(--ember)}
 .chap sup{font:600 9px/1 var(--body);letter-spacing:.08em;color:var(--ember);margin-right:4px}
-.mtext .st{background:repeating-linear-gradient(90deg,var(--ember) 0 9px,transparent 9px 15px) 0 92%/0% 2px no-repeat;transition:background-size 1.4s var(--ease)}
-.mtext .st.in{background-size:100% 2px}
-.mtext .st.gold{color:var(--gold)}
+/* the sentence sits quiet; the key words light up as it scrolls in */
+.mtext{color:rgba(239,238,237,.45)}
+.mtext .st{transition:color 1.2s var(--ease)}
+.mtext .st.in{color:var(--fg)}
+.mtext .st.gold.in{color:var(--gold)}
 .mside{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:clamp(30px,6vw,90px);align-items:end}
 .mside figure{aspect-ratio:3/4;border-radius:4px;overflow:hidden}
 .mside figure img{width:100%;height:120%;object-fit:cover}
@@ -367,8 +369,8 @@ html:not(.gs) .boards .final{display:none}
 .typeset{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:8px;padding-top:clamp(70px,9vw,130px)}
 .typeset figure{border-radius:18px;overflow:hidden;background:#1A0906}
 .tbox{border-radius:18px;border:1px solid var(--line);padding:clamp(22px,2.6vw,36px);display:flex;flex-direction:column;justify-content:space-between;gap:20px}
-.tbox .aa{font:500 clamp(80px,10vw,170px)/.8 Montserrat,sans-serif;letter-spacing:-.03em}
-.tbox h5{font:600 22px/1.2 Montserrat,sans-serif}
+.tbox .aa{font:300 clamp(80px,10vw,170px)/.8 var(--disp);letter-spacing:-.03em}
+.tbox h5{font:700 22px/1.2 var(--disp)}
 .patbg{min-height:clamp(440px,84vh,780px);display:flex;align-items:center;margin-top:clamp(70px,9vw,130px);color:#F1E8DC;--sub:rgba(241,232,220,.65);background-color:#6a3720;background-image:linear-gradient(90deg,rgba(18,8,6,.92) 0,rgba(18,8,6,.55) 55%,rgba(18,8,6,.35) 100%),url(img/pattern-tile.png);background-size:auto,300px auto;background-position:0 0,var(--px,0px) var(--py,0px);background-blend-mode:normal,multiply}
 .patbg .wrap{width:100%}
 .patbg p{font:400 clamp(40px,5.4vw,90px)/.98 var(--disp);margin:18px 0 20px;max-width:12ch}
@@ -496,7 +498,7 @@ html:not(.gs) .boards .final{display:none}
 .btns{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:36px}
 .btns .b{width:100%;text-align:center;padding:14px 10px}
 .btns .b.sm{font-size:12px;padding:14px 10px}
-.b{white-space:nowrap;font:500 12px/1 'Montserrat',sans-serif;letter-spacing:.1em;text-transform:uppercase;padding:13px 22px;border-radius:999px;border:1px solid #1A0906;transition:background .3s,color .3s,transform .3s var(--ease)}
+.b{white-space:nowrap;font:700 12px/1 var(--body);letter-spacing:.1em;text-transform:uppercase;padding:13px 22px;border-radius:999px;border:1px solid #1A0906;transition:background .3s,color .3s,transform .3s var(--ease)}
 .b.f{background:#1A0906;color:#EFEEED}
 .b.o{background:transparent;color:#1A0906}
 .b.g{background:#6f6866;color:#EFEEED;border-color:#6f6866}
@@ -544,7 +546,7 @@ footer .wrap{border-top:1px solid rgba(239,238,237,.12);padding-top:24px;padding
 body{line-height:1.75}
 .lead,.hero-row p,.chap,.cap,.p-sub,.qinfo,.trow p,.pc dl,.pc .meta2,.pc footer,.sp-open dl,.kids,.jb .act,.jb .tp,.notes li,.spec,.lane ul,.cs p,.who p.sm,.side .how,.outro p,.patbg p.p-sub,.shelf-note{line-height:1.75}
 .jb q,.pc .pq,.sp-open .th,.so,.pl p{line-height:1.65}
-.mtext{line-height:1.35}
+.mtext{line-height:1.3;letter-spacing:-.015em!important}
 .jintro p{line-height:1.3}
 .h-mid,.h-sm,.say h3,.patbg p{line-height:1.1}
 .ct em{line-height:1.2;margin-top:.3em}
@@ -577,6 +579,14 @@ body{line-height:1.75}
 .xl,.ct,.mtext,.num,.ln,.cnt b,.say h3,.h-mid,.h-sm,.patbg p,.mono-band p,.trow h5,.sp-open h4,.ang button b,.split b,.bars b,.jintro p,.index a span,.d,.bank p,.mood span,.marq span,.qp.nou span,.pc .pic span{font-weight:300!important;letter-spacing:-.01em}
 .jb h5,.br h5,.pc h4,.cl b,.pl h5,.cs h4,.lane b,.vn{font-weight:700!important;letter-spacing:0}
 em{font-style:normal}
+/* persona cards: light title, quiet labels, readable answers */
+.pc h4{font:300 clamp(30px,2.8vw,42px)/1.05 var(--disp)!important;letter-spacing:-.015em!important}
+.pc .meta2{font:400 13px/1.5 var(--body);letter-spacing:.02em;opacity:.55;margin-top:10px}
+.pc .pq{font:italic 300 clamp(18px,1.5vw,22px)/1.5 var(--body);color:#8A4A2A}
+.pc dt{font:italic 400 13px/1.2 var(--body);color:#A0532F;opacity:1}
+.pc dd{font:400 14.5px/1.55 var(--body)}
+.pc footer{font:300 15px/1.55 var(--body)}
+.pc footer b{font:italic 400 13px/1.2 var(--body);margin-bottom:8px}
 /* labels sit clear of the heading below them */
 .tag,.cn{margin-bottom:clamp(22px,2.2vw,32px)!important}
 .tr .tag{margin-bottom:12px!important}
@@ -1008,7 +1018,7 @@ em{font-style:normal}
         <button class="b o">Shop now</button><button class="b f">Shop now</button><button class="b f">Learn more</button><button class="b f">Get directions</button>
         <button class="b f">See all</button><button class="b f">Submit</button><button class="b o">Quick add +</button><button class="b g">Subscribe</button><button class="b f sm">Read more</button>
       </div>
-      <p class="spec">Montserrat Medium, uppercase, 0.1em tracking. Filled pills commit; outlined pills explore. Hover them.</p>
+      <p class="spec">Lato Bold, uppercase, 0.1em tracking. Filled pills commit; outlined pills explore. Hover them.</p>
     </div>
     <div>
       <span class="k">UI kit · icons</span>
@@ -1093,7 +1103,7 @@ em{font-style:normal}
     gsap.to('.hero .ph',{yPercent:8,scale:1.06,ease:'none',scrollTrigger:{trigger:hero,start:'top top',end:'bottom top',scrub:true}});
   }
 
-  /* brief: stitched underlines */
+  /* brief: key words light up */
   var sts=$$('.mtext .st');
   if(G){ sts.forEach(function(s,i){ ScrollTrigger.create({trigger:s,start:'top 78%',onEnter:function(){ setTimeout(function(){ s.classList.add('in'); },i*160); }}); });
     gsap.fromTo('#mImg',{yPercent:-10},{yPercent:0,ease:'none',scrollTrigger:{trigger:'.manifesto',start:'top bottom',end:'bottom top',scrub:true}});
