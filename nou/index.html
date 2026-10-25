@@ -44,14 +44,23 @@ em{font-family:var(--disp);font-style:normal;color:var(--gold)}
 .bar .wrap{display:flex;justify-content:space-between;align-items:center;padding-top:20px;padding-bottom:20px}
 .bar .wrap > *{pointer-events:auto}
 .back{font:700 12px/1 var(--body);letter-spacing:.1em}
-/* breadcrumb: Work / NOU / the chapter on screen */
+/* breadcrumb on the left, every chapter on the right; the one on screen is marked */
 .crumb{display:flex;align-items:baseline;gap:10px;font:400 13px/1 var(--body)}
 .crumb i{font-style:normal;opacity:.4}
 .crumb > a:not(.back){opacity:.75;transition:opacity .3s}
 .crumb a:hover{opacity:1}
-.crc{display:flex;gap:10px;align-items:baseline;opacity:0;transform:translateY(6px);transition:opacity .4s,transform .5s var(--ease)}
-.crc.on{opacity:1;transform:none}
-.crc a{font-style:italic}
+.chnav{display:flex;gap:clamp(14px,1.8vw,26px);font:400 13px/1 var(--body)}
+.chnav a{position:relative;padding:6px 0;opacity:.5;transition:opacity .3s}
+.chnav a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
+.chnav a:hover{opacity:.85}
+.chnav a.on{opacity:1}
+.chnav a.on::after{transform:scaleX(1)}
+@media (max-width:900px){
+  .bar .wrap{flex-direction:column;align-items:flex-start;gap:12px}
+  .chnav{max-width:100%;overflow-x:auto;scrollbar-width:none;gap:16px;font-size:12px;-webkit-mask-image:linear-gradient(90deg,#000 85%,transparent);mask-image:linear-gradient(90deg,#000 85%,transparent)}
+  .chnav::-webkit-scrollbar{display:none}
+  .chnav a{flex:none}
+}
 .brandmark{display:flex;align-items:center;gap:10px;font:italic 400 14.5px/1 var(--body);}
 .brandmark .mk{width:24px}
 .idx-btn{font:italic 400 14.5px/1 var(--body);display:flex;align-items:center;gap:10px}
@@ -696,7 +705,10 @@ em{font-style:normal}
 
 <header class="bar"><div class="wrap">
   <nav class="crumb" aria-label="Breadcrumb">
-    <a class="back" href="../#work">← WORK</a><i>/</i><a href="#top">NOU</a><span class="crc" id="crumb"><i>/</i><a href="#research" id="crumbA"></a></span>
+    <a class="back" href="../#work">← WORK</a><i>/</i><a href="#top">NOU</a>
+  </nav>
+  <nav class="chnav" id="chnav" aria-label="Chapters">
+    <a href="#research">Research</a><a href="#strategy">Strategy</a><a href="#identity">Identity</a><a href="#system">System</a><a href="#ux">UX</a><a href="#ui">UI</a><a href="#process">Process</a>
   </nav>
 </div></header>
 
@@ -1044,7 +1056,7 @@ em{font-style:normal}
   </div>
 </section>
 
-<section class="dark process" data-tone="ink">
+<section class="dark process" id="process" data-tone="ink">
   <header class="opener wrap">
     <div><span class="k">Process · sixteen weeks</span>
       <h2 class="d">From a blank page to launch.</h2></div>
@@ -1127,15 +1139,16 @@ em{font-style:normal}
     gsap.from('.mtext',{opacity:0,y:30,duration:1.2,ease:'power3.out',scrollTrigger:{trigger:'.mtext',start:'top 85%'}}); }
   else sts.forEach(function(s){ s.classList.add('in'); });
 
-  /* breadcrumb: the last chapter whose top has passed the middle of the screen */
+  /* chapter nav: mark the last chapter whose top has passed the middle of the screen */
   (function(){
-    var C=[['#research','Research'],['#strategy','Strategy'],['#identity','Identity'],['#system','System'],['#ux','UX'],['#ui','UI'],['.process','Process']]
-      .map(function(c){ return {el:$(c[0]),id:c[0].charAt(0)==='#'?c[0]:'',name:c[1]}; }).filter(function(c){ return c.el; });
-    var box=$('#crumb'), a=$('#crumbA'), cur=null, tick=0;
+    var links=$$('#chnav a'), C=links.map(function(a){ return {a:a,el:$(a.getAttribute('href'))}; }).filter(function(c){ return c.el; });
+    var cur=null, tick=0;
     function upd(){ tick=0; var mid=innerHeight/2, hit=null;
       C.forEach(function(c){ if(c.el.getBoundingClientRect().top<mid) hit=c; });
-      if(hit===cur) return; cur=hit; box.classList.toggle('on',!!hit);
-      if(hit){ a.textContent=hit.name; if(hit.id) a.setAttribute('href',hit.id); } }
+      if(hit===cur) return; cur=hit;
+      links.forEach(function(a){ a.classList.toggle('on',!!hit&&a===hit.a); });
+      /* on narrow screens the row scrolls sideways; keep the marked chapter in view */
+      if(hit){ var nav=hit.a.parentNode; if(nav.scrollWidth>nav.clientWidth) nav.scrollTo({left:hit.a.offsetLeft-nav.clientWidth/3,behavior:'smooth'}); } }
     addEventListener('scroll',function(){ if(!tick) tick=requestAnimationFrame(upd); },{passive:true});
     addEventListener('resize',upd); upd();
   })();
