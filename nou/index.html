@@ -125,7 +125,7 @@ em{font-family:var(--disp);font-style:normal;color:var(--gold)}
 .chapters a::after{content:"";position:absolute;left:0;top:-3px;width:7px;height:7px;border-radius:50%;background:var(--ember);transition:transform .4s var(--ease)}
 .chapters a b{display:block;font:700 11px/1 var(--body);letter-spacing:.08em;color:var(--ember)}
 .chapters a span{display:block;font:300 clamp(20px,1.7vw,26px)/1.15 var(--disp);color:var(--fg);margin:10px 0 5px;transition:color .3s,transform .4s var(--ease)}
-.chapters a em{font:italic 400 13.5px/1.3 var(--body);color:var(--sub)}
+.chapters a em{display:block;font:italic 400 13.5px/1.4 var(--body);color:var(--sub)}
 .chapters a:hover::before{border-color:var(--ember)}
 .chapters a:hover::after{transform:scale(1.5)}
 .chapters a:hover span{color:var(--gold);transform:translateX(4px)}
@@ -726,14 +726,14 @@ em{font-style:normal}
     <span class="tag">The brief</span>
     <p class="mtext">In 2024 India spent <span class="st gold">₹2,18,904 crore</span> on footwear. Buyers wanted shoes <span class="st">that last</span>, but the shelf made them choose: premium <em>or</em> handcrafted. NOU was made to be <span class="st gold">both</span>.</p>
     <div class="chap2">
-      <p class="chap-k">Six chapters, named for the stages of making a shoe</p>
+      <p class="chap-k">The case study, in six chapters</p>
       <nav class="chapters" aria-label="Chapters">
-        <a href="#research"><b>01</b><span>The last</span><em>Research</em></a>
-        <a href="#strategy"><b>02</b><span>The pattern</span><em>Strategy</em></a>
-        <a href="#identity"><b>03</b><span>Clicking</span><em>Identity</em></a>
-        <a href="#system"><b>04</b><span>Closing</span><em>System</em></a>
-        <a href="#ux"><b>05</b><span>Lasting</span><em>UX</em></a>
-        <a href="#ui"><b>06</b><span>Finishing</span><em>UI</em></a>
+        <a href="#research"><b>01</b><span>Research</span><em>Market and buyers</em></a>
+        <a href="#strategy"><b>02</b><span>Strategy</span><em>Positioning and personas</em></a>
+        <a href="#identity"><b>03</b><span>Identity</span><em>Logo, colour, type</em></a>
+        <a href="#system"><b>04</b><span>System</span><em>Brand touchpoints</em></a>
+        <a href="#ux"><b>05</b><span>UX</span><em>Journey and sitemap</em></a>
+        <a href="#ui"><b>06</b><span>UI</span><em>The finished store</em></a>
       </nav>
     </div>
   </div>
@@ -746,8 +746,8 @@ em{font-style:normal}
   <div class="htrack" id="rTrack">
     <article class="panel p-intro">
       <span class="cn">01 · Research</span>
-      <h2 class="ct xl">Research<em>the last</em></h2>
-      <p class="lead">A shoe is shaped around a wooden last. NOU was shaped around five numbers.</p>
+      <h2 class="ct xl">Research<em>market and buyers</em></h2>
+      <p class="lead">Before any design, I needed the market in numbers. NOU was shaped around five of them.</p>
       <div class="tools"><span>Desk research</span><span>Market sizing</span><span>Preference analysis</span><span>Sales‑mix analysis</span><span>Synthesis</span></div>
     </article>
     <article class="panel">
@@ -807,9 +807,9 @@ em{font-style:normal}
 <section id="strategy" data-tone="ink">
   <div class="wrap chead">
     <span class="cn">02 · Strategy</span>
-    <h2 class="ct xl">Strategy<em>the pattern</em></h2>
+    <h2 class="ct xl">Strategy<em>positioning and personas</em></h2>
     <div class="low">
-      <p class="lead">Before any leather is cut, the shoemaker draws a pattern. Before any design, I mapped the shelf, the buyers and the voice.</p>
+      <p class="lead">Before any design, I mapped the shelf, the buyers and the voice.</p>
       <div class="tools"><span>Competitor audit</span><span>Perceptual mapping</span><span>Segmentation</span><span>Personas</span><span>Word bank</span><span>Brand platform</span></div>
     </div>
   </div>
@@ -892,9 +892,9 @@ em{font-style:normal}
 <section id="identity" data-tone="bone">
   <div class="wrap chead">
     <span class="cn">03 · Identity</span>
-    <h2 class="ct xl">Identity<em>clicking</em></h2>
+    <h2 class="ct xl">Identity<em>logo, colour, type</em></h2>
     <div class="low">
-      <p class="lead">Clicking is cutting leather by hand, with nothing wasted. The mark went through the same cut.</p>
+      <p class="lead">A mark, colours and type made to be pressed into leather, with nothing that doesn’t earn its place.</p>
       <div class="tools"><span>Logo brief</span><span>Exploration</span><span>Geometric construction</span><span>Lockup system</span><span>Colour &amp; type</span></div>
     </div>
   </div>
@@ -964,8 +964,8 @@ em{font-style:normal}
   <div class="ctrack" id="cTrack">
     <div class="intro">
       <span class="cn">04 · System</span>
-      <h2 class="ct xl">System<em>closing</em></h2>
-      <p class="lead">Closing stitches cut pieces into one upper. The system stitches one mark across every surface a customer touches.</p>
+      <h2 class="ct xl">System<em>brand touchpoints</em></h2>
+      <p class="lead">One mark, carried across every surface a customer touches.</p>
       <div class="tools"><span>Brand guidelines</span><span>Collateral system</span><span>Pattern &amp; watermark</span></div>
     </div>
     <figure class="cs w1"><div class="fr"><img src="img/emboss.jpg" alt="Debossed mark on a suede tongue tab"></div><figcaption class="m"><h4>Tongue tab</h4><p>Debossed into suede.</p></figcaption></figure>
@@ -983,9 +983,9 @@ em{font-style:normal}
 <section id="ux" data-tone="leather">
   <div class="wrap chead">
     <span class="cn">05 · UX</span>
-    <h2 class="ct xl">UX<em>lasting</em></h2>
+    <h2 class="ct xl">UX<em>journey and sitemap</em></h2>
     <div class="low">
-      <p class="lead">Lasting pulls the upper tight over the last until it fits. Before any screen, I fitted the store to one customer.</p>
+      <p class="lead">Before any screen, I fitted the store to one customer.</p>
       <div class="tools"><span>UI brief</span><span>User journey map</span><span>Information architecture</span><span>Sitemap</span></div>
     </div>
   </div>
@@ -1014,9 +1014,9 @@ em{font-style:normal}
 <section id="ui" data-tone="ink">
   <div class="wrap chead">
     <span class="cn">06 · UI</span>
-    <h2 class="ct xl">UI<em>finishing</em></h2>
+    <h2 class="ct xl">UI<em>the finished store</em></h2>
     <div class="low">
-      <p class="lead">The last stage burnishes the shoe until it shines. Here is the finished store. It isn’t a slideshow: click through it like a customer.</p>
+      <p class="lead">Here is the finished store. It isn’t a slideshow: click through it like a customer.</p>
       <div class="tools"><span>Wireframes</span><span>High‑fidelity UI</span><span>UI kit</span><span>Usability review</span></div>
     </div>
   </div>
