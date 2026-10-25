@@ -10,46 +10,50 @@
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&amp;family=Caveat+Brush&amp;display=swap" rel="stylesheet">
-<style>.xp{margin-top:clamp(56px,6cqw,80px);border-bottom:1px solid rgba(244,239,230,.15)}
-.xp-row{position:relative;border-top:1px solid rgba(244,239,230,.15);cursor:pointer;overflow:hidden;-webkit-tap-highlight-color:transparent}
-.xp-fill{position:absolute;inset:0;background:#D42A2E;transform:scaleX(0);transform-origin:left;transition:transform .7s cubic-bezier(.7,0,.2,1)}
-.xp-row.on .xp-fill{transform:scaleX(1)}
-.xp-head{position:relative;display:grid;grid-template-columns:56px minmax(0,1fr) auto 46px;align-items:center;gap:0 24px;padding:clamp(22px,2.4cqw,34px) clamp(16px,2cqw,28px)}
-.xp-n{font:400 14px/1 'Familjen Grotesk',sans-serif;color:#90887D;transition:color .3s}
-.xp-t{display:block;font:400 clamp(26px,3.2cqw,46px)/1.1 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;color:#F4EFE6;transition:transform .5s cubic-bezier(.3,1.4,.5,1),color .3s}
-.xp-co{display:block;margin-top:10px;font:400 16px/1.3 'Familjen Grotesk',sans-serif;color:#ABA398;transition:color .3s}
-.xp-d{font:400 15px/1.2 'Familjen Grotesk',sans-serif;color:#ABA398;white-space:nowrap;transition:color .3s}
-.xp-x{width:46px;height:46px;border-radius:50%;border:1px solid rgba(244,239,230,.35);display:grid;place-items:center;font:300 24px/1 'Familjen Grotesk',sans-serif;color:#F4EFE6;transition:transform .55s cubic-bezier(.3,1.4,.5,1),background .3s,color .3s,border-color .3s}
-.xp-row:not(.on):hover .xp-t{color:#D42A2E;transform:translateX(12px)}
-.xp-row:not(.on):hover .xp-x{border-color:#D42A2E;color:#D42A2E;transform:rotate(90deg)}
-.xp-row.on .xp-n,.xp-row.on .xp-co,.xp-row.on .xp-d{color:rgba(244,239,230,.82)}
-.xp-row.on .xp-x{transform:rotate(45deg);background:#F4EFE6;color:#D42A2E;border-color:transparent}
-.xp-body{position:relative;display:grid;grid-template-rows:0fr;transition:grid-template-rows .65s cubic-bezier(.7,0,.2,1)}
-.xp-row.on .xp-body{grid-template-rows:1fr}
-.xp-body>div{overflow:hidden;min-height:0}
-.xp-in{display:grid;grid-template-columns:56px minmax(0,1fr) auto;gap:0 24px;padding:0 clamp(16px,2cqw,28px) clamp(28px,3cqw,42px)}
-.xp-in ul{grid-column:2;margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:12px;max-width:780px}
-.xp-in li{position:relative;padding-left:24px;font:400 clamp(16px,1.3cqw,18px)/1.6 'Familjen Grotesk',sans-serif;color:#F4EFE6;opacity:0;transform:translateY(10px);transition:opacity .45s ease,transform .55s cubic-bezier(.2,.7,.2,1)}
-.xp-in li::before{content:"";position:absolute;left:0;top:.8em;width:12px;height:1px;background:#F4EFE6}
-.xp-row.on .xp-in li{opacity:1;transform:none}
-.xp-note{grid-column:3;align-self:end;padding:9px 16px 7px;border-radius:999px;background:#F4EFE6;color:#1F1C1A;font:400 clamp(19px,1.7cqw,23px)/1 'Caveat Brush',cursive;white-space:nowrap;opacity:0;transform:rotate(-8deg) scale(.6);transition:opacity .3s ease .35s,transform .6s cubic-bezier(.3,1.6,.5,1) .35s}
-.xp-row.on .xp-note{opacity:1;transform:rotate(-3deg)}
-.tl-grid{margin-top:clamp(56px,6cqw,80px);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(12px,1.4cqw,20px);perspective:1000px}
-.tl{position:relative;aspect-ratio:1/1.05;padding:clamp(16px,1.8cqw,26px);border:1px solid rgba(244,239,230,.15);border-radius:20px;background:#24211E;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;cursor:default;-webkit-tap-highlight-color:transparent;transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .45s cubic-bezier(.2,.7,.2,1),border-color .3s}
-.tl-fill{position:absolute;inset:0;background:#D42A2E;clip-path:circle(0% at var(--mx,50%) var(--my,100%));transition:clip-path .65s cubic-bezier(.7,0,.2,1)}
-.tl:hover,.tl.on{border-color:#D42A2E}
-.tl:hover .tl-fill,.tl.on .tl-fill{clip-path:circle(150% at var(--mx,50%) var(--my,100%))}
-.tl-top{position:relative;display:flex;justify-content:space-between;font:400 14px/1 'Familjen Grotesk',sans-serif;color:#90887D;transition:color .3s}
-.tl-m{position:relative;font:500 clamp(54px,6.6cqw,100px)/1 'Familjen Grotesk',sans-serif;letter-spacing:-.04em;color:#F4EFE6;transform-origin:left bottom;transition:transform .6s cubic-bezier(.3,1.5,.5,1)}
-.tl-b{position:relative;min-height:2.4em}
-.tl-name{position:absolute;left:0;bottom:0;font:500 clamp(16px,1.4cqw,19px)/1.2 'Familjen Grotesk',sans-serif;color:#F4EFE6;transition:opacity .3s,transform .45s cubic-bezier(.2,.7,.2,1)}
-.tl-note{position:absolute;left:0;bottom:0;padding:7px 12px 5px;border-radius:999px;background:#F4EFE6;color:#1F1C1A;font:400 clamp(17px,1.6cqw,22px)/1.05 'Caveat Brush',cursive;max-width:100%;opacity:0;transform:translateY(12px) rotate(-2deg);transition:opacity .3s,transform .5s cubic-bezier(.3,1.5,.5,1)}
-.tl:hover .tl-top,.tl.on .tl-top{color:rgba(244,239,230,.85)}
-.tl:hover .tl-m,.tl.on .tl-m{transform:translateY(-6px) rotate(-5deg) scale(1.06)}
-.tl:hover .tl-name,.tl.on .tl-name{opacity:0;transform:translateY(-10px)}
-.tl:hover .tl-note,.tl.on .tl-note{opacity:1;transform:rotate(-2deg)}
-@container (max-width:900px){.tl-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@container (max-width:700px){.xp-head{grid-template-columns:minmax(0,1fr) 42px;gap:0 14px}.xp-n{display:none}.xp-d{grid-column:1;grid-row:2;margin-top:8px;font-size:14px}.xp-x{grid-column:2;grid-row:1/3;width:42px;height:42px}.xp-in{grid-template-columns:minmax(0,1fr)}.xp-in ul,.xp-note{grid-column:1}.xp-note{justify-self:start;margin-top:20px}.tl{border-radius:16px}}
+<style>.xs-track{position:relative;height:260vh}
+.xs-pin{position:sticky;top:0;height:100vh;display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.6fr);gap:clamp(32px,4.5cqw,80px);align-items:center}
+.xs-year{display:flex;font:500 clamp(96px,12.5cqw,200px)/1 'Familjen Grotesk',sans-serif;letter-spacing:-.05em;color:#F4EFE6}
+.xs-roll{flex:none;display:inline-block;height:1em;overflow:hidden;color:#D42A2E}
+.xs-reel{display:flex;flex-direction:column;transition:transform .9s cubic-bezier(.3,1.25,.5,1)}
+.xs-reel span{display:block;height:1em}
+.xs-when{margin-top:18px;font:400 clamp(20px,1.8cqw,26px)/1.1 'Caveat Brush',cursive;color:#F4EFE6;transform:rotate(-2deg);transform-origin:left}
+.xs-bar{margin-top:30px;max-width:220px;height:2px;background:rgba(244,239,230,.15);overflow:hidden}
+.xs-bar span{display:block;height:100%;background:#D42A2E;transform-origin:left;transform:scaleX(0);transition:transform .25s linear}
+.xs-line{margin:0;font:400 clamp(24px,2.7cqw,42px)/1.38 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;text-wrap:pretty}
+.xs-p{color:#5E574E;transition:color .6s}
+.xs-p.read{color:#F4EFE6}
+.xs-k{cursor:pointer;color:#7D766C;padding:0 .1em;border-bottom:1px dashed rgba(212,42,46,.8);background:linear-gradient(#D42A2E,#D42A2E) left/0% 100% no-repeat;-webkit-box-decoration-break:clone;box-decoration-break:clone;transition:background-size .75s cubic-bezier(.7,0,.2,1),color .4s,border-color .4s}
+.xs-k:hover{color:#D42A2E}
+.xs-k.done{color:#F4EFE6;border-bottom:2px solid #D42A2E}
+.xs-k.on{color:#F4EFE6;background-size:100% 100%;border-bottom-color:transparent}
+.xs-hint{margin-top:18px;font:400 19px/1.2 'Caveat Brush',cursive;color:#9D958A}
+.xs-det{display:grid;margin-top:clamp(30px,3.4cqw,50px)}
+.xs-d{grid-area:1/1;opacity:0;visibility:hidden;transition:opacity .35s,visibility 0s .35s}
+.xs-d.on{opacity:1;visibility:visible;transition:opacity .5s .12s}
+.xs-h{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 18px;padding-bottom:14px;border-bottom:1px solid rgba(244,239,230,.15)}
+.xs-t{font:500 clamp(18px,1.6cqw,22px)/1.2 'Familjen Grotesk',sans-serif;color:#F4EFE6}
+.xs-o{font:400 15px/1.3 'Familjen Grotesk',sans-serif;color:#9D958A}
+.xs-d ul{margin:18px 0 0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 36px}
+.xs-d li{position:relative;padding-left:22px;font:400 15px/1.6 'Familjen Grotesk',sans-serif;color:#C2BBB0;opacity:0;transform:translateY(14px);transition:opacity .5s,transform .65s cubic-bezier(.2,.7,.2,1)}
+.xs-d li::before{content:"";position:absolute;left:0;top:.8em;width:11px;height:1px;background:#D42A2E}
+.xs-d.on li{opacity:1;transform:none}
+.dk-wrap{position:relative;margin-top:clamp(36px,4cqw,56px)}
+.dk-desk{position:relative;height:clamp(160px,15cqw,196px)}
+.dk-win{position:absolute;bottom:20px;width:236px;border-radius:12px;background:#2C2825;border:1px solid #3A3531;box-shadow:0 22px 50px rgba(0,0,0,.45);overflow:hidden;pointer-events:none;opacity:0;transform:translate(-50%,26px) scale(.86) rotate(-3deg);transition:opacity .25s,transform .5s cubic-bezier(.3,1.5,.5,1),left .4s cubic-bezier(.2,.7,.2,1)}
+.dk-win.on{opacity:1;transform:translate(-50%,0) scale(1) rotate(-1.5deg)}
+.dk-bar{height:30px;display:flex;align-items:center;gap:5px;padding:0 10px;background:#24211E;font:400 12px/1 'Familjen Grotesk',sans-serif;color:#9D958A}
+.dk-bar i{flex:none;width:8px;height:8px;border-radius:50%;background:#4a4a4a}
+.dk-bar span{margin-left:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dk-body{display:flex;flex-direction:column;gap:6px;padding:14px 16px 16px}
+.dk-nm{font:500 16px/1.2 'Familjen Grotesk',sans-serif;color:#F4EFE6}
+.dk-nt{font:400 23px/1.05 'Caveat Brush',cursive;color:#D42A2E}
+.dk{--b:min(58px,calc((100cqw - 2*clamp(20px,5.5cqw,80px) - 26px - 7*10px)/8));display:flex;align-items:flex-end;justify-content:center;gap:10px;width:max-content;max-width:100%;margin:0 auto;padding:11px 13px 13px;border-radius:24px;background:rgba(244,239,230,.06);border:1px solid rgba(244,239,230,.12);box-shadow:0 18px 40px -20px rgba(0,0,0,.6)}
+.dk-i{position:relative;flex:none;width:calc(var(--b)*var(--z,1));height:calc(var(--b)*var(--z,1));padding:0;border:0;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:width .16s ease-out,height .16s ease-out}
+.dk-i svg,.dk-ad{display:block;width:100%;height:100%;border-radius:23%}
+.dk-ad{display:grid;place-items:center;font:600 calc(var(--b)*var(--z,1)*.44)/1 'Familjen Grotesk',sans-serif;letter-spacing:-.02em}
+.dk-dot{position:absolute;left:50%;bottom:-8px;width:4px;height:4px;margin-left:-2px;border-radius:50%;background:transparent;transition:background .3s}
+.dk-dot.on{background:#F4EFE6}
+@container (max-width:700px){.xs-track{height:auto}.xs-pin{position:relative;height:auto;grid-template-columns:minmax(0,1fr);gap:26px;padding-top:44px}.xs-year{font-size:104px}.xs-d ul{grid-template-columns:minmax(0,1fr)}.dk{gap:6px;padding:8px 9px 10px;border-radius:18px;--b:calc((100cqw - 40px - 20px - 7*6px)/8)}.dk-win{width:210px}}
 body{margin:0;background:#161412}*{box-sizing:border-box}html{scroll-behavior:smooth}a{color:inherit;text-decoration:none;transition:color .2s}a:hover{color:#D42A2E}::selection{background:#D42A2E;color:#F4EFE6}@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}html{scroll-behavior:auto!important}}</style>
 <script src="reeva-face.js"></script>
 </helmet>
@@ -116,33 +120,37 @@ body{margin:0;background:#161412}*{box-sizing:border-box}html{scroll-behavior:sm
 </section>
 
 <section style="padding:clamp(90px,10cqw,140px) clamp(20px,5.5cqw,80px) 0">
-<div data-reveal="1" style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px;font:500 19px/1 'Familjen Grotesk',sans-serif"><span style="font:400 26px/1 'Caveat Brush',cursive;color:#D42A2E">Where I've Worked</span><span style="font:400 15px/1 'Familjen Grotesk',sans-serif;color:#9D958A">2023 — 2025</span></div>
-<div data-reveal="1" style="margin-top:48px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px 48px">
-<h2 style="margin:0;font:400 clamp(28px,3.6cqw,52px)/1.15 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;color:#F4EFE6">Where the work<br><span style="color:#D42A2E">got real.</span></h2>
-<span style="font:400 20px/1.2 'Caveat Brush',cursive;color:#9D958A">{{ expHint }}</span>
+<div data-reveal="1" style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px;font:500 19px/1 'Familjen Grotesk',sans-serif"><span style="font:400 26px/1 'Caveat Brush',cursive;color:#D42A2E">Where I've Worked</span><span style="font:400 15px/1 'Familjen Grotesk',sans-serif;color:#9D958A">{{ xpCount }}</span></div>
+<div ref="{{ xpTrackRef }}" class="xs-track">
+<div class="xs-pin">
+<div>
+<div class="xs-year" aria-hidden="true"><span>20</span><span class="xs-roll"><span class="xs-reel" style="transform:translateY({{ xpReel }})"><span>23</span><span>24</span><span>25</span></span></span></div>
+<div class="xs-when">{{ xpWhen }}</div>
+<div class="xs-bar"><span ref="{{ xpBarRef }}"></span></div>
 </div>
-<div class="xp" data-reveal="1">
-<sc-for list="{{ roles }}" as="r" hint-placeholder-count="3"><div class="xp-row {{ r.cls }}" onClick="{{ r.toggle }}">
-<div class="xp-fill"></div>
-<div class="xp-head"><span class="xp-n">{{ r.n }}</span><span><span class="xp-t">{{ r.title }}</span><span class="xp-co">{{ r.org }}</span></span><span class="xp-d">{{ r.when }}</span><span class="xp-x">+</span></div>
-<div class="xp-body"><div><div class="xp-in"><ul><sc-for list="{{ r.pts }}" as="pt" hint-placeholder-count="2"><li style="transition-delay:{{ pt.d }}">{{ pt.t }}</li></sc-for></ul><span class="xp-note">{{ r.note }}</span></div></div></div>
-</div></sc-for>
+<div>
+<p class="xs-line"><sc-for list="{{ xpSegs }}" as="g" hint-placeholder-count="7"><span class="{{ g.cls }}" onClick="{{ g.go }}">{{ g.t }}</span></sc-for></p>
+<div class="xs-hint">{{ xpHint }}</div>
+<div class="xs-det"><sc-for list="{{ roles }}" as="r" hint-placeholder-count="3"><div class="xs-d {{ r.cls }}">
+<div class="xs-h"><span class="xs-t">{{ r.title }}</span><span class="xs-o">{{ r.org }} · {{ r.when }}</span></div>
+<ul><sc-for list="{{ r.pts }}" as="pt" hint-placeholder-count="2"><li style="transition-delay:{{ pt.d }}">{{ pt.t }}</li></sc-for></ul>
+</div></sc-for></div>
+</div>
+</div>
 </div>
 </section>
 
-<section style="padding:clamp(90px,10cqw,140px) clamp(20px,5.5cqw,80px) 0">
-<div data-reveal="1" style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px;font:500 19px/1 'Familjen Grotesk',sans-serif"><span style="font:400 26px/1 'Caveat Brush',cursive;color:#D42A2E">What's On My Desk</span><span style="font:400 15px/1 'Familjen Grotesk',sans-serif;color:#9D958A">{{ toolCount }}</span></div>
+<section style="padding:clamp(60px,6cqw,90px) clamp(20px,5.5cqw,80px) 0">
+<div data-reveal="1" style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px;font:500 19px/1 'Familjen Grotesk',sans-serif"><span style="font:400 26px/1 'Caveat Brush',cursive;color:#D42A2E">What's On My Desk</span><span style="font:400 15px/1 'Familjen Grotesk',sans-serif;color:#9D958A">{{ dkCount }}</span></div>
 <div data-reveal="1" style="margin-top:48px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px 48px">
-<h2 style="margin:0;font:400 clamp(28px,3.6cqw,52px)/1.15 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;color:#F4EFE6">The tools<br><span style="color:#D42A2E">I think with.</span></h2>
-<span style="font:400 20px/1.2 'Caveat Brush',cursive;color:#9D958A">{{ toolHint }}</span>
+<h2 style="margin:0;font:400 clamp(28px,3.6cqw,52px)/1.15 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;color:#F4EFE6">The apps that<br><span style="color:#D42A2E">never get closed.</span></h2>
+<span style="font:400 20px/1.2 'Caveat Brush',cursive;color:#9D958A">{{ dkHint }}</span>
 </div>
-<div class="tl-grid" data-reveal="1">
-<sc-for list="{{ tools }}" as="t" hint-placeholder-count="8"><div class="tl {{ t.cls }}" onMouseMove="{{ t.move }}" onMouseLeave="{{ t.leave }}" onClick="{{ t.tap }}">
-<div class="tl-fill"></div>
-<div class="tl-top"><span>{{ t.n }}</span><span>{{ t.kind }}</span></div>
-<div class="tl-m">{{ t.m }}</div>
-<div class="tl-b"><span class="tl-name">{{ t.name }}</span><span class="tl-note">{{ t.note }}</span></div>
-</div></sc-for>
+<div ref="{{ dkWrapRef }}" class="dk-wrap" data-reveal="1">
+<div class="dk-desk"><div class="dk-win {{ dk.cls }}" style="left:{{ dk.x }}"><div class="dk-bar"><i></i><i></i><i></i><span>{{ dk.file }}</span></div><div class="dk-body"><div class="dk-nm">{{ dk.name }}</div><div class="dk-nt">{{ dk.note }}</div></div></div></div>
+<div class="dk" onMouseMove="{{ dockMove }}" onMouseLeave="{{ dockLeave }}">
+<sc-for list="{{ dockApps }}" as="t" hint-placeholder-count="8"><button ref="{{ t.ref }}" class="dk-i" aria-label="{{ t.name }}" onMouseEnter="{{ t.on }}" onClick="{{ t.tap }}"><sc-if value="{{ t.fig }}"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x=".75" y=".75" width="62.5" height="62.5" rx="14.5" fill="#2A2A2A" stroke="rgba(255,255,255,.18)" stroke-width="1.5"></rect><path d="M32 14H26a6 6 0 0 0 0 12h6z" fill="#F24E1E"></path><path d="M32 14h6a6 6 0 0 1 0 12h-6z" fill="#FF7262"></path><path d="M32 26H26a6 6 0 0 0 0 12h6z" fill="#A259FF"></path><circle cx="38" cy="32" r="6" fill="#1ABCFE"></circle><path d="M32 38H26a6 6 0 1 0 6 6z" fill="#0ACF83"></path></svg></sc-if><sc-if value="{{ t.ad }}"><span class="dk-ad" style="background:{{ t.bg }};color:{{ t.fg }}">{{ t.m }}</span></sc-if><span class="dk-dot {{ t.dot }}"></span></button></sc-for>
+</div>
 </div>
 </section>
 
@@ -221,20 +229,22 @@ const PICKS = [
   { a: 'Questions', b: 'Answers', me: 'a', why: 'Questions. The answers come later.' },
   { a: 'Chai', b: 'Coffee', me: 'a', why: 'Chai. Non-negotiable.' },
 ];
+// Experience, oldest first: the story sentence lights each phrase in turn as you scroll.
 const ROLES = [
-  { title: 'UI/UX Designer', org: 'Zero Gravity Communications, Ahmedabad', when: 'July 2024 – June 2025', note: 'stayed on after the internship', pts: ['Translated project requirements into website layouts, user flows and interface designs, balancing usability, visual hierarchy and business objectives.', 'Worked across information architecture, typography, colour and content structure to shape cohesive digital experiences.', 'Built and maintained Figma component libraries and style guides to support consistency across interfaces.', 'Collaborated with developers to address design feasibility, responsive behaviour and implementation requirements.'] },
-  { title: 'UI/UX Designer Intern', org: 'Zero Gravity Communications, Ahmedabad', when: 'January 2024 – July 2024', note: 'where I learnt the ropes', pts: ['Designed responsive web and mobile interfaces using Figma and Adobe XD.', 'Supported competitor analysis and user research to inform interface layouts, content hierarchy and user journeys.'] },
-  { title: 'Communication Designer Intern', org: 'Web Plus Info Tech Pvt. Ltd.', when: 'June 2023 – July 2023', note: 'my first studio', pts: ['Created visual communication assets and promotional creatives for digital applications.', 'Contributed to website layouts and explored motion graphics across design projects.'] },
+  { title: 'Communication Designer Intern', org: 'Web Plus Info Tech Pvt. Ltd.', when: 'June 2023 – July 2023', yr: 'jun – jul 2023', pts: ['Created visual communication assets and promotional creatives for digital applications.', 'Contributed to website layouts and explored motion graphics across design projects.'] },
+  { title: 'UI/UX Designer Intern', org: 'Zero Gravity Communications, Ahmedabad', when: 'January 2024 – July 2024', yr: 'jan – jul 2024', pts: ['Designed responsive web and mobile interfaces using Figma and Adobe XD.', 'Supported competitor analysis and user research to inform interface layouts, content hierarchy and user journeys.'] },
+  { title: 'UI/UX Designer', org: 'Zero Gravity Communications, Ahmedabad', when: 'July 2024 – June 2025', yr: 'jul 2024 – jun 2025', pts: ['Translated project requirements into website layouts, user flows and interface designs, balancing usability, visual hierarchy and business objectives.', 'Worked across information architecture, typography, colour and content structure to shape cohesive digital experiences.', 'Built and maintained Figma component libraries and style guides to support consistency across interfaces.', 'Collaborated with developers to address design feasibility, responsive behaviour and implementation requirements.'] },
 ];
+const XSEG = [['I started in 2023 as '], ['a communication design intern at Web Plus Info Tech', 0], [', then joined '], ['Zero Gravity Communications as a UI/UX intern', 1], [' in 2024, and stayed on as '], ['their UI/UX Designer', 2], [' until June 2025.']];
 const TOOLS = [
-  { m: 'Fg', name: 'Figma', kind: 'interface', note: 'where most things start' },
-  { m: 'Xd', name: 'Adobe XD', kind: 'interface', note: 'clickable prototypes' },
-  { m: 'Ai', name: 'Illustrator', kind: 'vector', note: 'icons, marks, pictograms' },
-  { m: 'Ps', name: 'Photoshop', kind: 'image', note: 'pixels and patience' },
-  { m: 'Id', name: 'InDesign', kind: 'layout', note: 'reports and long reads' },
-  { m: 'Ae', name: 'After Effects', kind: 'motion', note: 'when it needs to move' },
-  { m: 'Pr', name: 'Premiere Pro', kind: 'video', note: 'cutting the story' },
-  { m: 'Au', name: 'Audition', kind: 'sound', note: 'making it sound right' },
+  { name: 'Figma', fig: true, file: 'brief_v4.fig', note: 'where most things start' },
+  { name: 'Adobe XD', m: 'Xd', bg: '#470137', fg: '#FF61F6', file: 'flow_clickable.xd', note: 'quick clickable prototypes' },
+  { name: 'Illustrator', m: 'Ai', bg: '#330000', fg: '#FF9A00', file: 'pictograms_final.ai', note: 'icons, marks, pictograms' },
+  { name: 'Photoshop', m: 'Ps', bg: '#001E36', fg: '#31A8FF', file: 'retouch_02.psd', note: 'pixels and patience' },
+  { name: 'InDesign', m: 'Id', bg: '#49021F', fg: '#FF3366', file: 'research_report.indd', note: 'reports and long reads' },
+  { name: 'After Effects', m: 'Ae', bg: '#00005B', fg: '#9999FF', file: 'logo_intro.aep', note: 'when it needs to move' },
+  { name: 'Premiere Pro', m: 'Pr', bg: '#00005B', fg: '#9999FF', file: 'cut_v3_FINAL.prproj', note: 'cutting the story together' },
+  { name: 'Audition', m: 'Au', bg: '#00332A', fg: '#00E4BB', file: 'voiceover_clean.sesx', note: 'making it sound right' },
 ];
 
 const SEGS = [
@@ -251,15 +261,42 @@ class Component extends DCLogic {
   schoolsSecRef = React.createRef(); schoolsRef = React.createRef(); schoolsA = React.createRef(); schoolsB = React.createRef();
   spotRef = React.createRef(); lineRef = React.createRef(); pickRef = React.createRef(); footLineRef = React.createRef();
   iconRefs = VALUES.map(() => React.createRef());
+  xpTrackRef = React.createRef(); xpBarRef = React.createRef(); dkWrapRef = React.createRef(); dkRefs = TOOLS.map(() => React.createRef());
+  // Experience: on desktop the pinned story advances with scroll; on phones the highlights are tapped instead.
+  xpScroll = () => {
+    const tr = this.xpTrackRef.current, bar = this.xpBarRef.current; if (!tr) return;
+    if (innerWidth < 700) { if (bar) bar.style.transform = `scaleX(${((this.state.xi || 0) + 1) / ROLES.length})`; return; }
+    const b = tr.getBoundingClientRect(), p = clamp(-b.top / Math.max(1, b.height - innerHeight), 0, 1), i = Math.min(ROLES.length - 1, Math.floor(p * ROLES.length));
+    if (bar) bar.style.transform = `scaleX(${p.toFixed(3)})`;
+    if (i !== (this.state.xi || 0)) this.setState({ xi: i });
+  };
+  xpGo = i => {
+    const tr = this.xpTrackRef.current; if (!tr) return;
+    if (innerWidth < 700) { this.setState({ xi: i }, this.xpScroll); return; }
+    const b = tr.getBoundingClientRect(); scrollTo({ top: scrollY + b.top + (b.height - innerHeight) * (i + .5) / ROLES.length, behavior: 'smooth' });
+  };
+  dockShow = i => {
+    const el = this.dkRefs[i].current, w = this.dkWrapRef.current; if (!el || !w) return;
+    const b = el.getBoundingClientRect(), wb = w.getBoundingClientRect(), half = innerWidth < 700 ? 105 : 118;
+    this.setState({ dk: i, dkX: Math.round(clamp(b.left + b.width / 2 - wb.left, half, wb.width - half)) });
+  };
+  dockMove = e => {
+    if (innerWidth < 700) return;
+    const els = this.dkRefs.map(r => r.current).filter(Boolean);
+    if (!this.dkBase) this.dkBase = els.map(el => { const b = el.getBoundingClientRect(); return b.left + b.width / 2; });
+    els.forEach((el, i) => { const d = Math.abs(e.clientX - this.dkBase[i]), k = d < 160 ? (Math.cos(d / 160 * Math.PI) + 1) / 2 : 0; el.style.setProperty('--z', (1 + .72 * k).toFixed(3)); });
+  };
+  dockLeave = () => { this.dkBase = null; this.dkRefs.forEach(r => r.current && r.current.style.setProperty('--z', '1')); if (innerWidth >= 700) this.setState({ dk: null }); };
   m = { x: -999, y: -999 }; pk = 0; cd = null; clicks = [];
   p(k, d) { const v = this.props[k]; return v === undefined || v === null ? d : v; }
   onScroll = () => {
+    this.xpScroll();
     const w = this.schoolsRef.current; if (!w) return;
     const b = w.getBoundingClientRect(), H = innerHeight, pr = clamp((H - b.top) / (H * .65), 0, 1), off = ((1 - pr) * 40).toFixed(1);
     if (this.schoolsA.current) this.schoolsA.current.style.transform = `translateX(-${off}%)`;
     if (this.schoolsB.current) this.schoolsB.current.style.transform = `translateX(${off}%)`;
   };
-  onResize = () => { const d = innerWidth < 700 ? 'mobile' : 'desktop'; if (d !== this.state.device) this.setState({ device: d }); this.onScroll(); };
+  onResize = () => { this.dkBase = null; const d = innerWidth < 700 ? 'mobile' : 'desktop'; if (d !== this.state.device) this.setState({ device: d }); this.onScroll(); };
   heroMove = e => { const b = this.heroRef.current.getBoundingClientRect(); this.m = { x: e.clientX - b.left, y: e.clientY - b.top }; };
   heroLeave = () => { this.m = { x: -999, y: -999 }; };
   spotMove = e => { const el = this.spotRef.current; if (!el) return; const b = el.getBoundingClientRect(); el.style.clipPath = `circle(${this.p('spotSize', 110)}px at ${e.clientX - b.left}px ${e.clientY - b.top}px)`; };
@@ -391,16 +428,20 @@ class Component extends DCLogic {
       prevPick: () => { clearTimeout(this.pt); this.setState(x => ({ pi: Math.max(0, (x.pi || 0) - 1) })); },
       nextPick: () => { clearTimeout(this.pt); this.setState(x => ((x.pi || 0) >= PICKS.length - 1 ? { pi: 0, picks: {} } : { pi: (x.pi || 0) + 1 })); },
       nextLabel: (s.pi || 0) >= PICKS.length - 1 ? 'Start over ↺' : 'Next →',
-      expHint: mob ? 'tap a role to open it' : 'click a role to open it',
-      roles: ROLES.map((r, i) => { const open = (s.xo === undefined ? 0 : s.xo) === i; return { ...r, n: '0' + (i + 1), cls: open ? 'on' : '', pts: r.pts.map((t, j) => ({ t, d: open ? (.22 + j * .08).toFixed(2) + 's' : '0s' })), toggle: () => this.setState(x => ({ xo: (x.xo === undefined ? 0 : x.xo) === i ? -1 : i })) }; }),
-      toolHint: mob ? 'tap a tool' : 'hover a tool', toolCount: '0' + TOOLS.length + ' tools, daily-ish',
-      // Tool tiles lean toward the cursor; the red flood grows from wherever it entered.
-      tools: TOOLS.map((t, i) => {
-        const aim = (e, tilt) => { const el = e.currentTarget, b = el.getBoundingClientRect(), x = (e.clientX - b.left) / b.width, y = (e.clientY - b.top) / b.height; el.style.setProperty('--mx', (x * 100).toFixed(1) + '%'); el.style.setProperty('--my', (y * 100).toFixed(1) + '%'); if (tilt) { el.style.setProperty('--rx', ((.5 - y) * 14).toFixed(2) + 'deg'); el.style.setProperty('--ry', ((x - .5) * 14).toFixed(2) + 'deg'); } };
-        return { ...t, n: '0' + (i + 1), cls: s.tl === i ? 'on' : '',
-          move: e => aim(e, !mob), leave: e => { const el = e.currentTarget; el.style.setProperty('--rx', '0deg'); el.style.setProperty('--ry', '0deg'); },
-          tap: e => { aim(e, false); this.setState(x => ({ tl: x.tl === i ? null : i })); } };
-      }),
+      ...(() => { const xi = s.xi || 0, at = XSEG.findIndex(g => g[1] === xi), last = xi === ROLES.length - 1; return {
+        xpTrackRef: this.xpTrackRef, xpBarRef: this.xpBarRef, xpCount: '0' + (xi + 1) + ' / 0' + ROLES.length, xpWhen: ROLES[xi].yr,
+        xpReel: (-100 * xi / 3).toFixed(3) + '%', xpHint: mob ? 'tap a highlight' : 'keep scrolling, or click a highlight',
+        xpSegs: XSEG.map(([t, k], j) => k === undefined ? { t, cls: 'xs-p' + (j <= at || last ? ' read' : ''), go: null } : { t, cls: 'xs-k' + (k === xi ? ' on' : k < xi ? ' done' : ''), go: () => this.xpGo(k) }),
+        roles: ROLES.map((r, i) => ({ ...r, cls: i === xi ? 'on' : '', pts: r.pts.map((t, j) => ({ t, d: i === xi ? (.18 + j * .08).toFixed(2) + 's' : '0s' })) })),
+      }; })(),
+      // The dock: icons swell under the cursor; hovering or tapping one pops its little window, clicking "opens" it.
+      dkWrapRef: this.dkWrapRef, dockMove: this.dockMove, dockLeave: this.dockLeave,
+      dkHint: mob ? 'tap an app' : 'hover the dock, click to open',
+      dkCount: (() => { const n = Object.keys(s.dkOpen || {}).length; return n ? n + ' of ' + TOOLS.length + ' open' : TOOLS.length + ' apps, always open'; })(),
+      dk: (() => { const t = TOOLS[s.dk == null ? 0 : s.dk]; return { cls: s.dk == null ? '' : 'on', x: (s.dkX || 0) + 'px', file: t.file, name: t.name, note: t.note }; })(),
+      dockApps: TOOLS.map((t, i) => ({ ...t, ad: !t.fig, fig: !!t.fig, ref: this.dkRefs[i], dot: (s.dkOpen || {})[i] ? 'on' : '',
+        on: () => { if (!mob) this.dockShow(i); },
+        tap: () => { this.dockShow(i); this.setState(x => ({ dkOpen: { ...(x.dkOpen || {}), [i]: true } })); const el = this.dkRefs[i].current; if (el && el.animate) el.animate([{ transform: 'translateY(0)' }, { transform: 'translateY(-26px)' }, { transform: 'translateY(0)' }, { transform: 'translateY(-11px)' }, { transform: 'translateY(0)' }], { duration: 760, easing: 'ease-out' }); } })),
 
       ctaOn: this.ctaOn, ctaOff: this.ctaOff, ctaWord: CTA[s.cta || 0], ctaHint: (s.cta || 0) === 0 ? 'hover the headline' : 'you tell me the rest',
       copy: () => { try { navigator.clipboard && navigator.clipboard.writeText('contactreeva@gmail.com'); } catch (e) {} this.setState({ copied: true }); clearTimeout(this.ct); this.ct = setTimeout(() => this.setState({ copied: false }), 1800); },
