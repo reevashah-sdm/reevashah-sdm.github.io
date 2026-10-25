@@ -10,7 +10,47 @@
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&amp;family=Caveat+Brush&amp;display=swap" rel="stylesheet">
-<style>body{margin:0;background:#161412}*{box-sizing:border-box}html{scroll-behavior:smooth}a{color:inherit;text-decoration:none;transition:color .2s}a:hover{color:#D42A2E}::selection{background:#D42A2E;color:#F4EFE6}@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}html{scroll-behavior:auto!important}}</style>
+<style>.xp{margin-top:clamp(56px,6cqw,80px);border-bottom:1px solid rgba(244,239,230,.15)}
+.xp-row{position:relative;border-top:1px solid rgba(244,239,230,.15);cursor:pointer;overflow:hidden;-webkit-tap-highlight-color:transparent}
+.xp-fill{position:absolute;inset:0;background:#D42A2E;transform:scaleX(0);transform-origin:left;transition:transform .7s cubic-bezier(.7,0,.2,1)}
+.xp-row.on .xp-fill{transform:scaleX(1)}
+.xp-head{position:relative;display:grid;grid-template-columns:56px minmax(0,1fr) auto 46px;align-items:center;gap:0 24px;padding:clamp(22px,2.4cqw,34px) clamp(16px,2cqw,28px)}
+.xp-n{font:400 14px/1 'Familjen Grotesk',sans-serif;color:#90887D;transition:color .3s}
+.xp-t{display:block;font:400 clamp(26px,3.2cqw,46px)/1.1 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;color:#F4EFE6;transition:transform .5s cubic-bezier(.3,1.4,.5,1),color .3s}
+.xp-co{display:block;margin-top:10px;font:400 16px/1.3 'Familjen Grotesk',sans-serif;color:#ABA398;transition:color .3s}
+.xp-d{font:400 15px/1.2 'Familjen Grotesk',sans-serif;color:#ABA398;white-space:nowrap;transition:color .3s}
+.xp-x{width:46px;height:46px;border-radius:50%;border:1px solid rgba(244,239,230,.35);display:grid;place-items:center;font:300 24px/1 'Familjen Grotesk',sans-serif;color:#F4EFE6;transition:transform .55s cubic-bezier(.3,1.4,.5,1),background .3s,color .3s,border-color .3s}
+.xp-row:not(.on):hover .xp-t{color:#D42A2E;transform:translateX(12px)}
+.xp-row:not(.on):hover .xp-x{border-color:#D42A2E;color:#D42A2E;transform:rotate(90deg)}
+.xp-row.on .xp-n,.xp-row.on .xp-co,.xp-row.on .xp-d{color:rgba(244,239,230,.82)}
+.xp-row.on .xp-x{transform:rotate(45deg);background:#F4EFE6;color:#D42A2E;border-color:transparent}
+.xp-body{position:relative;display:grid;grid-template-rows:0fr;transition:grid-template-rows .65s cubic-bezier(.7,0,.2,1)}
+.xp-row.on .xp-body{grid-template-rows:1fr}
+.xp-body>div{overflow:hidden;min-height:0}
+.xp-in{display:grid;grid-template-columns:56px minmax(0,1fr) auto;gap:0 24px;padding:0 clamp(16px,2cqw,28px) clamp(28px,3cqw,42px)}
+.xp-in ul{grid-column:2;margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:12px;max-width:780px}
+.xp-in li{position:relative;padding-left:24px;font:400 clamp(16px,1.3cqw,18px)/1.6 'Familjen Grotesk',sans-serif;color:#F4EFE6;opacity:0;transform:translateY(10px);transition:opacity .45s ease,transform .55s cubic-bezier(.2,.7,.2,1)}
+.xp-in li::before{content:"";position:absolute;left:0;top:.8em;width:12px;height:1px;background:#F4EFE6}
+.xp-row.on .xp-in li{opacity:1;transform:none}
+.xp-note{grid-column:3;align-self:end;padding:9px 16px 7px;border-radius:999px;background:#F4EFE6;color:#1F1C1A;font:400 clamp(19px,1.7cqw,23px)/1 'Caveat Brush',cursive;white-space:nowrap;opacity:0;transform:rotate(-8deg) scale(.6);transition:opacity .3s ease .35s,transform .6s cubic-bezier(.3,1.6,.5,1) .35s}
+.xp-row.on .xp-note{opacity:1;transform:rotate(-3deg)}
+.tl-grid{margin-top:clamp(56px,6cqw,80px);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(12px,1.4cqw,20px);perspective:1000px}
+.tl{position:relative;aspect-ratio:1/1.05;padding:clamp(16px,1.8cqw,26px);border:1px solid rgba(244,239,230,.15);border-radius:20px;background:#24211E;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;cursor:default;-webkit-tap-highlight-color:transparent;transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .45s cubic-bezier(.2,.7,.2,1),border-color .3s}
+.tl-fill{position:absolute;inset:0;background:#D42A2E;clip-path:circle(0% at var(--mx,50%) var(--my,100%));transition:clip-path .65s cubic-bezier(.7,0,.2,1)}
+.tl:hover,.tl.on{border-color:#D42A2E}
+.tl:hover .tl-fill,.tl.on .tl-fill{clip-path:circle(150% at var(--mx,50%) var(--my,100%))}
+.tl-top{position:relative;display:flex;justify-content:space-between;font:400 14px/1 'Familjen Grotesk',sans-serif;color:#90887D;transition:color .3s}
+.tl-m{position:relative;font:500 clamp(54px,6.6cqw,100px)/1 'Familjen Grotesk',sans-serif;letter-spacing:-.04em;color:#F4EFE6;transform-origin:left bottom;transition:transform .6s cubic-bezier(.3,1.5,.5,1)}
+.tl-b{position:relative;min-height:2.4em}
+.tl-name{position:absolute;left:0;bottom:0;font:500 clamp(16px,1.4cqw,19px)/1.2 'Familjen Grotesk',sans-serif;color:#F4EFE6;transition:opacity .3s,transform .45s cubic-bezier(.2,.7,.2,1)}
+.tl-note{position:absolute;left:0;bottom:0;padding:7px 12px 5px;border-radius:999px;background:#F4EFE6;color:#1F1C1A;font:400 clamp(17px,1.6cqw,22px)/1.05 'Caveat Brush',cursive;max-width:100%;opacity:0;transform:translateY(12px) rotate(-2deg);transition:opacity .3s,transform .5s cubic-bezier(.3,1.5,.5,1)}
+.tl:hover .tl-top,.tl.on .tl-top{color:rgba(244,239,230,.85)}
+.tl:hover .tl-m,.tl.on .tl-m{transform:translateY(-6px) rotate(-5deg) scale(1.06)}
+.tl:hover .tl-name,.tl.on .tl-name{opacity:0;transform:translateY(-10px)}
+.tl:hover .tl-note,.tl.on .tl-note{opacity:1;transform:rotate(-2deg)}
+@container (max-width:900px){.tl-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@container (max-width:700px){.xp-head{grid-template-columns:minmax(0,1fr) 42px;gap:0 14px}.xp-n{display:none}.xp-d{grid-column:1;grid-row:2;margin-top:8px;font-size:14px}.xp-x{grid-column:2;grid-row:1/3;width:42px;height:42px}.xp-in{grid-template-columns:minmax(0,1fr)}.xp-in ul,.xp-note{grid-column:1}.xp-note{justify-self:start;margin-top:20px}.tl{border-radius:16px}}
+body{margin:0;background:#161412}*{box-sizing:border-box}html{scroll-behavior:smooth}a{color:inherit;text-decoration:none;transition:color .2s}a:hover{color:#D42A2E}::selection{background:#D42A2E;color:#F4EFE6}@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}html{scroll-behavior:auto!important}}</style>
 <script src="reeva-face.js"></script>
 </helmet>
 <div style="min-height:100vh;background:#161412;font-family:'Familjen Grotesk',sans-serif">
@@ -72,6 +112,37 @@
 <div data-reveal="1" style="margin-top:48px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:clamp(28px,5cqw,72px)">
 <p style="margin:0;font:400 clamp(20px,2cqw,26px)/1.45 'Familjen Grotesk',sans-serif;text-wrap:pretty">My design education spans strategic design management and communication design.</p>
 <p style="margin:0;font:400 17px/1.7 'Familjen Grotesk',sans-serif;color:#C2BBB0;text-wrap:pretty">One taught me to ask better questions, the other taught me to give them a shape. These days they don't take turns. They work together, quietly, on everything I touch.</p>
+</div>
+</section>
+
+<section style="padding:clamp(90px,10cqw,140px) clamp(20px,5.5cqw,80px) 0">
+<div data-reveal="1" style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px;font:500 19px/1 'Familjen Grotesk',sans-serif"><span style="font:400 26px/1 'Caveat Brush',cursive;color:#D42A2E">Where I've Worked</span><span style="font:400 15px/1 'Familjen Grotesk',sans-serif;color:#9D958A">2023 — 2025</span></div>
+<div data-reveal="1" style="margin-top:48px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px 48px">
+<h2 style="margin:0;font:400 clamp(28px,3.6cqw,52px)/1.15 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;color:#F4EFE6">Where the work<br><span style="color:#D42A2E">got real.</span></h2>
+<span style="font:400 20px/1.2 'Caveat Brush',cursive;color:#9D958A">{{ expHint }}</span>
+</div>
+<div class="xp" data-reveal="1">
+<sc-for list="{{ roles }}" as="r" hint-placeholder-count="3"><div class="xp-row {{ r.cls }}" onClick="{{ r.toggle }}">
+<div class="xp-fill"></div>
+<div class="xp-head"><span class="xp-n">{{ r.n }}</span><span><span class="xp-t">{{ r.title }}</span><span class="xp-co">{{ r.org }}</span></span><span class="xp-d">{{ r.when }}</span><span class="xp-x">+</span></div>
+<div class="xp-body"><div><div class="xp-in"><ul><sc-for list="{{ r.pts }}" as="pt" hint-placeholder-count="2"><li style="transition-delay:{{ pt.d }}">{{ pt.t }}</li></sc-for></ul><span class="xp-note">{{ r.note }}</span></div></div></div>
+</div></sc-for>
+</div>
+</section>
+
+<section style="padding:clamp(90px,10cqw,140px) clamp(20px,5.5cqw,80px) 0">
+<div data-reveal="1" style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px;font:500 19px/1 'Familjen Grotesk',sans-serif"><span style="font:400 26px/1 'Caveat Brush',cursive;color:#D42A2E">What's On My Desk</span><span style="font:400 15px/1 'Familjen Grotesk',sans-serif;color:#9D958A">{{ toolCount }}</span></div>
+<div data-reveal="1" style="margin-top:48px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px 48px">
+<h2 style="margin:0;font:400 clamp(28px,3.6cqw,52px)/1.15 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;color:#F4EFE6">The tools<br><span style="color:#D42A2E">I think with.</span></h2>
+<span style="font:400 20px/1.2 'Caveat Brush',cursive;color:#9D958A">{{ toolHint }}</span>
+</div>
+<div class="tl-grid" data-reveal="1">
+<sc-for list="{{ tools }}" as="t" hint-placeholder-count="8"><div class="tl {{ t.cls }}" onMouseMove="{{ t.move }}" onMouseLeave="{{ t.leave }}" onClick="{{ t.tap }}">
+<div class="tl-fill"></div>
+<div class="tl-top"><span>{{ t.n }}</span><span>{{ t.kind }}</span></div>
+<div class="tl-m">{{ t.m }}</div>
+<div class="tl-b"><span class="tl-name">{{ t.name }}</span><span class="tl-note">{{ t.note }}</span></div>
+</div></sc-for>
 </div>
 </section>
 
@@ -150,6 +221,22 @@ const PICKS = [
   { a: 'Questions', b: 'Answers', me: 'a', why: 'Questions. The answers come later.' },
   { a: 'Chai', b: 'Coffee', me: 'a', why: 'Chai. Non-negotiable.' },
 ];
+const ROLES = [
+  { title: 'UI/UX Designer', org: 'Zero Gravity Communications, Ahmedabad', when: 'July 2024 – June 2025', note: 'stayed on after the internship', pts: ['Translated project requirements into website layouts, user flows and interface designs, balancing usability, visual hierarchy and business objectives.', 'Worked across information architecture, typography, colour and content structure to shape cohesive digital experiences.', 'Built and maintained Figma component libraries and style guides to support consistency across interfaces.', 'Collaborated with developers to address design feasibility, responsive behaviour and implementation requirements.'] },
+  { title: 'UI/UX Designer Intern', org: 'Zero Gravity Communications, Ahmedabad', when: 'January 2024 – July 2024', note: 'where I learnt the ropes', pts: ['Designed responsive web and mobile interfaces using Figma and Adobe XD.', 'Supported competitor analysis and user research to inform interface layouts, content hierarchy and user journeys.'] },
+  { title: 'Communication Designer Intern', org: 'Web Plus Info Tech Pvt. Ltd.', when: 'June 2023 – July 2023', note: 'my first studio', pts: ['Created visual communication assets and promotional creatives for digital applications.', 'Contributed to website layouts and explored motion graphics across design projects.'] },
+];
+const TOOLS = [
+  { m: 'Fg', name: 'Figma', kind: 'interface', note: 'where most things start' },
+  { m: 'Xd', name: 'Adobe XD', kind: 'interface', note: 'clickable prototypes' },
+  { m: 'Ai', name: 'Illustrator', kind: 'vector', note: 'icons, marks, pictograms' },
+  { m: 'Ps', name: 'Photoshop', kind: 'image', note: 'pixels and patience' },
+  { m: 'Id', name: 'InDesign', kind: 'layout', note: 'reports and long reads' },
+  { m: 'Ae', name: 'After Effects', kind: 'motion', note: 'when it needs to move' },
+  { m: 'Pr', name: 'Premiere Pro', kind: 'video', note: 'cutting the story' },
+  { m: 'Au', name: 'Audition', kind: 'sound', note: 'making it sound right' },
+];
+
 const SEGS = [
   ['I like '], ['making things look good', 'the fun part'], [', '], ['figuring out what makes them work', 'the nerdy part'], [', and occasionally '], ['getting carried away with an idea', 'guilty.'],
   ['. Somewhere between '], ['visual experiments', 'so many experiments'], [', '], ['oddly specific interests', "don't get me started"], [', and '], ['plans that keep changing', 'plan B, C, D…'], [', I’m finding my own way of doing things.'],
@@ -304,6 +391,17 @@ class Component extends DCLogic {
       prevPick: () => { clearTimeout(this.pt); this.setState(x => ({ pi: Math.max(0, (x.pi || 0) - 1) })); },
       nextPick: () => { clearTimeout(this.pt); this.setState(x => ((x.pi || 0) >= PICKS.length - 1 ? { pi: 0, picks: {} } : { pi: (x.pi || 0) + 1 })); },
       nextLabel: (s.pi || 0) >= PICKS.length - 1 ? 'Start over ↺' : 'Next →',
+      expHint: mob ? 'tap a role to open it' : 'click a role to open it',
+      roles: ROLES.map((r, i) => { const open = (s.xo === undefined ? 0 : s.xo) === i; return { ...r, n: '0' + (i + 1), cls: open ? 'on' : '', pts: r.pts.map((t, j) => ({ t, d: open ? (.22 + j * .08).toFixed(2) + 's' : '0s' })), toggle: () => this.setState(x => ({ xo: (x.xo === undefined ? 0 : x.xo) === i ? -1 : i })) }; }),
+      toolHint: mob ? 'tap a tool' : 'hover a tool', toolCount: '0' + TOOLS.length + ' tools, daily-ish',
+      // Tool tiles lean toward the cursor; the red flood grows from wherever it entered.
+      tools: TOOLS.map((t, i) => {
+        const aim = (e, tilt) => { const el = e.currentTarget, b = el.getBoundingClientRect(), x = (e.clientX - b.left) / b.width, y = (e.clientY - b.top) / b.height; el.style.setProperty('--mx', (x * 100).toFixed(1) + '%'); el.style.setProperty('--my', (y * 100).toFixed(1) + '%'); if (tilt) { el.style.setProperty('--rx', ((.5 - y) * 14).toFixed(2) + 'deg'); el.style.setProperty('--ry', ((x - .5) * 14).toFixed(2) + 'deg'); } };
+        return { ...t, n: '0' + (i + 1), cls: s.tl === i ? 'on' : '',
+          move: e => aim(e, !mob), leave: e => { const el = e.currentTarget; el.style.setProperty('--rx', '0deg'); el.style.setProperty('--ry', '0deg'); },
+          tap: e => { aim(e, false); this.setState(x => ({ tl: x.tl === i ? null : i })); } };
+      }),
+
       ctaOn: this.ctaOn, ctaOff: this.ctaOff, ctaWord: CTA[s.cta || 0], ctaHint: (s.cta || 0) === 0 ? 'hover the headline' : 'you tell me the rest',
       copy: () => { try { navigator.clipboard && navigator.clipboard.writeText('contactreeva@gmail.com'); } catch (e) {} this.setState({ copied: true }); clearTimeout(this.ct); this.ct = setTimeout(() => this.setState({ copied: false }), 1800); },
       copyLabel: s.copied ? 'Copied' : 'Copy', copyBg: s.copied ? RED : 'rgba(244,239,230,.12)',
