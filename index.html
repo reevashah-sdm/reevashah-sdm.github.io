@@ -17,6 +17,7 @@
 <div style="min-height:100vh;background:#161412;font-family:'Familjen Grotesk',sans-serif">
 
 <div ref="{{ peekRef }}" style="position:fixed;left:0;top:0;width:0;height:0;overflow:hidden;z-index:45;pointer-events:none"><div ref="{{ canvasRef }}" style="position:absolute;left:0;top:0;width:0;height:0"></div></div>
+<div ref="{{ lookRef }}" aria-hidden="true" style="position:fixed;left:0;top:0;z-index:60;pointer-events:none;opacity:0;transition:opacity .2s;display:flex;align-items:center;gap:8px;height:46px;padding:0 22px;border-radius:999px;background:#D42A2E;color:#F4EFE6;font:500 15px/1 'Familjen Grotesk',sans-serif;letter-spacing:-.01em;white-space:nowrap;box-shadow:0 10px 24px rgba(0,0,0,.3)">Look closer <span>→</span></div>
 <div ref="{{ bubbleRef }}" style="position:fixed;left:0;top:0;z-index:46;pointer-events:none;opacity:0;transition:opacity .3s;padding:10px 16px 8px;border-radius:999px;background:#F4EFE6;color:#1F1C1A;font:400 20px/1 'Caveat Brush',cursive;white-space:nowrap;box-shadow:0 10px 30px rgba(0,0,0,.25)"></div>
 <div style="padding:{{ outerPad }}">
 <div style="width:{{ frameW }};max-width:100%;margin:0 auto;border-radius:{{ frameR }};box-shadow:{{ frameShadow }};overflow:clip;container-type:inline-size;background:#1F1C1A;color:#F4EFE6;position:relative">
@@ -284,7 +285,11 @@ class Component extends DCLogic {
     els.forEach(el => this.io.observe(el));
   }
   onMove = e => { const pt = e.touches ? e.touches[0] : e; if (!pt) return; this.m.x = pt.clientX; this.m.y = pt.clientY; this.m.nx = e.clientX / innerWidth * 2 - 1; this.m.ny = -(e.clientY / innerHeight) * 2 + 1; this.overUI = !!(e.target.closest && e.target.closest('a,button')); };
-  onClick = e => { this.poke && this.poke(e); };
+  onClick = e => {
+    // a click or tap anywhere on a project row, outside links, buttons and the character, opens that project
+    if (!(e.target.closest && e.target.closest('a,button')) && !this.anyHit()) { const i = this.rowAt(e.clientX, e.clientY); if (i >= 0) { location.href = PROJECTS[i].href; return; } }
+    this.poke && this.poke(e);
+  };
   sqRef = React.createRef(); howRef = React.createRef(); footLineRef = React.createRef();
   trackRef = React.createRef(); threadRef = React.createRef(); tx = 0; tip = null;
   // Scroll through the pinned track: the red thread draws from knot to knot and unlocks each step.
@@ -341,7 +346,7 @@ class Component extends DCLogic {
     this.flipped = !this.flipped; f.t.flip = this.flipped ? 1 : 0; { const b = f.el.getBoundingClientRect(); this.hx && this.hx.setFull(this.flipped, b.left + b.width / 2, b.top + b.height / 2); } this.setState({ note: this.flipped ? NOTES.on : NOTES.off });
   }
   onResize = () => { const d = innerWidth < 700 ? 'mobile' : 'desktop'; if (d !== this.state.device) this.setState({ device: d }); this.onScroll(); };
-  peekRef = React.createRef(); bubbleRef = React.createRef(); pk = 0; cd = null;
+  peekRef = React.createRef(); bubbleRef = React.createRef(); lookRef = React.createRef(); look = { x: 0, y: 0, on: 0 }; pk = 0; cd = null;
   async init3d() { this.mountHero(); const F = await faceLib(); if (this.dead || !this.canvasRef.current) return; this.face = await F.mount(this.canvasRef.current); this.faces = [this.face];
     if (this.avatarRef.current) this.faces.push(this.avatar = await F.mount(this.avatarRef.current)); }
   poke = e => {
@@ -353,8 +358,20 @@ class Component extends DCLogic {
     this.tempNote = 'hey, that tickles'; this.tempUntil = t + 1.6;
   };
   onLens(on) { this.setState({ lensOn: on }); const a = this.avatar; if (a) { a.kick(); a.t.glassesOff = on ? 1 : 0; a.t.squint = on ? 1 : 0; } }
+  // over any project row the cursor becomes a "Look closer" pill and a click anywhere opens that project
+  rowAt(x, y) { return this.rowRefs.findIndex(r => { const b = r.current && r.current.getBoundingClientRect(); return b && x >= b.left && x <= b.right && y >= b.top && y <= b.bottom; }); }
   frame(t, c, g) {
     document.body.style.cursor = this.anyHit() ? 'pointer' : '';
+    {
+      const lk = this.lookRef.current, hover = matchMedia('(hover: hover)').matches, M = this.m;
+      const row = hover ? this.rowAt(M.x, M.y) : -1, on = row >= 0 && !this.overUI && !this.anyHit();
+      if (on) document.body.style.cursor = 'none';
+      if (lk) { const L = this.look; if (!L.on && on) { L.x = M.x; L.y = M.y; } L.x += (M.x - L.x) * .35; L.y += (M.y - L.y) * .35; L.on = on; lk.style.opacity = on ? 1 : 0; lk.style.transform = `translate(${L.x}px,${L.y}px) translate(-50%,-50%) scale(${on ? 1 : .6})`; }
+      // the card shows its skills while the pointer rests on it
+      const sqb = this.sqRef.current && this.sqRef.current.getBoundingClientRect();
+      const onCard = !!(on && sqb && M.x >= sqb.left && M.x <= sqb.right && M.y >= sqb.top && M.y <= sqb.bottom);
+      if (hover && onCard !== !!this.onCard) { this.onCard = onCard; this.setState({ cardFlip: onCard }); }
+    }
     const f = this.face, pk = this.peekRef.current, box = this.canvasRef.current, bub = this.bubbleRef.current; if (!f || !pk || !box) return;
     const W = innerWidth, H = innerHeight, mob = W < 700, R = r => r.current && r.current.getBoundingClientRect();
     const hs = R(this.heroSlotRef), how = R(this.howRef), sq = R(this.sqRef), r0 = R(this.rowRefs[0]), rn = R(this.rowRefs[PROJECTS.length - 1]), fl = R(this.footLineRef);
@@ -362,7 +379,7 @@ class Component extends DCLogic {
     const hb = R(this.heroRef);
     if (hb && hb.bottom > H * .45) { d = null; }
     else if (this.tip && (tk => tk && tk.top < H * .4 && tk.bottom > H * .6)(R(this.trackRef))) { const z = mob ? 96 : 130, tp = this.tip; d = { id: 'how', x: tp.x - z / 2, y: tp.y - z * .8, w: z, h: z * .8, in: z, side: 'b', note: STEP_NOTES[this.state.step] }; }
-    else if (sq && r0 && rn && r0.top < H * .5 && rn.bottom > H * .5) { const z = Math.min(190, sq.width * .48); d = { id: 'work', x: sq.right - z - 8, y: sq.top - z * .62, w: z, h: z * .62, in: z, side: 'b', note: this.state.cardFlip ? 'the toolkit behind this one' : 'tap the card, see what it took' }; }
+    else if (sq && r0 && rn && r0.top < H * .5 && rn.bottom > H * .5) { const z = Math.min(190, sq.width * .48); d = { id: 'work', x: sq.right - z - 8, y: sq.top - z * .62, w: z, h: z * .62, in: z, side: 'b', note: this.state.cardFlip ? 'the toolkit behind this one' : 'hover the card to see what it took' }; }
     else if (fl && fl.top < H) { const z = mob ? 150 : 220; d = { id: 'foot', x: fl.right - z - (mob ? 0 : 24), y: fl.top - z * .62, w: z, h: z * .62, in: z, side: 'b', note: "what's the other side of your story?" }; }
     if (!this.cd && d) this.cd = d;
     let want = 0;
@@ -387,7 +404,7 @@ class Component extends DCLogic {
       bub.style.transform = `translate(${bx}px,${by}px) rotate(-3deg)`; bub.style.opacity = this.pk > .85 && txt && !(D.id === 'hero' && this.flipped) ? 1 : 0;
     }
   }
-  extraVals() { return { peekRef: this.peekRef, bubbleRef: this.bubbleRef }; }
+  extraVals() { return { peekRef: this.peekRef, bubbleRef: this.bubbleRef, lookRef: this.lookRef }; }
 
   componentDidMount() {
     window.addEventListener('scroll', this.onScroll, true); window.addEventListener('resize', this.onResize); this.onScroll();
