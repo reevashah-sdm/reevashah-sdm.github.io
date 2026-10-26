@@ -136,9 +136,9 @@
 </div></sc-if><span style="position:absolute;right:16px;bottom:16px;width:44px;height:44px;border-radius:50%;background:#D42A2E;color:#F4EFE6;display:grid;place-items:center;font:400 18px/1 'Caveat Brush',cursive">{{ p.num }}</span></div></sc-for>
 </div>
 <div style="position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;transform:rotateY(180deg);background:#D42A2E;color:#F4EFE6;padding:clamp(20px,3cqw,32px);box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between;gap:16px">
-<div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px"><span style="font:400 24px/1 'Caveat Brush',cursive">what it took</span><span style="font:500 12px/1 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;text-transform:uppercase">{{ cur.title }}</span></div>
-<div style="display:flex;flex-wrap:wrap;gap:10px"><sc-for list="{{ cur.skills }}" as="k"><span style="display:inline-flex;align-items:center;height:34px;padding:0 16px;border:1px solid rgba(244,239,230,.9);border-radius:999px;font:500 14px/1 'Familjen Grotesk',sans-serif;letter-spacing:-.01em;white-space:nowrap">{{ k }}</span></sc-for></div>
-<div style="font:400 13px/1.5 'Familjen Grotesk',sans-serif;color:#1F1C1A">the skills behind this project</div>
+<div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px"><span style="font:400 24px/1 'Caveat Brush',cursive">what it took</span><span style="font:500 12px/1 'Familjen Grotesk',sans-serif;letter-spacing:.04em;text-transform:uppercase;opacity:.85">{{ cur.title }}</span></div>
+<div><div style="max-width:15em;font:500 clamp(20px,2.4cqw,28px)/1.2 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;text-wrap:balance">Four things this project asked of me.</div>
+<div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:clamp(16px,2cqw,24px)"><sc-for list="{{ cur.skills }}" as="k"><span style="display:inline-flex;align-items:center;height:38px;padding:0 18px;border:1.5px solid #F4EFE6;border-radius:999px;background:rgba(244,239,230,.1);font:500 15px/1 'Familjen Grotesk',sans-serif;letter-spacing:-.01em;white-space:nowrap">{{ k }}</span></sc-for></div></div>
 </div>
 </div>
 <div style="position:absolute;left:0;top:-28px;font:500 13px/1 'Familjen Grotesk',sans-serif;color:#F4EFE6">{{ counter }}</div>
@@ -362,7 +362,7 @@ class Component extends DCLogic {
     const hb = R(this.heroRef);
     if (hb && hb.bottom > H * .45) { d = null; }
     else if (this.tip && (tk => tk && tk.top < H * .4 && tk.bottom > H * .6)(R(this.trackRef))) { const z = mob ? 96 : 130, tp = this.tip; d = { id: 'how', x: tp.x - z / 2, y: tp.y - z * .8, w: z, h: z * .8, in: z, side: 'b', note: STEP_NOTES[this.state.step] }; }
-    else if (sq && r0 && rn && r0.top < H * .5 && rn.bottom > H * .5) { const z = Math.min(190, sq.width * .48); d = { id: 'work', x: sq.right - z - 8, y: sq.top - z * .62, w: z, h: z * .62, in: z, side: 'b', note: this.state.cardFlip ? 'this is what it took' : 'poke me to see what it took' }; }
+    else if (sq && r0 && rn && r0.top < H * .5 && rn.bottom > H * .5) { const z = Math.min(190, sq.width * .48); d = { id: 'work', x: sq.right - z - 8, y: sq.top - z * .62, w: z, h: z * .62, in: z, side: 'b', note: this.state.cardFlip ? 'the toolkit behind this one' : 'tap the card, see what it took' }; }
     else if (fl && fl.top < H) { const z = mob ? 150 : 220; d = { id: 'foot', x: fl.right - z - (mob ? 0 : 24), y: fl.top - z * .62, w: z, h: z * .62, in: z, side: 'b', note: "what's the other side of your story?" }; }
     if (!this.cd && d) this.cd = d;
     let want = 0;
