@@ -1,13 +1,14 @@
 // Shared hero interactions.
-// The diagram is a three-stop dial for how strategy (thinking) and design (making) relate:
-// apart -> overlap (where I work) -> one (always both). Merging them turns the headline to "Thinking and making, in one practice."
+// The diagram is a three-stop dial for how strategy (the why) and design (the how) relate:
+// apart -> overlap (where why meets how) -> one (one practice). Each circle carries the questions it asks.
+// Merging them turns the headline to "Thinking and making, in one practice."
 (function () {
   const L = (a, b, t) => a + (b - a) * t, C = (v, a, b) => Math.max(a, Math.min(b, v));
   const G = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ#&%';
   const NONE = 'linear-gradient(transparent,transparent)';
   const circ = (r, x, y) => `radial-gradient(circle ${r.toFixed(1)}px at ${x.toFixed(1)}px ${y.toFixed(1)}px,#000 97%,transparent 100%)`;
   const STOPS = [{ k: 'apart', s: 186 }, { k: 'overlap', s: 106.4 }, { k: 'one', s: 0 }];
-  const CAP = { apart: 'strategy here, design there. not how I work', overlap: 'where I work: in the overlap', one: 'see? it was always both' };
+  const CAP = { apart: 'a why with no how stays on paper. a how with no why is a guess', overlap: 'most of my work lives here, in the middle', one: 'in the end, both ask one thing: does it help someone?' };
 
   function scramble(el, to) {
     let f = 0; clearInterval(el._s);
@@ -25,6 +26,7 @@
     const mv = e => { const p = e.touches ? e.touches[0] : e; if (p) { M.x = p.clientX; M.y = p.clientY; } };
     addEventListener('pointermove', mv, { passive: true });
     const venn = q('[data-venn]'), vq = s => venn ? venn.querySelector(s) : null, cA = vq('[data-ca]'), cB = vq('[data-cb]'), ghost = vq('[data-ghost]');
+    const wa = venn ? [...venn.querySelectorAll('[data-wa]')] : [], wb = venn ? [...venn.querySelectorAll('[data-wb]')] : [];
     const la = vq('[data-la]'), lb = vq('[data-lb]'), lc = vq('[data-lc]'), vline = vq('[data-vline]'), rv = q('[data-reveal-layer]'), dots = q('[data-dots]');
     const stops = venn ? [...venn.querySelectorAll('[data-stop]')] : [];
     const nl = qa('[data-nl]'), nl2 = qa('[data-nl2]'), mags = qa('[data-mag]'), fw = qa('[data-fw]'), cyc = q('[data-cycle]');
@@ -112,10 +114,14 @@
         if (state !== V.state) { V.state = state; holdWords(state === 'one'); }
         const r = 173.6, inA = Math.hypot(P.x - ax, P.y - 201) < r, inB = Math.hypot(P.x - bx, P.y - 201) < r;
         const lo2 = C((sep - 50) / 45, 0, 1).toFixed(2);
-        if (la) { la.style.transform = `translate(calc(${(ax - r * .62) * P.s}px - 50%),${193 * P.s}px)`; la.style.opacity = lo2; }
-        if (lb) { lb.style.transform = `translate(calc(${(bx + r * .62) * P.s}px - 50%),${193 * P.s}px)`; lb.style.opacity = lo2; }
+        if (la) { la.style.transform = `translate(calc(${(ax - r * .62) * P.s}px - 50%),${184 * P.s}px)`; la.style.opacity = lo2; }
+        if (lb) { lb.style.transform = `translate(calc(${(bx + r * .62) * P.s}px - 50%),${184 * P.s}px)`; lb.style.opacity = lo2; }
+        // the questions each side asks: quieter than the labels, gone once the circles are one
+        const wo = (C((sep - 70) / 40, 0, 1) * .85).toFixed(2);
+        const whisper = (n, x) => { n.style.transform = `translate(calc(${x * P.s}px - 50%),${+n.dataset.y * P.s}px) rotate(${n.dataset.r}deg)`; n.style.opacity = wo; };
+        wa.forEach(n => whisper(n, ax - r * .44)); wb.forEach(n => whisper(n, bx + r * .44));
         if (lc) {
-          const html = sep < 40 ? 'always<br>both' : 'where I<br>work';
+          const html = sep < 40 ? 'one<br>practice' : 'where why<br>meets how';
           if (lc.innerHTML !== html) lc.innerHTML = html;
           lc.style.opacity = C((176 - sep) / 30, 0, 1).toFixed(2);
           lc.style.transform = `translate(${280 * P.s}px,${201 * P.s}px) translate(-50%,-50%) scale(${sep < 40 ? 1.3 : 1})`;
