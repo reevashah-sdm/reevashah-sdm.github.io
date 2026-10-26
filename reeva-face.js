@@ -1,4 +1,6 @@
-// Reeva character: flat toon-shaded head with ink outlines. window.ReevaFace.mount(el, opts) -> api
+// Reeva character: a flat-coloured head with ink outlines. window.ReevaFace.mount(el, opts) -> api
+// opts.style (or window.REEVA_FACE_STYLE): 'flat' (default, no shading), 'sticker' (flat with a cream die-cut edge),
+// 'ink' (the site's own cream, ink and red only, with a thin cream edge), 'toon' (the older banded shading)
 (function () {
   const SRC = 'https://unpkg.com/three@0.160.0/build/three.module.js';
   let TP = null;
@@ -19,16 +21,24 @@
     const key = new THREE.DirectionalLight(0xffffff, 1.5); key.position.set(-2, 3, 4); scene.add(key);
     const gm = new THREE.DataTexture(new Uint8Array([120, 120, 120, 255, 200, 200, 200, 255, 255, 255, 255, 255]), 3, 1, THREE.RGBAFormat);
     gm.minFilter = gm.magFilter = THREE.NearestFilter; gm.needsUpdate = true;
-    const T = c => new THREE.MeshToonMaterial({ color: c, gradientMap: gm });
+    const ST = o.style || window.REEVA_FACE_STYLE || 'flat';
+    // colours per look; 'ink' swaps every colour for the site's cream, ink and red
+    const K = ST === 'ink'
+      ? { sk: 0xF4EFE6, hair: 0x1F1C1A, line: 0x1F1C1A, white: 0xFFFDF8, iris: 0x1F1C1A, pupil: 0x1F1C1A, brow: 0x1F1C1A, cheek: 0xD42A2E, cheekA: .22, mouth: 0xD42A2E, pen: 0xD42A2E, tip: 0xF4EFE6, cap: 0x1F1C1A, notes: [0xF4EFE6, 0xD42A2E, 0xF4EFE6, 0xD42A2E, 0xF4EFE6] }
+      : { sk: 0xf4e4d2, hair: 0x262120, line: 0x1a1414, white: 0xfffcf7, iris: 0x4a2a18, pupil: 0x140d0a, brow: 0x2f211b, cheek: 0xf2a49a, cheekA: .75, mouth: 0xb8202c, pen: 0xf5d33f, tip: 0xeadbc0, cap: 0xD42A2E, notes: [0xf5d33f, 0xD42A2E, 0xffffff, 0xEE7A22, 0xf5d33f] };
     const B = c => new THREE.MeshBasicMaterial({ color: c });
-    const INK = new THREE.MeshBasicMaterial({ color: 0x141414, side: THREE.BackSide });
+    const T = c => ST === 'toon' ? new THREE.MeshToonMaterial({ color: c, gradientMap: gm }) : B(c);
+    const INK = new THREE.MeshBasicMaterial({ color: K.line, side: THREE.BackSide });
+    // sticker and ink: a cream die-cut edge around the outer silhouette only, drawn from the canvas's own transparency
+    const edge = { sticker: 3, ink: 2 }[ST];
+    if (edge) r.domElement.style.filter = [[1, 0], [-1, 0], [0, 1], [0, -1]].map(([x, y]) => `drop-shadow(${x * edge}px ${y * edge}px 0 #F4EFE6)`).join(' ');
     const mk = (par, geo, c, p, w) => {
       const m = new THREE.Mesh(geo, T(c)); if (p) m.position.set(p[0], p[1], p[2]);
       if (w !== 0) { geo.computeBoundingSphere(); const l = new THREE.Mesh(geo, INK); l.scale.multiplyScalar(1 + (w || .035) / geo.boundingSphere.radius); m.add(l); }
       par.add(m); return m;
     };
-    // a warm skin, near-black hair with just enough lift for the toon bands to read, and finer ink lines than before
-    const SK = 0xf4e4d2, HAIR = 0x262120;
+    // flat colours, no lighting bands across the face; finer ink lines than the first version
+    const SK = K.sk, HAIR = K.hair;
     const root = new THREE.Group(); scene.add(root); root.position.y = .2; const FIT = .8;
     const head = new THREE.Group(); root.add(head);
     const skull = mk(head, new THREE.SphereGeometry(1, 48, 36), SK, null, .032); skull.scale.set(1, 1.08, .98);
@@ -37,34 +47,34 @@
     const bangs = mk(head, new THREE.SphereGeometry(1.075, 48, 12, Math.PI / 2 - 1.3, 2.6, Math.PI * .12, Math.PI * .24), HAIR, null, .022); bangs.scale.set(1, 1.08, .98);
     [-1, 1].forEach(s => { const lk = mk(head, new THREE.CapsuleGeometry(.19, 1.6, 6, 14), HAIR, [s * .86, -.66, .3], .022); lk.rotation.z = s * .07; lk.rotation.x = -.1; });
     const back = mk(head, new THREE.CapsuleGeometry(.7, .8, 8, 20), HAIR, [0, -1.05, -.38], .022); back.scale.set(1.12, 1, .42);
-    const INKB = B(0x1a1414);
+    const INKB = B(K.line);
     [-1, 1].forEach(s => {
       const lid = new THREE.Mesh(new THREE.TorusGeometry(.215, .019, 6, 28, Math.PI * .9), INKB); lid.position.set(s * .33, .07, .87); lid.rotation.set(-.3, 0, Math.PI * .05); head.add(lid);
       const l = new THREE.Mesh(new THREE.CapsuleGeometry(.014, .07, 4, 6), INKB); l.position.set(s * .54, .18, .78); l.rotation.z = -s * 1.05; head.add(l);
     });
     const eyes = [-1, 1].map(s => {
       const g = new THREE.Group(); g.position.set(s * .33, .06, .8); head.add(g);
-      mk(g, new THREE.SphereGeometry(.21, 28, 20), 0xfffcf7, null, .016);
-      const ir = new THREE.Mesh(new THREE.SphereGeometry(.145, 24, 18), B(0x4a2a18)); ir.position.z = .1; g.add(ir);
-      const p = new THREE.Mesh(new THREE.SphereGeometry(.08, 16, 12), B(0x140d0a)); p.position.z = .19; g.add(p);
+      mk(g, new THREE.SphereGeometry(.21, 28, 20), K.white, null, .016);
+      const ir = new THREE.Mesh(new THREE.SphereGeometry(.145, 24, 18), B(K.iris)); ir.position.z = .1; g.add(ir);
+      const p = new THREE.Mesh(new THREE.SphereGeometry(.08, 16, 12), B(K.pupil)); p.position.z = .19; g.add(p);
       const gl = new THREE.Mesh(new THREE.SphereGeometry(.04, 10, 10), B(0xffffff)); gl.position.set(.055, .065, .262); g.add(gl);
       const gl2 = new THREE.Mesh(new THREE.SphereGeometry(.018, 8, 8), B(0xffffff)); gl2.position.set(-.045, -.055, .262); g.add(gl2);
       return g;
     });
     const brows = [-1, 1].map(s => {
       const b = new THREE.Group(); b.position.set(s * .33, .42, .9); b.userData.s = s; head.add(b);
-      const arc = new THREE.Mesh(new THREE.TorusGeometry(.16, .021, 8, 24, Math.PI * .5), B(0x2f211b)); arc.rotation.z = Math.PI * .25; arc.position.y = -.12; b.add(arc);
+      const arc = new THREE.Mesh(new THREE.TorusGeometry(.16, .021, 8, 24, Math.PI * .5), B(K.brow)); arc.rotation.z = Math.PI * .25; arc.position.y = -.12; b.add(arc);
       return b;
     });
     const nose = mk(head, new THREE.SphereGeometry(.06, 16, 12), SK, [0, -.15, 1.0], .016); nose.scale.set(.9, .85, 1);
-    [-1, 1].forEach(s => { const ch = new THREE.Mesh(new THREE.CircleGeometry(.105, 28), new THREE.MeshBasicMaterial({ color: 0xf2a49a, transparent: true, opacity: .75 })); ch.position.set(s * .54, -.2, .84); ch.lookAt(s * 1.7, -.6, 2.5); ch.scale.set(1.25, .85, 1); head.add(ch); });
+    [-1, 1].forEach(s => { const ch = new THREE.Mesh(new THREE.CircleGeometry(.105, 28), new THREE.MeshBasicMaterial({ color: K.cheek, transparent: true, opacity: K.cheekA })); ch.position.set(s * .54, -.2, .84); ch.lookAt(s * 1.7, -.6, 2.5); ch.scale.set(1.25, .85, 1); head.add(ch); });
     // one clean smile line; the open mouth on a click comes from scaling it, as before
-    const mouth = new THREE.Mesh(new THREE.TorusGeometry(.11, .028, 10, 28, Math.PI), B(0xb8202c)); mouth.rotation.z = Math.PI; mouth.position.set(0, -.36, .93); mouth.rotation.x = -.2; head.add(mouth);
+    const mouth = new THREE.Mesh(new THREE.TorusGeometry(.11, .028, 10, 28, Math.PI), B(K.mouth)); mouth.rotation.z = Math.PI; mouth.position.set(0, -.36, .93); mouth.rotation.x = -.2; head.add(mouth);
     const pencil = new THREE.Group(); pencil.position.set(.98, .45, -.1); pencil.rotation.set(.2, 0, -.95); head.add(pencil);
-    mk(pencil, new THREE.CylinderGeometry(.07, .07, 1.1, 6), 0xf5d33f, null, .025);
-    mk(pencil, new THREE.ConeGeometry(.07, .2, 6), 0xeadbc0, [0, .65, 0], .02);
-    mk(pencil, new THREE.CylinderGeometry(.07, .07, .14, 12), 0xD42A2E, [0, -.62, 0], .02);
-    const NC = [0xf5d33f, 0xD42A2E, 0xffffff, 0xEE7A22, 0xf5d33f];
+    mk(pencil, new THREE.CylinderGeometry(.07, .07, 1.1, 6), K.pen, null, .025);
+    mk(pencil, new THREE.ConeGeometry(.07, .2, 6), K.tip, [0, .65, 0], .02);
+    mk(pencil, new THREE.CylinderGeometry(.07, .07, .14, 12), K.cap, [0, -.62, 0], .02);
+    const NC = K.notes;
     const NP = [[-.4, .22, .48], [.42, .16, .48], [0, -.4, .48], [-.62, -.32, .26], [.62, -.42, .26]];
     const notes = NP.map(([x, y, sz], i) => {
       const n = mk(head, new THREE.BoxGeometry(sz, sz, .02), NC[i], null, .015);
