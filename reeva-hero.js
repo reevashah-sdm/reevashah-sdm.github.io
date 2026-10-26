@@ -1,7 +1,6 @@
 // Shared hero interactions.
-// The diagram is a three-stop dial for how strategy and design relate, read through one chair:
-// the strategy circle shows its plan, the design circle its loose form, and only the overlap shows the finished chair.
-// apart -> overlap (where I work) -> one (the whole chair).
+// The diagram is a three-stop dial for how strategy (the why) and design (the how) relate:
+// apart -> overlap (where why meets how) -> one (one practice).
 // Merging them turns the headline to "Thinking and making, in one practice."
 (function () {
   const L = (a, b, t) => a + (b - a) * t, C = (v, a, b) => Math.max(a, Math.min(b, v));
@@ -9,7 +8,7 @@
   const NONE = 'linear-gradient(transparent,transparent)';
   const circ = (r, x, y) => `radial-gradient(circle ${r.toFixed(1)}px at ${x.toFixed(1)}px ${y.toFixed(1)}px,#000 97%,transparent 100%)`;
   const STOPS = [{ k: 'apart', s: 186 }, { k: 'overlap', s: 106.4 }, { k: 'one', s: 0 }];
-  const CAP = { apart: 'a plan with no form. a form with no plan.', overlap: 'where I work: the plan takes shape', one: 'thought through, and made well' };
+  const CAP = { apart: 'a why with no how stays on paper. a how with no why is a guess', overlap: 'most of my work lives here, in the middle', one: 'in the end, both ask one thing: does it help someone?' };
 
   function scramble(el, to) {
     let f = 0; clearInterval(el._s);
@@ -27,7 +26,6 @@
     const mv = e => { const p = e.touches ? e.touches[0] : e; if (p) { M.x = p.clientX; M.y = p.clientY; } };
     addEventListener('pointermove', mv, { passive: true });
     const venn = q('[data-venn]'), vq = s => venn ? venn.querySelector(s) : null, cA = vq('[data-ca]'), cB = vq('[data-cb]'), ghost = vq('[data-ghost]');
-    const lensA = venn ? [...venn.querySelectorAll('[data-m="a"]')] : [], lensB = venn ? [...venn.querySelectorAll('[data-m="b"]')] : [];
     const la = vq('[data-la]'), lb = vq('[data-lb]'), lc = vq('[data-lc]'), vline = vq('[data-vline]'), rv = q('[data-reveal-layer]'), dots = q('[data-dots]');
     const stops = venn ? [...venn.querySelectorAll('[data-stop]')] : [];
     const nl = qa('[data-nl]'), nl2 = qa('[data-nl2]'), mags = qa('[data-mag]'), fw = qa('[data-fw]'), cyc = q('[data-cycle]');
@@ -111,15 +109,14 @@
         const sep = V.sep, ax = 280 - sep, bx = 280 + sep;
         const set = (n, x) => { if (n) n.setAttribute('cx', x.toFixed(1)); };
         set(cA, ax); set(cB, bx);
-        lensA.forEach(n => set(n, ax)); lensB.forEach(n => set(n, bx));
         const state = nearest(sep).k;
         if (state !== V.state) { V.state = state; holdWords(state === 'one'); }
         const r = 173.6, inA = Math.hypot(P.x - ax, P.y - 201) < r, inB = Math.hypot(P.x - bx, P.y - 201) < r;
         const lo2 = C((sep - 50) / 45, 0, 1).toFixed(2);
-        if (la) { la.style.transform = `translate(calc(${(ax - r * .62) * P.s}px - 50%),${193 * P.s}px)`; la.style.opacity = lo2; }
-        if (lb) { lb.style.transform = `translate(calc(${(bx + r * .62) * P.s}px - 50%),${193 * P.s}px)`; lb.style.opacity = lo2; }
+        if (la) { la.style.transform = `translate(calc(${(ax - r * .62) * P.s}px - 50%),${184 * P.s}px)`; la.style.opacity = lo2; }
+        if (lb) { lb.style.transform = `translate(calc(${(bx + r * .62) * P.s}px - 50%),${184 * P.s}px)`; lb.style.opacity = lo2; }
         if (lc) {
-          const html = sep < 40 ? 'one<br>practice' : 'where I<br>work';
+          const html = sep < 40 ? 'one<br>practice' : 'where why<br>meets how';
           if (lc.innerHTML !== html) lc.innerHTML = html;
           lc.style.opacity = C((176 - sep) / 30, 0, 1).toFixed(2);
           lc.style.transform = `translate(${280 * P.s}px,${201 * P.s}px) translate(-50%,-50%) scale(${sep < 40 ? 1.3 : 1})`;
