@@ -57,23 +57,22 @@
 .wm-ct{padding:8px 0 7px;border-top:1px solid rgba(244,239,230,.5);border-bottom:1px solid rgba(244,239,230,.5);align-items:center}
 .wm-ct small{font:400 13px/1 Georgia,'Times New Roman',serif;font-style:italic;color:#ABA398}
 .wm-ct>span{margin-top:5px;font:400 clamp(22px,2.2cqw,30px)/1 Georgia,'Times New Roman',serif;letter-spacing:.1em;text-transform:uppercase;color:#F4EFE6}
-.hand{position:relative;--cw:clamp(130px,15.5cqw,210px);--step:7.4deg;height:calc(var(--cw)*1.4 + 110px);margin-top:clamp(28px,3cqw,44px)}
-.cd{position:absolute;left:50%;top:60px;width:var(--cw);aspect-ratio:5/7;margin-left:calc(var(--cw)/-2);padding:calc(var(--cw)*.09);border-radius:14px;background:#2C2825;border:1px solid #3A3531;box-shadow:0 18px 40px -14px rgba(0,0,0,.6);cursor:pointer;-webkit-tap-highlight-color:transparent;transform-origin:50% 330%;transform:rotate(calc((var(--i) - 3.5) * var(--step) + var(--push,0deg))) translateY(var(--lift,0px));transition:transform .6s cubic-bezier(.3,1.3,.5,1),background .35s,border-color .35s}
-.cd:nth-child(1){--i:0}.cd:nth-child(2){--i:1}.cd:nth-child(3){--i:2}.cd:nth-child(4){--i:3}.cd:nth-child(5){--i:4}.cd:nth-child(6){--i:5}.cd:nth-child(7){--i:6}.cd:nth-child(8){--i:7}
-.cd.l{--push:-4.5deg}.cd.r{--push:4.5deg}
-.cd.up{--lift:-50px;background:#D42A2E;border-color:#D42A2E;z-index:20}
-.cd-ic{width:calc(var(--cw)*.3);height:calc(var(--cw)*.3)}
-.cd-ic svg,.cd-ad{display:block;width:100%;height:100%;border-radius:23%}
-.cd-ad{display:grid;place-items:center;font:600 calc(var(--cw)*.13)/1 'Familjen Grotesk',sans-serif;letter-spacing:-.02em}
-.cd-n{position:absolute;right:calc(var(--cw)*.09);top:calc(var(--cw)*.1);font:400 12px/1 'Familjen Grotesk',sans-serif;color:#90887D;transition:color .3s}
-.cd-nm{margin-top:calc(var(--cw)*.1);font:500 clamp(14px,1.3cqw,17px)/1.15 'Familjen Grotesk',sans-serif;color:#F4EFE6}
-.cd-k{margin-top:4px;font:400 13px/1 'Familjen Grotesk',sans-serif;color:#9D958A;transition:color .3s}
-.cd-nt{position:absolute;left:calc(var(--cw)*.09);right:calc(var(--cw)*.09);bottom:calc(var(--cw)*.1);font:400 clamp(17px,1.6cqw,21px)/1.05 'Caveat Brush',cursive;color:#F4EFE6;opacity:0;transform:translateY(8px);transition:opacity .3s,transform .45s cubic-bezier(.3,1.5,.5,1)}
-.cd.up .cd-n,.cd.up .cd-k{color:rgba(244,239,230,.8)}
-.cd-nm,.cd-k{opacity:0;transform:translateY(6px);transition:opacity .3s,transform .45s cubic-bezier(.3,1.5,.5,1),color .3s}
-.cd.up .cd-nm,.cd.up .cd-k{opacity:1;transform:none}
-.cd.up .cd-nt{opacity:1;transform:none}
-@container (max-width:700px){.wk-i{padding:0 26px}.hand{--cw:92px;--step:3.5deg;height:calc(var(--cw)*1.4 + 96px)}.cd{top:52px;border-radius:10px}.cd.up{--lift:-40px}.cd-nm{font-size:12px}.cd-k{display:none}.cd-nt{font-size:15px}.cd-n{display:none}}
+/* the tools as a row of keycaps: hover or tap one to press it, and the line beneath reads it out */
+.desk{display:flex;flex-wrap:wrap;align-items:center;gap:22px clamp(32px,4cqw,64px);margin-top:clamp(28px,3cqw,44px)}
+.keys{flex:0 1 920px;display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:clamp(8px,1.2cqw,16px)}
+.ky{position:relative;aspect-ratio:1;border:0;padding:0;border-radius:clamp(10px,1.2cqw,16px);background:#2C2825;box-shadow:inset 0 -6px 0 #1A1715,inset 0 1px 0 rgba(255,255,255,.06),0 12px 20px -12px rgba(0,0,0,.7);cursor:pointer;display:grid;place-items:center;-webkit-tap-highlight-color:transparent;transition:transform .14s,box-shadow .14s,background .25s}
+.ky:hover,.ky.on{transform:translateY(4px);box-shadow:inset 0 -2px 0 #1A1715,0 4px 8px -6px rgba(0,0,0,.7)}
+.ky.on{background:#D42A2E;box-shadow:inset 0 -2px 0 #8E1A1C,0 4px 8px -6px rgba(0,0,0,.7)}
+.ky-ic{width:50%;aspect-ratio:1}
+.ky-ic svg,.ky-ad{display:block;width:100%;height:100%;border-radius:23%}
+.ky-ad{display:grid;place-items:center;font:600 clamp(13px,1.5cqw,20px)/1 'Familjen Grotesk',sans-serif;letter-spacing:-.02em}
+.ky-out{flex:1 1 240px;display:flex;flex-direction:column;align-items:flex-start;gap:8px;min-height:84px;justify-content:center;padding-left:clamp(0px,2cqw,28px);border-left:1px solid rgba(244,239,230,.15)}
+.ky-nm{font:500 clamp(18px,1.7cqw,24px)/1 'Familjen Grotesk',sans-serif;color:#F4EFE6}
+.ky-k{font:400 14px/1 'Familjen Grotesk',sans-serif;color:#9D958A}
+.ky-nt{font:400 clamp(22px,2cqw,28px)/1.05 'Caveat Brush',cursive;color:#D42A2E;animation:kyIn .35s cubic-bezier(.3,1.5,.5,1)}
+.ky-hint{font:400 20px/1 'Caveat Brush',cursive;color:#9D958A}
+@keyframes kyIn{from{opacity:0;transform:translateY(6px)}}
+@container (max-width:700px){.wk-i{padding:0 26px}.keys{grid-template-columns:repeat(4,minmax(0,1fr))}.ky-out{border-left:0;padding-left:0;min-height:0}}
 body{margin:0;background:#161412}*{box-sizing:border-box}html{scroll-behavior:smooth}a{color:inherit;text-decoration:none;transition:color .2s}a:hover{color:#D42A2E}::selection{background:#D42A2E;color:#F4EFE6}@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}html{scroll-behavior:auto!important}}</style>
 <script src="reeva-face.js?v=20261027-10"></script>
 </helmet>
@@ -187,17 +186,12 @@ body{margin:0;background:#161412}*{box-sizing:border-box}html{scroll-behavior:sm
 <section style="padding:clamp(80px,8cqw,120px) clamp(20px,5.5cqw,80px) 0">
 <div data-reveal="1" style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px;font:500 19px/1 'Familjen Grotesk',sans-serif"><span style="font:400 26px/1 'Caveat Brush',cursive;color:#D42A2E">What's On My Desk</span><span style="font:400 15px/1 'Familjen Grotesk',sans-serif;color:#9D958A">{{ handCount }}</span></div>
 <div data-reveal="1" style="margin-top:48px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px 48px">
-<h2 style="margin:0;font:400 clamp(28px,3.6cqw,52px)/1.15 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;color:#F4EFE6">The hand<br><span style="color:#D42A2E">I play with.</span></h2>
+<h2 style="margin:0;font:400 clamp(28px,3.6cqw,52px)/1.15 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;color:#F4EFE6">The keys<br><span style="color:#D42A2E">I reach for.</span></h2>
 <span style="font:400 20px/1.2 'Caveat Brush',cursive;color:#9D958A">{{ handHint }}</span>
 </div>
-<div class="hand" data-reveal="1" onMouseLeave="{{ handOff }}">
-<sc-for list="{{ cards }}" as="c" hint-placeholder-count="8"><div class="{{ c.cls }}" onMouseEnter="{{ c.on }}" onClick="{{ c.tap }}">
-<div class="cd-ic"><sc-if value="{{ c.fig }}"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x=".75" y=".75" width="62.5" height="62.5" rx="14.5" fill="#2A2A2A" stroke="rgba(255,255,255,.18)" stroke-width="1.5"></rect><path d="M32 14H26a6 6 0 0 0 0 12h6z" fill="#F24E1E"></path><path d="M32 14h6a6 6 0 0 1 0 12h-6z" fill="#FF7262"></path><path d="M32 26H26a6 6 0 0 0 0 12h6z" fill="#A259FF"></path><circle cx="38" cy="32" r="6" fill="#1ABCFE"></circle><path d="M32 38H26a6 6 0 1 0 6 6z" fill="#0ACF83"></path></svg></sc-if><sc-if value="{{ c.ad }}"><span class="cd-ad" style="background:{{ c.bg }};color:{{ c.fg }}">{{ c.m }}</span></sc-if></div>
-<div class="cd-n">{{ c.n }}</div>
-<div class="cd-nm">{{ c.name }}</div>
-<div class="cd-k">{{ c.kind }}</div>
-<div class="cd-nt">{{ c.note }}</div>
-</div></sc-for>
+<div class="desk" data-reveal="1" onMouseLeave="{{ handOff }}">
+<div class="keys"><sc-for list="{{ cards }}" as="c" hint-placeholder-count="8"><button class="{{ c.cls }}" aria-label="{{ c.name }}" onMouseEnter="{{ c.on }}" onClick="{{ c.tap }}"><span class="ky-ic"><sc-if value="{{ c.fig }}"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x=".75" y=".75" width="62.5" height="62.5" rx="14.5" fill="#2A2A2A" stroke="rgba(255,255,255,.18)" stroke-width="1.5"></rect><path d="M32 14H26a6 6 0 0 0 0 12h6z" fill="#F24E1E"></path><path d="M32 14h6a6 6 0 0 1 0 12h-6z" fill="#FF7262"></path><path d="M32 26H26a6 6 0 0 0 0 12h6z" fill="#A259FF"></path><circle cx="38" cy="32" r="6" fill="#1ABCFE"></circle><path d="M32 38H26a6 6 0 1 0 6 6z" fill="#0ACF83"></path></svg></sc-if><sc-if value="{{ c.ad }}"><span class="ky-ad" style="background:{{ c.bg }};color:{{ c.fg }}">{{ c.m }}</span></sc-if></span></button></sc-for></div>
+<div class="ky-out"><sc-if value="{{ keyOn }}"><span class="ky-nm">{{ keyName }}</span><span class="ky-k">{{ keyKind }}</span><span class="ky-nt">{{ keyNote }}</span></sc-if><sc-if value="{{ keyOff }}"><span class="ky-hint">nothing pressed yet</span></sc-if></div>
 </div>
 </section>
 
@@ -483,10 +477,11 @@ class Component extends DCLogic {
         roles: ROLES.map((r, i) => ({ ...r, cls: i === xi ? 'on' : '', pts: r.pts.map((t, j) => ({ t, d: i === xi ? (.18 + j * .08).toFixed(2) + 's' : '0s' })) })),
       }; })(),
       wkRef: this.wkRef, wkOn: () => { this.wkHover = true; }, wkOff: () => { this.wkHover = false; }, wkHint: mob ? 'scroll to spin it' : 'hover to pause, scroll to spin',
-      // The tools, fanned out like a hand of cards: hover (or tap) one to pull it out of the hand.
-      handOff: () => { if (!mob) this.setState({ hc: null }); }, handHint: mob ? 'tap a card' : 'pick a card', handCount: '0' + TOOLS.length + ' cards in my hand',
+      // The tools as keycaps: hover (or tap) one to press it; the line below reads out the tool and what I use it for.
+      handOff: () => { if (!mob) this.setState({ hc: null }); }, handHint: mob ? 'tap a key' : 'press a key', handCount: '0' + TOOLS.length + ' keys I reach for',
+      keyOn: s.hc != null, keyOff: s.hc == null, keyName: s.hc != null ? TOOLS[s.hc].name : '', keyKind: s.hc != null ? TOOLS[s.hc].kind : '', keyNote: s.hc != null ? TOOLS[s.hc].note : '',
       cards: TOOLS.map((t, i) => { const h = s.hc; return { ...t, ad: !t.fig, fig: !!t.fig, n: '0' + (i + 1),
-        cls: 'cd' + (h == null ? '' : h === i ? ' up' : i < h ? ' l' : ' r'),
+        cls: 'ky' + (h === i ? ' on' : ''),
         on: () => { if (!mob) this.setState({ hc: i }); }, tap: () => this.setState(x => ({ hc: mob && x.hc === i ? null : i })) }; }),
 
       ctaOn: this.ctaOn, ctaOff: this.ctaOff, ctaWord: CTA[s.cta || 0], ctaHint: (s.cta || 0) === 0 ? 'hover the headline' : 'you tell me the rest',
