@@ -12,12 +12,12 @@
   @page{size:A4;margin:0}
   *{box-sizing:border-box}
   html,body{margin:0;background:#fff}
-  body{font-family:'Familjen Grotesk',sans-serif;color:var(--text);font-size:9.7px;line-height:1.52;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body{font-family:'Familjen Grotesk',sans-serif;color:var(--text);font-size:9.1px;line-height:1.42;-webkit-print-color-adjust:exact;print-color-adjust:exact}
   a{color:inherit;text-decoration:none}
   .hand{font-family:'Caveat Brush',cursive;font-weight:400}
   .page{position:relative;width:210mm;height:297mm;margin:0 auto;overflow:hidden;background:var(--paper);display:flex;flex-direction:column}
 
-  header{position:relative;display:grid;grid-template-columns:31mm minmax(0,1fr) auto;gap:0 8mm;align-items:center;padding:13mm 15mm 9mm}
+  header{position:relative;display:grid;grid-template-columns:31mm minmax(0,1fr) auto;gap:0 8mm;align-items:center;padding:10mm 15mm 6mm}
   /* the polaroid from the about page, smaller and taped down */
   .pola{position:relative;width:29mm;padding:2.2mm 2.2mm 6mm;background:#fff;transform:rotate(-4deg);box-shadow:0 6px 14px rgba(31,28,26,.16),0 1px 2px rgba(31,28,26,.1)}
   /* portrait: a head-and-torso crop of the original photo, saved as img/reeva-portrait.jpg */
@@ -34,10 +34,10 @@
   /* a hand-drawn feeling rule under the header: dashes, like the site's dashed underlines */
   .rule{margin:0 15mm;height:1px;background:repeating-linear-gradient(90deg,var(--line) 0 6px,transparent 6px 10px)}
 
-  .body{flex:1;display:flex;flex-direction:column;padding:7mm 15mm 11mm}
+  .body{flex:1;display:flex;flex-direction:column;padding:5mm 15mm 10mm}
   .body>section{flex:1 1 auto}
   .body>section:last-child{flex:0 0 auto}
-  section{position:relative;display:grid;grid-template-columns:31mm minmax(0,1fr);column-gap:9mm;padding:0 0 8px}
+  section{position:relative;display:grid;grid-template-columns:31mm minmax(0,1fr);column-gap:9mm;padding:0 0 7px}
   /* the thread and eyelets, now in the site's red */
   section::before{content:"";position:absolute;z-index:1;left:calc(31mm + 4.5mm - 6px);top:3px;width:12px;height:12px;border-radius:50%;border:1.3px solid var(--red);background:radial-gradient(circle,var(--red) 0 1.8px,var(--paper) 2.2px)}
   section::after{content:"";position:absolute;left:calc(31mm + 4.5mm - .5px);top:9px;bottom:-12px;width:1px;background:repeating-linear-gradient(to bottom,#DCCFC2 0 3px,transparent 3px 6.5px)}
@@ -46,16 +46,16 @@
   .lab small{display:block;margin-top:4px;font-size:8.2px;line-height:1.3;color:var(--sub)}
   p{margin:0}
 
-  .skills{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 8mm}
+  .skills{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 8mm}
   .skills h3{margin:0 0 2px;font-size:9.8px;font-weight:600;color:var(--ink)}
-  .entry{padding-top:7px}
+  .entry{padding-top:5px}
   .entry:first-child{padding-top:0}
   .hd{display:flex;justify-content:space-between;align-items:baseline;gap:14px}
-  h4{margin:0;font-size:10.6px;font-weight:600;color:var(--ink)}
+  h4{margin:0;font-size:10px;font-weight:600;color:var(--ink)}
   .when{font-size:9px;color:var(--sub);white-space:nowrap}
   .org{color:var(--sub)}
   ul{margin:3px 0 0;padding:0;list-style:none}
-  li{position:relative;padding-left:12px;margin-top:1.5px}
+  li{position:relative;padding-left:12px;margin-top:.5px}
   li::before{content:"";position:absolute;left:0;top:.72em;width:6px;height:1px;background:var(--red)}
   .note{font-family:'Caveat Brush',cursive;font-size:12px;line-height:1;color:var(--red)}
 
@@ -79,7 +79,7 @@
 </style>
 </head>
 <body>
-<nav class="bar"><a class="back" href="../">← Back to portfolio</a><a class="dl" href="Reeva-Shah-Resume.pdf?v=20261026-4" download="Reeva-Shah-Resume.pdf">Download PDF <span aria-hidden="true">↓</span></a></nav>
+<nav class="bar"><a class="back" href="../">← Back to portfolio</a><a class="dl" href="Reeva-Shah-Resume.pdf?v=20261027-1" download="Reeva-Shah-Resume.pdf">Download PDF <span aria-hidden="true">↓</span></a></nav>
 <div class="sheet">
 <main class="page">
   <header>
@@ -108,9 +108,9 @@
     <section>
       <div class="lab"><h2 class="hand">Skills</h2><small>what I bring</small></div>
       <div class="skills">
-        <div><h3>Strategic Design &amp; Research</h3><p>Design Thinking, Problem Framing, User Research, Competitor Analysis, Research Synthesis, Stakeholder Communication</p></div>
-        <div><h3>Human-Centred &amp; Systems Thinking</h3><p>Human Behaviour, Behavioural Research, Systems Thinking, Organisational Design</p></div>
-        <div><h3>UI/UX &amp; Digital Design</h3><p>User Flows, Information Architecture, Wireframing, Prototyping, Usability Testing, Responsive Web Design, Design Systems</p></div>
+        <div><h3>UX &amp; Product Design</h3><p>User-Centred Design, Interaction Design, User Flows, Information Architecture, Wireframing, Prototyping, High-Fidelity UI, Responsive Web &amp; Mobile, Design Systems, Usability Testing, Developer Handoff</p></div>
+        <div><h3>UX Research</h3><p>User Interviews, Ethnographic Research, Shadowing, Behavioural Mapping, Affinity Mapping, Personas, Journey Mapping, Competitor Analysis, Research Synthesis, Insight Generation</p></div>
+        <div><h3>Design Strategy &amp; Service Design</h3><p>Design Thinking, Problem Framing, Service Design, Systems Thinking, Systems Mapping, Stakeholder Mapping, Market Research, Brand Strategy, Positioning</p></div>
         <div><h3>Visual &amp; Communication Design</h3><p>Brand Identity, Typography, Layout Design, Visual Storytelling, Packaging Design, Motion Graphics, Wayfinding &amp; Signage</p></div>
       </div>
     </section>
@@ -121,24 +121,24 @@
         <div class="entry">
           <div class="hd"><h4>UI/UX Designer</h4><span class="when">July 2024 –&nbsp;June 2025</span></div><span class="org">Zero Gravity Communications, Ahmedabad</span>
           <ul>
-            <li>Translated project requirements into website layouts, user flows and interface designs, balancing usability, visual hierarchy and business objectives.</li>
-            <li>Worked across information architecture, typography, colour and content structure to shape cohesive digital experiences.</li>
-            <li>Built and maintained Figma component libraries and style guides to support consistency across interfaces.</li>
-            <li>Collaborated with developers to address design feasibility, responsive behaviour and implementation requirements.</li>
+            <li>Designed and delivered 16 responsive client websites across 8+ industries, including real estate, food, agriculture, solar energy, apparel, steel, zippers and jewellery, from requirements to user flows, wireframes and high-fidelity Figma prototypes.</li>
+            <li>Built and maintained 3 Figma component libraries and style guides to keep typography, colour and UI patterns consistent and streamline developer handoff.</li>
+            <li>Ran usability testing with 7–8 participants and turned the findings into better navigation, content hierarchy and information architecture.</li>
+            <li>Collaborated with 6 departments, including development, content, client servicing and performance marketing, to align designs with technical feasibility and business goals.</li>
           </ul>
         </div>
         <div class="entry">
           <div class="hd"><h4>UI/UX Designer Intern</h4><span class="when">January 2024 –&nbsp;July 2024</span></div><span class="org">Zero Gravity Communications, Ahmedabad</span>
           <ul>
-            <li>Designed responsive web and mobile interfaces using Figma and Adobe XD.</li>
-            <li>Supported competitor analysis and user research to inform interface layouts, content hierarchy and user journeys.</li>
+            <li>Designed responsive web and mobile interfaces in Figma and Adobe XD for live client projects.</li>
+            <li>Conducted competitor analysis and user research to inform interface layouts, content hierarchy and user journeys.</li>
           </ul>
         </div>
         <div class="entry">
           <div class="hd"><h4>Communication Designer Intern</h4><span class="when">June 2023 –&nbsp;July 2023</span></div><span class="org">Web Plus Info Tech Pvt. Ltd.</span>
           <ul>
-            <li>Created visual communication assets and promotional creatives for digital applications.</li>
-            <li>Contributed to website layouts and explored motion graphics across design projects.</li>
+            <li>Created visual communication assets and promotional creatives for 10–15 clients across digital platforms and applications.</li>
+            <li>Contributed to website layouts and produced motion graphics in Adobe After Effects.</li>
           </ul>
         </div>
       </div>
@@ -148,16 +148,26 @@
       <div class="lab"><h2 class="hand">Projects</h2><small>things I've made</small></div>
       <div>
         <div class="entry">
-          <div class="hd"><h4>Human Behaviour Study at Ahmedabad and Gandhinagar Courts</h4><span class="when">February –&nbsp;March 2026</span></div><span class="org">User Research &amp; Behavioural Observation · High Court and District Courts</span>
+          <div class="hd"><h4>Human Behaviour Study at Ahmedabad and Gandhinagar Courts</h4><span class="when">February –&nbsp;March 2026</span></div><span class="org">UX Research &amp; Service Design · High Court, District, Family, Criminal and Juvenile Courts</span>
           <ul>
-            <li>Observed and documented how litigants, lawyers and visitors navigate court premises, identifying pain points in movement, waiting and information access.</li>
+            <li>Ran a 5-week ethnographic study across 9 courts in Ahmedabad and Gandhinagar, using shadowing, behavioural mapping and half-hourly footfall counts.</li>
+            <li>Interviewed 9 litigants, a senior advocate at the Gujarat High Court and 2 district judges; mapped 17 stakeholder roles and synthesised 44 observations through affinity mapping across 14 lenses.</li>
+            <li>Used personas, journey maps and a systems map to find 2 major pain points, no case information in local languages and no real-time hearing updates, and <span class="note">presented our solutions to 2 district judges.</span></li>
+          </ul>
+        </div>
+        <div class="entry">
+          <div class="hd"><h4>NOU, Men's Footwear Brand</h4></div><span class="org">Brand Strategy, Identity &amp; E-commerce UX/UI</span>
+          <ul>
+            <li>Carried out market research, a 5-brand competitor audit, perceptual mapping and segmentation to position a handcrafted, 100% Indian-leather label as premium.</li>
+            <li>Created 3 personas, a brand platform and an identity system, refined from 29 logo explorations and carried across 8 brand touchpoints.</li>
+            <li>Designed the user journey map, information architecture, sitemap, UI kit and e-commerce store.</li>
           </ul>
         </div>
         <div class="entry">
           <div class="hd"><h4>Redesigning Signage at Kalupur Railway Station</h4><span class="when">August –&nbsp;November 2023</span></div><span class="org">Wayfinding &amp; Environmental Graphic Design</span>
           <ul>
-            <li>Conducted field research and observed commuter movement to investigate navigation challenges in a high-footfall railway environment.</li>
-            <li>Developed a proposed wayfinding system using visual hierarchy, pictograms and colour coding to support clearer navigation.</li>
+            <li>Conducted field research and observed commuter movement to diagnose navigation pain points in a high-footfall railway station.</li>
+            <li>Designed a proposed wayfinding system using visual hierarchy, pictograms and colour coding for clearer navigation.</li>
             <li>Authored the research report; <span class="note">the project was selected for article publication.</span></li>
           </ul>
         </div>
