@@ -1,6 +1,6 @@
 // Shared hero interactions.
 // The diagram is a three-stop dial for how strategy (the why) and design (the how) relate:
-// apart -> overlap (where why meets how) -> one (one practice).
+// apart -> overlap (where why meets how) -> one (one practice), played on a loop; dragging takes over.
 // Merging them turns the headline to "Thinking and making, in one practice."
 (function () {
   const L = (a, b, t) => a + (b - a) * t, C = (v, a, b) => Math.max(a, Math.min(b, v));
@@ -27,7 +27,6 @@
     addEventListener('pointermove', mv, { passive: true });
     const venn = q('[data-venn]'), vq = s => venn ? venn.querySelector(s) : null, cA = vq('[data-ca]'), cB = vq('[data-cb]'), ghost = vq('[data-ghost]');
     const la = vq('[data-la]'), lb = vq('[data-lb]'), lc = vq('[data-lc]'), vline = vq('[data-vline]'), rv = q('[data-reveal-layer]'), dots = q('[data-dots]');
-    const stops = venn ? [...venn.querySelectorAll('[data-stop]')] : [];
     const nl = qa('[data-nl]'), nl2 = qa('[data-nl2]'), mags = qa('[data-mag]'), fw = qa('[data-fw]'), cyc = q('[data-cycle]');
     if (ghost) ghost.style.display = 'none';
 
@@ -42,6 +41,7 @@
     };
 
     const down = e => {
+      LOOP.idle = performance.now() + 6000;
       const p = toV(e.clientX, e.clientY), r = 173.6;
       const inA = Math.hypot(p.x - (280 - V.sep), p.y - 201) < r, inB = Math.hypot(p.x - (280 + V.sep), p.y - 201) < r;
       if (!inA && !inB) return;
@@ -52,12 +52,14 @@
     };
     const up = () => {
       const D = V.D; V.D = null; if (!D) return;
+      LOOP.idle = performance.now() + 6000;
       if (D.moved) { V.target = nearest(V.sep).s; return; }
       const i = STOPS.findIndex(s => s.k === V.state); V.target = STOPS[(i + 1) % STOPS.length].s;
     };
     if (venn) { venn.addEventListener('pointerdown', down); venn.addEventListener('pointermove', mv); venn.addEventListener('dragstart', e => e.preventDefault()); }
     addEventListener('pointerup', up); addEventListener('pointercancel', up);
-    stops.forEach(b => b.addEventListener('click', () => { V.target = +b.dataset.stop; }));
+    // no buttons: the circles drift apart, overlap, become one and come back on their own; a hand on them pauses the loop
+    const SEQ = [106.4, 0, 106.4, 186], LOOP = { i: 0, next: performance.now() + 2600, idle: 0 };
 
     // name letters: click to bounce
     const lo = nl.map((n, i) => ({ x: 0, y: 60, vx: 0, vy: 0, born: .3 + i * .09 }));
@@ -103,6 +105,8 @@
 
       if (venn) {
         const P = toV(M.x, M.y), D = V.D;
+        const now = performance.now();
+        if (!D && now > LOOP.idle && now > LOOP.next) { LOOP.i = (LOOP.i + 1) % SEQ.length; V.target = SEQ[LOOP.i]; LOOP.next = now + (SEQ[LOOP.i] === 106.4 ? 3000 : 3800); }
         if (D && !D.moved && Math.hypot(M.x - D.x, M.y - D.y) > 4) D.moved = true;
         if (D && D.moved) V.target = C(Math.abs(P.x - 280) - D.off, 0, 196);
         V.v += (V.target - V.sep) * (D ? .35 : .12); V.v *= D ? .5 : .72; V.sep += V.v;
@@ -122,7 +126,6 @@
           lc.style.transform = `translate(${280 * P.s}px,${201 * P.s}px) translate(-50%,-50%) scale(${sep < 40 ? 1.3 : 1})`;
         }
         if (vline) { const txt = D && D.moved ? 'let go to snap' : CAP[state]; if (vline.textContent !== txt) vline.textContent = txt; vline.style.color = state === 'one' ? '#D42A2E' : '#CAC3B8'; }
-        stops.forEach(b => { const on = nearest(+b.dataset.stop).k === state; b.style.background = on ? '#D42A2E' : 'transparent'; b.style.color = on ? '#F4EFE6' : '#CAC3B8'; });
         venn.style.cursor = D && D.moved ? 'grabbing' : inA || inB ? 'grab' : 'default';
       }
 
