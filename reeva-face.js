@@ -37,8 +37,6 @@
     const bangs = mk(head, new THREE.SphereGeometry(1.075, 48, 12, Math.PI / 2 - 1.3, 2.6, Math.PI * .12, Math.PI * .24), HAIR, null, .022); bangs.scale.set(1, 1.08, .98);
     [-1, 1].forEach(s => { const lk = mk(head, new THREE.CapsuleGeometry(.19, 1.6, 6, 14), HAIR, [s * .86, -.66, .3], .022); lk.rotation.z = s * .07; lk.rotation.x = -.1; });
     const back = mk(head, new THREE.CapsuleGeometry(.7, .8, 8, 20), HAIR, [0, -1.05, -.38], .022); back.scale.set(1.12, 1, .42);
-    // a soft sheen across the crown, so the hair isn't one flat black shape
-    const sheen = new THREE.Mesh(new THREE.TorusGeometry(.78, .035, 6, 40, 1.1), B(0x55494a)); sheen.position.set(0, .2, .1); sheen.rotation.set(-.55, 0, Math.PI / 2 - .55); sheen.scale.set(1, 1.08, 1); head.add(sheen);
     const INKB = B(0x1a1414);
     [-1, 1].forEach(s => {
       const lid = new THREE.Mesh(new THREE.TorusGeometry(.215, .019, 6, 28, Math.PI * .9), INKB); lid.position.set(s * .33, .07, .87); lid.rotation.set(-.3, 0, Math.PI * .05); head.add(lid);
