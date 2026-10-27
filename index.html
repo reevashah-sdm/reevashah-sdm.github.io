@@ -222,10 +222,9 @@ const STEPS = [
   { title: 'DESIGN', kicker: 'make it felt', body: 'Then it takes shape: something people notice, remember, and feel before they can explain why.', chips: ['Form', 'Feeling', 'Story', 'Detail'], label: 'image — the outcome', tint: '#D42A2E' },
 ];
 const PROJECTS = [
-  { num: '1', title: 'Twasa', cat: 'A quiet confidence', tint: '#EE7A22', labelC: 'rgba(244,239,230,.85)', label: 'twasa key visual', blurb: 'What happens when science wants to feel human? A story of balance, told in colour.', skills: ['Brand Strategy', 'Visual Identity', 'Storytelling', 'Design Process'] },
-  { num: '2', title: 'Human Behaviour Study', cat: 'Law & Life', tint: '#5A3A24', labelC: 'rgba(244,239,230,.85)', label: '', hbs: true, bgImg: 'linear-gradient(rgba(30,19,13,.35),rgba(30,19,13,.35)), url(human-behaviour-study/img/photo-corridor-4.png) 50% 40%/cover', blurb: 'The waiting public vs a courtroom that tells them almost nothing. What happens to people while they wait for justice.', skills: ['UX Research', 'Human Behaviour', 'Systems Thinking', 'Service Design'], href: 'human-behaviour-study/' },
-  { num: '3', title: 'Adventure Tourism of India', cat: 'Chalega, nahi chalega', tint: '#1D5BA6', labelC: 'rgba(244,239,230,.7)', label: '', adv: true, bgImg: 'linear-gradient(160deg,#1D5BA6 0%,#12386B 100%)', blurb: "How India's fast-growing adventure tourism industry negotiates safety, and where tourist trust breaks between what is promised and what happens on the ground.", skills: ['UX Research', 'Human Behaviour', 'Systems Thinking', 'Design Strategy'], href: 'adventure-tourism/' },
-  { num: '4', title: 'NOU', cat: 'Wear your narrative', tint: '#2A130B', labelC: 'rgba(244,239,230,.7)', label: '', bgImg: 'url(nou/img/hero.jpg) 50% 50%/cover', blurb: "Brand strategy, identity and UI/UX for a men's footwear label handcrafted in 100% Indian leather.", skills: ['Brand Strategy', 'Visual Identity', 'UI/UX', 'Design Audit'], href: 'nou/' },
+  { num: '1', title: 'Human Behaviour Study', cat: 'Law & Life', tint: '#5A3A24', labelC: 'rgba(244,239,230,.85)', label: '', hbs: true, bgImg: 'linear-gradient(rgba(30,19,13,.35),rgba(30,19,13,.35)), url(human-behaviour-study/img/photo-corridor-4.png) 50% 40%/cover', blurb: 'The waiting public vs a courtroom that tells them almost nothing. What happens to people while they wait for justice.', skills: ['UX Research', 'Human Behaviour', 'Systems Thinking', 'Service Design'], href: 'human-behaviour-study/' },
+  { num: '2', title: 'Adventure Tourism of India', cat: 'Chalega, nahi chalega', tint: '#1D5BA6', labelC: 'rgba(244,239,230,.7)', label: '', adv: true, bgImg: 'linear-gradient(160deg,#1D5BA6 0%,#12386B 100%)', blurb: "How India's fast-growing adventure tourism industry negotiates safety, and where tourist trust breaks between what is promised and what happens on the ground.", skills: ['UX Research', 'Human Behaviour', 'Systems Thinking', 'Design Strategy'], href: 'adventure-tourism/' },
+  { num: '3', title: 'NOU', cat: 'Wear your narrative', tint: '#2A130B', labelC: 'rgba(244,239,230,.7)', label: '', bgImg: 'url(nou/img/hero.jpg) 50% 50%/cover', blurb: "Brand strategy, identity and UI/UX for a men's footwear label handcrafted in 100% Indian leather.", skills: ['Brand Strategy', 'Visual Identity', 'UI/UX', 'Design Audit'], href: 'nou/' },
 ];
 PROJECTS.forEach(p => { p.href = p.href || '#work'; p.skills = p.skills || []; });
 class Component extends DCLogic {
@@ -287,7 +286,7 @@ class Component extends DCLogic {
   onMove = e => { const pt = e.touches ? e.touches[0] : e; if (!pt) return; this.m.x = pt.clientX; this.m.y = pt.clientY; this.m.nx = e.clientX / innerWidth * 2 - 1; this.m.ny = -(e.clientY / innerHeight) * 2 + 1; this.overUI = !!(e.target.closest && e.target.closest('a,button')); };
   onClick = e => {
     // a click or tap anywhere on a project row, outside links, buttons and the character, opens that project
-    if (!(e.target.closest && e.target.closest('a,button')) && !this.anyHit()) { if (this.onCardAt(e.clientX, e.clientY)) { this.setState(s => ({ cardFlip: !s.cardFlip })); return; } const i = this.rowAt(e.clientX, e.clientY); if (i >= 0) { location.href = PROJECTS[i].href; return; } }
+    if (!(e.target.closest && e.target.closest('a,button')) && !this.anyHit()) { const i = this.rowAt(e.clientX, e.clientY); if (i >= 0) { location.href = PROJECTS[i].href; return; } }
     this.poke && this.poke(e);
   };
   sqRef = React.createRef(); howRef = React.createRef(); footLineRef = React.createRef();
@@ -365,10 +364,11 @@ class Component extends DCLogic {
     document.body.style.cursor = this.anyHit() ? 'pointer' : '';
     {
       const lk = this.lookRef.current, hover = matchMedia('(hover: hover)').matches, M = this.m;
-      // the red card is its own button: over it the pill steps aside and a click flips it
+      // over the card the pill steps aside and the card turns over to its skills; a click still opens the project
       const onCard = this.onCardAt(M.x, M.y);
       const row = hover ? this.rowAt(M.x, M.y) : -1, on = row >= 0 && !onCard && !this.overUI && !this.anyHit();
       if (on) document.body.style.cursor = 'none'; else if (onCard && !this.anyHit()) document.body.style.cursor = 'pointer';
+      if (hover && onCard !== !!this.onCard) { this.onCard = onCard; this.setState({ cardFlip: onCard }); }
       if (lk) { const L = this.look; if (!L.on && on) { L.x = M.x; L.y = M.y; } L.x += (M.x - L.x) * .35; L.y += (M.y - L.y) * .35; L.on = on; lk.style.opacity = on ? 1 : 0; lk.style.transform = `translate(${L.x}px,${L.y}px) translate(-50%,-50%) scale(${on ? 1 : .6})`; }
     }
     const f = this.face, pk = this.peekRef.current, box = this.canvasRef.current, bub = this.bubbleRef.current; if (!f || !pk || !box) return;
@@ -378,7 +378,7 @@ class Component extends DCLogic {
     const hb = R(this.heroRef);
     if (hb && hb.bottom > H * .45) { d = null; }
     else if (this.tip && (tk => tk && tk.top < H * .4 && tk.bottom > H * .6)(R(this.trackRef))) { const z = mob ? 96 : 130, tp = this.tip; d = { id: 'how', x: tp.x - z / 2, y: tp.y - z * .8, w: z, h: z * .8, in: z, side: 'b', note: STEP_NOTES[this.state.step] }; }
-    else if (sq && r0 && rn && r0.top < H * .5 && rn.bottom > H * .5) { const z = Math.min(190, sq.width * .48); d = { id: 'work', x: sq.right - z - 8, y: sq.top - z * .62, w: z, h: z * .62, in: z, side: 'b', note: this.state.cardFlip ? 'the toolkit behind this one' : 'click the card to see what it took' }; }
+    else if (sq && r0 && rn && r0.top < H * .5 && rn.bottom > H * .5) { const z = Math.min(190, sq.width * .48); d = { id: 'work', x: sq.right - z - 8, y: sq.top - z * .62, w: z, h: z * .62, in: z, side: 'b', note: this.state.cardFlip ? 'the toolkit behind this one' : 'hover the card to see what it took' }; }
     else if (fl && fl.top < H) { const z = mob ? 150 : 220; d = { id: 'foot', x: fl.right - z - (mob ? 0 : 24), y: fl.top - z * .62, w: z, h: z * .62, in: z, side: 'b', note: "what's the other side of your story?" }; }
     if (!this.cd && d) this.cd = d;
     let want = 0;
