@@ -47,12 +47,13 @@
 .wk-i:hover::after{opacity:1;transform:translate(-50%,0) rotate(-3deg)}
 .wm-ct{display:flex;flex-direction:column;align-items:flex-start;white-space:nowrap}
 .wm-ct{display:flex;flex-direction:column;white-space:nowrap}
-.wk-st{position:relative;display:flex;align-items:center;padding:clamp(12px,1.2cqw,16px) clamp(16px,1.7cqw,24px);border:3px solid transparent;border-radius:18px;background:linear-gradient(160deg,#FFFFFF 0%,#F6F1EA 100%) padding-box,conic-gradient(from 200deg,#FFB8CC,#FFE08A,#A9F0D1,#9DC8FF,#D7B6FF,#FFB8CC) border-box;box-shadow:0 14px 26px -14px rgba(0,0,0,.7);transform:rotate(var(--r,0deg));transition:transform .5s cubic-bezier(.3,1.6,.5,1),box-shadow .4s}
-.wk-st::after{content:"";position:absolute;inset:0;border-radius:15px;pointer-events:none;background:linear-gradient(115deg,transparent 35%,rgba(255,196,228,.45) 45%,rgba(176,226,255,.45) 55%,transparent 65%) 120% 0/250% 100% no-repeat;transition:background-position .9s ease}
-.wk-i:hover .wk-st::after{background-position:-20% 0}
-.wk-st img{display:block;width:auto;max-width:none}
-.wk-i:hover .wk-st{transform:rotate(0deg) translateY(-4px);box-shadow:0 22px 34px -14px rgba(0,0,0,.75)}
-.wm-kp{display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 20px 9px;border-radius:5px;background:#F2C230;color:#151311;box-shadow:inset 0 0 0 3px #F2C230,inset 0 0 0 5px #151311;transform:rotate(-1.5deg);transition:transform .5s cubic-bezier(.3,1.6,.5,1)}
+/* logos sit straight on the dark page, no backing: drawn as quiet cream marks that light up when you point at one */
+.wk-st{display:flex;align-items:center;transform:rotate(var(--r,0deg));transition:transform .5s cubic-bezier(.3,1.6,.5,1)}
+.wk-st img{display:block;width:auto;max-width:none;filter:grayscale(1) invert(1) brightness(1.15) contrast(1.15);mix-blend-mode:screen;opacity:.55;transition:opacity .35s,filter .35s}
+.wk-i:hover .wk-st{transform:rotate(0deg) translateY(-4px)}
+.wk-i:hover .wk-st img{opacity:1}
+.wm-kp{display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 20px 9px;border-radius:5px;background:transparent;color:rgba(244,239,230,.55);box-shadow:inset 0 0 0 1.5px rgba(244,239,230,.45);transform:rotate(-1.5deg);transition:transform .5s cubic-bezier(.3,1.6,.5,1),background .35s,color .35s,box-shadow .35s}
+.wk-i:hover .wm-kp{background:#F2C230;color:#151311;box-shadow:inset 0 0 0 3px #F2C230,inset 0 0 0 5px #151311}
 .wm-kp span{font:600 15px/1.1 'Familjen Grotesk',sans-serif}
 .wm-kp span:last-child{font:700 21px/1 'Familjen Grotesk',sans-serif;letter-spacing:.08em}
 .wk-i:hover .wm-kp{transform:rotate(2deg)}
