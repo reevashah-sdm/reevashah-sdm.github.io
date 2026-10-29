@@ -60,22 +60,16 @@
 .wm-ct{padding:8px 0 7px;border-top:1px solid rgba(244,239,230,.5);border-bottom:1px solid rgba(244,239,230,.5);align-items:center}
 .wm-ct small{font:400 13px/1 Georgia,'Times New Roman',serif;font-style:italic;color:#ABA398}
 .wm-ct>span{margin-top:5px;font:400 clamp(22px,2.2cqw,30px)/1 Georgia,'Times New Roman',serif;letter-spacing:.1em;text-transform:uppercase;color:#F4EFE6}
-/* the tools as colour swatches from a Pantone book: each chip in the tool's own colour, its note printed on the label */
-.sws{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:clamp(10px,1.3cqw,18px);margin-top:clamp(28px,3cqw,44px)}
-.sw{display:flex;flex-direction:column;aspect-ratio:3/4.3;padding:0;border:0;border-radius:6px;overflow:hidden;background:#FBF8F3;color:#1F1C1A;text-align:left;cursor:pointer;-webkit-tap-highlight-color:transparent;box-shadow:0 16px 26px -16px rgba(0,0,0,.8);transform:rotate(var(--tw,0deg));transition:transform .45s cubic-bezier(.3,1.5,.5,1),box-shadow .35s}
-.sw:nth-child(odd){--tw:-1.2deg}.sw:nth-child(even){--tw:1deg}
-.sw:hover,.sw.on{transform:translateY(-12px) rotate(0deg);box-shadow:0 26px 34px -16px rgba(0,0,0,.85)}
-.sw-c{flex:1 1 60%;display:grid;place-items:center;background:var(--b)}
-.sw-c svg{width:46%;height:auto}
-.sw-c i{font:600 clamp(20px,2.4cqw,34px)/1 'Familjen Grotesk',sans-serif;font-style:normal;letter-spacing:-.03em;color:var(--f)}
-.sw-l{flex:0 0 auto;min-height:clamp(70px,6.2cqw,84px);padding:clamp(8px,.9cqw,12px)}
-.sw-t{display:grid;margin-top:4px}.sw-t>*{grid-area:1/1}
-.sw-l b{display:block;font:600 clamp(12px,1.05cqw,15px)/1.1 'Familjen Grotesk',sans-serif;letter-spacing:-.01em}
-.sw-l small{display:block;font:500 10px/1.2 'Familjen Grotesk',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#8A8178;transition:opacity .25s}
-.sw-l em{display:block;font:400 clamp(13px,1.15cqw,17px)/1.05 'Caveat Brush',cursive;font-style:normal;color:#D42A2E;opacity:0;transform:translateY(6px);transition:opacity .25s,transform .35s cubic-bezier(.3,1.5,.5,1)}
-.sw:hover .sw-l small,.sw.on .sw-l small{opacity:0}
-.sw:hover .sw-l em,.sw.on .sw-l em{opacity:1;transform:none}
-@container (max-width:700px){.wk-i{padding:0 26px}.sws{grid-template-columns:repeat(4,minmax(0,1fr))}}
+/* the tools told as one sentence: each tool is a word; point at one and its icon pops up above it like a sticker */
+.tls{max-width:30em;margin:clamp(28px,3cqw,44px) 0 0;font:400 clamp(24px,2.7cqw,40px)/1.55 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;color:#8F877C;text-wrap:pretty}
+.tl{position:relative;display:inline-block;color:#F4EFE6;cursor:default;outline:none;transition:color .25s}
+.tl::after{content:"";position:absolute;left:-2%;right:-2%;bottom:.02em;height:.32em;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 12' preserveAspectRatio='none'%3E%3Cpath d='M2 8 C 25 3, 50 11, 98 5' fill='none' stroke='%23D42A2E' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat;clip-path:inset(0 100% 0 0);transition:clip-path .45s ease}
+.tl-ic{position:absolute;left:50%;bottom:92%;width:1.35em;height:1.35em;pointer-events:none;transform:translate(-50%,10px) rotate(var(--r)) scale(.3);opacity:0;transition:transform .45s cubic-bezier(.3,1.7,.5,1),opacity .2s;filter:drop-shadow(0 8px 12px rgba(0,0,0,.5))}
+.tl-ic svg,.tl-ic i{display:grid;place-items:center;width:100%;height:100%;border-radius:24%;font:600 .5em/1 'Familjen Grotesk',sans-serif;font-style:normal;letter-spacing:-.02em}
+.tl:hover,.tl:focus{color:#D42A2E}
+.tl:hover::after,.tl:focus::after{clip-path:inset(0 0 0 0)}
+.tl:hover .tl-ic,.tl:focus .tl-ic{opacity:1;transform:translate(-50%,0) rotate(var(--r)) scale(1)}
+@container (max-width:700px){.wk-i{padding:0 26px}}
 body{margin:0;background:#161412}*{box-sizing:border-box}html{scroll-behavior:smooth}a{color:inherit;text-decoration:none;transition:color .2s}a:hover{color:#D42A2E}::selection{background:#D42A2E;color:#F4EFE6}@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}html{scroll-behavior:auto!important}}</style>
 <script src="reeva-face.js?v=20261027-10"></script>
 </helmet>
@@ -185,10 +179,11 @@ body{margin:0;background:#161412}*{box-sizing:border-box}html{scroll-behavior:sm
 <section style="padding:clamp(80px,8cqw,120px) clamp(20px,5.5cqw,80px) 0">
 <div data-reveal="1" style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px;font:500 19px/1 'Familjen Grotesk',sans-serif"><span style="font:400 26px/1 'Caveat Brush',cursive;color:#D42A2E">What's On My Desk</span><span style="font:400 15px/1 'Familjen Grotesk',sans-serif;color:#9D958A">{{ handCount }}</span></div>
 <div data-reveal="1" style="margin-top:48px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px 48px">
-<h2 style="margin:0;font:400 clamp(28px,3.6cqw,52px)/1.15 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;color:#F4EFE6">The palette<br><span style="color:#D42A2E">I work in.</span></h2>
+<h2 style="margin:0;font:400 clamp(28px,3.6cqw,52px)/1.15 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;color:#F4EFE6">The hand<br><span style="color:#D42A2E">I play with.</span></h2>
 <span style="font:400 20px/1.2 'Caveat Brush',cursive;color:#9D958A">{{ handHint }}</span>
 </div>
-<div class="sws" data-reveal="1" onMouseLeave="{{ handOff }}"><sc-for list="{{ cards }}" as="c" hint-placeholder-count="8"><button class="{{ c.cls }}" style="--b:{{ c.bg }};--f:{{ c.fg }}" aria-label="{{ c.name }}, {{ c.note }}" onMouseEnter="{{ c.on }}" onClick="{{ c.tap }}"><span class="sw-c"><sc-if value="{{ c.fig }}"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x=".75" y=".75" width="62.5" height="62.5" rx="14.5" fill="#2A2A2A" stroke="rgba(255,255,255,.18)" stroke-width="1.5"></rect><path d="M32 14H26a6 6 0 0 0 0 12h6z" fill="#F24E1E"></path><path d="M32 14h6a6 6 0 0 1 0 12h-6z" fill="#FF7262"></path><path d="M32 26H26a6 6 0 0 0 0 12h6z" fill="#A259FF"></path><circle cx="38" cy="32" r="6" fill="#1ABCFE"></circle><path d="M32 38H26a6 6 0 1 0 6 6z" fill="#0ACF83"></path></svg></sc-if><sc-if value="{{ c.ad }}"><i>{{ c.m }}</i></sc-if></span><span class="sw-l"><b>{{ c.name }}</b><span class="sw-t"><small>RS {{ c.n }} C · {{ c.kind }}</small><em>{{ c.note }}</em></span></span></button></sc-for></div>
+<p class="tls" data-reveal="1">Most things start in <span class="tl" tabindex="0" style="--r:-8deg">Figma<span class="tl-ic" aria-hidden="true"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x=".75" y=".75" width="62.5" height="62.5" rx="14.5" fill="#2A2A2A" stroke="rgba(255,255,255,.18)" stroke-width="1.5"></rect><path d="M32 14H26a6 6 0 0 0 0 12h6z" fill="#F24E1E"></path><path d="M32 14h6a6 6 0 0 1 0 12h-6z" fill="#FF7262"></path><path d="M32 26H26a6 6 0 0 0 0 12h6z" fill="#A259FF"></path><circle cx="38" cy="32" r="6" fill="#1ABCFE"></circle><path d="M32 38H26a6 6 0 1 0 6 6z" fill="#0ACF83"></path></svg>
+</span></span>, get a quick clickable life in <span class="tl" tabindex="0" style="--r:6deg">Adobe XD<span class="tl-ic" aria-hidden="true"><i style="background:#470137;color:#FF61F6">Xd</i></span></span> and pick up their icons and marks in <span class="tl" tabindex="0" style="--r:-5deg">Illustrator<span class="tl-ic" aria-hidden="true"><i style="background:#330000;color:#FF9A00">Ai</i></span></span>. Pixels get patience in <span class="tl" tabindex="0" style="--r:7deg">Photoshop<span class="tl-ic" aria-hidden="true"><i style="background:#001E36;color:#31A8FF">Ps</i></span></span>, long reads find their layout in <span class="tl" tabindex="0" style="--r:-6deg">InDesign<span class="tl-ic" aria-hidden="true"><i style="background:#49021F;color:#FF3366">Id</i></span></span>, anything that needs to move goes to <span class="tl" tabindex="0" style="--r:5deg">After Effects<span class="tl-ic" aria-hidden="true"><i style="background:#00005B;color:#9999FF">Ae</i></span></span>, the story gets cut together in <span class="tl" tabindex="0" style="--r:-7deg">Premiere Pro<span class="tl-ic" aria-hidden="true"><i style="background:#00005B;color:#9999FF">Pr</i></span></span>, and <span class="tl" tabindex="0" style="--r:6deg">Audition<span class="tl-ic" aria-hidden="true"><i style="background:#00332A;color:#00E4BB">Au</i></span></span> makes it sound right.</p>
 </section>
 
 <section style="padding:clamp(90px,10cqw,140px) clamp(20px,5.5cqw,80px) 0">
@@ -473,8 +468,8 @@ class Component extends DCLogic {
         roles: ROLES.map((r, i) => ({ ...r, cls: i === xi ? 'on' : '', pts: r.pts.map((t, j) => ({ t, d: i === xi ? (.18 + j * .08).toFixed(2) + 's' : '0s' })) })),
       }; })(),
       wkRef: this.wkRef, wkOn: () => { this.wkHover = true; }, wkOff: () => { this.wkHover = false; }, wkHint: mob ? 'scroll to spin it' : 'hover to pause, scroll to spin',
-      // The tools as colour swatches: hover (or tap) one to lift it and read its note.
-      handOff: () => { if (!mob) this.setState({ hc: null }); }, handHint: mob ? 'tap a swatch' : 'pick a swatch', handCount: '0' + TOOLS.length + ' swatches in my book',
+      // The tools now live in one sentence in the markup; this list still feeds the counter.
+      handOff: () => { if (!mob) this.setState({ hc: null }); }, handHint: mob ? 'tap a tool' : 'point at a tool', handCount: '0' + TOOLS.length + ' tools, one sentence',
       cards: TOOLS.map((t, i) => { const h = s.hc; return { ...t, ad: !t.fig, fig: !!t.fig, n: '0' + (i + 1),
         cls: 'sw' + (h === i ? ' on' : ''),
         on: () => { if (!mob) this.setState({ hc: i }); }, tap: () => this.setState(x => ({ hc: mob && x.hc === i ? null : i })) }; }),
