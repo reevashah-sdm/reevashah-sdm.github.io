@@ -47,7 +47,9 @@
 .wk-i:hover::after{opacity:1;transform:translate(-50%,0) rotate(-3deg)}
 .wm-ct{display:flex;flex-direction:column;align-items:flex-start;white-space:nowrap}
 .wm-ct{display:flex;flex-direction:column;white-space:nowrap}
-.wk-st{display:flex;align-items:center;padding:clamp(12px,1.2cqw,16px) clamp(16px,1.7cqw,24px);border-radius:16px;background:#F4EFE6;box-shadow:0 14px 26px -14px rgba(0,0,0,.7),inset 0 -2px 0 rgba(0,0,0,.06);transform:rotate(var(--r,0deg));transition:transform .5s cubic-bezier(.3,1.6,.5,1),box-shadow .4s}
+.wk-st{position:relative;display:flex;align-items:center;padding:clamp(12px,1.2cqw,16px) clamp(16px,1.7cqw,24px);border:3px solid transparent;border-radius:18px;background:linear-gradient(160deg,#FFFFFF 0%,#F6F1EA 100%) padding-box,conic-gradient(from 200deg,#FFB8CC,#FFE08A,#A9F0D1,#9DC8FF,#D7B6FF,#FFB8CC) border-box;box-shadow:0 14px 26px -14px rgba(0,0,0,.7);transform:rotate(var(--r,0deg));transition:transform .5s cubic-bezier(.3,1.6,.5,1),box-shadow .4s}
+.wk-st::after{content:"";position:absolute;inset:0;border-radius:15px;pointer-events:none;background:linear-gradient(115deg,transparent 35%,rgba(255,196,228,.45) 45%,rgba(176,226,255,.45) 55%,transparent 65%) 120% 0/250% 100% no-repeat;transition:background-position .9s ease}
+.wk-i:hover .wk-st::after{background-position:-20% 0}
 .wk-st img{display:block;width:auto;max-width:none}
 .wk-i:hover .wk-st{transform:rotate(0deg) translateY(-4px);box-shadow:0 22px 34px -14px rgba(0,0,0,.75)}
 .wm-kp{display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 20px 9px;border-radius:5px;background:#F2C230;color:#151311;box-shadow:inset 0 0 0 3px #F2C230,inset 0 0 0 5px #151311;transform:rotate(-1.5deg);transition:transform .5s cubic-bezier(.3,1.6,.5,1)}
@@ -57,22 +59,22 @@
 .wm-ct{padding:8px 0 7px;border-top:1px solid rgba(244,239,230,.5);border-bottom:1px solid rgba(244,239,230,.5);align-items:center}
 .wm-ct small{font:400 13px/1 Georgia,'Times New Roman',serif;font-style:italic;color:#ABA398}
 .wm-ct>span{margin-top:5px;font:400 clamp(22px,2.2cqw,30px)/1 Georgia,'Times New Roman',serif;letter-spacing:.1em;text-transform:uppercase;color:#F4EFE6}
-/* the tools as a row of keycaps: hover or tap one to press it, and the line beneath reads it out */
-.desk{display:flex;flex-wrap:wrap;align-items:center;gap:22px clamp(32px,4cqw,64px);margin-top:clamp(28px,3cqw,44px)}
-.keys{flex:0 1 920px;display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:clamp(8px,1.2cqw,16px)}
-.ky{position:relative;aspect-ratio:1;border:0;padding:0;border-radius:clamp(10px,1.2cqw,16px);background:#2C2825;box-shadow:inset 0 -6px 0 #1A1715,inset 0 1px 0 rgba(255,255,255,.06),0 12px 20px -12px rgba(0,0,0,.7);cursor:pointer;display:grid;place-items:center;-webkit-tap-highlight-color:transparent;transition:transform .14s,box-shadow .14s,background .25s}
-.ky:hover,.ky.on{transform:translateY(4px);box-shadow:inset 0 -2px 0 #1A1715,0 4px 8px -6px rgba(0,0,0,.7)}
-.ky.on{background:#D42A2E;box-shadow:inset 0 -2px 0 #8E1A1C,0 4px 8px -6px rgba(0,0,0,.7)}
-.ky-ic{width:50%;aspect-ratio:1}
-.ky-ic svg,.ky-ad{display:block;width:100%;height:100%;border-radius:23%}
-.ky-ad{display:grid;place-items:center;font:600 clamp(13px,1.5cqw,20px)/1 'Familjen Grotesk',sans-serif;letter-spacing:-.02em}
-.ky-out{flex:1 1 240px;display:flex;flex-direction:column;align-items:flex-start;gap:8px;min-height:84px;justify-content:center;padding-left:clamp(0px,2cqw,28px);border-left:1px solid rgba(244,239,230,.15)}
-.ky-nm{font:500 clamp(18px,1.7cqw,24px)/1 'Familjen Grotesk',sans-serif;color:#F4EFE6}
-.ky-k{font:400 14px/1 'Familjen Grotesk',sans-serif;color:#9D958A}
-.ky-nt{font:400 clamp(22px,2cqw,28px)/1.05 'Caveat Brush',cursive;color:#D42A2E;animation:kyIn .35s cubic-bezier(.3,1.5,.5,1)}
-.ky-hint{font:400 20px/1 'Caveat Brush',cursive;color:#9D958A}
-@keyframes kyIn{from{opacity:0;transform:translateY(6px)}}
-@container (max-width:700px){.wk-i{padding:0 26px}.keys{grid-template-columns:repeat(4,minmax(0,1fr))}.ky-out{border-left:0;padding-left:0;min-height:0}}
+/* the tools as colour swatches from a Pantone book: each chip in the tool's own colour, its note printed on the label */
+.sws{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:clamp(10px,1.3cqw,18px);margin-top:clamp(28px,3cqw,44px)}
+.sw{display:flex;flex-direction:column;aspect-ratio:3/4.3;padding:0;border:0;border-radius:6px;overflow:hidden;background:#FBF8F3;color:#1F1C1A;text-align:left;cursor:pointer;-webkit-tap-highlight-color:transparent;box-shadow:0 16px 26px -16px rgba(0,0,0,.8);transform:rotate(var(--tw,0deg));transition:transform .45s cubic-bezier(.3,1.5,.5,1),box-shadow .35s}
+.sw:nth-child(odd){--tw:-1.2deg}.sw:nth-child(even){--tw:1deg}
+.sw:hover,.sw.on{transform:translateY(-12px) rotate(0deg);box-shadow:0 26px 34px -16px rgba(0,0,0,.85)}
+.sw-c{flex:1 1 60%;display:grid;place-items:center;background:var(--b)}
+.sw-c svg{width:46%;height:auto}
+.sw-c i{font:600 clamp(20px,2.4cqw,34px)/1 'Familjen Grotesk',sans-serif;font-style:normal;letter-spacing:-.03em;color:var(--f)}
+.sw-l{flex:0 0 auto;min-height:clamp(70px,6.2cqw,84px);padding:clamp(8px,.9cqw,12px)}
+.sw-t{display:grid;margin-top:4px}.sw-t>*{grid-area:1/1}
+.sw-l b{display:block;font:600 clamp(12px,1.05cqw,15px)/1.1 'Familjen Grotesk',sans-serif;letter-spacing:-.01em}
+.sw-l small{display:block;font:500 10px/1.2 'Familjen Grotesk',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#8A8178;transition:opacity .25s}
+.sw-l em{display:block;font:400 clamp(13px,1.15cqw,17px)/1.05 'Caveat Brush',cursive;font-style:normal;color:#D42A2E;opacity:0;transform:translateY(6px);transition:opacity .25s,transform .35s cubic-bezier(.3,1.5,.5,1)}
+.sw:hover .sw-l small,.sw.on .sw-l small{opacity:0}
+.sw:hover .sw-l em,.sw.on .sw-l em{opacity:1;transform:none}
+@container (max-width:700px){.wk-i{padding:0 26px}.sws{grid-template-columns:repeat(4,minmax(0,1fr))}}
 body{margin:0;background:#161412}*{box-sizing:border-box}html{scroll-behavior:smooth}a{color:inherit;text-decoration:none;transition:color .2s}a:hover{color:#D42A2E}::selection{background:#D42A2E;color:#F4EFE6}@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}html{scroll-behavior:auto!important}}</style>
 <script src="reeva-face.js?v=20261027-10"></script>
 </helmet>
@@ -167,15 +169,13 @@ body{margin:0;background:#161412}*{box-sizing:border-box}html{scroll-behavior:sm
 <div class="wk" data-reveal="1" onMouseEnter="{{ wkOn }}" onMouseLeave="{{ wkOff }}"><div ref="{{ wkRef }}" class="wk-row">
 <div class="wk-i" data-tag="my studio, 2024 – 25"><span class="wk-st" style="--r:-3deg"><img src="logos/zero-gravity.png" alt="Zero Gravity Communications" style="height:clamp(34px,3.6cqw,48px)"></span></div>
 <div class="wk-i" data-tag="signage redesign"><span class="wm-kp"><span lang="gu">કાલુપુર</span><span lang="hi">कालूपुर</span><span>KALUPUR</span></span></div>
-<div class="wk-i"><span class="wk-st" style="--r:2.5deg"><img src="logos/nid-summer-workshop.png" alt="NID Summer Workshop" style="height:clamp(56px,5.6cqw,76px)"></span></div>
-<div class="wk-i"><span class="wk-st" style="--r:-1.5deg"><img src="logos/cep.svg" alt="CEP, CEPT University" style="height:clamp(34px,3.4cqw,46px)"></span></div>
+<div class="wk-i" data-tag="NID × CEP workshop"><span class="wk-st" style="--r:2deg"><img src="logos/cep.svg" alt="CEP, CEPT University" style="height:clamp(34px,3.4cqw,46px)"></span></div>
 <div class="wk-i" data-tag="design audit"><span class="wk-st" style="--r:-2deg"><img src="logos/induben-khakhrawala.png" alt="Induben Khakhrawala" style="height:clamp(54px,5.4cqw,74px)"></span></div>
 <div class="wk-i" data-tag="my first internship"><span class="wk-st" style="--r:3deg"><img src="logos/webplus-infotech.png" alt="Webplus Infotech" style="height:clamp(60px,6cqw,82px)"></span></div>
 <div class="wk-i" data-tag="design project 1"><span class="wk-st" style="--r:-2.5deg"><img src="logos/gujarat-tourism.png" alt="Gujarat Tourism" style="height:clamp(62px,6.2cqw,84px)"></span></div>
 <div class="wk-i" aria-hidden="true" data-tag="my studio, 2024 – 25"><span class="wk-st" style="--r:-3deg"><img src="logos/zero-gravity.png" alt="" style="height:clamp(34px,3.6cqw,48px)"></span></div>
 <div class="wk-i" aria-hidden="true" data-tag="signage redesign"><span class="wm-kp"><span lang="gu">કાલુપુર</span><span lang="hi">कालूपुर</span><span>KALUPUR</span></span></div>
-<div class="wk-i" aria-hidden="true"><span class="wk-st" style="--r:2.5deg"><img src="logos/nid-summer-workshop.png" alt="" style="height:clamp(56px,5.6cqw,76px)"></span></div>
-<div class="wk-i" aria-hidden="true"><span class="wk-st" style="--r:-1.5deg"><img src="logos/cep.svg" alt="" style="height:clamp(34px,3.4cqw,46px)"></span></div>
+<div class="wk-i" aria-hidden="true" data-tag="NID × CEP workshop"><span class="wk-st" style="--r:2deg"><img src="logos/cep.svg" alt="" style="height:clamp(34px,3.4cqw,46px)"></span></div>
 <div class="wk-i" aria-hidden="true" data-tag="design audit"><span class="wk-st" style="--r:-2deg"><img src="logos/induben-khakhrawala.png" alt="" style="height:clamp(54px,5.4cqw,74px)"></span></div>
 <div class="wk-i" aria-hidden="true" data-tag="my first internship"><span class="wk-st" style="--r:3deg"><img src="logos/webplus-infotech.png" alt="" style="height:clamp(60px,6cqw,82px)"></span></div>
 <div class="wk-i" aria-hidden="true" data-tag="design project 1"><span class="wk-st" style="--r:-2.5deg"><img src="logos/gujarat-tourism.png" alt="" style="height:clamp(62px,6.2cqw,84px)"></span></div>
@@ -184,13 +184,10 @@ body{margin:0;background:#161412}*{box-sizing:border-box}html{scroll-behavior:sm
 <section style="padding:clamp(80px,8cqw,120px) clamp(20px,5.5cqw,80px) 0">
 <div data-reveal="1" style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px;font:500 19px/1 'Familjen Grotesk',sans-serif"><span style="font:400 26px/1 'Caveat Brush',cursive;color:#D42A2E">What's On My Desk</span><span style="font:400 15px/1 'Familjen Grotesk',sans-serif;color:#9D958A">{{ handCount }}</span></div>
 <div data-reveal="1" style="margin-top:48px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px 48px">
-<h2 style="margin:0;font:400 clamp(28px,3.6cqw,52px)/1.15 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;color:#F4EFE6">The keys<br><span style="color:#D42A2E">I reach for.</span></h2>
+<h2 style="margin:0;font:400 clamp(28px,3.6cqw,52px)/1.15 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;color:#F4EFE6">The palette<br><span style="color:#D42A2E">I work in.</span></h2>
 <span style="font:400 20px/1.2 'Caveat Brush',cursive;color:#9D958A">{{ handHint }}</span>
 </div>
-<div class="desk" data-reveal="1" onMouseLeave="{{ handOff }}">
-<div class="keys"><sc-for list="{{ cards }}" as="c" hint-placeholder-count="8"><button class="{{ c.cls }}" aria-label="{{ c.name }}" onMouseEnter="{{ c.on }}" onClick="{{ c.tap }}"><span class="ky-ic"><sc-if value="{{ c.fig }}"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x=".75" y=".75" width="62.5" height="62.5" rx="14.5" fill="#2A2A2A" stroke="rgba(255,255,255,.18)" stroke-width="1.5"></rect><path d="M32 14H26a6 6 0 0 0 0 12h6z" fill="#F24E1E"></path><path d="M32 14h6a6 6 0 0 1 0 12h-6z" fill="#FF7262"></path><path d="M32 26H26a6 6 0 0 0 0 12h6z" fill="#A259FF"></path><circle cx="38" cy="32" r="6" fill="#1ABCFE"></circle><path d="M32 38H26a6 6 0 1 0 6 6z" fill="#0ACF83"></path></svg></sc-if><sc-if value="{{ c.ad }}"><span class="ky-ad" style="background:{{ c.bg }};color:{{ c.fg }}">{{ c.m }}</span></sc-if></span></button></sc-for></div>
-<div class="ky-out"><sc-if value="{{ keyOn }}"><span class="ky-nm">{{ keyName }}</span><span class="ky-k">{{ keyKind }}</span><span class="ky-nt">{{ keyNote }}</span></sc-if><sc-if value="{{ keyOff }}"><span class="ky-hint">nothing pressed yet</span></sc-if></div>
-</div>
+<div class="sws" data-reveal="1" onMouseLeave="{{ handOff }}"><sc-for list="{{ cards }}" as="c" hint-placeholder-count="8"><button class="{{ c.cls }}" style="--b:{{ c.bg }};--f:{{ c.fg }}" aria-label="{{ c.name }}, {{ c.note }}" onMouseEnter="{{ c.on }}" onClick="{{ c.tap }}"><span class="sw-c"><sc-if value="{{ c.fig }}"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x=".75" y=".75" width="62.5" height="62.5" rx="14.5" fill="#2A2A2A" stroke="rgba(255,255,255,.18)" stroke-width="1.5"></rect><path d="M32 14H26a6 6 0 0 0 0 12h6z" fill="#F24E1E"></path><path d="M32 14h6a6 6 0 0 1 0 12h-6z" fill="#FF7262"></path><path d="M32 26H26a6 6 0 0 0 0 12h6z" fill="#A259FF"></path><circle cx="38" cy="32" r="6" fill="#1ABCFE"></circle><path d="M32 38H26a6 6 0 1 0 6 6z" fill="#0ACF83"></path></svg></sc-if><sc-if value="{{ c.ad }}"><i>{{ c.m }}</i></sc-if></span><span class="sw-l"><b>{{ c.name }}</b><span class="sw-t"><small>RS {{ c.n }} C · {{ c.kind }}</small><em>{{ c.note }}</em></span></span></button></sc-for></div>
 </section>
 
 <section style="padding:clamp(90px,10cqw,140px) clamp(20px,5.5cqw,80px) 0">
@@ -276,7 +273,7 @@ const ROLES = [
 ];
 const XSEG = [['I started in 2023 as '], ['a communication design intern at Web Plus Info Tech', 0], [', then joined '], ['Zero Gravity Communications as a UI/UX intern', 1], [' in 2024, and stayed on as '], ['their UI/UX Designer', 2], [' until June 2025.']];
 const TOOLS = [
-  { name: 'Figma', kind: 'interface', fig: true, note: 'where most things start' },
+  { name: 'Figma', kind: 'interface', fig: true, bg: '#1E1E1E', note: 'where most things start' },
   { name: 'Adobe XD', kind: 'interface', m: 'Xd', bg: '#470137', fg: '#FF61F6', note: 'quick clickable prototypes' },
   { name: 'Illustrator', kind: 'vector', m: 'Ai', bg: '#330000', fg: '#FF9A00', note: 'icons, marks, pictograms' },
   { name: 'Photoshop', kind: 'image', m: 'Ps', bg: '#001E36', fg: '#31A8FF', note: 'pixels and patience' },
@@ -475,11 +472,10 @@ class Component extends DCLogic {
         roles: ROLES.map((r, i) => ({ ...r, cls: i === xi ? 'on' : '', pts: r.pts.map((t, j) => ({ t, d: i === xi ? (.18 + j * .08).toFixed(2) + 's' : '0s' })) })),
       }; })(),
       wkRef: this.wkRef, wkOn: () => { this.wkHover = true; }, wkOff: () => { this.wkHover = false; }, wkHint: mob ? 'scroll to spin it' : 'hover to pause, scroll to spin',
-      // The tools as keycaps: hover (or tap) one to press it; the line below reads out the tool and what I use it for.
-      handOff: () => { if (!mob) this.setState({ hc: null }); }, handHint: mob ? 'tap a key' : 'press a key', handCount: '0' + TOOLS.length + ' keys I reach for',
-      keyOn: s.hc != null, keyOff: s.hc == null, keyName: s.hc != null ? TOOLS[s.hc].name : '', keyKind: s.hc != null ? TOOLS[s.hc].kind : '', keyNote: s.hc != null ? TOOLS[s.hc].note : '',
+      // The tools as colour swatches: hover (or tap) one to lift it and read its note.
+      handOff: () => { if (!mob) this.setState({ hc: null }); }, handHint: mob ? 'tap a swatch' : 'pick a swatch', handCount: '0' + TOOLS.length + ' swatches in my book',
       cards: TOOLS.map((t, i) => { const h = s.hc; return { ...t, ad: !t.fig, fig: !!t.fig, n: '0' + (i + 1),
-        cls: 'ky' + (h === i ? ' on' : ''),
+        cls: 'sw' + (h === i ? ' on' : ''),
         on: () => { if (!mob) this.setState({ hc: i }); }, tap: () => this.setState(x => ({ hc: mob && x.hc === i ? null : i })) }; }),
 
       ctaOn: this.ctaOn, ctaOff: this.ctaOff, ctaWord: CTA[s.cta || 0], ctaHint: (s.cta || 0) === 0 ? 'hover the headline' : 'you tell me the rest',
