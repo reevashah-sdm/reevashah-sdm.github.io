@@ -60,18 +60,24 @@
 .wm-ct{padding:8px 0 7px;border-top:1px solid rgba(244,239,230,.5);border-bottom:1px solid rgba(244,239,230,.5);align-items:center}
 .wm-ct small{font:400 13px/1 Georgia,'Times New Roman',serif;font-style:italic;color:#ABA398}
 .wm-ct>span{margin-top:5px;font:400 clamp(22px,2.2cqw,30px)/1 Georgia,'Times New Roman',serif;letter-spacing:.1em;text-transform:uppercase;color:#F4EFE6}
-/* the tools told as one sentence: each tool is a word; point at one and its icon pops up above it like a sticker */
-.tls{max-width:30em;margin:clamp(28px,3cqw,44px) 0 0;font:400 clamp(24px,2.7cqw,40px)/1.55 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;color:#8F877C;text-wrap:pretty}
-.tl{position:relative;display:inline-block;color:#F4EFE6;cursor:default;outline:none;transition:color .25s}
-.tl::after{content:"";position:absolute;left:-2%;right:-2%;bottom:.02em;height:.32em;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 12' preserveAspectRatio='none'%3E%3Cpath d='M2 8 C 25 3, 50 11, 98 5' fill='none' stroke='%23D42A2E' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat;clip-path:inset(0 100% 0 0);transition:clip-path .45s ease}
-.tl-ic{position:absolute;left:50%;bottom:92%;width:1.35em;height:1.35em;pointer-events:none;transform:translate(-50%,10px) rotate(var(--r)) scale(.3);opacity:0;transition:transform .45s cubic-bezier(.3,1.7,.5,1),opacity .2s;filter:drop-shadow(0 8px 12px rgba(0,0,0,.5))}
-.tl-ic svg,.tl-ic i{display:grid;place-items:center;width:100%;height:100%;border-radius:24%;font:600 .5em/1 'Familjen Grotesk',sans-serif;font-style:normal;letter-spacing:-.02em}
-.tl:hover,.tl:focus{color:#D42A2E}
-.tl:hover::after,.tl:focus::after{clip-path:inset(0 0 0 0)}
-.tl:hover .tl-ic,.tl:focus .tl-ic{opacity:1;transform:translate(-50%,0) rotate(var(--r)) scale(1)}
+/* the tools as an orbit (moved by reeva-orbit.js): round icons on a tilted ellipse, the one in front named in the centre */
+.orb{position:relative;height:clamp(320px,30cqw,400px);max-width:1000px;margin:clamp(20px,2.4cqw,36px) auto clamp(36px,4cqw,56px)}
+.orb-ring{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.orb-ring ellipse{fill:none;stroke:rgba(244,239,230,.16);stroke-width:1;stroke-dasharray:3 7}
+.orb-core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;pointer-events:none}
+.orb-nm{font:500 clamp(24px,2.6cqw,38px)/1 'Familjen Grotesk',sans-serif;letter-spacing:-.02em;color:#F4EFE6}
+.orb-k{font:400 12px/1 'Familjen Grotesk',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#9D958A}
+.orb-nt{font:400 clamp(20px,1.9cqw,26px)/1 'Caveat Brush',cursive;color:#D42A2E}
+.orb-core.swap>*{animation:orbIn .4s cubic-bezier(.3,1.5,.5,1)}
+@keyframes orbIn{from{opacity:0;transform:translateY(8px)}}
+.orb-i{--d:clamp(56px,5.6cqw,76px);position:absolute;left:0;top:0;width:var(--d);height:var(--d);margin:calc(var(--d)/-2) 0 0 calc(var(--d)/-2);padding:0;border:0;border-radius:50%;overflow:hidden;display:grid;place-items:center;cursor:pointer;box-shadow:0 14px 26px -12px rgba(0,0,0,.8),inset 0 0 0 1px rgba(255,255,255,.08);-webkit-tap-highlight-color:transparent;will-change:transform}
+.orb-i i{font:600 clamp(18px,1.9cqw,26px)/1 'Familjen Grotesk',sans-serif;font-style:normal;letter-spacing:-.03em}
+.orb-i svg{width:100%;height:100%}
+.orb-i.on{box-shadow:0 0 0 3px #D42A2E,0 18px 30px -12px rgba(0,0,0,.85)}
 @container (max-width:700px){.wk-i{padding:0 26px}}
 body{margin:0;background:#161412}*{box-sizing:border-box}html{scroll-behavior:smooth}a{color:inherit;text-decoration:none;transition:color .2s}a:hover{color:#D42A2E}::selection{background:#D42A2E;color:#F4EFE6}@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}html{scroll-behavior:auto!important}}</style>
 <script src="reeva-face.js?v=20261027-10"></script>
+<script src="reeva-orbit.js?v=20261029-1"></script>
 </helmet>
 <div style="min-height:100vh;background:#161412;font-family:'Familjen Grotesk',sans-serif">
 <div ref="{{ peekRef }}" style="position:fixed;left:0;top:0;width:0;height:0;overflow:hidden;z-index:45;pointer-events:none"><div ref="{{ canvasRef }}" style="position:absolute;left:0;top:0;width:0;height:0"></div></div>
@@ -182,8 +188,7 @@ body{margin:0;background:#161412}*{box-sizing:border-box}html{scroll-behavior:sm
 <h2 style="margin:0;font:400 clamp(28px,3.6cqw,52px)/1.15 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;color:#F4EFE6">The hand<br><span style="color:#D42A2E">I play with.</span></h2>
 <span style="font:400 20px/1.2 'Caveat Brush',cursive;color:#9D958A">{{ handHint }}</span>
 </div>
-<p class="tls" data-reveal="1">Most things start in <span class="tl" tabindex="0" style="--r:-8deg">Figma<span class="tl-ic" aria-hidden="true"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x=".75" y=".75" width="62.5" height="62.5" rx="14.5" fill="#2A2A2A" stroke="rgba(255,255,255,.18)" stroke-width="1.5"></rect><path d="M32 14H26a6 6 0 0 0 0 12h6z" fill="#F24E1E"></path><path d="M32 14h6a6 6 0 0 1 0 12h-6z" fill="#FF7262"></path><path d="M32 26H26a6 6 0 0 0 0 12h6z" fill="#A259FF"></path><circle cx="38" cy="32" r="6" fill="#1ABCFE"></circle><path d="M32 38H26a6 6 0 1 0 6 6z" fill="#0ACF83"></path></svg>
-</span></span>, get a quick clickable life in <span class="tl" tabindex="0" style="--r:6deg">Adobe XD<span class="tl-ic" aria-hidden="true"><i style="background:#470137;color:#FF61F6">Xd</i></span></span> and pick up their icons and marks in <span class="tl" tabindex="0" style="--r:-5deg">Illustrator<span class="tl-ic" aria-hidden="true"><i style="background:#330000;color:#FF9A00">Ai</i></span></span>. Pixels get patience in <span class="tl" tabindex="0" style="--r:7deg">Photoshop<span class="tl-ic" aria-hidden="true"><i style="background:#001E36;color:#31A8FF">Ps</i></span></span>, long reads find their layout in <span class="tl" tabindex="0" style="--r:-6deg">InDesign<span class="tl-ic" aria-hidden="true"><i style="background:#49021F;color:#FF3366">Id</i></span></span>, anything that needs to move goes to <span class="tl" tabindex="0" style="--r:5deg">After Effects<span class="tl-ic" aria-hidden="true"><i style="background:#00005B;color:#9999FF">Ae</i></span></span>, the story gets cut together in <span class="tl" tabindex="0" style="--r:-7deg">Premiere Pro<span class="tl-ic" aria-hidden="true"><i style="background:#00005B;color:#9999FF">Pr</i></span></span>, and <span class="tl" tabindex="0" style="--r:6deg">Audition<span class="tl-ic" aria-hidden="true"><i style="background:#00332A;color:#00E4BB">Au</i></span></span> makes it sound right.</p>
+<div class="orb" data-reveal="1"><svg class="orb-ring" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><ellipse cx="50" cy="50" rx="46" ry="36" vector-effect="non-scaling-stroke"></ellipse></svg><div class="orb-core" aria-live="polite"><span class="orb-nm">Figma</span><span class="orb-k">interface</span><span class="orb-nt">where most things start</span></div><button class="orb-i" data-name="Figma" data-kind="interface" data-note="where most things start" aria-label="Figma, where most things start" style="background:#1E1E1E"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x=".75" y=".75" width="62.5" height="62.5" rx="14.5" fill="#2A2A2A" stroke="rgba(255,255,255,.18)" stroke-width="1.5"></rect><path d="M32 14H26a6 6 0 0 0 0 12h6z" fill="#F24E1E"></path><path d="M32 14h6a6 6 0 0 1 0 12h-6z" fill="#FF7262"></path><path d="M32 26H26a6 6 0 0 0 0 12h6z" fill="#A259FF"></path><circle cx="38" cy="32" r="6" fill="#1ABCFE"></circle><path d="M32 38H26a6 6 0 1 0 6 6z" fill="#0ACF83"></path></svg></button><button class="orb-i" data-name="Adobe XD" data-kind="interface" data-note="quick clickable prototypes" aria-label="Adobe XD, quick clickable prototypes" style="background:#470137"><i style="color:#FF61F6">Xd</i></button><button class="orb-i" data-name="Illustrator" data-kind="vector" data-note="icons, marks, pictograms" aria-label="Illustrator, icons, marks, pictograms" style="background:#330000"><i style="color:#FF9A00">Ai</i></button><button class="orb-i" data-name="Photoshop" data-kind="image" data-note="pixels and patience" aria-label="Photoshop, pixels and patience" style="background:#001E36"><i style="color:#31A8FF">Ps</i></button><button class="orb-i" data-name="InDesign" data-kind="layout" data-note="reports and long reads" aria-label="InDesign, reports and long reads" style="background:#49021F"><i style="color:#FF3366">Id</i></button><button class="orb-i" data-name="After Effects" data-kind="motion" data-note="when it needs to move" aria-label="After Effects, when it needs to move" style="background:#00005B"><i style="color:#9999FF">Ae</i></button><button class="orb-i" data-name="Premiere Pro" data-kind="video" data-note="cutting the story together" aria-label="Premiere Pro, cutting the story together" style="background:#00005B"><i style="color:#9999FF">Pr</i></button><button class="orb-i" data-name="Audition" data-kind="sound" data-note="making it sound right" aria-label="Audition, making it sound right" style="background:#00332A"><i style="color:#00E4BB">Au</i></button></div>
 </section>
 
 <section style="padding:clamp(90px,10cqw,140px) clamp(20px,5.5cqw,80px) 0">
@@ -468,8 +473,8 @@ class Component extends DCLogic {
         roles: ROLES.map((r, i) => ({ ...r, cls: i === xi ? 'on' : '', pts: r.pts.map((t, j) => ({ t, d: i === xi ? (.18 + j * .08).toFixed(2) + 's' : '0s' })) })),
       }; })(),
       wkRef: this.wkRef, wkOn: () => { this.wkHover = true; }, wkOff: () => { this.wkHover = false; }, wkHint: mob ? 'scroll to spin it' : 'hover to pause, scroll to spin',
-      // The tools now live in one sentence in the markup; this list still feeds the counter.
-      handOff: () => { if (!mob) this.setState({ hc: null }); }, handHint: mob ? 'tap a tool' : 'point at a tool', handCount: '0' + TOOLS.length + ' tools, one sentence',
+      // The tools orbit lives in the markup and reeva-orbit.js; this list still feeds the counter.
+      handOff: () => { if (!mob) this.setState({ hc: null }); }, handHint: mob ? 'tap a planet' : 'catch one as it passes', handCount: '0' + TOOLS.length + ' tools in orbit',
       cards: TOOLS.map((t, i) => { const h = s.hc; return { ...t, ad: !t.fig, fig: !!t.fig, n: '0' + (i + 1),
         cls: 'sw' + (h === i ? ' on' : ''),
         on: () => { if (!mob) this.setState({ hc: i }); }, tap: () => this.setState(x => ({ hc: mob && x.hc === i ? null : i })) }; }),
