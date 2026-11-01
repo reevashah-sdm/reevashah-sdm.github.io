@@ -419,8 +419,21 @@ a{color:var(--color-accent-700)}a:hover{color:var(--color-accent)}
       </sc-for>
     </div>
     <div style="position:absolute;left:48vw;top:22vh;display:flex;align-items:center;z-index:1;opacity:{{ fp.v3 }};transition:opacity .6s">
-      <img src="assets/p11_4.png" alt="In-shop display creative" style="display:block;height:min(42vh,30vw);width:auto;box-shadow:0 34px 60px -22px rgba(32,30,29,.5);transform:{{ fp.cr1 }};transition:transform 1s cubic-bezier(.2,.8,.25,1.1) 0s;"></img>
-      <img src="assets/p11_1.png" alt="Quick-commerce banner creative" style="display:block;height:min(42vh,30vw);width:auto;box-shadow:0 34px 60px -22px rgba(32,30,29,.5);transform:{{ fp.cr2 }};transition:transform 1s cubic-bezier(.2,.8,.25,1.1) .08s;margin-left:-2vw;position:relative"></img>
+      <div role="img" aria-label="In-shop display creative" style="position:relative;width:min(42vh,30vw);height:min(42vh,30vw);overflow:hidden;background:radial-gradient(circle at 50% 42%,color-mix(in srgb,#2f57ae 68%,#fff) 0%,#2f57ae 70%);box-shadow:0 34px 60px -22px rgba(32,30,29,.5);transform:{{ fp.cr1 }};transition:transform 1s cubic-bezier(.2,.8,.25,1.1) 0s;">
+        <img src="assets/p9_2.png" alt="" style="position:absolute;right:-14%;top:-12%;width:48%;transform:rotate(16deg);filter:drop-shadow(0 12px 14px rgba(0,0,0,.25))">
+        <img src="assets/p14_9.png" alt="" style="position:absolute;left:-16%;bottom:-14%;width:52%;transform:rotate(-12deg);filter:drop-shadow(0 12px 14px rgba(0,0,0,.25))">
+        <img src="assets/pack/p8_2.png" alt="" style="position:absolute;left:50%;top:50%;height:80%;transform:translate(-50%,-50%) rotate(-12deg);filter:drop-shadow(0 22px 22px rgba(0,0,0,.35))">
+      </div>
+      <div role="img" aria-label="Quick-commerce banner creative" style="position:relative;height:min(42vh,30vw);aspect-ratio:9/19.5;overflow:hidden;font-size:calc(min(42vh,30vw) / 30);background:radial-gradient(circle at 50% 55%,#ffc766 0%,#f6a531 75%);color:#5a2a16;display:flex;flex-direction:column;align-items:center;text-align:center;padding:2.2em .9em 0;box-shadow:0 34px 60px -22px rgba(32,30,29,.5);transform:{{ fp.cr2 }};transition:transform 1s cubic-bezier(.2,.8,.25,1.1) .08s;margin-left:-2vw">
+        <img src="assets/p14_7.png" alt="" style="position:absolute;left:-26%;top:-7%;width:46%">
+        <img src="assets/p10_0.png" alt="" style="position:absolute;right:-30%;bottom:-9%;width:54%">
+        <span style="font:700 .7em/1 var(--font-big);font-stretch:70%;letter-spacing:.08em">PRESENTING</span>
+        <span style="font:600 2.15em/.9 var(--font-big);font-stretch:70%;margin-top:.3em">OATMYGOD!</span>
+        <span style="font:700 .8em/1 var(--font-body);color:#fff;margin-top:.3em">Nutrition On The Go!</span>
+        <img src="assets/pack/p8_4.png" alt="" style="position:relative;height:46%;margin:.8em 0 .3em;filter:drop-shadow(0 18px 18px rgba(0,0,0,.3))">
+        <span style="position:relative;font:600 1.2em/1 var(--font-big);font-stretch:70%;color:#a3290f">We skipped the sugar rush and dialed up the fuel.</span>
+        <span style="position:relative;font:700 .7em/1.3 var(--font-body);margin-top:.4em">High Fibre. High Protein. Low Sugar.</span>
+      </div>
     </div>
     <div style="position:absolute;left:54vw;right:5vw;top:70vh;z-index:2;opacity:{{ fp.v2 }};transition:opacity .5s;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));row-gap:14px">
       <span style="grid-row:1;grid-column:1/3;font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-neutral-600);border-top:2px solid var(--color-text);padding-top:8px;margin-right:12px">Quick Commerce</span>
@@ -634,7 +647,7 @@ const PRISM_VIS = [
   { src: 'assets/p11_3.png', fit: 'cover', w: '100%', h: '100%', bg: '#2f57ae', filter: 'none', tag: 'Cheeky, confident creatives' },
   { src: 'assets/p13_1.png', fit: 'cover', w: '100%', h: '100%', bg: '#201e1d', filter: 'grayscale(1) contrast(1.08)', tag: 'The Witty Wingman/Friend' },
   { src: 'assets/p7_0.png', fit: 'cover', w: '100%', h: '100%', bg: '#201e1d', filter: 'none', tag: 'Authentic Ingredients' },
-  { src: 'assets/p11_5.png', fit: 'cover', w: '100%', h: '100%', bg: '#201e1d', filter: 'grayscale(1) contrast(1.08)', tag: 'The Hustler/Achiever' },
+  { src: 'assets/p13_0.png', fit: 'cover', w: '100%', h: '100%', bg: '#201e1d', filter: 'grayscale(1) contrast(1.08)', tag: 'The Hustler/Achiever' },
   { src: 'assets/p4_0.png', fit: 'cover', w: '100%', h: '100%', bg: '#201e1d', filter: 'none', tag: 'Smart Snacking' }
 ];
 const GAP = [
@@ -1060,7 +1073,7 @@ class Component extends DCLogic {
         { src: 'assets/p11_3.png', x: '70%', y: '22%', w: 'min(22vw,320px)', t: 'rotate(5deg)', d: 22, filter: 'none' },
         { src: 'assets/p11_1.png', x: '8%', y: '46%', w: 'min(18vw,260px)', t: 'rotate(4deg)', d: 18, filter: 'none' },
         { src: 'assets/p11_4.png', x: '52%', y: '54%', w: 'min(23vw,330px)', t: 'rotate(-3deg)', d: 28, filter: 'none' },
-        { src: 'assets/p11_5.png', x: '28%', y: '62%', w: 'min(20vw,280px)', t: 'rotate(-8deg)', d: 10, filter: 'grayscale(1) contrast(1.08)' }
+        { src: 'assets/p13_0.png', x: '28%', y: '62%', w: 'min(20vw,280px)', t: 'rotate(-8deg)', d: 10, filter: 'grayscale(1) contrast(1.08)' }
       ],
       tv,
       steps: stepsD.map(([title, , action], i) => { const on = S.step === i; return { title, action, num: '0' + (i + 1), nc: on ? A : 'var(--color-neutral-500)', c: on ? A : INK, tx: on ? 'translateX(12px)' : 'none', rows: on ? '1fr' : '0fr', on: set({ step: i }), off: set({ step: -1 }) }; }),
