@@ -183,7 +183,7 @@ a{color:var(--color-accent-700)}a:hover{color:var(--color-accent)}
       <div style="position:absolute;inset:0;opacity:clamp(0, (var(--p,0) - 0.82) / 0.1, 1);transform:translateY(calc((1 - clamp(0, (var(--p,0) - 0.82) / 0.1, 1)) * 30px))">The ‘Health-Curious’ <span style="color:var(--color-accent)">Urban Achiever</span></div>
     </div>
   </div>
-  <div style="position:absolute;left:58%;top:56%;width:min(40vw,500px);aspect-ratio:1/1;transform:translate(-50%,-50%) scale(calc(0.7 + clamp(0, var(--p,0) / 0.85, 1) * 0.3));border-radius:50%;overflow:hidden;box-shadow:0 40px 80px rgba(32,30,29,.18)">
+  <div style="position:absolute;left:58%;top:56%;width:min(40vw,340px);aspect-ratio:1/1;transform:translate(-50%,-50%) scale(calc(0.7 + clamp(0, var(--p,0) / 0.85, 1) * 0.3));border-radius:50%;overflow:hidden;box-shadow:0 40px 80px rgba(32,30,29,.18)">
     <img src="assets/p13_1.png" alt="" style="width:100%;height:100%;object-fit:cover;filter:grayscale(1) blur(calc((1 - clamp(0, var(--p,0) / 0.8, 1)) * 18px));transform:scale(calc(1.25 - clamp(0, var(--p,0) / 0.8, 1) * 0.25))">
   </div>
   <div style="position:absolute;left:58%;top:56%;width:min(14vw,170px);--k:clamp(0, (var(--p,0) - 0.86) / 0.08, 1);opacity:var(--k);transform:translate(calc(min(20vw,250px) - 30%), calc(min(8vw,100px) + (1 - var(--k)) * 40vh)) rotate(calc(10deg - (1 - var(--k)) * 40deg));pointer-events:none;z-index:3">
@@ -420,13 +420,13 @@ a{color:var(--color-accent-700)}a:hover{color:var(--color-accent)}
     </div>
     <div style="position:absolute;left:48vw;top:22vh;display:flex;align-items:center;z-index:1;opacity:{{ fp.v3 }};transition:opacity .6s">
       <div role="img" aria-label="In-shop display creative" style="position:relative;width:min(42vh,30vw);height:min(42vh,30vw);overflow:hidden;background:radial-gradient(circle at 50% 42%,color-mix(in srgb,#2f57ae 68%,#fff) 0%,#2f57ae 70%);box-shadow:0 34px 60px -22px rgba(32,30,29,.5);transform:{{ fp.cr1 }};transition:transform 1s cubic-bezier(.2,.8,.25,1.1) 0s;">
-        <img src="assets/p9_2.png" alt="" style="position:absolute;right:-14%;top:-12%;width:48%;transform:rotate(16deg);filter:drop-shadow(0 12px 14px rgba(0,0,0,.25))">
-        <img src="assets/p14_9.png" alt="" style="position:absolute;left:-16%;bottom:-14%;width:52%;transform:rotate(-12deg);filter:drop-shadow(0 12px 14px rgba(0,0,0,.25))">
-        <img src="assets/pack/p8_2.png" alt="" style="position:absolute;left:50%;top:50%;height:80%;transform:translate(-50%,-50%) rotate(-12deg);filter:drop-shadow(0 22px 22px rgba(0,0,0,.35))">
+        <img src="assets/pkg/p1_1.png" alt="" style="position:absolute;right:6%;top:6%;width:26%;filter:drop-shadow(0 10px 12px rgba(0,0,0,.25))">
+        <img src="assets/p14_7.png" alt="" style="position:absolute;left:6%;bottom:6%;width:28%;filter:drop-shadow(0 10px 12px rgba(0,0,0,.25))">
+        <img src="assets/pack/p8_2.png" alt="" style="position:absolute;left:50%;top:50%;height:74%;transform:translate(-50%,-50%) rotate(-12deg);filter:drop-shadow(0 22px 22px rgba(0,0,0,.35))">
       </div>
       <div role="img" aria-label="Quick-commerce banner creative" style="position:relative;height:min(42vh,30vw);aspect-ratio:9/19.5;overflow:hidden;font-size:calc(min(42vh,30vw) / 30);background:radial-gradient(circle at 50% 55%,#ffc766 0%,#f6a531 75%);color:#5a2a16;display:flex;flex-direction:column;align-items:center;text-align:center;padding:2.2em .9em 0;box-shadow:0 34px 60px -22px rgba(32,30,29,.5);transform:{{ fp.cr2 }};transition:transform 1s cubic-bezier(.2,.8,.25,1.1) .08s;margin-left:-2vw">
-        <img src="assets/p14_7.png" alt="" style="position:absolute;left:-26%;top:-7%;width:46%">
-        <img src="assets/p10_0.png" alt="" style="position:absolute;right:-30%;bottom:-9%;width:54%">
+        <img src="assets/p14_7.png" alt="" style="position:absolute;left:5%;top:47%;width:24%">
+        <img src="assets/p14_8.png" alt="" style="position:absolute;right:5%;top:57%;width:22%">
         <span style="font:700 .7em/1 var(--font-big);font-stretch:70%;letter-spacing:.08em">PRESENTING</span>
         <span style="font:600 2.15em/.9 var(--font-big);font-stretch:70%;margin-top:.3em">OATMYGOD!</span>
         <span style="font:700 .8em/1 var(--font-body);color:#fff;margin-top:.3em">Nutrition On The Go!</span>
@@ -480,9 +480,9 @@ a{color:var(--color-accent-700)}a:hover{color:var(--color-accent)}
                 <span style="margin-left:auto;font-size:16px;letter-spacing:1px;color:#7d7979">···</span>
               </div>
               <div role="img" aria-label="{{ c.name }} post" style="position:relative;aspect-ratio:1/1;overflow:hidden;background:radial-gradient(circle at 50% 42%,color-mix(in srgb,{{ c.color }} 68%,#fff) 0%,{{ c.color }} 70%)">
-                <img src="{{ c.b0 }}" alt="" style="position:absolute;right:-14%;top:-12%;width:48%;transform:rotate(16deg);filter:drop-shadow(0 12px 14px rgba(0,0,0,.25))">
-                <img src="{{ c.b1 }}" alt="" style="position:absolute;left:-16%;bottom:-14%;width:52%;transform:rotate(-12deg);filter:drop-shadow(0 12px 14px rgba(0,0,0,.25))">
-                <img src="{{ c.img }}" alt="" style="position:absolute;left:50%;top:50%;height:80%;transform:translate(-50%,-50%) rotate({{ c.r }}deg);filter:drop-shadow(0 22px 22px rgba(0,0,0,.35))">
+                <div style="position:absolute;right:6%;top:6%;width:26%;aspect-ratio:1/1;background:url({{ c.b0 }}) center/contain no-repeat;filter:drop-shadow(0 10px 12px rgba(0,0,0,.25))"></div>
+                <div style="position:absolute;left:6%;bottom:6%;width:28%;aspect-ratio:1/1;background:url({{ c.b1 }}) center/contain no-repeat;filter:drop-shadow(0 10px 12px rgba(0,0,0,.25))"></div>
+                <div style="position:absolute;left:50%;top:50%;height:74%;aspect-ratio:600/1160;background:url({{ c.img }}) center/contain no-repeat;transform:translate(-50%,-50%) rotate({{ c.r }}deg);filter:drop-shadow(0 22px 22px rgba(0,0,0,.35))"></div>
               </div>
               <div style="padding:10px 12px 14px;display:flex;flex-direction:column;gap:8px">
                 <div style="display:flex;gap:14px;align-items:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="#ec3013"><path d="M12 21s-7.5-4.6-9.6-9.2C1 8.6 3.1 5 6.6 5c2 0 3.5 1.1 5.4 3 1.9-1.9 3.4-3 5.4-3 3.5 0 5.6 3.6 4.2 6.8C19.5 16.4 12 21 12 21z"/></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#201e1d" stroke-width="1.8"><path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.6-5.2A8.5 8.5 0 1 1 21 12z"/></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#201e1d" stroke-width="1.8"><path d="M22 3 11 13M22 3l-7 18-4-8-8-4z"/></svg><svg style="margin-left:auto" width="18" height="20" viewBox="0 0 24 24" fill="none" stroke="#201e1d" stroke-width="1.8"><path d="M5 3h14v18l-7-5-7 5z"/></svg></div>
@@ -491,8 +491,8 @@ a{color:var(--color-accent-700)}a:hover{color:var(--color-accent)}
             </div></sc-if>
             <sc-if value="{{ c.story }}"><div style="position:relative;padding:9px;border-radius:38px;background:#111;box-shadow:inset 0 0 0 2px #3a3838,0 40px 80px rgba(0,0,0,.5)">
               <div role="img" aria-label="Launch story" style="position:relative;aspect-ratio:9/19.5;border-radius:30px;overflow:hidden;background:radial-gradient(circle at 50% 55%,#ffc766 0%,#f6a531 75%);color:#5a2a16;display:flex;flex-direction:column;align-items:center;text-align:center;padding:26px 12px 0">
-                <img src="assets/p14_7.png" alt="" style="position:absolute;left:-26%;top:-7%;width:46%">
-                <img src="assets/p10_0.png" alt="" style="position:absolute;right:-30%;bottom:-9%;width:54%">
+                <img src="assets/p14_7.png" alt="" style="position:absolute;left:5%;top:47%;width:24%">
+                <img src="assets/p14_8.png" alt="" style="position:absolute;right:5%;top:57%;width:22%">
                 <span style="font:700 9px/1 var(--font-big);font-stretch:70%;letter-spacing:.08em">PRESENTING</span>
                 <span style="font:600 27px/.9 var(--font-big);font-stretch:70%;margin-top:4px">OATMYGOD!</span>
                 <span style="font:700 10px/1 var(--font-body);color:#fff;margin-top:4px">Nutrition On The Go!</span>
@@ -589,7 +589,7 @@ a{color:var(--color-accent-700)}a:hover{color:var(--color-accent)}
       <p style="margin:0;max-width:44ch;font-size:clamp(15px,1.1vw,18px);line-height:1.55;color:#201e1d;text-wrap:pretty">Immediately launch retargeting ads to anyone who visited the website or watched the influencer videos. Simultaneously, send a post-purchase survey to all customers.</p>
     </div>
     <div style="grid-column:2;grid-row:1;display:flex;justify-content:flex-end;align-items:center;transform:none">
-      <div style="background:#e3e3e3;padding:12px;width:min(100%,304px);box-sizing:border-box;transform:rotate(calc(-3deg + (1 - clamp(0, var(--v,1) * 1.8, 1)) * -10deg)) translateY(calc((1 - clamp(0, var(--v,1) * 1.8, 1)) * 40px));transition:transform .2s linear;box-shadow:0 30px 50px -28px rgba(32,30,29,.55);opacity:clamp(0, var(--v,1) * 1.8, 1)"><div style="aspect-ratio:1/1;overflow:hidden;background:#e3e3e3;display:flex;justify-content:center"><div style="width:146px;height:100%;overflow:hidden"><img src="assets/p13_4.png" alt="Digital Retargeting & Feedback Loop" style="display:block;height:100%;width:auto;max-width:none"></img></div></div></div>
+      <div style="background:#e3e3e3;padding:12px;width:min(100%,304px);box-sizing:border-box;transform:rotate(calc(-3deg + (1 - clamp(0, var(--v,1) * 1.8, 1)) * -10deg)) translateY(calc((1 - clamp(0, var(--v,1) * 1.8, 1)) * 40px));transition:transform .2s linear;box-shadow:0 30px 50px -28px rgba(32,30,29,.55);opacity:clamp(0, var(--v,1) * 1.8, 1)"><div style="aspect-ratio:1/1;overflow:hidden;background:#e3e3e3;display:flex;justify-content:center"><img src="assets/p13_4.png" alt="Digital Retargeting & Feedback Loop" style="display:block;width:100%;height:100%;object-fit:contain"></img></div></div>
     </div>
   </div>
   </div>
@@ -608,7 +608,7 @@ a{color:var(--color-accent-700)}a:hover{color:var(--color-accent)}
       <div role="img" aria-label="{{ p.name }}" style="height:min(26vh,260px);aspect-ratio:{{ p.ar }};background:url({{ p.img }}) center/contain no-repeat;animation:omg-float 4s ease-in-out infinite;animation-delay:{{ p.delay }};filter:drop-shadow(0 30px 30px rgba(32,30,29,.3));transition:transform .5s cubic-bezier(.2,.7,.2,1)" style-hover="transform:translateY(-24px) rotate(-6deg) scale(1.08)"></div>
     </sc-for>
   </div>
-  <img src="assets/p14_0.png" alt="OATMYGOD!" style="width:100%;height:auto;opacity:.95">
+  <div role="img" aria-label="OATMYGOD!" style="width:100%;aspect-ratio:602/256;background:#fff;opacity:.95;-webkit-mask:url(assets/wordmark-hd.png) center/100% 100% no-repeat;mask:url(assets/wordmark-hd.png) center/100% 100% no-repeat"></div>
   <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-top:20px;font-size:13px">
     <span>Group 03</span><span>Avni Joshi · Ashwini Ramesh Kumar · Reeva Shah · Priteesh Barik</span><a href="../#work" style="color:inherit;font-weight:600;text-decoration:none">Back to work →</a>
   </div>
@@ -618,11 +618,11 @@ a{color:var(--color-accent-700)}a:hover{color:var(--color-accent)}
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 const PACKS = [
-  { name: 'The Original Oat', sub: 'Oat & Honey', img: 'assets/pack/p8_1.png', ar: '594/1146', color: '#f6572a', fg: '#201e1d', s: 0, a: 'The Original ', b: 'Oat', c: '', burst: ['assets/pkg/p1_4.png', 'assets/p14_8.png'], txt: '#c43a12' },
-  { name: 'Vanilla Boost', sub: 'Hemp seeds & Vanilla', img: 'assets/pack/p8_0.png', ar: '596/1144', color: '#1f622f', fg: '#f3f2f2', s: 0, a: 'Vanilla ', b: 'Boost', c: '', burst: ['assets/pkg/p1_1.png', 'assets/p14_9.png'] },
-  { name: 'Choc-OAT-Lit', sub: 'Dark Chocolate Chip', img: 'assets/pack/p8_4.png', ar: '678/1318', color: '#421d18', fg: '#f3f2f2', s: 1, a: 'Choc-', b: 'OAT', c: '-Lit', burst: ['assets/p10_0.png', 'assets/p14_7.png'] },
-  { name: 'Berry Good Vibez', sub: 'Mixed Berries', img: 'assets/pack/p8_2.png', ar: '590/1144', color: '#2f57ae', fg: '#f3f2f2', s: 1, a: 'Berry ', b: 'Good', c: ' Vibez', burst: ['assets/p9_2.png', 'assets/p14_9.png'] },
-  { name: 'Mocha Mode ON', sub: 'Mocha Espresso', img: 'assets/pack/p8_3.png', ar: '590/1146', color: '#ee9334', fg: '#201e1d', s: 2, a: 'Mocha ', b: 'Mode ON', c: '', burst: ['assets/p14_7.png', 'assets/p10_0.png'], txt: '#9a560c' },
+  { name: 'The Original Oat', sub: 'Oat & Honey', img: 'assets/pack/p8_1.png', ar: '594/1146', color: '#f6572a', fg: '#201e1d', s: 0, a: 'The Original ', b: 'Oat', c: '', burst: ['assets/pkg/p1_1.png', 'assets/p14_8.png'], txt: '#c43a12' },
+  { name: 'Vanilla Boost', sub: 'Hemp seeds & Vanilla', img: 'assets/pack/p8_0.png', ar: '596/1144', color: '#1f622f', fg: '#f3f2f2', s: 0, a: 'Vanilla ', b: 'Boost', c: '', burst: ['assets/pkg/p1_1.png', 'assets/p14_7.png'] },
+  { name: 'Choc-OAT-Lit', sub: 'Dark Chocolate Chip', img: 'assets/pack/p8_4.png', ar: '678/1318', color: '#421d18', fg: '#f3f2f2', s: 1, a: 'Choc-', b: 'OAT', c: '-Lit', burst: ['assets/p14_8.png', 'assets/p14_7.png'] },
+  { name: 'Berry Good Vibez', sub: 'Mixed Berries', img: 'assets/pack/p8_2.png', ar: '590/1144', color: '#2f57ae', fg: '#f3f2f2', s: 1, a: 'Berry ', b: 'Good', c: ' Vibez', burst: ['assets/p9_2.png', 'assets/p14_7.png'] },
+  { name: 'Mocha Mode ON', sub: 'Mocha Espresso', img: 'assets/pack/p8_3.png', ar: '590/1146', color: '#ee9334', fg: '#201e1d', s: 2, a: 'Mocha ', b: 'Mode ON', c: '', burst: ['assets/p14_7.png', 'assets/p14_8.png'], txt: '#9a560c' },
   { name: 'Flex Fuel Caramel', sub: 'Salted Caramel', img: 'assets/pack/p8_5.png', ar: '596/1144', color: '#502795', fg: '#f3f2f2', s: 2, a: 'Flex ', b: 'Fuel', c: ' Caramel', burst: ['assets/p1_1.png', 'assets/p14_8.png'] }
 ];
 const SERIES = [
@@ -653,14 +653,14 @@ const PRISM_VIS = [
 const GAP = [
   ['Target Audience', 'Existing health biscuits primarily target Older Adults/Diabetics or Homemakers', 'Target: Busy Young Adults (Gen Z & Millennials). Needs: Energy, convenience, guilt-free indulgence.', '#f6572a', '#201e1d', 'assets/pack/p8_1.png'],
   ['Brand Personality', 'Clinical, Serious, Functional, Traditional', 'Fun, Relatable, Energetic, & Authentic. A brand that speaks their language', '#2f57ae', '#f3f2f2', 'assets/p9_2.png'],
-  ['Core Proposition', 'Health = Sacrifice (bland taste).', 'Health = Convenience + Great Taste. Providing delicious nourishment for an active, hectic lifestyle.', '#1f622f', '#f3f2f2', 'assets/p14_9.png'],
+  ['Core Proposition', 'Health = Sacrifice (bland taste).', 'Health = Convenience + Great Taste. Providing delicious nourishment for an active, hectic lifestyle.', '#1f622f', '#f3f2f2', 'assets/p14_7.png'],
   ['Flavour Range', 'Limited to staples (oats, ragi, plain digestive).', 'Wide, exciting, and gourmet range, suitable for on-the-go snacking.', '#502795', '#f3f2f2', 'assets/pack/p8_5.png']
 ];
 const clamp = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
 const hex = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
 const lerpC = (a, b, t) => { const A = hex(a), B = hex(b); return `rgb(${A.map((v, i) => Math.round(v + (B[i] - v) * t)).join(',')})`; };
 const ease = t => t * t * (3 - 2 * t);
-const mark = (color, extra) => React.createElement('div', { style: { width: '100%', aspectRatio: '602/256', background: color, WebkitMaskImage: 'url(assets/p1_0.png)', maskImage: 'url(assets/p1_0.png)', WebkitMaskSize: '100% 100%', maskSize: '100% 100%', transition: 'background .5s', ...extra } });
+const mark = (color, extra) => React.createElement('div', { style: { width: '100%', aspectRatio: '602/256', background: color, WebkitMaskImage: 'url(assets/wordmark-hd.png)', maskImage: 'url(assets/wordmark-hd.png)', WebkitMaskSize: '100% 100%', maskSize: '100% 100%', transition: 'background .5s', ...extra } });
 
 class Component extends DCLogic {
   state = { gb: [], gcr: null, scr: [false, false, false, false], gapAll: false, dragged: false, paintI: -1, paintPrev: '#f3f2f2', paintX: '50%', paintY: '80%', paintK: 0, pieT: 0, punHover: false, pIdx: 0, chap: 'Breakfast. Upgraded.', slice: 1, gap: -1, pun: 0, voice: 0, prism: 2, fourP: 0, size: 0, step: -1, cfg: 3, sw: 3, markC: 0, rIdx: 0, frame: 0, bites: [], crunch: null,
@@ -827,9 +827,9 @@ class Component extends DCLogic {
     const A = 'var(--color-accent)', INK = 'var(--color-text)';
 
     const floaters = [
-      ['assets/p9_2.png', '4%', '12%', '24vw', 26, 0, -10, -30], ['assets/p10_0.png', '68%', '6%', '24vw', 18, 0, 14, -40],
+      ['assets/p9_2.png', '4%', '12%', '24vw', 26, 0, -10, -30], ['assets/p14_8.png', '68%', '6%', '24vw', 18, 0, 14, -40],
       ['assets/p14_7.png', '12%', '40%', '10vw', 40, 0, -20, -30], ['assets/p1_1.png', '74%', '60%', '17vw', 34, 0, 8, 10],
-      ['assets/p14_8.png', '30%', '20%', '5vw', 12, 3, 30, -60], ['assets/pkg/p1_4.png', '62%', '30%', '7vw', 10, 3, -18, -50]
+      ['assets/p14_8.png', '30%', '20%', '5vw', 12, 3, 30, -60], ['assets/pkg/p1_1.png', '62%', '30%', '7vw', 10, 3, -18, -50]
     ].map(([img, left, top, w, d, blur, r, sy]) => ({ img, left, top, w, d, blur, r, sy }));
 
     const trendL = ['Health-focused innovation', 'Premiumisation', 'Local products go national', 'Digital disruption', 'Innovations in packaging'];
@@ -918,12 +918,12 @@ class Component extends DCLogic {
       tabs: PACKS.map((p, i) => ({ name: p.name, color: p.color, sz: i === rI ? '28px' : '16px', b: i === rI ? '#fff' : 'transparent', go: () => { const el = this.rangeEl; if (!el) return; const top = el.getBoundingClientRect().top + scrollY; this.smoothTo(top + (i / 5) * 0.93 * (el.offsetHeight - innerHeight) + 2); } })) };
 
     const BURST = [
-      ['assets/pkg/p1_4.png', 'assets/p14_8.png', 'assets/pkg/p1_1.png', 'assets/p1_1.png', 'assets/p14_8.png'],
-      ['assets/pkg/p1_1.png', 'assets/p14_9.png', 'assets/pkg/p1_4.png', 'assets/p9_1.png', 'assets/p14_8.png'],
-      ['assets/p14_7.png', 'assets/p10_0.png', 'assets/p14_7.png', 'assets/p14_9.png', 'assets/p10_0.png'],
-      ['assets/p9_2.png', 'assets/p14_9.png', 'assets/p9_2.png', 'assets/p14_7.png', 'assets/pkg/p1_4.png'],
-      ['assets/p14_7.png', 'assets/p10_0.png', 'assets/p1_1.png', 'assets/p14_7.png', 'assets/p9_1.png'],
-      ['assets/p1_1.png', 'assets/p14_8.png', 'assets/pkg/p1_4.png', 'assets/p9_1.png', 'assets/p14_8.png']
+      ['assets/pkg/p1_1.png', 'assets/p14_8.png', 'assets/pkg/p1_1.png', 'assets/p1_1.png', 'assets/p14_8.png'],
+      ['assets/pkg/p1_1.png', 'assets/p14_7.png', 'assets/pkg/p1_1.png', 'assets/p1_1.png', 'assets/p14_8.png'],
+      ['assets/p14_7.png', 'assets/p14_8.png', 'assets/p14_7.png', 'assets/p14_7.png', 'assets/p14_8.png'],
+      ['assets/p9_2.png', 'assets/p14_7.png', 'assets/p9_2.png', 'assets/p14_7.png', 'assets/pkg/p1_1.png'],
+      ['assets/p14_7.png', 'assets/p14_8.png', 'assets/p1_1.png', 'assets/p14_7.png', 'assets/p1_1.png'],
+      ['assets/p1_1.png', 'assets/p14_8.png', 'assets/pkg/p1_1.png', 'assets/p1_1.png', 'assets/p14_8.png']
     ];
     const BPOS = [[-26, -20, 13, 0, -30], [24, -24, 11, 0, 40], [-30, 18, 9, 2, 60], [27, 16, 14, 0, -50], [-8, -36, 6, 3, 90]];
     const kin = PACKS.map((p, i) => { const w = p.b.toUpperCase(); return { w, i, c: p.fg, fs: 'min(' + Math.round(96 / Math.max(3, w.length)) + 'vw, 46vh)' }; });
@@ -972,7 +972,7 @@ class Component extends DCLogic {
     const ms = masks ? { WebkitMaskImage: masks, maskImage: masks, WebkitMaskComposite: 'source-in', maskComposite: 'intersect' } : {};
     const nb = S.bites.length;
     const biteCookie = React.createElement('div', { onClick: this.bite, style: { position: 'relative', width: '100%', height: '100%', cursor: 'pointer' } },
-      React.createElement('img', { src: 'assets/p14_9.png', alt: 'Cookie', draggable: false, style: { width: '100%', height: '100%', objectFit: 'contain', filter: 'drop-shadow(0 40px 40px rgba(32,30,29,.35))', ...ms } }),
+      React.createElement('img', { src: 'assets/p14_7.png', alt: 'Cookie', draggable: false, style: { width: '100%', height: '100%', objectFit: 'contain', filter: 'drop-shadow(0 40px 40px rgba(32,30,29,.35))', ...ms } }),
       S.crunch && React.createElement('span', { key: S.crunch.k, style: { position: 'absolute', left: S.crunch.x, top: S.crunch.y, fontFamily: 'var(--font-big)', fontStretch: '70%', fontWeight: 600, letterSpacing: '-0.005em', fontSize: 'clamp(32px,3.6vw,60px)', color: '#fff', whiteSpace: 'nowrap', pointerEvents: 'none', animation: 'omg-pop 1.1s cubic-bezier(.2,.7,.2,1) forwards' } }, S.crunch.word));
 
     return {
@@ -1021,7 +1021,7 @@ class Component extends DCLogic {
       onSheen: e => { const r = e.currentTarget.getBoundingClientRect(); if (this.sheen) { this.sheen.style.opacity = 1; this.sheen.style.background = `radial-gradient(circle at ${((e.clientX - r.left) / r.width * 100).toFixed(1)}% ${((e.clientY - r.top) / r.height * 100).toFixed(1)}%, rgba(255,255,255,.95), rgba(255,255,255,0) 40%)`; } },
       offSheen: () => { if (this.sheen) this.sheen.style.opacity = 0; },
       cfTabs: PACKS.map((p, i) => ({ name: p.name, img: p.img, color: p.color, bg: S.cfg === i ? 'rgba(255,255,255,.22)' : 'transparent', h: S.cfg === i ? '84px' : '58px', t: S.cfg === i ? 'rotate(-6deg)' : 'none', onPick: () => this.setState({ cfg: i }, this.schedule) })),
-      cfDrop: React.createElement('div', { key: 'd' + S.size + '-' + S.cfg }, ...Array.from({ length: sz.n }, (_, k) => React.createElement('img', { key: k, src: k % 2 ? 'assets/p14_9.png' : 'assets/p14_7.png', alt: '', style: { position: 'absolute', left: -30, top: -30, width: 60, height: 'auto', '--sx': ((k - sz.n / 2) * 50) + 'px', animation: `omg-drop 1.1s cubic-bezier(.5,0,.75,0) ${0.15 + k * 0.12}s both`, filter: 'drop-shadow(0 10px 14px rgba(0,0,0,.3))' } }))),
+      cfDrop: React.createElement('div', { key: 'd' + S.size + '-' + S.cfg }, ...Array.from({ length: sz.n }, (_, k) => React.createElement('img', { key: k, src: k % 2 ? 'assets/p14_7.png' : 'assets/p14_7.png', alt: '', style: { position: 'absolute', left: -30, top: -30, width: 60, height: 'auto', '--sx': ((k - sz.n / 2) * 50) + 'px', animation: `omg-drop 1.1s cubic-bezier(.5,0,.75,0) ${0.15 + k * 0.12}s both`, filter: 'drop-shadow(0 10px 14px rgba(0,0,0,.3))' } }))),
       sizeTabs: sizes.map((o, i) => ({ label: o.label, bg: S.size === i ? P.fg : 'transparent', fg: S.size === i ? P.color : P.fg, onPick: set({ size: i }) })),
       size: { p: sz.p, scale: sz.scale, dots: Array.from({ length: sz.n }, (_, i) => ({ delay: (i * 0.06) + 's' })), line: `Rs. ${sz.p} for ${sz.n} cookies in pack. (${sz.label === 'The OG Pack' ? 'The OG Pack' : 'Shortie Pack'})` },
       punNow: { sub: PACKS[S.pun].sub, ing: BURST[S.pun][0], t: 'rotate(' + (S.pun * 60) + 'deg)' },
@@ -1102,8 +1102,10 @@ class Component extends DCLogic {
           places: [['Zepto', '4%', '12%', '#502795', '#fff', -6], ['Blinkit', '64%', '6%', '#ee9334', '#201e1d', 5], ['Amazon', '0%', '62%', '#201e1d', '#fff', 4], ['Flipkart', '70%', '58%', '#2f57ae', '#fff', -4], ['Supermarkets', '30%', '86%', '#fff', '#201e1d', 2]].map(([t, x, y, bg, c, r], i) => ({ t, x, y, bg, c, r, d: (i * 0.4) + 's' })),
           dots: [0, 1, 2, 3].map(i => ({ w: k === i ? '34px' : '8px', bg: k === i ? 'var(--color-accent)' : 'var(--color-neutral-300)', go: () => { const el = this.fourEl; if (!el) return; const top = el.getBoundingClientRect().top + scrollY; this.smoothTo(top + ((i + 0.5) / 4) * (el.offsetHeight - innerHeight)); } })) }; })(),
       ring: (() => {
+        const O = 'assets/pkg/p1_1.png', C = 'assets/p14_7.png', P = 'assets/p14_8.png';
+        const WHOLE = [[O, P], [P, O], [C, P], [O, C], [C, O], [P, C]];
         const caps = ['Oats, honey and zero guilt. Breakfast, upgraded.', 'Hemp seeds and vanilla. Boost mode: on.', 'Dark chocolate chip, light on sugar. Yes, really.', 'Fills you up with berries, not regrets.', 'Mocha espresso for the 4pm slump.', 'Salted caramel that actually fuels the flex.'];
-        const items = PACKS.map((p, i) => ({ post: true, story: false, name: p.name, color: p.color, img: p.img, b0: p.burst[0], b1: p.burst[1], cap: caps[i], r: i % 2 ? 10 : -12 }));
+        const items = PACKS.map((p, i) => ({ post: true, story: false, name: p.name, color: p.color, img: p.img, b0: WHOLE[i][0], b1: WHOLE[i][1], cap: caps[i], r: i % 2 ? 10 : -12 }));
         items.splice(3, 0, { post: false, story: true, name: 'Launch story', color: '', img: '', b0: '', b1: '', cap: '', r: 0 });
         return items.map((c, i) => ({ ...c, a: i * 360 / items.length, w: c.story ? 'min(clamp(150px,13vw,200px),20vh)' : 'min(clamp(220px,20vw,300px),29vh)' }));
       })()
