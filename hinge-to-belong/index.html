@@ -589,16 +589,33 @@ html{scroll-behavior:smooth}body{margin:0;background:#140d17}a{color:inherit}a:h
           </div>
           <div style="padding:14px 22px 34px;text-align:center;font-family:'Quicksand',sans-serif;font-size:15px;line-height:1.35;color:var(--acc2);min-height:42px;opacity:{{ lockEndO }};transition:opacity 1s ease">Two weeks later, the app is the only one still texting.</div>
           <sc-if value="{{ feelOn }}" hint-placeholder-val="{{ false }}">
-            <div style="position:absolute;left:12px;right:12px;bottom:84px;padding:16px 14px 14px;border-radius:22px;background:#2a1d31;border:1px solid rgba(243,234,246,.16);box-shadow:0 -18px 40px rgba(23,16,28,.6);display:flex;flex-direction:column;gap:12px;animation:bubIn .5s cubic-bezier(.2,.8,.2,1.2) both">
-              <span style="font-size:15px;line-height:1.3;color:#f3eaf6;text-align:center">How are you feeling right now?</span>
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-                <sc-for list="{{ feelOpts }}" as="f" hint-placeholder-count="4">
-                  <button onClick="{{ f.on }}" style="padding:10px 8px;border-radius:999px;border:1px solid rgba(243,234,246,.25);background:{{ f.bg }};color:{{ f.fg }};font:400 14px 'Quicksand',sans-serif;cursor:pointer;opacity:{{ f.op }};transition:background .3s,color .3s,opacity .4s">{{ f.t }}</button>
-                </sc-for>
-              </div>
-              <span style="min-height:1.3em;font-size:14px;line-height:1.3;color:var(--acc2);text-align:center;opacity:{{ feelReplyO }};transition:opacity .5s">{{ feelReply }}</span>
+            <div style="position:absolute;left:12px;right:12px;bottom:84px;padding:18px 16px 16px;border-radius:22px;background:#2a1d31;border:1px solid rgba(243,234,246,.16);box-shadow:0 -18px 40px rgba(23,16,28,.6);display:flex;flex-direction:column;gap:12px;text-align:center;animation:bubIn .5s cubic-bezier(.2,.8,.2,1.2) both">
+              <sc-if value="{{ feelA }}" hint-placeholder-val="{{ true }}">
+                <span style="font-size:15px;line-height:1.3;color:#f3eaf6">How are you feeling right now?</span>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+                  <sc-for list="{{ feelOpts }}" as="f" hint-placeholder-count="4">
+                    <button onClick="{{ f.on }}" style="padding:10px 8px;border-radius:999px;border:1px solid rgba(243,234,246,.25);background:transparent;color:#f3eaf6;font:400 14px 'Quicksand',sans-serif;cursor:pointer;transition:background .3s" style-hover="background:rgba(201,139,217,.18)">{{ f.t }}</button>
+                  </sc-for>
+                </div>
+              </sc-if>
+              <sc-if value="{{ feelB }}" hint-placeholder-val="{{ false }}">
+                <span style="align-self:center;padding:4px 12px;border-radius:999px;background:rgba(201,139,217,.18);color:#e2b6ee;font-size:12px;letter-spacing:.04em">feeling {{ feelName }}</span>
+                <span style="font-size:14px;line-height:1.45;color:#f3eaf6;animation:bubIn .6s ease both">{{ feelAck }}</span>
+                <span style="font-size:15px;line-height:1.3;color:#f3eaf6;margin-top:4px;animation:bubIn .6s 1.4s ease both">What do you need right now?</span>
+                <div style="display:flex;flex-direction:column;gap:8px;animation:bubIn .6s 1.7s ease both">
+                  <sc-for list="{{ needOpts }}" as="o" hint-placeholder-count="3">
+                    <button onClick="{{ o.on }}" style="padding:10px 8px;border-radius:999px;border:1px solid rgba(243,234,246,.25);background:transparent;color:#f3eaf6;font:400 14px 'Quicksand',sans-serif;cursor:pointer;transition:background .3s" style-hover="background:rgba(201,139,217,.18)">{{ o.t }}</button>
+                  </sc-for>
+                </div>
+              </sc-if>
+              <sc-if value="{{ feelC }}" hint-placeholder-val="{{ false }}">
+                <span style="align-self:center;padding:4px 12px;border-radius:999px;background:rgba(201,139,217,.18);color:#e2b6ee;font-size:12px;letter-spacing:.04em">needing {{ needName }}</span>
+                <span style="font-size:15px;line-height:1.45;color:#f3eaf6;animation:bubIn .6s ease both">{{ needReply }}</span>
+                <button onClick="{{ feelDone }}" style="margin-top:4px;padding:11px 8px;border-radius:999px;border:0;background:#c98bd9;color:#1a1220;font:400 14px 'Quicksand',sans-serif;cursor:pointer;animation:bubIn .6s 1.6s ease both">{{ needCta }}</button>
+              </sc-if>
             </div>
           </sc-if>
+
         </div>
         <sc-if value="{{ delAsk }}" hint-placeholder-val="{{ false }}">
           <div style="position:absolute;inset:0;background:rgba(20,12,24,.45);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;padding:28px">
@@ -976,14 +993,26 @@ class Component extends DCLogic {
   ];
   playChat = () => {
     (this.tm || []).forEach(clearTimeout); this.tm = [];
-    const S = this.chatScript; this.setState({ chat: 1, chatN: 0, feelAsk: false, feel: -1 });
+    const S = this.chatScript; this.setState({ chat: 1, chatN: 0, feelAsk: false, feel: -1, need: -1 });
     let t = 900;
     S.forEach((st, i) => { this.tm.push(setTimeout(() => this.setState({ chatN: i + 1 }), t)); t += i === 5 ? 4200 : 3200; });
     this.tm.push(setTimeout(() => this.setState({ chat: 3 }), t));
     this.tm.push(setTimeout(() => this.setState({ feelAsk: true }), t + 2400));
   };
-  feelings = [['Lonely', 'You’re not the only one awake.'], ['Anxious', 'That’s a lot to carry at 1:47 AM.'], ['Disappointed', 'You put yourself out there. That counts.'], ['Relieved', 'Sometimes leaving is the win.']];
-  pickFeel = i => { if (this.state.feel >= 0) return; this.setState({ feel: i }); this.tm.push(setTimeout(() => this.setState({ chat: 4, feelAsk: false }), 2600)); };
+  feelings = [
+    ['lonely', 'Lonely', 'That makes sense. Two weeks of almost-conversations can leave anyone feeling more alone than before.'],
+    ['anxious', 'Anxious', 'That’s okay. Waiting on someone who stopped replying keeps your mind running, especially at 1:47 AM.'],
+    ['disappointed', 'Disappointed', 'Of course. You showed up and hoped. Being left on “Seen” still stings.'],
+    ['relieved', 'Relieved', 'That’s fair. Not every ending is a loss. Sometimes it’s room to breathe.']
+  ];
+  needs = [
+    ['someone to talk to', 'Someone to talk to', 'You deserve a conversation that doesn’t disappear halfway. That’s exactly what we went looking for next.', 'Let’s find that'],
+    ['some quiet', 'Some quiet', 'Take all the time you need. Nothing here has to be decided tonight.', 'I’m ready now'],
+    ['a fresh start', 'A fresh start', 'Then let’s close this chapter, gently, and on your terms.', 'Close this chapter']
+  ];
+  pickFeel = i => { if (this.state.feel >= 0) return; this.setState({ feel: i }); };
+  pickNeed = i => { if (this.state.need >= 0) return; this.setState({ need: i }); };
+  feelDone = e => { if (e && e.stopPropagation) e.stopPropagation(); this.setState({ chat: 4, feelAsk: false }); };
   cardDown = e => { const el = this.cardRef.current; if (!el) return; this.drag = { x: e.clientX, dx: 0 }; try { el.setPointerCapture(e.pointerId); } catch (_) {} el.style.transition = 'none'; el.style.cursor = 'grabbing'; };
   cardMove = e => {
     if (!this.drag) return; const el = this.cardRef.current; const dx = e.clientX - this.drag.x; this.drag.dx = dx;
@@ -1140,7 +1169,7 @@ class Component extends DCLogic {
         down: isH ? () => { if (this.state.del !== 0) return; clearTimeout(this.holdT); this.holdT = setTimeout(() => this.setState({ del: 1 }), 520); } : undefined,
         up: isH ? () => clearTimeout(this.holdT) : undefined, ctx: e => e.preventDefault(),
         onX: e => { e.stopPropagation(); this.setState({ del: 2 }); } }; });
-    const delHint = (s.chat || 0) < 4 && dl === 0 ? '' : ['press and hold Hinge', 'now tap the ×', 'last chance…', 'Hinge has been deleted.'][dl];
+    const delHint = (s.chat || 0) < 4 && dl === 0 ? '' : ['whenever you’re ready, press and hold Hinge', 'now tap the ×', 'last chance…', 'Hinge has been deleted.'][dl];
 
     const gd = new Date();
     const PD = window.PORTFOLIO_DATA || {}, st = this.state, ACC = 'var(--acc)', MID = 'var(--mid)';
@@ -1229,8 +1258,11 @@ class Component extends DCLogic {
       emoCols, emoCur, brkSel, fPath: path(fP), mPath: path(mP), fOp, mOp, emoPts, emoTabs, concerns, breaks,
       notifs: (() => { const n = s.chatN || 0; return this.chatScript.slice(0, n).map((x, i) => ({ ...x, op: i < n - 4 ? 0 : 1 })).slice(-4).reverse(); })(),
       lockDay: (this.chatScript[(s.chatN || 1) - 1] || {}).d, lockTime: (this.chatScript[(s.chatN || 1) - 1] || {}).tm, lockEndO: (s.chat || 0) >= 3 ? 1 : 0,
-      feelOn: !!s.feelAsk && (s.chat || 0) < 4, feelReply: s.feel >= 0 ? this.feelings[s.feel][1] : '', feelReplyO: s.feel >= 0 ? 1 : 0,
-      feelOpts: this.feelings.map(([t], i) => { const on = s.feel === i, picked = s.feel >= 0; return { t, bg: on ? '#c98bd9' : 'transparent', fg: on ? '#1a1220' : '#f3eaf6', op: picked && !on ? 0.35 : 1, on: e => { if (e && e.stopPropagation) e.stopPropagation(); this.pickFeel(i); } }; }),
+      feelOn: !!s.feelAsk && (s.chat || 0) < 4, feelA: !(s.feel >= 0), feelB: s.feel >= 0 && !(s.need >= 0), feelC: s.need >= 0,
+      feelName: s.feel >= 0 ? this.feelings[s.feel][0] : '', feelAck: s.feel >= 0 ? this.feelings[s.feel][2] : '',
+      needName: s.need >= 0 ? this.needs[s.need][0] : '', needReply: s.need >= 0 ? this.needs[s.need][2] : '', needCta: s.need >= 0 ? this.needs[s.need][3] : '', feelDone: this.feelDone,
+      feelOpts: this.feelings.map(([, t], i) => ({ t, on: e => { if (e && e.stopPropagation) e.stopPropagation(); this.pickFeel(i); } })),
+      needOpts: this.needs.map(([, t], i) => ({ t, on: e => { if (e && e.stopPropagation) e.stopPropagation(); this.pickNeed(i); } })),
       chatGone: s.chat >= 4, chatO: s.chat >= 4 ? 0 : 1, chatT: s.chat >= 4 ? 'translateY(-14%) scale(.92)' : 'none', chatPE: s.chat >= 4 ? 'none' : 'auto',
       chatDraft: s.chat < 4 && (this.chatScript[(s.chatN || 0) - 1] || {}).k === 'mt' ? React.createElement('span', { style: { display: 'flex', gap: 5 } }, dots) : React.createElement('span', { style: { color: 'rgba(243,234,246,.4)' } }, 'Send a message'), replayChat: this.playChat,
       principles, dims, dimSel, dimRelease: () => { this.dimHold = false; },
