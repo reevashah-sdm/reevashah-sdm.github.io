@@ -3,15 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Hinge to Belong: Service Design, Phase 1 · Reeva Shah</title>
-<meta name="description" content="Service design phase 1: studying Hinge, the dating app designed to be deleted, as a service, on the way to designing Belong.">
 <script src="./support.js"></script>
 </head>
 <body>
 <x-dc>
 <helmet>
-<link rel="stylesheet" href="ds/modernist/styles.css">
-<script src="ds/modernist/ds_bundle.js"></script>
+<link rel="stylesheet" href="_ds/modernist-930a2025-f3ad-4539-99d0-9b46a1ff691a/styles.css">
+<script src="_ds/modernist-930a2025-f3ad-4539-99d0-9b46a1ff691a/_ds_bundle.js"></script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap">
 <script src="portfolio-data.js"></script>
 <style>
@@ -37,7 +35,7 @@ html{scroll-behavior:smooth}body{margin:0;background:#140d17}a{color:inherit}a:h
 <header style="position:fixed;top:0;left:0;right:0;z-index:60;pointer-events:none">
   <div style="height:3px"><div ref="{{ progRef }}" style="height:100%;background:linear-gradient(90deg,var(--acc),var(--acc2));transform-origin:0 50%;transform:scaleX(0)"></div></div>
   <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px clamp(16px,4vw,64px)">
-    <div style="display:flex;align-items:center;gap:4px"><a href="../#work" style="pointer-events:auto;text-decoration:none;color:var(--ink);font-size:12px;font-weight:400;letter-spacing:.14em;text-transform:uppercase;backdrop-filter:blur(14px);padding:10px 14px">← Work</a><a href="#top" style="pointer-events:auto;display:flex;gap:10px;align-items:center;text-decoration:none;color:var(--ink);font-weight:400;font-size:14px;backdrop-filter:blur(14px);padding:10px 18px"><span style="width:10px;height:10px"></span>Match Made in Heaven</a></div>
+    <a href="#top" style="pointer-events:auto;display:flex;gap:10px;align-items:center;text-decoration:none;color:var(--ink);font-weight:400;font-size:14px;backdrop-filter:blur(14px);padding:10px 18px"><span style="width:10px;height:10px"></span>Match Made in Heaven</a>
     <nav style="pointer-events:auto;display:flex;align-items:center;gap:2px;backdrop-filter:blur(14px);padding:5px;font-size:12px;font-weight:400;letter-spacing:.14em;text-transform:uppercase">
       <a href="#hinge" style="padding:8px 14px;text-decoration:none" style-hover="">Hinge</a>
       <a href="#delete" style="padding:8px 14px;text-decoration:none" style-hover="">Deleted</a>
@@ -63,8 +61,8 @@ html{scroll-behavior:smooth}body{margin:0;background:#140d17}a{color:inherit}a:h
 
 <!-- HERO -->
 <section id="top" ref="{{ heroRef }}" data-screen-label="Hero" style="--ink:#f6efeb;--deep:#c98bd9;--hx:72%;--hy:58%;position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;padding:120px 0 56px;overflow:hidden;background:#120c15;color:#f6efeb">
-  <img src="assets/esd/r01.png" alt="" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;object-fit:scale-down;object-position:right bottom;opacity:.07;filter:grayscale(1);pointer-events:none">
-  <img src="assets/esd/r01.png" alt="Two people leaping, holding hands" style="position:absolute;inset:0;width:100%;height:100%;object-fit:scale-down;object-position:right bottom;filter:grayscale(1) contrast(1.1);pointer-events:none;-webkit-mask-image:radial-gradient(circle clamp(180px,22vw,340px) at var(--hx) var(--hy),#000 35%,transparent 100%);mask-image:radial-gradient(circle clamp(180px,22vw,340px) at var(--hx) var(--hy),#000 35%,transparent 100%)">
+  <img src="assets/esd/r01.png" alt="" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:right bottom;opacity:.07;filter:grayscale(1);pointer-events:none">
+  <img src="assets/esd/r01.png" alt="Two people leaping, holding hands" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:right bottom;filter:grayscale(1) contrast(1.1);pointer-events:none;-webkit-mask-image:radial-gradient(circle clamp(180px,22vw,340px) at var(--hx) var(--hy),#000 35%,transparent 100%);mask-image:radial-gradient(circle clamp(180px,22vw,340px) at var(--hx) var(--hy),#000 35%,transparent 100%)">
   <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle clamp(220px,26vw,400px) at var(--hx) var(--hy),rgba(201,139,217,.16),transparent 70%)"></div>
   <div style="position:relative;z-index:1;flex:1;display:flex;flex-direction:column;justify-content:center;max-width:1440px;width:100%;margin:0 auto;padding:0 clamp(20px,5vw,80px);box-sizing:border-box;pointer-events:none">
     <div style="display:flex;flex-direction:column;gap:10px"><span style="font-family:'Quicksand',sans-serif;font-size:clamp(20px,1.8vw,26px);line-height:1;color:#c98bd9">{{ greeting }}</span><span style="font-size:12px;font-weight:400;letter-spacing:.34em;text-transform:uppercase;color:#a898ad">Service Design · Research Journey</span></div>
@@ -100,7 +98,7 @@ html{scroll-behavior:smooth}body{margin:0;background:#140d17}a{color:inherit}a:h
 
 <div data-reveal="" data-screen-label="Thread · 01 Context" style="position:relative;z-index:1;max-width:1440px;margin:0 auto;padding:clamp(16px,2vw,32px) clamp(20px,5vw,80px) clamp(8px,1vw,16px);box-sizing:border-box;display:flex;flex-direction:column;gap:20px"><span aria-hidden="true" style="display:block;width:2px;height:clamp(32px,3vw,48px);background:linear-gradient(to bottom,transparent,var(--acc))"></span><p style="margin:0;max-width:30ch;font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;letter-spacing:0;font-size:clamp(26px,2.8vw,42px);line-height:1.15;color:var(--acc2);text-wrap:balance">To understand Hinge, we started with what it actually is.</p></div>
 <!-- 01 CONTEXT -->
-<section data-screen-label="01 Context" style="position:relative;z-index:1;padding:0 0 clamp(64px,8vw,120px)"><img src="assets/esd/r00.png" alt="Two people on opposite balconies passing a bouquet" style="display:block;width:100%;height:clamp(320px,52vw,760px);object-fit:scale-down;object-position:center;margin-bottom:clamp(56px,7vw,96px)">
+<section data-screen-label="01 Context" style="position:relative;z-index:1;padding:0 0 clamp(64px,8vw,120px)"><img src="assets/esd/r00.png" alt="Two people on opposite balconies passing a bouquet" style="display:block;width:100%;height:clamp(320px,52vw,760px);object-fit:cover;object-position:center 72%;margin-bottom:clamp(56px,7vw,96px)">
 <div style="max-width:1440px;margin:0 auto;padding:0 clamp(20px,5vw,80px)"><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:48px 80px;align-items:end">
 <div><span style="font-size:12px;font-weight:400;letter-spacing:.34em;text-transform:uppercase;color:var(--deep)">Service classification</span><h2 data-reveal="" style="font-size:clamp(44px,6.4vw,104px);line-height:.9;letter-spacing:-.05em;margin:16px 0 0;font-weight:800">Digital <span style="font-family:'Quicksand',sans-serif;font-weight:400;color:var(--acc)">matchmaking</span></h2></div>
 <div style="display:flex;flex-direction:column;gap:18px"><p style="margin:0;max-width:58ch;text-wrap:pretty">Digital matchmaking has transformed one of humanity's oldest social practices into a technology-enabled service ecosystem. What was once mediated by families, communities, and social institutions is now increasingly facilitated by digital platforms that leverage algorithms, behavioural data, artificial intelligence, and user participation to foster interpersonal relationships.</p><p style="margin:0;max-width:58ch;color:var(--mid)">The overall service ecosystem falls under lifestyle and social networking services, with a focused approach on digital matchmaking as a service.</p></div></div>
@@ -434,7 +432,7 @@ html{scroll-behavior:smooth}body{margin:0;background:#140d17}a{color:inherit}a:h
         </sc-for>
         <sc-if value="{{ hasTop }}" hint-placeholder-val="{{ true }}">
           <div ref="{{ cardRef }}" data-cursor="drag" onPointerDown="{{ cardDown }}" onPointerMove="{{ cardMove }}" onPointerUp="{{ cardUp }}" onPointerCancel="{{ cardUp }}" style="position:absolute;inset:0;overflow:hidden;cursor:grab;touch-action:pan-y;user-select:none;display:flex;flex-direction:column;border-radius:22px;background:#1a1220;box-shadow:0 30px 80px rgba(0,0,0,.55);border:1px solid rgba(243,234,246,.14)">
-            <div style="position:relative;aspect-ratio:760/650;flex:none;overflow:hidden;background:#1a1220">
+            <div style="position:relative;height:54%;flex:none;overflow:hidden;background:#1a1220">
               <img src="{{ top.img }}" alt="" draggable="false" decoding="sync" data-nofx="" style="display:block;width:100%;height:100%;object-fit:cover;pointer-events:none">
               <span data-stamp="like" style="position:absolute;top:24px;left:20px;padding:6px 14px;border:0;color:var(--acc);font-weight:400;font-size:22px;transform:rotate(-12deg);opacity:0">RELATE</span>
               <span data-stamp="skip" style="position:absolute;top:24px;right:20px;padding:6px 14px;border:0;color:var(--ink);font-weight:400;font-size:22px;transform:rotate(12deg);opacity:0">NOPE</span>
@@ -613,7 +611,7 @@ html{scroll-behavior:smooth}body{margin:0;background:#140d17}a{color:inherit}a:h
   <span style="font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:#c98bd9">End of phase one</span>
   <h2 style="margin:0;max-width:18ch;font-size:clamp(40px,5.6vw,88px);line-height:.98;letter-spacing:-.04em;font-weight:800;text-wrap:balance">Hinge ends here. <span style="font-family:'Quicksand',sans-serif;font-weight:400;background:linear-gradient(100deg,#c98bd9,#ff914d);-webkit-background-clip:text;background-clip:text;color:transparent">The story doesn’t.</span></h2>
   <p style="margin:0;max-width:46ch;font-size:clamp(17px,1.5vw,21px);line-height:1.45;color:#e6d9ea;text-wrap:pretty">Phase one asked why people leave dating apps. Phase two asks where they go next, and what it would take for someone to feel they belong.</p>
-  <a href="../#work" style="margin-top:12px;display:flex;align-items:center;gap:14px;padding:16px 28px;border-radius:999px;background:linear-gradient(100deg,#c98bd9,#ff914d);color:#1a1220;text-decoration:none;font-size:16px;letter-spacing:.02em;transition:transform .3s cubic-bezier(.2,.8,.2,1.3),box-shadow .3s" style-hover="transform:translateY(-3px);box-shadow:0 16px 40px rgba(255,145,77,.3)">Back to work <span style="font-size:18px">→</span></a>
+  <a href="#" style="margin-top:12px;display:flex;align-items:center;gap:14px;padding:16px 28px;border-radius:999px;background:linear-gradient(100deg,#c98bd9,#ff914d);color:#1a1220;text-decoration:none;font-size:16px;letter-spacing:.02em;transition:transform .3s cubic-bezier(.2,.8,.2,1.3),box-shadow .3s" style-hover="transform:translateY(-3px);box-shadow:0 16px 40px rgba(255,145,77,.3)">Continue to Phase 2 · Belong <span style="font-size:18px">→</span></a>
 </section>
 
 </div>
