@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hinge to Belong: Service Design, Phase 1 · Reeva Shah</title>
+<meta name="description" content="Service design phase 1: studying Hinge, the dating app designed to be deleted, as a service, on the way to designing Belong.">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="ds/modernist/styles.css">
+<script src="ds/modernist/ds_bundle.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap">
+<script src="portfolio-data.js"></script>
+<style>
+:root{--font-heading:'Quicksand',sans-serif;--font-body:'Quicksand',sans-serif}
+html,body,*,button,input,select,textarea{font-family:'Quicksand',sans-serif !important}
+html{scroll-behavior:smooth}body{margin:0;background:#140d17}a{color:inherit}a:hover{color:inherit}button{background:transparent;color:inherit}
+@keyframes drift1{0%{transform:translate(0,0) scale(1)}50%{transform:translate(9vw,7vh) scale(1.18)}100%{transform:translate(-4vw,-3vh) scale(.94)}}
+@keyframes drift2{0%{transform:translate(0,0) scale(1.1)}50%{transform:translate(-11vw,-8vh) scale(.9)}100%{transform:translate(6vw,5vh) scale(1.2)}}
+@keyframes wv{from{transform:scaleY(.2)}to{transform:scaleY(1)}}
+@keyframes tw{0%,100%{opacity:.12}50%{opacity:1}}
+@keyframes marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-20px) rotate(2deg)}}
+@keyframes ecg{from{stroke-dashoffset:1000}to{stroke-dashoffset:-140}}
+@keyframes lubdub{0%,100%{transform:scale(1)}10%{transform:scale(1.07)}20%{transform:scale(1.01)}30%{transform:scale(1.05)}50%{transform:scale(1)}}
+@keyframes jig{0%,100%{transform:rotate(-2.4deg)}50%{transform:rotate(2.4deg)}}
+@keyframes rip{0%{transform:scale(0);opacity:1}80%{opacity:0}100%{transform:scale(1);opacity:0}}
+@keyframes blink{0%,100%{opacity:.2}50%{opacity:1}}
+</style>
+<style>@keyframes walkerStep{0%,100%{transform:translateY(0) rotate(0)}25%{transform:translateY(-4px) rotate(1.2deg)}50%{transform:translateY(0) rotate(0)}75%{transform:translateY(-4px) rotate(-1deg)}}</style><style>@keyframes bubIn{from{opacity:0;transform:translateY(12px) scale(.96)}to{opacity:1;transform:none}}</style></helmet>
+<div ref="{{ rootRef }}" onMouseMove="{{ onMove }}" onMouseLeave="{{ onLeave }}" onClick="{{ onBurst }}" style="--bg:#140d17;--ink:#f3eaf6;--acc:#c98bd9;--acc2:#e2b6ee;--soft:#2a1d31;--deep:#d9a8e6;--mid:#b3a2ba;position:relative;min-height:100vh;background:var(--bg);color:var(--ink);font-family:'Archivo',system-ui,sans-serif;font-size:17px;line-height:1.55;overflow-x:clip">
+
+<header style="position:fixed;top:0;left:0;right:0;z-index:60;pointer-events:none">
+  <div style="height:3px"><div ref="{{ progRef }}" style="height:100%;background:linear-gradient(90deg,var(--acc),var(--acc2));transform-origin:0 50%;transform:scaleX(0)"></div></div>
+  <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px clamp(16px,4vw,64px)">
+    <div style="display:flex;align-items:center;gap:4px"><a href="../#work" style="pointer-events:auto;text-decoration:none;color:var(--ink);font-size:12px;font-weight:400;letter-spacing:.14em;text-transform:uppercase;backdrop-filter:blur(14px);padding:10px 14px">← Work</a><a href="#top" style="pointer-events:auto;display:flex;gap:10px;align-items:center;text-decoration:none;color:var(--ink);font-weight:400;font-size:14px;backdrop-filter:blur(14px);padding:10px 18px"><span style="width:10px;height:10px"></span>Match Made in Heaven</a></div>
+    <nav style="pointer-events:auto;display:flex;align-items:center;gap:2px;backdrop-filter:blur(14px);padding:5px;font-size:12px;font-weight:400;letter-spacing:.14em;text-transform:uppercase">
+      <a href="#hinge" style="padding:8px 14px;text-decoration:none" style-hover="">Hinge</a>
+      <a href="#delete" style="padding:8px 14px;text-decoration:none" style-hover="">Deleted</a>
+      <a href="#next-phase" style="padding:8px 14px;text-decoration:none;color:var(--acc)" style-hover="">Phase 2 →</a>
+    </nav>
+  </div>
+</header>
+
+<!-- GATE -->
+<sc-if value="{{ gate }}" hint-placeholder-val="{{ true }}">
+<div ref="{{ gateRef }}" onPointerDown="{{ gDown }}" onPointerMove="{{ gMove }}" onPointerUp="{{ gUp }}" onWheel="{{ gOpen }}" style="position:fixed;inset:0;z-index:9000;background:#0e0a10;color:#f6efeb;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(28px,5vw,72px) clamp(20px,5vw,80px);box-sizing:border-box;touch-action:none;user-select:none;cursor:grab;transform:translateY({{ gateY }});transition:{{ gateTr }}">
+  <div style="display:flex;justify-content:space-between;gap:16px;font-size:12px;font-weight:400;letter-spacing:.34em;text-transform:uppercase;color:#c98bd9"><span>Match Made in Heaven</span><span>{{ gateDate }}</span></div>
+  <div style="display:flex;flex-direction:column;gap:clamp(24px,4vw,48px)">
+    <div style="font-size:clamp(120px,24vw,380px);font-weight:400;line-height:.8;letter-spacing:-.07em">{{ gateTime }}</div>
+    <div style="display:flex;flex-direction:column;gap:2px;max-width:560px;border-top:2px solid #f6efeb">
+      <div style="display:flex;justify-content:space-between;padding:16px 0 6px;font-size:12px;font-weight:400;letter-spacing:.3em;text-transform:uppercase"><span style="color:#ff914d">Belong</span><span style="color:#a898ad">now</span></div>
+      <div style="font-family:'Quicksand',sans-serif;font-size:clamp(32px,3.6vw,52px);line-height:1">are you up?</div>
+    </div>
+  </div>
+  <button onClick="{{ gOpen }}" style="align-self:flex-start;display:flex;align-items:center;gap:16px;background:none;border:0;padding:0;color:#f6efeb;font:400 13px 'Quicksand',sans-serif;letter-spacing:.3em;text-transform:uppercase;cursor:pointer"><span style="display:block;width:2px;height:48px;background:#ff3131;animation:blink 1.4s ease-in-out infinite"></span>Swipe up to open</button>
+</div>
+</sc-if>
+
+<!-- HERO -->
+<section id="top" ref="{{ heroRef }}" data-screen-label="Hero" style="--ink:#f6efeb;--deep:#c98bd9;--hx:72%;--hy:58%;position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;padding:120px 0 56px;overflow:hidden;background:#120c15;color:#f6efeb">
+  <img src="assets/esd/r01.png" alt="" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;object-fit:scale-down;object-position:right bottom;opacity:.07;filter:grayscale(1);pointer-events:none">
+  <img src="assets/esd/r01.png" alt="Two people leaping, holding hands" style="position:absolute;inset:0;width:100%;height:100%;object-fit:scale-down;object-position:right bottom;filter:grayscale(1) contrast(1.1);pointer-events:none;-webkit-mask-image:radial-gradient(circle clamp(180px,22vw,340px) at var(--hx) var(--hy),#000 35%,transparent 100%);mask-image:radial-gradient(circle clamp(180px,22vw,340px) at var(--hx) var(--hy),#000 35%,transparent 100%)">
+  <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle clamp(220px,26vw,400px) at var(--hx) var(--hy),rgba(201,139,217,.16),transparent 70%)"></div>
+  <div style="position:relative;z-index:1;flex:1;display:flex;flex-direction:column;justify-content:center;max-width:1440px;width:100%;margin:0 auto;padding:0 clamp(20px,5vw,80px);box-sizing:border-box;pointer-events:none">
+    <div style="display:flex;flex-direction:column;gap:10px"><span style="font-family:'Quicksand',sans-serif;font-size:clamp(20px,1.8vw,26px);line-height:1;color:#c98bd9">{{ greeting }}</span><span style="font-size:12px;font-weight:400;letter-spacing:.34em;text-transform:uppercase;color:#a898ad">Service Design · Research Journey</span></div>
+    <h1 aria-label="Designed to belong" style="font-size:clamp(64px,13vw,236px);line-height:.84;letter-spacing:-.06em;font-weight:800;margin:28px 0 0"><span style="display:block;white-space:nowrap"><span data-mag="" style="display:inline-block;will-change:transform">D</span><span data-mag="" style="display:inline-block;will-change:transform">e</span><span data-mag="" style="display:inline-block;will-change:transform">s</span><span data-mag="" style="display:inline-block;will-change:transform">i</span><span data-mag="" style="display:inline-block;will-change:transform">g</span><span data-mag="" style="display:inline-block;will-change:transform">n</span><span data-mag="" style="display:inline-block;will-change:transform">e</span><span data-mag="" style="display:inline-block;will-change:transform">d</span></span><span style="display:block;white-space:nowrap"><span data-mag="" style="display:inline-block;will-change:transform">t</span><span data-mag="" style="display:inline-block;will-change:transform">o</span><span style="display:inline-block;width:.24em"></span><span style="font-family:'Quicksand',sans-serif;font-weight:400;letter-spacing:-.02em;color:#ff914d"><span data-mag="" style="display:inline-block;will-change:transform">b</span><span data-mag="" style="display:inline-block;will-change:transform">e</span><span data-mag="" style="display:inline-block;will-change:transform">l</span><span data-mag="" style="display:inline-block;will-change:transform">o</span><span data-mag="" style="display:inline-block;will-change:transform">n</span><span data-mag="" style="display:inline-block;will-change:transform">g</span><span data-mag="" style="display:inline-block;will-change:transform">.</span></span></span></h1>
+    <p style="max-width:36ch;margin:clamp(28px,4vw,48px) 0 0;font-size:clamp(17px,1.4vw,21px);line-height:1.45;text-wrap:pretty;color:#e6d9ea">It started with studying an existing service, Hinge. What we found there led us to design a new one: <strong style="font-weight:400;color:#fff">Belong</strong>, meaningful companionship, when you need it.</p>
+    <span style="margin-top:20px;font-family:'Quicksand',sans-serif;font-size:18px;color:#a898ad">it's dark in here. move your light around.</span>
+  </div>
+  <nav aria-label="The journey" style="position:relative;z-index:2;max-width:1440px;width:100%;margin:clamp(40px,5vw,64px) auto 0;padding:0 clamp(20px,5vw,80px);box-sizing:border-box">
+    <div style="max-width:1080px">
+      <svg viewBox="0 0 1000 96" preserveAspectRatio="none" aria-hidden="true" style="display:block;width:100%;height:64px;overflow:visible">
+        <defs><linearGradient id="ecgG" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1000" y2="0"><stop offset="0" stop-color="#93529f"></stop><stop offset=".45" stop-color="#c98bd9"></stop><stop offset=".7" stop-color="#ff914d"></stop><stop offset="1" stop-color="#ff3131"></stop></linearGradient></defs>
+        <path d="M0,70 L34,70 L44,78 L60,40 L70,88 L80,70 L284,70 L294,78 L310,28 L320,88 L330,70 L534,70 L544,78 L560,16 L570,88 L580,70 L784,70 L794,78 L810,4 L820,88 L830,70 L1000,70" pathLength="1000" style="fill:none;stroke:url(#ecgG);stroke-width:1.5;opacity:.4;vector-effect:non-scaling-stroke;stroke-linejoin:round"></path>
+        <path d="M0,70 L34,70 L44,78 L60,40 L70,88 L80,70 L284,70 L294,78 L310,28 L320,88 L330,70 L534,70 L544,78 L560,16 L570,88 L580,70 L784,70 L794,78 L810,4 L820,88 L830,70 L1000,70" pathLength="1000" style="fill:none;stroke:url(#ecgG);stroke-width:2.5;vector-effect:non-scaling-stroke;stroke-linejoin:round;stroke-linecap:round;stroke-dasharray:120 880;animation:ecg 3.6s cubic-bezier(.5,0,.5,1) infinite"></path>
+      </svg>
+      <div style="position:relative;height:72px;margin-top:14px"><a href="#hinge" style="position:absolute;left:6%;top:0;width:calc(25% - 16px);transform:translateX(-5px);text-decoration:none;color:var(--ink);display:flex;flex-direction:column;gap:6px;transition:color .3s" style-hover="color:#93529f"><span style="font-size:11px;font-weight:400;letter-spacing:.3em;color:#93529f">01</span><span style="font-size:clamp(13px,1.15vw,17px);font-weight:400;line-height:1.2;letter-spacing:-.01em;max-width:16ch">Existing Service Design (Hinge)</span></a><a href="#next-phase" title="Continues in Phase 2" style="position:absolute;left:31%;top:0;width:calc(25% - 16px);transform:translateX(-5px);text-decoration:none;color:var(--ink);display:flex;flex-direction:column;gap:6px;transition:color .3s" style-hover="color:#b56fb8"><span style="font-size:11px;font-weight:400;letter-spacing:.3em;color:#b56fb8">02</span><span style="font-size:clamp(13px,1.15vw,17px);font-weight:400;line-height:1.2;letter-spacing:-.01em;max-width:16ch">Primary Research <span style="opacity:.55">· Phase 2 ↗</span></span></a><a href="#next-phase" title="Continues in Phase 2" style="position:absolute;left:56%;top:0;width:calc(25% - 16px);transform:translateX(-5px);text-decoration:none;color:var(--ink);display:flex;flex-direction:column;gap:6px;transition:color .3s" style-hover="color:#ff914d"><span style="font-size:11px;font-weight:400;letter-spacing:.3em;color:#ff914d">03</span><span style="font-size:clamp(13px,1.15vw,17px);font-weight:400;line-height:1.2;letter-spacing:-.01em;max-width:16ch">Need Identification <span style="opacity:.55">· Phase 2 ↗</span></span></a><a href="#next-phase" title="Continues in Phase 2" style="position:absolute;left:81%;top:0;width:calc(25% - 16px);transform:translateX(-5px);text-decoration:none;color:var(--ink);display:flex;flex-direction:column;gap:6px;transition:color .3s" style-hover="color:#ff3131"><span style="font-size:11px;font-weight:400;letter-spacing:.3em;color:#ff3131">04</span><span style="font-size:clamp(13px,1.15vw,17px);font-weight:400;line-height:1.2;letter-spacing:-.01em;max-width:16ch">New Service Design (Belong) <span style="opacity:.55">· Phase 2 ↗</span></span></a></div>
+    </div>
+  </nav>
+</section>
+
+<!-- HINGE POSTER -->
+<section id="hinge" data-spot="" data-cursor="explore" data-screen-label="Chapter 01 · Hinge" style="--mx:-999px;--my:-999px;position:relative;z-index:1;min-height:100vh;overflow:hidden;background:linear-gradient(160deg,#4a2857 0%,#93529f 48%,#c98bd9 100%);color:#fff;display:flex;align-items:center">
+  {{ wheel }}
+  <img src="assets/esd/r03.png" alt="Two hands reaching toward each other" style="position:absolute;top:0;bottom:0;right:clamp(0px,6vw,120px);height:100%;width:auto;max-width:none;z-index:1;pointer-events:none">
+  <div style="position:relative;max-width:1440px;width:100%;margin:0 auto;padding:clamp(80px,10vw,160px) clamp(20px,5vw,80px);box-sizing:border-box;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:40px;align-items:center">
+    <div data-reveal="" style="display:flex;flex-direction:column;gap:24px;position:relative;z-index:2">
+      <span style="font-size:12px;font-weight:400;letter-spacing:.34em;text-transform:uppercase">Chapter 01 · Existing Service Design</span>
+      <h2 data-px="-140" style="font-size:clamp(72px,11vw,184px);line-height:.95;letter-spacing:-.06em;margin:0;font-weight:800">Studying<br><span style="font-family:'Quicksand',sans-serif;font-weight:400;letter-spacing:-.02em;position:relative;display:inline-block">Hinge</span></h2>
+      <p style="margin:0;font-size:clamp(19px,1.8vw,26px);line-height:1.3;max-width:26ch">The dating app designed to be deleted. We took it apart as a service.</p>
+    </div>
+    
+  </div>
+</section>
+
+<div data-reveal="" data-screen-label="Thread · 01 Context" style="position:relative;z-index:1;max-width:1440px;margin:0 auto;padding:clamp(16px,2vw,32px) clamp(20px,5vw,80px) clamp(8px,1vw,16px);box-sizing:border-box;display:flex;flex-direction:column;gap:20px"><span aria-hidden="true" style="display:block;width:2px;height:clamp(32px,3vw,48px);background:linear-gradient(to bottom,transparent,var(--acc))"></span><p style="margin:0;max-width:30ch;font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;letter-spacing:0;font-size:clamp(26px,2.8vw,42px);line-height:1.15;color:var(--acc2);text-wrap:balance">To understand Hinge, we started with what it actually is.</p></div>
+<!-- 01 CONTEXT -->
+<section data-screen-label="01 Context" style="position:relative;z-index:1;padding:0 0 clamp(64px,8vw,120px)"><img src="assets/esd/r00.png" alt="Two people on opposite balconies passing a bouquet" style="display:block;width:100%;height:clamp(320px,52vw,760px);object-fit:scale-down;object-position:center;margin-bottom:clamp(56px,7vw,96px)">
+<div style="max-width:1440px;margin:0 auto;padding:0 clamp(20px,5vw,80px)"><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:48px 80px;align-items:end">
+<div><span style="font-size:12px;font-weight:400;letter-spacing:.34em;text-transform:uppercase;color:var(--deep)">Service classification</span><h2 data-reveal="" style="font-size:clamp(44px,6.4vw,104px);line-height:.9;letter-spacing:-.05em;margin:16px 0 0;font-weight:800">Digital <span style="font-family:'Quicksand',sans-serif;font-weight:400;color:var(--acc)">matchmaking</span></h2></div>
+<div style="display:flex;flex-direction:column;gap:18px"><p style="margin:0;max-width:58ch;text-wrap:pretty">Digital matchmaking has transformed one of humanity's oldest social practices into a technology-enabled service ecosystem. What was once mediated by families, communities, and social institutions is now increasingly facilitated by digital platforms that leverage algorithms, behavioural data, artificial intelligence, and user participation to foster interpersonal relationships.</p><p style="margin:0;max-width:58ch;color:var(--mid)">The overall service ecosystem falls under lifestyle and social networking services, with a focused approach on digital matchmaking as a service.</p></div></div>
+<div style="margin-top:clamp(96px,12vw,160px);border-top:2px solid rgba(201,139,217,.35);padding-top:28px">
+ <div style="display:flex;justify-content:space-between;gap:16px;font-size:12px;font-weight:400;letter-spacing:.24em;text-transform:uppercase;color:var(--mid)"><span>Evolution of matchmaking</span><span style="color:var(--acc);font-variant-numeric:tabular-nums">{{ eraNum }} / 06</span></div>
+ <h3 style="margin:16px 0 0;font-size:clamp(32px,min(4.6vw,7vh),72px);line-height:1;letter-spacing:-.04em;font-weight:700;max-width:16ch;text-wrap:balance">Who stands <span style="font-weight:300;color:var(--acc)">between</span> two people?</h3>
+ <div style="margin-top:clamp(24px,4vh,48px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:32px clamp(32px,5vw,80px);align-items:center">
+  <div style="display:flex;flex-direction:column;gap:14px;max-width:420px">
+   <span style="font-size:13px;font-weight:400;letter-spacing:.28em;text-transform:uppercase;color:var(--acc);font-variant-numeric:tabular-nums">{{ eraNow.y }}</span>
+   <span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;font-size:clamp(34px,3.4vw,52px);letter-spacing:-.01em;line-height:1.05;text-wrap:balance">{{ eraNow.t }}</span>
+   <span style="font-size:clamp(16px,1.3vw,19px);line-height:1.5;color:var(--mid);text-wrap:pretty">{{ eraNow.d }}</span>
+   <span style="margin-top:8px;font-size:clamp(18px,1.6vw,22px);font-weight:300;color:var(--acc)">through {{ eraNow.who }}</span>
+  </div>
+ <div style="position:relative;height:clamp(220px,38vh,380px);min-width:0">
+  <svg viewBox="0 0 1000 320" preserveAspectRatio="none" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;overflow:visible"><polyline ref="{{ eraPathRef }}" points="{{ eraPts }}" fill="none" stroke="var(--acc)" stroke-width="1.5" stroke-linejoin="round" vector-effect="non-scaling-stroke" style="opacity:1;filter:drop-shadow(0 0 6px rgba(201,139,217,.7))"></polyline></svg>
+  <sc-for list="{{ eraNodes }}" as="n" hint-placeholder-count="64"><span style="position:absolute;left:{{ n.l }};top:{{ n.t }};width:{{ n.w }}px;height:{{ n.h }}px;border-radius:{{ n.r }};background:{{ n.bg }};opacity:{{ n.o }};box-shadow:{{ n.sh }};transform:translate(-50%,-50%) rotate({{ n.rot }}deg);transition:left .9s cubic-bezier(.2,.8,.2,1) {{ n.dl }}s,top .9s cubic-bezier(.2,.8,.2,1) {{ n.dl }}s,width .6s,height .6s,opacity .6s,background .5s,transform .9s,border-radius .6s"></span></sc-for>
+  <span style="position:absolute;left:3%;top:50%;transform:translate(-50%,-50%);width:14px;height:14px;border-radius:50%;background:var(--ink);box-shadow:0 0 0 6px rgba(246,239,235,.08),0 0 28px 6px rgba(246,239,235,.45)"></span><span style="position:absolute;left:3%;top:calc(50% + 26px);transform:translateX(-50%);font-size:clamp(16px,1.5vw,22px);font-weight:400;letter-spacing:-.02em;white-space:nowrap">You</span><span style="position:absolute;left:97%;top:50%;transform:translate(-50%,-50%);width:14px;height:14px;border-radius:50%;background:var(--ink);box-shadow:0 0 0 6px rgba(246,239,235,.08),0 0 28px 6px rgba(246,239,235,.45)"></span><span style="position:absolute;left:97%;top:calc(50% + 26px);transform:translateX(-50%);font-size:clamp(16px,1.5vw,22px);font-weight:400;letter-spacing:-.02em;white-space:nowrap">Them</span>
+ </div>
+ </div>
+ <div style="margin-top:clamp(24px,4vh,48px);position:relative;display:grid;grid-template-columns:repeat(6,minmax(0,1fr))">
+  <span aria-hidden="true" style="position:absolute;left:0;right:0;top:9px;height:2px;background:linear-gradient(90deg,rgba(201,139,217,.15),rgba(201,139,217,.5),rgba(201,139,217,.15))"></span>
+  <sc-for list="{{ eraDots }}" as="d" hint-placeholder-count="6"><button onClick="{{ d.pick }}" onMouseEnter="{{ d.pick }}" onFocus="{{ d.pick }}" aria-label="{{ d.t }}" style="position:relative;background:none;border:0;padding:0;cursor:pointer;color:inherit;font:inherit;text-align:left;display:flex;flex-direction:column;gap:14px;align-items:flex-start">
+   <span style="width:20px;height:20px;display:flex;align-items:center;justify-content:center"><span style="width:{{ d.sz }}px;height:{{ d.sz }}px;border-radius:50%;background:{{ d.bg }};box-shadow:{{ d.sh }};transition:all .5s"></span></span>
+   <span style="font-size:clamp(11px,1vw,13px);font-weight:400;letter-spacing:.12em;color:{{ d.c }};transition:color .4s;white-space:nowrap">{{ d.y }}</span>
+  </button></sc-for>
+ </div>
+</div></div></section>
+
+<div data-reveal="" data-screen-label="Thread · 02 The service" style="position:relative;z-index:1;max-width:1440px;margin:0 auto;padding:clamp(16px,2vw,32px) clamp(20px,5vw,80px) clamp(8px,1vw,16px);box-sizing:border-box;display:flex;flex-direction:column;gap:20px"><span aria-hidden="true" style="display:block;width:2px;height:clamp(32px,3vw,48px);background:linear-gradient(to bottom,transparent,var(--acc))"></span><p style="margin:0;max-width:30ch;font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;letter-spacing:0;font-size:clamp(26px,2.8vw,42px);line-height:1.15;color:var(--acc2);text-wrap:balance">Underneath the swiping, a whole service is running.</p></div>
+<!-- 02 SERVICE -->
+<section data-screen-label="02 The service" style="position:relative;z-index:1;padding:clamp(24px,3vw,48px) 0 clamp(40px,5vw,72px)">
+  <div style="max-width:1440px;margin:0 auto;padding:0 clamp(20px,5vw,80px)">
+    <span style="font-size:12px;font-weight:400;letter-spacing:.34em;text-transform:uppercase;color:var(--deep)">The service</span>
+    <p data-reveal="" style="margin:18px 0 clamp(40px,5vw,72px);font-size:clamp(28px,3.4vw,52px);line-height:1.1;letter-spacing:-.03em;font-weight:400;max-width:30ch;text-wrap:pretty">Hinge is a technology-enabled matchmaking service that connects individuals seeking <span style="font-family:'Quicksand',sans-serif;font-weight:400;color:var(--acc)">meaningful romantic relationships</span> through curated profiles, algorithmic recommendations, and guided interactions.</p>
+    <div onMouseEnter="{{ orbHold }}" onMouseLeave="{{ orbFree }}" style="display:grid;grid-template-columns:minmax(0,1fr) min(340px,100%) minmax(0,1fr);gap:0;align-items:stretch;margin-top:clamp(16px,3vw,40px)">
+      <div style="display:flex;flex-direction:column;justify-content:space-around;gap:28px;padding:24px 0"><sc-for list="{{ svcL }}" as="it" hint-placeholder-count="3"><button type="button" onClick="{{ it.pick }}" onMouseEnter="{{ it.pick }}" onFocus="{{ it.pick }}" style="position:relative;background:none;border:0;padding:0;color:inherit;font:inherit;cursor:pointer;display:flex;flex-direction:row;align-items:flex-start;gap:12px;text-align:right;opacity:{{ it.op }};transition:opacity .5s;transform:translateY(-10px)">
+          <span style="flex:0 1 260px;display:flex;flex-direction:column;align-items:flex-end;gap:4px"><span style="font-size:11px;font-weight:400;letter-spacing:.22em;color:var(--acc)">{{ it.n }}</span><span style="font-size:clamp(16px,1.5vw,21px);font-weight:400;letter-spacing:-.01em;line-height:1.2;text-wrap:balance">{{ it.t }}</span><span style="display:grid;grid-template-rows:{{ it.gr }};transition:grid-template-rows .5s cubic-bezier(.2,.8,.2,1)"><span style="overflow:hidden"><span style="display:block;padding-top:6px;font-size:14px;line-height:1.5;color:var(--mid);text-wrap:pretty">{{ it.d }}</span></span></span></span>
+          <span style="flex:1 1 40px;min-width:24px;height:1.5px;margin-top:30px;background:{{ it.lc }};transition:background .5s"></span>
+          <span style="flex:none;width:9px;height:9px;margin-top:26px;border-radius:50%;background:{{ it.lc }};box-shadow:{{ it.ds }};transition:all .5s"></span>
+        </button></sc-for></div>
+      <div style="position:relative;width:100%;perspective:1200px;padding:24px 0">
+        <div style="position:relative;transform:{{ cardTilt }};transform-style:preserve-3d;transition:transform .9s cubic-bezier(.2,.8,.2,1)">
+          <span style="position:absolute;inset:0;border-radius:24px;border:1px solid rgba(201,139,217,.45);background:rgba(42,29,49,.85);transform:{{ ly.t0 }};opacity:{{ ly.o0 }};transition:transform .9s cubic-bezier(.2,.8,.2,1) 0s,opacity .6s;display:flex;align-items:flex-start;justify-content:flex-end;padding:16px 18px;box-sizing:border-box"><span style="font-size:11px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--acc)">Data infrastructure</span></span><span style="position:absolute;inset:0;border-radius:24px;border:1px solid rgba(201,139,217,.45);background:rgba(42,29,49,.85);transform:{{ ly.t1 }};opacity:{{ ly.o1 }};transition:transform .9s cubic-bezier(.2,.8,.2,1) 0.08s,opacity .6s;display:flex;align-items:flex-start;justify-content:flex-end;padding:16px 18px;box-sizing:border-box"><span style="font-size:11px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--acc)">Moderators</span></span><span style="position:absolute;inset:0;border-radius:24px;border:1px solid rgba(201,139,217,.45);background:rgba(42,29,49,.85);transform:{{ ly.t2 }};opacity:{{ ly.o2 }};transition:transform .9s cubic-bezier(.2,.8,.2,1) 0.16s,opacity .6s;display:flex;align-items:flex-start;justify-content:flex-end;padding:16px 18px;box-sizing:border-box"><span style="font-size:11px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--acc)">Algorithms</span></span>
+          <div style="position:relative;border-radius:24px;background:#1d1322;border:1px solid rgba(201,139,217,.3);padding:16px;display:flex;flex-direction:column;gap:14px;box-shadow:0 30px 80px rgba(0,0,0,.5)">
+            <span style="align-self:flex-start;display:flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;background:rgba(201,139,217,.14);font-size:12px;font-weight:400;color:var(--acc2);box-shadow:{{ hs.h1 }};opacity:{{ hs.o1 }};transition:box-shadow .5s,opacity .5s"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 .6-5.3 4.7 1.6 7.2L12 17.8 5.7 21.5l1.6-7.2L2 9.6 9 9z"></path></svg>Most Compatible</span>
+            <div style="position:relative;border-radius:16px;overflow:hidden;height:clamp(180px,22vw,240px)">
+              <svg viewBox="0 0 300 240" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Illustrated portrait of a young man" style="display:block;width:100%;height:100%">
+<defs><linearGradient id="svcBg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a2445"></stop><stop offset="1" stop-color="#f0a87a"></stop></linearGradient></defs>
+<rect width="300" height="240" fill="url(#svcBg)"></rect>
+<circle cx="230" cy="70" r="26" fill="#ffd9b8" opacity=".55"></circle>
+<path d="M60 240c6-46 44-70 90-70s84 24 90 70z" fill="#8a5a9a"></path>
+<path d="M126 172q24 20 48 0l-6 14q-18 10-36 0z" fill="#6d4580"></path>
+<rect x="134" y="140" width="32" height="40" rx="12" fill="#c98466"></rect>
+<ellipse cx="150" cy="108" rx="40" ry="46" fill="#d8946f"></ellipse>
+<ellipse cx="110" cy="112" rx="7" ry="11" fill="#c98466"></ellipse><ellipse cx="190" cy="112" rx="7" ry="11" fill="#c98466"></ellipse>
+<path d="M110 106c-2-10-2-20 2-28 8-20 30-32 52-26 18 4 30 16 30 32 0 8-1 16-4 22-2-12-6-20-12-24-14 4-34 0-48-8-8 6-14 16-20 32z" fill="#1d1322"></path>
+<path d="M116 62c10-18 34-26 56-18 12 4 20 12 22 22-14-10-34-14-52-8-10 3-18 6-26 4z" fill="#2e2030"></path>
+<path d="M112 98c-2-8-2-16 2-22l4 26z" fill="#2a1d24" opacity=".6"></path><path d="M188 98c2-8 2-16-2-22l-4 26z" fill="#2a1d24" opacity=".6"></path>
+<ellipse cx="135" cy="110" rx="3.5" ry="4" fill="#1d1322"></ellipse><ellipse cx="165" cy="110" rx="3.5" ry="4" fill="#1d1322"></ellipse>
+<path d="M127 100q8-5 16 0M157 100q8-5 16 0" stroke="#1d1322" stroke-width="3" fill="none" stroke-linecap="round"></path>
+<path d="M141 136q9 6 18 0" stroke="#f6efeb" stroke-width="3" fill="none" stroke-linecap="round"></path>
+</svg>
+              <span style="position:absolute;right:12px;bottom:12px;width:44px;height:44px;border-radius:50%;background:#f6efeb;color:#93529f;display:flex;align-items:center;justify-content:center;box-shadow:{{ hs.h2 }};opacity:{{ hs.o2 }};transition:box-shadow .5s,opacity .5s"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg></span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px"><span style="font-size:24px;font-weight:400;letter-spacing:-.02em">Aarav, 27</span><span style="width:22px;height:22px;border-radius:50%;background:var(--acc);color:#140d17;display:flex;align-items:center;justify-content:center;box-shadow:{{ hs.h3 }};opacity:{{ hs.o3 }};transition:box-shadow .5s,opacity .5s"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></div>
+            <div style="position:relative;border-radius:16px;background:rgba(201,139,217,.08);padding:16px 56px 16px 16px;display:flex;flex-direction:column;gap:6px;box-shadow:{{ hs.h0 }};opacity:{{ hs.o0 }};transition:box-shadow .5s,opacity .5s">
+              <span style="font-size:12px;font-weight:400;color:var(--mid)">I'm looking for</span>
+              <span style="font-size:18px;font-weight:400;line-height:1.3">Something long-term, built slowly.</span>
+              <span style="position:absolute;right:12px;bottom:12px;width:36px;height:36px;border-radius:50%;background:rgba(246,239,235,.1);color:var(--ink);display:flex;align-items:center;justify-content:center;box-shadow:{{ hs.h2 }};opacity:{{ hs.o2 }};transition:box-shadow .5s,opacity .5s"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;justify-content:space-around;gap:28px;padding:24px 0"><sc-for list="{{ svcR }}" as="it" hint-placeholder-count="2"><button type="button" onClick="{{ it.pick }}" onMouseEnter="{{ it.pick }}" onFocus="{{ it.pick }}" style="position:relative;background:none;border:0;padding:0;color:inherit;font:inherit;cursor:pointer;display:flex;flex-direction:row-reverse;align-items:flex-start;gap:12px;text-align:left;opacity:{{ it.op }};transition:opacity .5s;transform:translateY(-10px)">
+          <span style="flex:0 1 260px;display:flex;flex-direction:column;align-items:flex-start;gap:4px"><span style="font-size:11px;font-weight:400;letter-spacing:.22em;color:var(--acc)">{{ it.n }}</span><span style="font-size:clamp(16px,1.5vw,21px);font-weight:400;letter-spacing:-.01em;line-height:1.2;text-wrap:balance">{{ it.t }}</span><span style="display:grid;grid-template-rows:{{ it.gr }};transition:grid-template-rows .5s cubic-bezier(.2,.8,.2,1)"><span style="overflow:hidden"><span style="display:block;padding-top:6px;font-size:14px;line-height:1.5;color:var(--mid);text-wrap:pretty">{{ it.d }}</span></span></span></span>
+          <span style="flex:1 1 40px;min-width:24px;height:1.5px;margin-top:30px;background:{{ it.lc }};transition:background .5s"></span>
+          <span style="flex:none;width:9px;height:9px;margin-top:26px;border-radius:50%;background:{{ it.lc }};box-shadow:{{ it.ds }};transition:all .5s"></span>
+        </button></sc-for></div>
+    </div>
+  </div>
+</section>
+
+<div data-reveal="" data-screen-label="Thread · 03 Brand" style="position:relative;z-index:1;max-width:1440px;margin:0 auto;padding:clamp(16px,2vw,32px) clamp(20px,5vw,80px) clamp(8px,1vw,16px);box-sizing:border-box;display:flex;flex-direction:column;gap:20px"><span aria-hidden="true" style="display:block;width:2px;height:clamp(32px,3vw,48px);background:linear-gradient(to bottom,transparent,var(--acc))"></span><p style="margin:0;max-width:30ch;font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;letter-spacing:0;font-size:clamp(26px,2.8vw,42px);line-height:1.15;color:var(--acc2);text-wrap:balance">And it is built around one unusual promise.</p></div>
+<!-- 03 BRAND -->
+<section data-screen-label="03 Brand" style="position:relative;z-index:1;padding:clamp(24px,3vw,48px) 0 clamp(16px,2vw,32px)">
+  <div style="max-width:1440px;margin:0 auto;padding:0 clamp(20px,5vw,80px);display:flex;flex-direction:column;gap:clamp(48px,6vw,88px)">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:40px clamp(40px,6vw,96px);align-items:center">
+      <div data-reveal="" style="display:flex;flex-direction:column;gap:clamp(20px,2.4vw,32px)">
+        <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><img src="assets/esd/r32.png" alt="Hinge" style="width:96px;height:auto;filter:invert(1)"><span style="font-size:12px;font-weight:400;letter-spacing:.28em;text-transform:uppercase;color:#a898ad">Brand overview · Founded 2012 · Justin McLeod · Match Group</span></div>
+        <h2 style="margin:0;font-family:'Quicksand',sans-serif;font-weight:500;font-size:clamp(56px,7.6vw,128px);line-height:.92;letter-spacing:-.05em;color:var(--acc);text-wrap:balance">“Designed to be deleted.”</h2>
+        <p style="margin:0;font-size:clamp(22px,2.1vw,32px);font-weight:400;line-height:1.2;letter-spacing:-.02em;max-width:22ch">Success is measured by helping people leave the app.</p>
+      </div>
+      <div onMouseEnter="{{ bHold }}" onMouseLeave="{{ bFree }}" style="display:grid;grid-template-columns:min(280px,60vw) minmax(0,220px);gap:clamp(24px,3vw,48px);align-items:center;justify-content:center">
+        <div style="position:relative;aspect-ratio:9/18.5;border-radius:40px;border:2px solid rgba(201,139,217,.55);background:#1a1120;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.5)">
+          <span aria-hidden="true" style="position:absolute;left:50%;bottom:-30%;width:150%;aspect-ratio:1;transform:translateX(-50%);border-radius:50%;background:radial-gradient(circle,rgba(255,170,110,.6),rgba(255,145,77,0) 65%);opacity:{{ bs.o2 }};transition:opacity 1s"></span>
+          <span style="position:absolute;top:14px;left:50%;transform:translateX(-50%);width:80px;height:20px;border-radius:999px;background:#0b070d;z-index:2"></span>
+          <div style="position:absolute;inset:0;display:flex;flex-direction:column;opacity:{{ bs.o0 }};transform:translateY({{ bs.y0 }}px);transition:opacity .6s,transform .8s cubic-bezier(.2,.8,.2,1);padding:48px 18px 20px;gap:8px;background:radial-gradient(circle at 50% 25%,rgba(201,139,217,.28),rgba(26,17,32,0) 60%)">
+            <span style="margin-top:28px;display:flex;justify-content:center;align-items:center;position:relative">
+              <span style="display:block;width:108px;height:108px;border-radius:50%;overflow:hidden;border:3px solid #1a1120;box-shadow:0 0 0 2px var(--acc);background:#3a2445;flex:none"><img data-nofx="" src="assets/esd/r11.png" alt="" style="width:240%;max-width:none;margin:-6% 0 0 -40%"></span>
+              <span style="display:block;margin-left:-22px;position:relative;z-index:1"><span style="display:block;width:108px;height:108px;border-radius:50%;overflow:hidden;border:3px solid #1a1120;box-shadow:0 0 0 2px var(--acc);background:#3a2445;flex:none"><svg viewBox="0 0 300 240" preserveAspectRatio="xMidYMin slice" role="img" aria-label="Illustrated portrait of a young man" style="display:block;width:100%;height:100%;transform:scale(1.5) translateY(4%)">
+<defs><linearGradient id="mBg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a2445"></stop><stop offset="1" stop-color="#f0a87a"></stop></linearGradient></defs>
+<rect width="300" height="240" fill="url(#mBg)"></rect>
+<circle cx="230" cy="70" r="26" fill="#ffd9b8" opacity=".55"></circle>
+<path d="M60 240c6-46 44-70 90-70s84 24 90 70z" fill="#8a5a9a"></path>
+<path d="M126 172q24 20 48 0l-6 14q-18 10-36 0z" fill="#6d4580"></path>
+<rect x="134" y="140" width="32" height="40" rx="12" fill="#c98466"></rect>
+<ellipse cx="150" cy="108" rx="40" ry="46" fill="#d8946f"></ellipse>
+<ellipse cx="110" cy="112" rx="7" ry="11" fill="#c98466"></ellipse><ellipse cx="190" cy="112" rx="7" ry="11" fill="#c98466"></ellipse>
+<path d="M110 106c-2-10-2-20 2-28 8-20 30-32 52-26 18 4 30 16 30 32 0 8-1 16-4 22-2-12-6-20-12-24-14 4-34 0-48-8-8 6-14 16-20 32z" fill="#1d1322"></path>
+<path d="M116 62c10-18 34-26 56-18 12 4 20 12 22 22-14-10-34-14-52-8-10 3-18 6-26 4z" fill="#2e2030"></path>
+<path d="M112 98c-2-8-2-16 2-22l4 26z" fill="#2a1d24" opacity=".6"></path><path d="M188 98c2-8 2-16-2-22l-4 26z" fill="#2a1d24" opacity=".6"></path>
+<ellipse cx="135" cy="110" rx="3.5" ry="4" fill="#1d1322"></ellipse><ellipse cx="165" cy="110" rx="3.5" ry="4" fill="#1d1322"></ellipse>
+<path d="M127 100q8-5 16 0M157 100q8-5 16 0" stroke="#1d1322" stroke-width="3" fill="none" stroke-linecap="round"></path>
+<path d="M141 136q9 6 18 0" stroke="#f6efeb" stroke-width="3" fill="none" stroke-linecap="round"></path>
+</svg></span></span>
+              <span style="position:absolute;left:50%;bottom:-14px;transform:translateX(-50%);z-index:2;width:40px;height:40px;border-radius:50%;background:var(--acc);display:flex;align-items:center;justify-content:center;box-shadow:0 0 24px rgba(201,139,217,.7)"><svg width="18" height="18" viewBox="0 0 24 24" fill="#140d17"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg></span>
+            </span>
+            <span style="margin-top:34px;text-align:center;font-family:'Instrument Serif',serif;font-style:italic;font-size:34px;line-height:1;color:var(--ink)">It's a match</span>
+            <span style="text-align:center;font-size:13px;line-height:1.4;color:var(--mid);padding:0 8px">You and Aarav liked each other.</span>
+            <span style="margin-top:auto;display:flex;flex-direction:column;gap:10px">
+              <span style="padding:13px 16px;border-radius:999px;background:var(--acc);color:#140d17;font-size:14px;font-weight:400;text-align:center">Send a message</span>
+              <span style="padding:11px 16px;font-size:13px;font-weight:400;color:var(--mid);text-align:center">Keep browsing</span>
+            </span>
+          </div>
+          <div style="position:absolute;inset:0;display:flex;flex-direction:column;opacity:{{ bs.o1 }};transform:translateY({{ bs.y1 }}px);transition:opacity .6s,transform .8s cubic-bezier(.2,.8,.2,1);padding:56px 16px 20px;gap:12px;justify-content:flex-end">
+            <span style="align-self:flex-start;max-width:78%;padding:10px 14px;border-radius:18px 18px 18px 4px;background:rgba(246,239,235,.1);font-size:14px">Coffee on Saturday?</span>
+            <span style="align-self:flex-end;max-width:78%;padding:10px 14px;border-radius:18px 18px 4px 18px;background:var(--acc);color:#140d17;font-size:14px;font-weight:400">Yes. 11 at the corner café?</span>
+            <span style="align-self:flex-start;max-width:78%;padding:10px 14px;border-radius:18px 18px 18px 4px;background:rgba(246,239,235,.1);font-size:14px">See you there.</span>
+            <span style="align-self:center;margin-top:12px;padding:8px 14px;border-radius:999px;border:1.5px solid var(--acc);font-size:12px;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--acc)">We met ✓</span>
+          </div>
+          <div style="position:absolute;inset:0;opacity:{{ bs.o2 }};transform:translateY({{ bs.y2 }}px);transition:opacity .6s,transform .8s cubic-bezier(.2,.8,.2,1);background:linear-gradient(180deg,#3a2445,#c9746a 120%)">
+            <span style="position:absolute;inset:0;padding:60px 18px 0;display:grid;grid-template-columns:repeat(4,1fr);gap:16px 12px;align-content:start;filter:blur(1.5px);opacity:.75"><span style="display:flex;flex-direction:column;align-items:center;gap:5px"><span style="width:100%;aspect-ratio:1;border-radius:13px;background:linear-gradient(135deg,#f6c26b,#e86a8a);display:flex;align-items:center;justify-content:center;overflow:hidden"></span><span style="font-size:9px;color:rgba(246,239,235,.85)">Photos</span></span><span style="display:flex;flex-direction:column;align-items:center;gap:5px"><span style="width:100%;aspect-ratio:1;border-radius:13px;background:linear-gradient(135deg,#7ad3a4,#5aa1e8);display:flex;align-items:center;justify-content:center;overflow:hidden"></span><span style="font-size:9px;color:rgba(246,239,235,.85)">Maps</span></span><span style="display:flex;flex-direction:column;align-items:center;gap:5px"><span style="width:100%;aspect-ratio:1;border-radius:13px;background:linear-gradient(135deg,#f0587a,#c03a5e);display:flex;align-items:center;justify-content:center;overflow:hidden"></span><span style="font-size:9px;color:rgba(246,239,235,.85)">Music</span></span><span style="display:flex;flex-direction:column;align-items:center;gap:5px"><span style="width:100%;aspect-ratio:1;border-radius:13px;background:#f3d36b;display:flex;align-items:center;justify-content:center;overflow:hidden"></span><span style="font-size:9px;color:rgba(246,239,235,.85)">Notes</span></span><span style="display:flex;flex-direction:column;align-items:center;gap:5px"><span style="width:100%;aspect-ratio:1;border-radius:13px;background:linear-gradient(135deg,#6ab4f6,#3a7be0);display:flex;align-items:center;justify-content:center;overflow:hidden"></span><span style="font-size:9px;color:rgba(246,239,235,.85)">Mail</span></span><span style="display:flex;flex-direction:column;align-items:center;gap:5px"><span style="width:100%;aspect-ratio:1;border-radius:13px;background:#f6efeb;display:flex;align-items:center;justify-content:center;overflow:hidden"><img data-nofx="" src="assets/esd/r32.png" alt="" style="width:78%"></span><span style="font-size:9px;color:rgba(246,239,235,.85)">Hinge</span></span><span style="display:flex;flex-direction:column;align-items:center;gap:5px"><span style="width:100%;aspect-ratio:1;border-radius:13px;background:#1d1322;display:flex;align-items:center;justify-content:center;overflow:hidden"></span><span style="font-size:9px;color:rgba(246,239,235,.85)">Clock</span></span><span style="display:flex;flex-direction:column;align-items:center;gap:5px"><span style="width:100%;aspect-ratio:1;border-radius:13px;background:linear-gradient(180deg,#5a9cf0,#a4d0ff);display:flex;align-items:center;justify-content:center;overflow:hidden"></span><span style="font-size:9px;color:rgba(246,239,235,.85)">Weather</span></span></span>
+            <span style="position:absolute;inset:0;background:rgba(10,6,12,.35)"></span>
+            <span style="position:absolute;left:16px;right:16px;top:50%;transform:translateY(-50%);border-radius:16px;background:rgba(40,30,46,.92);backdrop-filter:blur(12px);display:flex;flex-direction:column;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.5)">
+              <span style="padding:18px 16px 14px;display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center">
+                <span style="width:44px;height:44px;border-radius:11px;background:#f6efeb;display:flex;align-items:center;justify-content:center"><img data-nofx="" src="assets/esd/r32.png" alt="" style="width:78%"></span>
+                <span style="font-size:15px;font-weight:400">Delete “Hinge”?</span>
+                <span style="font-size:12px;line-height:1.4;color:var(--mid)">You met someone. The app did its job.</span>
+              </span>
+              <span style="border-top:1px solid rgba(246,239,235,.12);padding:12px;text-align:center;font-size:14px;font-weight:400;color:#ff6b6b">Delete App</span>
+              <span style="border-top:1px solid rgba(246,239,235,.12);padding:12px;text-align:center;font-size:14px;color:var(--acc2)">Cancel</span>
+            </span>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:22px">
+          <sc-for list="{{ bSteps }}" as="st" hint-placeholder-count="3"><button type="button" onClick="{{ st.pick }}" onMouseEnter="{{ st.pick }}" style="background:none;border:0;padding:0 0 0 16px;border-left:2px solid {{ st.lc }};color:inherit;font:inherit;text-align:left;cursor:pointer;display:flex;flex-direction:column;gap:4px;opacity:{{ st.op }};transition:opacity .4s,border-color .4s">
+            <span style="font-size:11px;font-weight:400;letter-spacing:.22em;color:var(--acc)">{{ st.n }}</span>
+            <span style="font-size:clamp(20px,1.8vw,26px);font-weight:400;letter-spacing:-.02em;line-height:1.1">{{ st.t }}</span>
+            <span style="font-size:14px;line-height:1.4;color:var(--mid)">{{ st.d }}</span>
+          </button></sc-for>
+        </div>
+      </div>
+    </div>
+    <div data-reveal="" style="display:flex;flex-direction:column">
+      <div onMouseLeave="{{ hzOff }}" style="position:relative;width:100%;aspect-ratio:2/1;overflow:hidden">
+        <span aria-hidden="true" style="position:absolute;left:50%;bottom:0;width:60%;aspect-ratio:1;transform:translate(-50%,50%);border-radius:50%;background:radial-gradient(circle,rgba(255,170,110,.55),rgba(255,145,77,.14) 30%,rgba(255,145,77,0) 60%)"></span>
+        <span aria-hidden="true" style="position:absolute;left:50%;bottom:0;width:36%;aspect-ratio:1;transform:translate(-50%,50%);border-radius:50%;background:radial-gradient(circle at 50% 40%,#fff1e2,#ffb27a 45%,#e0708a 80%);box-shadow:0 0 80px 20px rgba(255,160,100,.35)"></span>
+        <span aria-hidden="true" style="position:absolute;left:50%;bottom:0;width:96%;aspect-ratio:1;transform:translate(-50%,50%);border-radius:50%;border:{{ hz.b0 }};box-shadow:{{ hz.s0 }};transition:border-color .5s,box-shadow .5s"></span><span aria-hidden="true" style="position:absolute;left:50%;bottom:0;width:64%;aspect-ratio:1;transform:translate(-50%,50%);border-radius:50%;border:{{ hz.b1 }};box-shadow:{{ hz.s1 }};transition:border-color .5s,box-shadow .5s"></span><span aria-hidden="true" style="position:absolute;left:50%;bottom:0;width:32%;aspect-ratio:1;transform:translate(-50%,50%);border-radius:50%;border:{{ hz.b2 }};box-shadow:{{ hz.s2 }};transition:border-color .5s,box-shadow .5s"></span>
+        <div onMouseEnter="{{ hz0 }}" style="position:absolute;left:50%;top:8%;transform:translateX(-50%);width:min(560px,52%);display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;opacity:{{ hz.o0 }};transition:opacity .5s"><span style="font-size:11px;font-weight:400;letter-spacing:.3em;text-transform:uppercase;color:var(--deep)">Vision · the horizon</span><p style="margin:0;font-size:clamp(16px,2.1vw,32px);font-weight:400;line-height:1.2;letter-spacing:-.02em;text-wrap:balance">“The most trusted way to find a relationship, for all.”</p></div>
+        <div onMouseEnter="{{ hz1 }}" style="position:absolute;left:50%;top:41%;transform:translateX(-50%);width:min(440px,42%);display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;opacity:{{ hz.o1 }};transition:opacity .5s"><span style="font-size:11px;font-weight:400;letter-spacing:.3em;text-transform:uppercase;color:var(--deep)">Mission · the path</span><p style="margin:0;font-size:clamp(15px,1.8vw,26px);font-weight:400;line-height:1.2;letter-spacing:-.01em;text-wrap:balance">“Inspire intimate connection to create a less lonely world.”</p></div>
+        <div onMouseEnter="{{ hz2 }}" style="position:absolute;left:50%;top:80%;transform:translateX(-50%);width:min(260px,28%);display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;opacity:{{ hz.o2 }};transition:opacity .5s"><span style="font-size:11px;font-weight:400;letter-spacing:.3em;text-transform:uppercase;color:#5a2a3a">The core</span><span style="font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(18px,2.4vw,36px);line-height:1;color:#1d1322">Love the problem</span></div>
+      </div>
+      <div style="border-top:2px solid rgba(255,178,122,.5);padding-top:clamp(24px,3vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:16px 48px;align-items:start">
+        <span style="font-size:12px;font-weight:400;letter-spacing:.28em;text-transform:uppercase;color:var(--deep)">Guiding principle</span>
+        <p style="margin:0;font-size:16px;line-height:1.55;max-width:56ch;color:#e6d9ea;text-wrap:pretty"><strong style="color:var(--ink);font-weight:400">“Love the problem”</strong> is treated as the first, foundational design principle behind every feature decision. Relationships are at the core of everything the product does.</p>
+      </div>
+    </div>
+    <div data-reveal="" style="display:flex;flex-direction:column;gap:14px">
+      <span style="font-size:12px;font-weight:400;letter-spacing:.28em;text-transform:uppercase;color:var(--deep)">Values</span>
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:16px clamp(32px,5vw,72px)">
+      <div style="display:flex;align-items:center;gap:14px;color:var(--ink);transition:color .3s" style-hover="color:var(--acc2)"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--acc);flex:none"><path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4"></path><path d="M14 13.12c0 2.38 0 6.38-1 8.88"></path><path d="M17.29 21.02c.12-.6.43-2.3.5-3.02"></path><path d="M2 12a10 10 0 0 1 18-6"></path><path d="M2 16h.01"></path><path d="M21.8 16c.2-2 .131-5.354 0-6"></path><path d="M5 19.5C5.5 18 6 15 6 12a6 6 0 0 1 .34-2"></path><path d="M8.65 22c.21-.66.45-1.32.57-2"></path><path d="M9 6.8a6 6 0 0 1 9 5.2v2"></path></svg><span style="font-size:clamp(22px,2.2vw,32px);font-weight:400;letter-spacing:-.02em;line-height:1">Authenticity</span></div>
+      <div style="display:flex;align-items:center;gap:14px;color:var(--ink);transition:color .3s" style-hover="color:var(--acc2)"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--acc);flex:none"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path></svg><span style="font-size:clamp(22px,2.2vw,32px);font-weight:400;letter-spacing:-.02em;line-height:1">Courage</span></div>
+      <div style="display:flex;align-items:center;gap:14px;color:var(--ink);transition:color .3s" style-hover="color:var(--acc2)"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--acc);flex:none"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path><path d="M12 5 9.04 7.96a2.17 2.17 0 0 0 0 3.08c.82.82 2.13.85 3 .07l2.07-1.9a2.82 2.82 0 0 1 3.79 0l2.96 2.66"></path><path d="m18 15-2-2"></path><path d="m15 18-2-2"></path></svg><span style="font-size:clamp(22px,2.2vw,32px);font-weight:400;letter-spacing:-.02em;line-height:1">Empathy</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div data-reveal="" data-screen-label="Thread · 04 Market" style="position:relative;z-index:1;max-width:1440px;margin:0 auto;padding:clamp(16px,2vw,32px) clamp(20px,5vw,80px) clamp(8px,1vw,16px);box-sizing:border-box;display:flex;flex-direction:column;gap:20px"><span aria-hidden="true" style="display:block;width:2px;height:clamp(32px,3vw,48px);background:linear-gradient(to bottom,transparent,var(--acc))"></span><p style="margin:0;max-width:30ch;font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;letter-spacing:0;font-size:clamp(26px,2.8vw,42px);line-height:1.15;color:var(--acc2);text-wrap:balance">That promise competes in a crowded market.</p></div>
+<!-- 04 MARKET -->
+<section data-screen-label="04 Market" style="position:relative;z-index:1;padding:clamp(24px,3vw,48px) 0 clamp(40px,5vw,72px)">
+  <div style="max-width:1440px;margin:0 auto;padding:0 clamp(20px,5vw,80px)">
+    <span style="font-size:12px;font-weight:400;letter-spacing:.34em;text-transform:uppercase;color:var(--deep)">Market snapshot</span>
+    <div style="position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:40px clamp(24px,4vw,64px);margin:40px 0 72px;border-top:1px solid rgba(201,139,217,.3)">
+      <div style="position:relative;display:flex;flex-direction:column;gap:14px;padding-top:28px">
+        <span aria-hidden="true" style="position:absolute;top:-5px;left:0;width:10px;height:10px;border-radius:50%;background:var(--acc2);box-shadow:0 0 14px 3px rgba(201,139,217,.6)"></span>
+        <span style="font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--mid)">Downloads</span>
+        <span data-count="10Cr+" style="font-size:clamp(36px,3.8vw,60px);font-weight:300;letter-spacing:-.03em;line-height:1;color:var(--ink)">10Cr+</span>
+      </div>
+      <div style="position:relative;display:flex;flex-direction:column;gap:14px;padding-top:28px">
+        <span aria-hidden="true" style="position:absolute;top:-5px;left:0;width:10px;height:10px;border-radius:50%;background:var(--acc2);box-shadow:0 0 14px 3px rgba(201,139,217,.6)"></span>
+        <span style="font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--mid)">App store rating</span>
+        <span data-count="4.0" style="font-size:clamp(36px,3.8vw,60px);font-weight:300;letter-spacing:-.03em;line-height:1;color:var(--ink)">4.0</span>
+      </div>
+      <div style="position:relative;display:flex;flex-direction:column;gap:14px;padding-top:28px">
+        <span aria-hidden="true" style="position:absolute;top:-5px;left:0;width:10px;height:10px;border-radius:50%;background:var(--acc2);box-shadow:0 0 14px 3px rgba(201,139,217,.6)"></span>
+        <span style="font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--mid)">Play store reviews</span>
+        <span data-count="4.4L+" style="font-size:clamp(36px,3.8vw,60px);font-weight:300;letter-spacing:-.03em;line-height:1;color:var(--ink)">4.4L+</span>
+      </div>
+      <div style="position:relative;display:flex;flex-direction:column;gap:14px;padding-top:28px">
+        <span aria-hidden="true" style="position:absolute;top:-5px;left:0;width:10px;height:10px;border-radius:50%;background:var(--acc2);box-shadow:0 0 14px 3px rgba(201,139,217,.6)"></span>
+        <span style="font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--mid)">Monetization model</span>
+        <span style="font-size:clamp(36px,3.8vw,60px);font-weight:300;letter-spacing:-.03em;line-height:1;color:var(--ink)">In-app purchases</span>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:40px clamp(28px,3.5vw,56px);margin-top:clamp(80px,9vw,128px);align-items:start">
+      <div data-reveal="" style="display:flex;flex-direction:column;gap:16px;padding-top:24px;border-top:1px solid rgba(201,139,217,.3)">
+        <div style="display:flex;align-items:baseline;gap:12px"><span style="font-size:12px;letter-spacing:.24em;color:var(--acc)">01</span><h3 style="margin:0;font-size:clamp(18px,1.5vw,22px);letter-spacing:-.01em;line-height:1.2">Community campaigns</h3></div>
+        <p style="margin:0;font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;letter-spacing:0;font-size:clamp(26px,2.4vw,36px);line-height:1.05;color:#ffd2b0;text-shadow:0 0 30px rgba(255,160,100,.3);text-wrap:balance">“Awkward, Together.”</p>
+        <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px"><li style="font-size:14px;line-height:1.5;color:var(--mid);text-wrap:pretty">“Awkward, Together”: guide to embracing awkward dating moments</li><li style="font-size:14px;line-height:1.5;color:var(--mid);text-wrap:pretty">“One More Hour”: funding grants for real-world community events</li><li style="font-size:14px;line-height:1.5;color:var(--mid);text-wrap:pretty">Nostalgia-driven brand content (“Do you miss the old internet?”)</li></ul>
+      </div>
+      <div data-reveal="" style="display:flex;flex-direction:column;gap:16px;padding-top:24px;border-top:1px solid rgba(201,139,217,.3)">
+        <div style="display:flex;align-items:baseline;gap:12px"><span style="font-size:12px;letter-spacing:.24em;color:var(--acc)">02</span><h3 style="margin:0;font-size:clamp(18px,1.5vw,22px);letter-spacing:-.01em;line-height:1.2">Market share &amp; penetration</h3></div>
+        <p style="margin:0;font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;letter-spacing:0;font-size:clamp(26px,2.4vw,36px);line-height:1.05;color:#ffd2b0;text-shadow:0 0 30px rgba(255,160,100,.3);text-wrap:balance">“The dating app designed to be deleted.”</p>
+        <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px"><li style="font-size:14px;line-height:1.5;color:var(--mid);text-wrap:pretty">Positioned as the fastest-growing app in the intentional-dating segment</li><li style="font-size:14px;line-height:1.5;color:var(--mid);text-wrap:pretty">Competitive research tracks penetration against Tinder/Bumble by city tier</li><li style="font-size:14px;line-height:1.5;color:var(--mid);text-wrap:pretty">Ad messaging leans on “the dating app designed to be deleted”</li></ul>
+      </div>
+      <div data-reveal="" style="display:flex;flex-direction:column;gap:16px;padding-top:24px;border-top:1px solid rgba(201,139,217,.3)">
+        <div style="display:flex;align-items:baseline;gap:12px"><span style="font-size:12px;letter-spacing:.24em;color:var(--acc)">03</span><h3 style="margin:0;font-size:clamp(18px,1.5vw,22px);letter-spacing:-.01em;line-height:1.2">The Hinge difference framing</h3></div>
+        <p style="margin:0;font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;letter-spacing:0;font-size:clamp(26px,2.4vw,36px);line-height:1.05;color:#ffd2b0;text-shadow:0 0 30px rgba(255,160,100,.3);text-wrap:balance">“Intentionality over volume.”</p>
+        <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px"><li style="font-size:14px;line-height:1.5;color:var(--mid);text-wrap:pretty">Matching algorithm, interface, and community values positioned as deliberately distinct from swipe-first competitors</li><li style="font-size:14px;line-height:1.5;color:var(--mid);text-wrap:pretty">Marketing consistently reinforces intentionality over volume</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div data-reveal="" data-screen-label="Thread · 05 Comparative analysis" style="position:relative;z-index:1;max-width:1440px;margin:0 auto;padding:clamp(16px,2vw,32px) clamp(20px,5vw,80px) clamp(8px,1vw,16px);box-sizing:border-box;display:flex;flex-direction:column;gap:20px"><span aria-hidden="true" style="display:block;width:2px;height:clamp(32px,3vw,48px);background:linear-gradient(to bottom,transparent,var(--acc))"></span><p style="margin:0;max-width:30ch;font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;letter-spacing:0;font-size:clamp(26px,2.8vw,42px);line-height:1.15;color:var(--acc2);text-wrap:balance">So how is it different from the apps around it?</p></div>
+<!-- 05 COMPARE -->
+<section data-screen-label="05 Comparative analysis" style="position:relative;z-index:1;padding:clamp(24px,3vw,48px) 0 clamp(40px,5vw,72px)"><div style="max-width:1440px;margin:0 auto;padding:0 clamp(20px,5vw,80px)"><span style="font-size:12px;font-weight:400;letter-spacing:.34em;text-transform:uppercase;color:var(--deep)">Comparative analysis</span><h2 data-reveal="" style="font-size:clamp(44px,6.4vw,104px);line-height:.9;letter-spacing:-.05em;margin:16px 0 0;font-weight:800">Three apps, <span style="font-family:'Quicksand',sans-serif;font-weight:400;color:var(--acc)">three philosophies</span></h2>
+ <div style="margin-top:56px;display:grid;grid-template-columns:minmax(140px,1fr) repeat(3,minmax(0,1.3fr));gap:20px;align-items:end;padding-bottom:14px"><span></span><sc-for list="{{ cols }}" as="c" hint-placeholder-count="3"><button onClick="{{ c.pick }}" onMouseEnter="{{ c.pick }}" style="background:none;border:0;padding:0 0 10px;border-bottom:2px solid {{ c.bd }};cursor:pointer;font:400 clamp(20px,2vw,28px) 'Quicksand',sans-serif;letter-spacing:-.03em;text-align:left;color:{{ c.fg }};transition:color .3s,border-color .3s">{{ c.t }}</button></sc-for></div>
+ <div style="border-top:1px solid var(--mid)"><sc-for list="{{ compare }}" as="r" hint-placeholder-count="9"><div style="display:grid;grid-template-columns:minmax(140px,1fr) repeat(3,minmax(0,1.3fr));gap:20px;padding:16px 0;border-bottom:1px solid rgba(128,110,130,.35);align-items:baseline"><span style="font-size:12px;font-weight:400;letter-spacing:.24em;text-transform:uppercase;font-size:11px;letter-spacing:.14em;color:var(--mid);line-height:1.5">{{ r.p }}</span><sc-for list="{{ r.cells }}" as="x" hint-placeholder-count="3"><span onMouseEnter="{{ x.pick }}" style="display:flex;flex-direction:column;gap:8px;font-size:15px;line-height:1.45;opacity:{{ x.op }};transition:opacity .35s;cursor:default"><span>{{ x.v }}</span><span aria-hidden="true" style="display:block;height:4px;width:{{ x.bw }};max-width:100%;background:{{ x.bc }};opacity:{{ x.bo }};transition:background .35s"></span></span></sc-for></div></sc-for></div></div></section>
+
+<div data-reveal="" data-screen-label="Thread · 06 People" style="position:relative;z-index:1;max-width:1440px;margin:0 auto;padding:clamp(16px,2vw,32px) clamp(20px,5vw,80px) clamp(8px,1vw,16px);box-sizing:border-box;display:flex;flex-direction:column;gap:20px"><span aria-hidden="true" style="display:block;width:2px;height:clamp(32px,3vw,48px);background:linear-gradient(to bottom,transparent,var(--acc))"></span><p style="margin:0;max-width:30ch;font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;letter-spacing:0;font-size:clamp(26px,2.8vw,42px);line-height:1.15;color:var(--acc2);text-wrap:balance">Then we turned to the people.</p></div>
+<!-- 06 PEOPLE -->
+<section data-screen-label="06 People" style="position:relative;z-index:1;padding:clamp(24px,3vw,48px) 0 clamp(40px,5vw,72px)"><div style="max-width:1440px;margin:0 auto;padding:0 clamp(20px,5vw,80px)"><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:64px clamp(40px,6vw,96px)">
+ <div style="grid-column:1/-1"><span style="font-size:12px;font-weight:400;letter-spacing:.34em;text-transform:uppercase;color:var(--deep)">Who's responsible on Hinge? Who's using Hinge?</span><h2 data-reveal="" style="font-size:clamp(44px,6.4vw,104px);line-height:.9;letter-spacing:-.05em;margin:16px 0 0;font-weight:800">Hoping to meet <span style="font-family:'Quicksand',sans-serif;font-weight:400;color:var(--acc)">someone genuine</span></h2><p style="margin:24px 0 0;color:var(--mid)">Goal: finding long term relationship.</p>
+  <div style="margin-top:56px;font-size:12px;font-weight:400;letter-spacing:.24em;text-transform:uppercase;color:var(--mid)">Stakeholder map</div>
+  <div style="margin-top:24px;display:flex;flex-direction:column;gap:32px">
+   <div onMouseLeave="{{ stOff }}" style="position:relative;width:100%;max-width:1240px;aspect-ratio:2/1.1;margin:0 auto;overflow:hidden;border-bottom:1.5px solid rgba(255,178,122,.5)">
+    <sc-for list="{{ stRings }}" as="g" hint-placeholder-count="3"><button type="button" onMouseEnter="{{ g.pick }}" onClick="{{ g.pick }}" aria-label="{{ g.t }}" style="position:absolute;left:50%;top:100%;width:{{ g.d }};aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;border:1px solid {{ g.bd }};background:{{ g.bg }};padding:0;cursor:pointer;transition:background .4s,border-color .4s"></button></sc-for>
+    <sc-for list="{{ stRings }}" as="g" hint-placeholder-count="3"><span style="position:absolute;left:{{ g.lx }};bottom:12px;transform:translateX(-50%);font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:{{ g.lc }};pointer-events:none;transition:color .4s">{{ g.t }}</span></sc-for>
+    <span style="position:absolute;left:50%;top:100%;width:20%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,#fff1e2,#ffb27a 60%,#e0708a);box-shadow:0 0 60px 12px rgba(255,160,100,.4);pointer-events:none"></span><img data-nofx="" src="assets/esd/r32.png" alt="Hinge" style="position:absolute;left:50%;bottom:4%;width:9%;transform:translateX(-50%);pointer-events:none">
+    <sc-for list="{{ stDots }}" as="d" hint-placeholder-count="18"><span style="position:absolute;left:{{ d.x }}%;top:{{ d.y }}%;width:9px;height:9px;transform:translate(-50%,-50%);border-radius:50%;background:{{ d.bg }};box-shadow:{{ d.sh }};pointer-events:none;transition:all .4s"></span><span style="position:absolute;left:{{ d.x }}%;top:{{ d.y }}%;width:max-content;max-width:clamp(84px,9vw,124px);transform:translate(-50%,calc(-100% - 8px));text-align:center;font-size:clamp(11px,.95vw,13px);line-height:1.3;color:{{ d.tc }};opacity:{{ d.op }};pointer-events:none;transition:opacity .4s,color .4s;text-wrap:balance">{{ d.t }}</span></sc-for>
+   </div>
+  </div></div>
+ <div style="grid-column:1/-1;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:56px clamp(40px,7vw,120px);align-items:end;margin-top:clamp(32px,4vw,64px)"><div><div style="font-size:12px;font-weight:400;letter-spacing:.24em;text-transform:uppercase;color:var(--mid)">How old are you?</div>
+  <div style="margin-top:12px;display:flex;align-items:center;gap:clamp(16px,2vw,28px)"><span style="font-size:clamp(72px,8vw,128px);font-weight:400;letter-spacing:-.06em;line-height:.85;font-variant-numeric:tabular-nums">{{ ageNow.age }}</span><span style="font-family:'Quicksand',sans-serif;font-size:clamp(20px,1.8vw,26px);line-height:1.3;max-width:18ch;text-wrap:balance;color:var(--acc)">{{ ageNow.line }}</span></div>
+  <input type="range" min="18" max="45" step="1" value="{{ age }}" onInput="{{ setAge }}" onChange="{{ setAge }}" aria-label="Your age" style="width:100%;margin-top:28px;accent-color:var(--acc);cursor:ew-resize">
+  <div style="margin-top:28px"><sc-for list="{{ ageBands }}" as="a" hint-placeholder-count="5"><div style="display:grid;grid-template-columns:120px minmax(0,1fr) 64px;gap:16px;align-items:center;padding:9px 0;opacity:{{ a.op }};transition:opacity .4s"><span style="font-size:15px;font-weight:{{ a.fw }}">{{ a.l }}</span><span style="display:block;height:{{ a.h }};width:{{ a.w }};background:var(--acc);transition:height .3s"></span><span style="font-size:15px;text-align:right">{{ a.v }}</span></div></sc-for></div>
+  </div><div><div style="font-size:12px;font-weight:400;letter-spacing:.24em;text-transform:uppercase;color:var(--mid)">Sexual orientation</div>
+  <div style="margin-top:20px"><sc-for list="{{ orient }}" as="a" hint-placeholder-count="5"><div style="display:grid;grid-template-columns:120px minmax(0,1fr) 64px;gap:16px;align-items:center;padding:9px 0"><span style="font-size:15px">{{ a.l }}</span><span style="display:block;height:2px;width:{{ a.w }};background:var(--acc2)"></span><span style="font-size:15px;text-align:right">{{ a.v }}</span></div></sc-for></div></div>
+</div></div></div></section>
+
+<div data-reveal="" data-screen-label="Thread · 07 Archetypes" style="position:relative;z-index:1;max-width:1440px;margin:0 auto;padding:clamp(16px,2vw,32px) clamp(20px,5vw,80px) clamp(8px,1vw,16px);box-sizing:border-box;display:flex;flex-direction:column;gap:20px"><span aria-hidden="true" style="display:block;width:2px;height:clamp(32px,3vw,48px);background:linear-gradient(to bottom,transparent,var(--acc))"></span><p style="margin:0;max-width:30ch;font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;letter-spacing:0;font-size:clamp(26px,2.8vw,42px);line-height:1.15;color:var(--acc2);text-wrap:balance">They are not all looking for the same thing.</p></div>
+<!-- 07 CLUSTERS -->
+<section data-screen-label="07 Archetypes" style="position:relative;z-index:1;padding:clamp(24px,3vw,48px) 0 clamp(40px,5vw,72px)">
+  <div style="max-width:1440px;margin:0 auto;padding:0 clamp(20px,5vw,80px)">
+    <div data-reveal="" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:24px 72px;align-items:end;margin-bottom:56px">
+      <div style="display:flex;flex-direction:column;gap:14px"><span style="font-size:12px;font-weight:400;letter-spacing:.34em;text-transform:uppercase;color:var(--deep)">User archetypes</span><h2 style="font-size:clamp(34px,4vw,64px);line-height:1;letter-spacing:-.04em;margin:0;font-weight:800;text-wrap:balance">Intentional, yet <span style="font-family:'Quicksand',sans-serif;font-weight:400;color:var(--acc)">emotionally influenced</span></h2></div>
+      <p style="margin:0;max-width:58ch;text-wrap:pretty">While hope for finding a compatible partner is the strongest motivator, many also engage with the platform due to loneliness, boredom, curiosity, or social influence. Their behaviour reflects a balance between purposeful relationship seeking and exploratory engagement driven by emotional and social needs.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:20px">
+      <sc-for list="{{ clusters }}" as="c" hint-placeholder-count="3">
+        <div style="position:relative;padding:28px 28px 32px;display:flex;flex-direction:column;gap:18px;overflow:hidden;transition:transform .4s cubic-bezier(.2,.8,.2,1.2)" style-hover="transform:translateY(-10px)">
+          <h3 style="font-size:28px;letter-spacing:-.03em;margin:0">{{ c.t }}</h3>
+          <div style="height:260px;display:flex;align-items:flex-end;justify-content:center"><img src="{{ c.img }}" alt="" style="max-height:260px;max-width:100%;width:auto"></div>
+          <sc-for list="{{ c.m }}" as="m">
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <div style="display:flex;justify-content:space-between;gap:12px;font-size:14px"><span>{{ m.l }}</span><strong style="font-weight:400">{{ m.v }}</strong></div>
+              <div style="height:8px"><div style="height:100%;background:linear-gradient(90deg,var(--deep),var(--acc2));width:{{ m.v }}"></div></div>
+            </div>
+          </sc-for>
+        </div>
+      </sc-for>
+    </div>
+    <p style="margin:16px 0 0;font-size:13px;color:var(--mid)">Each percentage is a standalone value out of 100%, not a sum.</p>
+  </div>
+</section>
+
+<section data-screen-label="Band · Hinge feelings" aria-hidden="true" style="position:relative;z-index:1;overflow:hidden;padding:clamp(24px,4vw,56px) 0;margin:40px 0">
+  <div data-band="0.7" style="display:flex;gap:.35em;white-space:nowrap;width:max-content;font-size:clamp(64px,10vw,168px);font-weight:400;letter-spacing:-.05em;line-height:1;will-change:transform">
+    <sc-for list="{{ bandA }}" as="w" hint-placeholder-count="12"><span style="display:flex;gap:.35em;align-items:center"><span>{{ w }}</span><span style="color:var(--acc2);font-size:.5em">♥</span></span></sc-for>
+  </div>
+  <div data-band="-0.5" style="display:flex;gap:.4em;white-space:nowrap;width:max-content;font-family:'Quicksand',sans-serif;font-size:clamp(56px,8vw,136px);line-height:1.05;color:transparent;-webkit-text-stroke:1.5px var(--acc);will-change:transform">
+    <sc-for list="{{ bandA2 }}" as="w" hint-placeholder-count="12"><span>{{ w }} ·</span></sc-for>
+  </div>
+</section>
+
+<div data-reveal="" data-screen-label="Thread · 08 User journey" style="position:relative;z-index:1;max-width:1440px;margin:0 auto;padding:clamp(16px,2vw,32px) clamp(20px,5vw,80px) clamp(8px,1vw,16px);box-sizing:border-box;display:flex;flex-direction:column;gap:20px"><span aria-hidden="true" style="display:block;width:2px;height:clamp(32px,3vw,48px);background:linear-gradient(to bottom,transparent,var(--acc))"></span><p style="margin:0;max-width:30ch;font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;letter-spacing:0;font-size:clamp(26px,2.8vw,42px);line-height:1.15;color:var(--acc2);text-wrap:balance">We followed them from download to deletion.</p></div>
+<!-- 08 JOURNEY (horizontal) -->
+<section ref="{{ jWrapRef }}" data-cursor="scroll" data-screen-label="08 User journey" style="position:relative;z-index:1;height:380vh">
+  <div style="position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;gap:28px">
+    <div style="max-width:1440px;width:100%;margin:0 auto;padding:0 clamp(20px,5vw,80px);box-sizing:border-box;display:flex;flex-wrap:wrap;gap:12px 40px;align-items:flex-end;justify-content:space-between">
+      <div style="display:flex;flex-direction:column;gap:12px"><span style="font-size:12px;font-weight:400;letter-spacing:.34em;text-transform:uppercase;color:var(--deep)">User journey · keep scrolling</span><h2 style="font-size:clamp(40px,5.4vw,88px);line-height:.9;letter-spacing:-.05em;margin:0;font-weight:800">Download to deletion, <span style="font-family:'Quicksand',sans-serif;font-weight:400;color:var(--acc);position:relative;display:inline-block">and back</span></h2></div>
+    </div>
+    <div style="position:relative;padding-left:clamp(20px,5vw,80px)">
+      <div ref="{{ jTrackRef }}" style="display:flex;gap:56px;width:max-content;align-items:flex-start;padding-right:clamp(20px,5vw,80px);will-change:transform">
+        <sc-for list="{{ journey }}" as="j" hint-placeholder-count="6">
+          <div style="flex:0 0 min(76vw,300px);display:flex;flex-direction:column;gap:24px;color:var(--ink)">
+            <div style="display:flex;flex-direction:column;gap:10px;min-height:96px;justify-content:flex-end"><span style="font-size:12px;letter-spacing:.24em;color:var(--acc)">{{ j.n }}</span><h3 style="font-size:clamp(20px,1.8vw,26px);letter-spacing:-.02em;margin:0;line-height:1.15;text-wrap:balance">{{ j.t }}</h3></div>
+            <div style="position:relative;height:1.5px;background:rgba(201,139,217,.4);margin-right:-56px"><span style="position:absolute;left:0;top:50%;width:12px;height:12px;transform:translateY(-50%);border-radius:50%;background:var(--ink);box-shadow:0 0 0 5px rgba(201,139,217,.15),0 0 16px 3px rgba(201,139,217,.6)"></span></div>
+            <div style="display:flex;flex-direction:column;gap:12px;padding-right:16px"><sc-for list="{{ j.s }}" as="s"><span style="font-size:15px;line-height:1.4;color:var(--mid)">{{ s }}</span></sc-for></div>
+          </div>
+        </sc-for>
+        <div style="flex:0 0 min(76vw,300px);display:flex;flex-direction:column;gap:24px;color:var(--ink)">
+          <div style="display:flex;flex-direction:column;gap:10px;min-height:96px;justify-content:flex-end"><span style="font-size:12px;letter-spacing:.24em;color:var(--acc)">↺</span><h3 style="font-size:clamp(20px,1.8vw,26px);letter-spacing:-.02em;margin:0;line-height:1.15;color:var(--acc2)">End / start: the hope loop</h3></div>
+          <div style="position:relative;height:1.5px;background:linear-gradient(90deg,rgba(201,139,217,.4),rgba(201,139,217,0))"><span style="position:absolute;left:0;top:50%;width:12px;height:12px;transform:translateY(-50%);border-radius:50%;background:#ffb27a;box-shadow:0 0 0 5px rgba(255,178,122,.15),0 0 16px 3px rgba(255,160,100,.6)"></span></div>
+          <span style="font-size:15px;line-height:1.4;color:var(--mid)">Old users came back</span>
+        </div>
+      </div>
+      <div ref="{{ walkerRef }}" style="position:relative;height:min(150px,15vh);margin-top:8px;width:140px;will-change:transform"><img src="assets/esd/r20.png" alt="" style="height:min(150px,15vh);width:auto"></div>
+    </div>
+  </div>
+</section>
+
+<div data-reveal="" data-screen-label="Thread · 09 Behavioural patterns" style="position:relative;z-index:1;max-width:1440px;margin:0 auto;padding:clamp(16px,2vw,32px) clamp(20px,5vw,80px) clamp(8px,1vw,16px);box-sizing:border-box;display:flex;flex-direction:column;gap:20px"><span aria-hidden="true" style="display:block;width:2px;height:clamp(32px,3vw,48px);background:linear-gradient(to bottom,transparent,var(--acc))"></span><p style="margin:0;max-width:30ch;font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;letter-spacing:0;font-size:clamp(26px,2.8vw,42px);line-height:1.15;color:var(--acc2);text-wrap:balance">Along the way, the same patterns kept repeating.</p></div>
+<!-- 09 SWIPE -->
+<section data-screen-label="09 Behavioural patterns" style="position:relative;z-index:1;padding:clamp(24px,3vw,48px) 0 clamp(40px,5vw,72px)">
+  <div style="max-width:1440px;margin:0 auto;padding:0 clamp(20px,5vw,80px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:48px 80px;align-items:center">
+    <div data-reveal="" style="display:flex;flex-direction:column;gap:20px">
+      <span style="font-size:12px;font-weight:400;letter-spacing:.34em;text-transform:uppercase;color:var(--deep)">Behaviour</span>
+      <h2 style="font-size:clamp(44px,6.4vw,104px);line-height:.9;letter-spacing:-.05em;margin:0;font-weight:800">Patterns underneath <span style="font-family:'Quicksand',sans-serif;font-weight:400;color:var(--acc);position:relative;display:inline-block">the swipes</span></h2>
+      <p style="margin:0;max-width:44ch">Eight behavioural patterns from the research. Drag the card, or use the buttons: like the ones you recognise in yourself.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;min-height:44px">
+        <sc-for list="{{ likedNames }}" as="n" hint-placeholder-count="0"><span style="padding:8px 14px;color:var(--ink);font-size:13px;font-weight:400">♥ {{ n }}</span></sc-for>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:24px">
+      <div style="position:relative;width:min(100%,380px);height:560px">
+        <sc-for list="{{ behind }}" as="b" hint-placeholder-count="2">
+          <div style="position:absolute;inset:0;transform:{{ b.tf }};border-radius:22px;background:rgba(243,234,246,.06);border:1px solid rgba(243,234,246,.14)"></div>
+        </sc-for>
+        <sc-if value="{{ hasTop }}" hint-placeholder-val="{{ true }}">
+          <div ref="{{ cardRef }}" data-cursor="drag" onPointerDown="{{ cardDown }}" onPointerMove="{{ cardMove }}" onPointerUp="{{ cardUp }}" onPointerCancel="{{ cardUp }}" style="position:absolute;inset:0;overflow:hidden;cursor:grab;touch-action:pan-y;user-select:none;display:flex;flex-direction:column;border-radius:22px;background:#1a1220;box-shadow:0 30px 80px rgba(0,0,0,.55);border:1px solid rgba(243,234,246,.14)">
+            <div style="position:relative;aspect-ratio:760/650;flex:none;overflow:hidden;background:#1a1220">
+              <img src="{{ top.img }}" alt="" draggable="false" decoding="sync" data-nofx="" style="display:block;width:100%;height:100%;object-fit:cover;pointer-events:none">
+              <span data-stamp="like" style="position:absolute;top:24px;left:20px;padding:6px 14px;border:0;color:var(--acc);font-weight:400;font-size:22px;transform:rotate(-12deg);opacity:0">RELATE</span>
+              <span data-stamp="skip" style="position:absolute;top:24px;right:20px;padding:6px 14px;border:0;color:var(--ink);font-weight:400;font-size:22px;transform:rotate(12deg);opacity:0">NOPE</span>
+              <span style="position:absolute;top:18px;right:18px;padding:6px 12px;border-radius:999px;background:rgba(16,10,22,.8);color:#f3eaf6;font-size:12px;font-weight:400;letter-spacing:.1em">{{ deckCount }}</span>
+            </div>
+            <div style="position:relative;flex:1;padding:22px 26px 24px;display:flex;flex-direction:column;gap:10px;color:#f3eaf6">
+              <span style="font-size:12px;font-weight:400;letter-spacing:.24em;color:var(--deep);text-transform:uppercase">{{ top.t }}</span>
+              <div style="display:flex;flex-direction:column;align-items:flex-start;gap:6px"><span style="font-size:64px;font-weight:400;letter-spacing:-.05em;line-height:.85;color:var(--acc);margin-left:-.04em">{{ top.v }}</span><span style="font-size:13px;font-weight:400;color:rgba(243,234,246,.72);line-height:1.3">{{ top.u }}</span></div>
+              <p style="margin:0;font-size:15px;line-height:1.4">{{ top.d }}</p>
+            </div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ deckDone }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;border-radius:22px;overflow:hidden;background:linear-gradient(160deg,var(--deep),var(--acc2));color:#fff;padding:36px;display:flex;flex-direction:column;justify-content:flex-end;gap:16px">
+            <span style="font-family:'Quicksand',sans-serif;font-size:56px;line-height:.95">You related to {{ likedCount }} of 8.</span>
+            <p style="margin:0;font-size:16px">Every one of these sits underneath an ordinary swipe.</p>
+            <button onClick="{{ resetDeck }}" style="align-self:flex-start;border:0;border-radius:999px;cursor:pointer;padding:12px 22px;color:#2a1d31;font:400 14px 'Quicksand',sans-serif">Shuffle again</button>
+          </div>
+        </sc-if>
+      </div>
+      <div style="display:flex;gap:28px;margin-top:12px">
+        <button data-magnet="" onClick="{{ skip }}" aria-label="Skip" style="width:64px;height:64px;border-radius:50%;border:1.5px solid rgba(243,234,246,.35);background:transparent;color:var(--ink);font-size:26px;cursor:pointer;transition:transform .2s" style-hover="transform:scale(1.1)">✕</button>
+        <button data-magnet="" onClick="{{ like }}" aria-label="Relate" style="width:64px;height:64px;border-radius:50%;border:0;background:var(--acc);color:#1a1220;font-size:28px;cursor:pointer;transition:transform .2s" style-hover="transform:scale(1.1)">♥</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div data-reveal="" data-screen-label="Thread · 10 Concerns & emotions" style="position:relative;z-index:1;max-width:1440px;margin:0 auto;padding:clamp(16px,2vw,32px) clamp(20px,5vw,80px) clamp(8px,1vw,16px);box-sizing:border-box;display:flex;flex-direction:column;gap:20px"><span aria-hidden="true" style="display:block;width:2px;height:clamp(32px,3vw,48px);background:linear-gradient(to bottom,transparent,var(--acc))"></span><p style="margin:0;max-width:30ch;font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;letter-spacing:0;font-size:clamp(26px,2.8vw,42px);line-height:1.15;color:var(--acc2);text-wrap:balance">Beneath the patterns sat real worries.</p></div>
+<!-- 10 CONCERNS + EMOTIONS -->
+<section data-screen-label="10 Concerns & emotions" style="position:relative;z-index:1;padding:clamp(24px,3vw,48px) 0 clamp(40px,5vw,72px)">
+ <div style="max-width:1440px;margin:0 auto;padding:0 clamp(20px,5vw,80px)"><span style="font-size:12px;font-weight:400;letter-spacing:.34em;text-transform:uppercase;color:var(--deep)">Concerns on dating apps</span><h2 data-reveal="" style="font-size:clamp(44px,6.4vw,104px);line-height:.9;letter-spacing:-.05em;margin:16px 0 0;font-weight:800">What keeps them <span style="font-family:'Quicksand',sans-serif;font-weight:400;color:var(--acc)">guarded</span></h2>
+  <div style="margin-top:56px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:48px clamp(40px,6vw,96px);align-items:start">
+   <div style="border-top:1px solid rgba(128,110,130,.35)"><sc-for list="{{ concList }}" as="c" hint-placeholder-count="9"><button onClick="{{ c.pick }}" onMouseEnter="{{ c.pick }}" style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;width:100%;background:none;border:0;border-bottom:1px solid rgba(128,110,130,.35);padding:14px 0;cursor:pointer;text-align:left;color:{{ c.c }};transition:color .3s"><span style="font:400 clamp(18px,1.8vw,24px) 'Quicksand',sans-serif;letter-spacing:-.02em">{{ c.l }}</span><span style="font:400 15px 'Quicksand',sans-serif;font-variant-numeric:tabular-nums">{{ c.v }}</span></button></sc-for></div>
+   <div style="position:sticky;top:110px"><div style="font-size:12px;font-weight:400;letter-spacing:.24em;text-transform:uppercase;color:var(--mid)">Out of 90 respondents</div><div style="margin-top:12px;display:flex;align-items:baseline;gap:14px"><span style="font-size:clamp(80px,9vw,144px);font-weight:400;letter-spacing:-.06em;line-height:.85;color:var(--acc);font-variant-numeric:tabular-nums">{{ concNow.n }}</span><span style="font-family:'Quicksand',sans-serif;font-size:clamp(22px,2vw,30px)">people fear {{ concNow.l }}</span></div>
+    <div style="margin-top:32px;display:grid;grid-template-columns:repeat(30,minmax(0,1fr));gap:10px 4px"><sc-for list="{{ tally }}" as="t" hint-placeholder-count="90"><span style="display:block;height:30px;width:2px;justify-self:center;background:{{ t.c }};transform:rotate({{ t.r }});transition:background .35s {{ t.d }},transform .35s {{ t.d }}"></span></sc-for></div></div>
+  </div>
+ </div>
+  <div style="margin-top:clamp(96px,10vw,160px);display:flex;flex-direction:column;gap:28px;padding-bottom:clamp(96px,10vw,160px)">
+    <div style="max-width:1440px;width:100%;margin:0 auto;padding:0 clamp(20px,5vw,80px);box-sizing:border-box;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:12px 32px"><div style="display:flex;flex-direction:column;gap:10px"><span style="font-size:12px;font-weight:400;letter-spacing:.34em;text-transform:uppercase;color:var(--deep)">In their words · Play Store</span><h3 style="font-size:clamp(30px,3.6vw,56px);line-height:.95;letter-spacing:-.04em;margin:0">What users say <span style="font-family:'Quicksand',sans-serif;font-weight:400;color:var(--acc)">out loud</span></h3></div><span style="font-size:13px;color:var(--mid)">Hover to pause</span></div>
+    <div style="overflow:hidden;padding:8px 0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)">{{ reviews }}</div>
+  </div>
+  <div style="max-width:1440px;margin:0 auto;padding:0 clamp(20px,5vw,80px)">
+    <div style="display:flex;flex-wrap:wrap;gap:16px 40px;align-items:flex-end;justify-content:space-between;margin-bottom:24px">
+      <div style="display:flex;flex-direction:column;gap:10px"><span style="font-size:12px;font-weight:400;letter-spacing:.34em;text-transform:uppercase;color:var(--deep)">Emotional journey · participation stage</span><h3 style="font-size:clamp(30px,3.6vw,56px);line-height:.95;letter-spacing:-.04em;margin:0">The like is the peak. <span style="font-family:'Quicksand',sans-serif;font-weight:400;color:var(--acc)">The date is the cliff.</span></h3></div>
+      <div style="display:flex;gap:6px;padding:6px"><sc-for list="{{ emoTabs }}" as="t" hint-placeholder-count="3"><button onClick="{{ t.pick }}" style="cursor:pointer;padding:10px 18px;font:400 13px 'Quicksand',sans-serif;letter-spacing:.1em;color:{{ t.fg }}">{{ t.t }}</button></sc-for></div>
+    </div>
+    <div style="display:flex;gap:24px;align-items:center;margin-bottom:20px;font-size:13px;color:var(--mid)"><span style="display:flex;align-items:center;gap:8px"><span style="width:24px;height:3px;background:var(--acc)"></span>Female</span><span style="display:flex;align-items:center;gap:8px"><span style="width:24px;height:0;border-top:2px dashed var(--ink)"></span>Male</span></div>
+    <div style="overflow-x:auto"><div style="min-width:760px">
+      <div style="position:relative;height:340px">
+        <div style="position:absolute;left:0;right:0;top:20%;border-top:1px solid rgba(243,234,246,.08)"></div>
+        <div style="position:absolute;left:0;right:0;top:50%;border-top:1px solid rgba(243,234,246,.14)"></div>
+        <div style="position:absolute;left:0;right:0;top:80%;border-top:1px solid rgba(243,234,246,.08)"></div>
+        <div style="position:absolute;left:0;top:calc(20% - 20px);font-size:11px;letter-spacing:.24em;color:var(--mid)">POSITIVE</div>
+        <div style="position:absolute;left:0;top:calc(50% - 20px);font-size:11px;letter-spacing:.24em;color:var(--mid)">NEUTRAL</div>
+        <div style="position:absolute;left:0;top:calc(80% - 20px);font-size:11px;letter-spacing:.24em;color:var(--mid)">NEGATIVE</div>
+        <div style="position:absolute;top:0;bottom:0;left:{{ emoCur.left }};width:1px;background:linear-gradient(to bottom,transparent,rgba(201,139,217,.6),transparent);transition:left .45s cubic-bezier(.2,.8,.2,1)"></div>
+        <svg viewBox="0 0 1000 400" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%">
+          <path d="{{ fPath }}" style="fill:none;stroke:var(--acc);stroke-width:3;vector-effect:non-scaling-stroke;opacity:{{ fOp }};transition:opacity .4s"></path>
+          <path d="{{ mPath }}" style="fill:none;stroke:var(--ink);stroke-width:2;stroke-dasharray:6 6;vector-effect:non-scaling-stroke;opacity:{{ mOp }};transition:opacity .4s"></path>
+        </svg>
+        <sc-for list="{{ emoPts }}" as="p" hint-placeholder-count="12">
+          <span style="position:absolute;left:{{ p.left }};top:{{ p.top }};width:{{ p.size }};height:{{ p.size }};transform:translate(-50%,-50%);border-radius:50%;background:{{ p.bg }};box-shadow:0 0 0 4px #140d17;opacity:{{ p.op }};transition:all .35s"></span>
+        </sc-for>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));margin-top:16px;border-top:1px solid rgba(243,234,246,.14)"><sc-for list="{{ emoCols }}" as="c" hint-placeholder-count="6"><button onMouseEnter="{{ c.pick }}" onClick="{{ c.pick }}" style="background:none;border:0;cursor:pointer;padding:16px 8px 0;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;font-family:inherit;color:{{ c.fg }};transition:color .3s"><span style="font-size:14px">{{ c.t }}</span><span style="display:flex;flex-direction:column;gap:4px;font-size:12px;line-height:1.3;opacity:{{ c.op }};transition:opacity .35s"><span style="color:var(--acc)">{{ c.f }}</span><span style="color:var(--ink)">{{ c.m }}</span></span></button></sc-for></div>
+    </div></div>
+  </div>
+</section>
+
+<div data-reveal="" data-screen-label="Thread · 11 Where it breaks" style="position:relative;z-index:1;max-width:1440px;margin:0 auto;padding:clamp(16px,2vw,32px) clamp(20px,5vw,80px) clamp(8px,1vw,16px);box-sizing:border-box;display:flex;flex-direction:column;gap:20px"><span aria-hidden="true" style="display:block;width:2px;height:clamp(32px,3vw,48px);background:linear-gradient(to bottom,transparent,var(--acc))"></span><p style="margin:0;max-width:30ch;font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;letter-spacing:0;font-size:clamp(26px,2.8vw,42px);line-height:1.15;color:var(--acc2);text-wrap:balance">Those worries surface where the service breaks.</p></div>
+<!-- 11 BREAKDOWNS -->
+<section data-screen-label="11 Where it breaks" style="position:relative;z-index:1;padding:clamp(24px,3vw,48px) 0 clamp(40px,5vw,72px)">
+  <div style="max-width:1440px;margin:0 auto;padding:0 clamp(20px,5vw,80px)">
+    <div data-reveal="" style="display:flex;flex-direction:column;gap:14px;margin-bottom:40px"><span style="font-size:12px;font-weight:400;letter-spacing:.34em;text-transform:uppercase;color:var(--deep)">Fail points → opportunities</span><h2 style="font-size:clamp(44px,6.4vw,104px);line-height:.9;letter-spacing:-.05em;margin:0;font-weight:800">Where the service <span style="font-family:'Quicksand',sans-serif;font-weight:400;color:var(--acc);position:relative;display:inline-block">breaks down</span></h2></div>
+    <div style="display:flex;flex-direction:column;gap:clamp(32px,4vw,56px)">
+      <div style="overflow-x:auto"><div style="min-width:720px;display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:clamp(10px,1.4vw,20px);align-items:end;height:300px;border-bottom:1px solid rgba(243,234,246,.2)">
+        <sc-for list="{{ breaks }}" as="b" hint-placeholder-count="8">
+          <button onMouseEnter="{{ b.enter }}" onClick="{{ b.enter }}" aria-label="{{ b.t }}" style="height:100%;background:none;border:0;padding:0;cursor:pointer;display:flex;flex-direction:column;justify-content:flex-end;align-items:stretch;gap:10px;font-family:inherit;color:{{ b.fg }};transition:color .35s">
+            <span style="font-size:clamp(18px,1.8vw,26px);letter-spacing:-.03em;text-align:left">{{ b.v }}</span>
+            <span style="display:block;height:{{ b.h }};border-radius:10px 10px 0 0;background:{{ b.bg }};transition:background .35s,height .6s cubic-bezier(.2,.8,.2,1)"></span>
+          </button>
+        </sc-for>
+      </div>
+      <div style="min-width:720px;display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:clamp(10px,1.4vw,20px);margin-top:12px">
+        <sc-for list="{{ breaks }}" as="b" hint-placeholder-count="8"><span onMouseEnter="{{ b.enter }}" style="font-size:13px;line-height:1.25;color:{{ b.fg }};cursor:pointer;transition:color .35s">{{ b.t }}</span></sc-for>
+      </div></div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:24px clamp(32px,5vw,80px);align-items:start;padding-top:clamp(24px,3vw,40px);border-top:1px solid rgba(243,234,246,.12)">
+        <div style="display:flex;flex-direction:column;gap:10px"><span style="font-size:11px;letter-spacing:.3em;color:var(--mid)">WHAT BREAKS</span><span style="font-size:clamp(28px,3vw,44px);letter-spacing:-.03em;line-height:1">{{ brkSel.v }} · {{ brkSel.t }}</span><span style="font-size:15px;color:var(--mid);max-width:44ch">{{ brkSel.d }}</span></div>
+        <div style="display:flex;flex-direction:column;gap:10px"><span style="font-size:11px;letter-spacing:.3em;color:var(--acc)">WHAT WE BUILD</span><span style="font-family:'Quicksand',sans-serif;font-size:clamp(26px,2.8vw,40px);line-height:1.1;color:var(--acc2);text-wrap:pretty">{{ brkSel.o }}</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div data-reveal="" data-screen-label="Thread · 12 Research tells us" style="position:relative;z-index:1;max-width:1440px;margin:0 auto;padding:clamp(16px,2vw,32px) clamp(20px,5vw,80px) clamp(8px,1vw,16px);box-sizing:border-box;display:flex;flex-direction:column;gap:20px"><span aria-hidden="true" style="display:block;width:2px;height:clamp(32px,3vw,48px);background:linear-gradient(to bottom,transparent,var(--acc))"></span><p style="margin:0;max-width:30ch;font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;letter-spacing:0;font-size:clamp(26px,2.8vw,42px);line-height:1.15;color:var(--acc2);text-wrap:balance">Ninety conversations later, the picture was clear.</p></div>
+<!-- 12 INSIGHTS -->
+<section data-screen-label="12 Research tells us" style="position:relative;z-index:1;padding:clamp(24px,3vw,48px) 0 clamp(40px,5vw,72px)">
+  <div style="max-width:1440px;margin:0 auto;padding:0 clamp(20px,5vw,80px)">
+    <div data-reveal="" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:24px 72px;align-items:end;margin-bottom:48px">
+      <div style="display:flex;flex-direction:column;gap:14px"><span style="font-size:12px;font-weight:400;letter-spacing:.34em;text-transform:uppercase;color:var(--deep)">Synthesis · n=90</span><h2 style="font-size:clamp(34px,4vw,64px);line-height:1;letter-spacing:-.04em;margin:0;font-weight:800;text-wrap:balance">What the research <span style="font-family:'Quicksand',sans-serif;font-weight:400;color:var(--acc)">tells us…</span></h2></div>
+      <p style="margin:0;max-width:60ch;font-size:16px;text-wrap:pretty">Hinge is perceived as a relationship-oriented platform that offers hope, emotional reassurance, and opportunities for meaningful social connection. It also serves as a space for emotional support, exploration, and meeting new people during periods of loneliness, boredom, or curiosity. The moderate satisfaction score suggests that while the core value proposition resonates, friction points throughout the service journey impact the overall experience.</p>
+    </div>
+    <div style="border-top:1px solid rgba(243,234,246,.14)">
+      <sc-for list="{{ insights }}" as="i" hint-placeholder-count="6">
+        <button onMouseEnter="{{ i.pick }}" onClick="{{ i.pick }}" style="width:100%;background:none;border:0;border-bottom:1px solid rgba(243,234,246,.14);padding:22px 0;cursor:pointer;text-align:left;font-family:inherit;color:var(--ink);display:grid;grid-template-columns:minmax(90px,140px) minmax(0,1fr) minmax(0,1.1fr);gap:8px 32px;align-items:center">
+          <span style="font-size:clamp(30px,3vw,44px);letter-spacing:-.04em;line-height:1;color:{{ i.nc }};transition:color .35s">{{ i.v }}</span>
+          <span style="display:flex;flex-direction:column;gap:6px"><span style="font-size:11px;letter-spacing:.28em;color:var(--mid)">{{ i.k }}</span><span style="font-size:clamp(17px,1.5vw,21px);line-height:1.25;opacity:{{ i.to }};transition:opacity .35s">{{ i.t }}</span></span>
+          <span style="font-size:14px;line-height:1.5;color:var(--mid);opacity:{{ i.op }};transition:opacity .4s">{{ i.d }}</span>
+        </button>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- DELETE RITUAL -->
+<section id="delete" ref="{{ chatRef }}" data-screen-label="Interlude · Delete Hinge" style="position:relative;z-index:2;min-height:100vh;overflow:hidden;background:radial-gradient(900px circle at 70% 50%,#3b2444 0%,#1d1420 62%);color:#f6efeb;display:flex;align-items:center">
+  <div style="max-width:1440px;width:100%;margin:0 auto;padding:clamp(96px,12vw,160px) clamp(20px,5vw,80px);box-sizing:border-box;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:56px 80px;align-items:center">
+    <div style="display:flex;flex-direction:column;gap:26px">
+      <span style="font-size:12px;font-weight:400;letter-spacing:.34em;text-transform:uppercase;color:#c98bd9">The end of phase one · Hinge's own promise</span>
+      <sc-if value="{{ delNotDone }}" hint-placeholder-val="{{ true }}">
+        <h2 style="font-size:clamp(64px,9vw,156px);line-height:.82;letter-spacing:-.065em;margin:0;font-weight:800">Designed to be <span style="font-family:'Quicksand',sans-serif;font-weight:400;letter-spacing:-.02em;color:#c98bd9;position:relative;display:inline-block">deleted.</span></h2>
+        <p style="margin:0;max-width:40ch;font-size:clamp(18px,1.5vw,22px);line-height:1.4;color:#e6d9ea">Hinge counts success by the people who leave. So go ahead: press and hold the icon, the way you would on your phone.</p>
+      </sc-if>
+      <sc-if value="{{ delDone }}" hint-placeholder-val="{{ false }}">
+        <h2 style="font-size:clamp(64px,9vw,156px);line-height:.82;letter-spacing:-.065em;margin:0;font-weight:800">Deleted. <span style="font-family:'Quicksand',sans-serif;font-weight:400;letter-spacing:-.02em;color:#ff914d;position:relative;display:inline-block">Now what?</span></h2>
+        <p style="margin:0;max-width:40ch;font-size:clamp(18px,1.5vw,22px);line-height:1.4;color:#e6d9ea">Leaving a dating app is one tap. Finding someone to talk to at 1:47 AM is not. That gap is where the research went next.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:12px"><a href="#next-phase" style="display:flex;align-items:center;gap:10px;padding:14px 26px;border-radius:999px;background:#c98bd9;color:#1a1220;text-decoration:none;font-weight:400;font-size:15px;letter-spacing:.02em;transition:background .25s" style-hover="background:#e2b6ee">See what we found ↓</a><button onClick="{{ delReset }}" style="padding:14px 26px;border-radius:999px;background:transparent;border:1px solid rgba(243,234,246,.25);color:#f3eaf6;font:400 15px 'Quicksand',sans-serif;cursor:pointer;transition:border-color .25s,color .25s" style-hover="border-color:#c98bd9;color:#c98bd9">↺ Reinstall</button></div>
+      </sc-if>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:22px">
+      <div ref="{{ phoneRef }}" style="position:relative;width:min(320px,82vw);aspect-ratio:9/18.5;border-radius:48px;border:2px solid rgba(246,239,235,.22);background:linear-gradient(170deg,#4a2857 0%,#2a1d31 55%,#1d1420 100%);box-shadow:0 60px 120px rgba(0,0,0,.5);overflow:hidden;box-sizing:border-box;padding:18px 22px 28px;display:flex;flex-direction:column;gap:30px;user-select:none;touch-action:manipulation">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:4px 10px 0;font-size:14px;font-weight:400"><span>1:47</span><span style="width:84px;height:24px;border-radius:999px;background:#000"></span><span style="font-size:11px;letter-spacing:.1em">●●● 12%</span></div>
+        <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px 16px">
+          <sc-for list="{{ delTiles }}" as="t" hint-placeholder-count="20">
+            <div data-hinge="{{ t.isH }}" onPointerDown="{{ t.down }}" onPointerUp="{{ t.up }}" onPointerLeave="{{ t.up }}" onContextMenu="{{ t.ctx }}" style="position:relative;aspect-ratio:1;border-radius:24%;background:{{ t.bg }};opacity:{{ t.op }};transform:scale({{ t.sc }});display:flex;align-items:center;justify-content:center;cursor:{{ t.cur }};transition:opacity .6s, transform .6s cubic-bezier(.2,.8,.2,1.3);animation:{{ t.anim }}">
+              <span style="font-family:'Quicksand',sans-serif;font-size:clamp(28px,3vw,38px);line-height:1;color:#2a1d31">{{ t.label }}</span>
+              <sc-if value="{{ t.x }}" hint-placeholder-val="{{ false }}"><button onClick="{{ t.onX }}" aria-label="Delete Hinge" style="position:absolute;left:-9px;top:-9px;width:26px;height:26px;border-radius:50%;border:0;background:#f6efeb;color:#1d1420;font:400 16px/1 'Quicksand',sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;box-shadow:0 4px 12px rgba(0,0,0,.35)">×</button></sc-if>
+            </div>
+          </sc-for>
+        </div>
+        <div aria-hidden="{{ chatGone }}" style="position:absolute;inset:0;z-index:3;border-radius:46px;background:#17101c;display:flex;flex-direction:column;padding:18px 0 0;box-sizing:border-box;opacity:{{ chatO }};transform:{{ chatT }};pointer-events:{{ chatPE }};transition:opacity .8s ease,transform .9s cubic-bezier(.6,0,.2,1)">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:4px 32px 0;font-size:14px"><span></span><span style="width:84px;height:24px;border-radius:999px;background:#000"></span><span style="font-size:11px;letter-spacing:.1em">●●● 12%</span></div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:2px;margin-top:22px"><span style="font-size:13px;color:rgba(243,234,246,.7)">{{ lockDay }}</span><span style="font-size:64px;line-height:1;letter-spacing:-.03em;font-weight:300">{{ lockTime }}</span></div>
+          <div style="flex:1;display:flex;flex-direction:column;gap:8px;padding:22px 12px 0;overflow:hidden">
+            <sc-for list="{{ notifs }}" as="n" hint-placeholder-count="3">
+              <div style="display:flex;gap:10px;align-items:flex-start;padding:11px 12px;border-radius:18px;background:rgba(243,234,246,.1);backdrop-filter:blur(12px);opacity:{{ n.op }};animation:bubIn .5s cubic-bezier(.2,.8,.2,1.2) both;transition:opacity .6s">
+                <span style="width:30px;height:30px;flex:none;border-radius:8px;background:#f3eaf6;color:#1a1220;display:flex;align-items:center;justify-content:center;font-family:'Quicksand',sans-serif;font-size:16px">H</span>
+                <span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:2px"><span style="display:flex;justify-content:space-between;gap:8px;font-size:11px;color:rgba(243,234,246,.6)"><span>{{ n.a }}</span><span>{{ n.w }}</span></span><span style="font-size:13px;line-height:1.3;color:#f3eaf6">{{ n.t }}</span></span>
+              </div>
+            </sc-for>
+          </div>
+          <div style="padding:14px 22px 34px;text-align:center;font-family:'Quicksand',sans-serif;font-size:15px;line-height:1.35;color:var(--acc2);min-height:42px;opacity:{{ lockEndO }};transition:opacity 1s ease">Two weeks later, the app is the only one still texting.</div>
+        </div>
+        <sc-if value="{{ delAsk }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;background:rgba(20,12,24,.45);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;padding:28px">
+            <div style="width:100%;border-radius:22px;background:rgba(246,239,235,.94);color:#1d1420;display:flex;flex-direction:column;overflow:hidden;text-align:center">
+              <div style="padding:22px 20px 18px;display:flex;flex-direction:column;gap:6px"><strong style="font-weight:400;font-size:17px">Delete “Hinge”?</strong><span style="font-size:14px;line-height:1.35">Deleting this app means it worked.</span></div>
+              <button onClick="{{ delConfirm }}" style="padding:14px;border:0;border-top:1px solid rgba(29,20,32,.15);background:transparent;color:#ff3131;font:400 17px 'Quicksand',sans-serif;cursor:pointer" style-hover="background:rgba(255,49,49,.08)">Delete App</button>
+              <button onClick="{{ delCancel }}" style="padding:14px;border:0;border-top:1px solid rgba(29,20,32,.15);background:transparent;color:#1d1420;font:500 17px 'Quicksand',sans-serif;cursor:pointer" style-hover="background:rgba(29,20,32,.06)">Keep swiping</button>
+            </div>
+          </div>
+        </sc-if>
+        <div style="position:absolute;left:50%;bottom:10px;width:120px;height:5px;margin-left:-60px;border-radius:999px;background:rgba(246,239,235,.6)"></div>
+      </div>
+      <span style="font-family:'Quicksand',sans-serif;font-size:22px;color:#c98bd9;min-height:1.2em">{{ delHint }}</span>
+    </div>
+  </div>
+</section>
+
+<!-- PHASE TWO HANDOFF -->
+<section id="next-phase" ref="{{ npRef }}" data-screen-label="Next phase" style="position:relative;z-index:2;padding:clamp(120px,14vw,220px) clamp(20px,5vw,80px);display:flex;flex-direction:column;align-items:center;text-align:center;gap:28px">
+  <span aria-hidden="true" style="display:block;width:1px;height:clamp(64px,8vw,120px);background:linear-gradient(to bottom,transparent,#c98bd9)"></span>
+  <span style="font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:#c98bd9">End of phase one</span>
+  <h2 style="margin:0;max-width:18ch;font-size:clamp(40px,5.6vw,88px);line-height:.98;letter-spacing:-.04em;font-weight:800;text-wrap:balance">Hinge ends here. <span style="font-family:'Quicksand',sans-serif;font-weight:400;background:linear-gradient(100deg,#c98bd9,#ff914d);-webkit-background-clip:text;background-clip:text;color:transparent">The story doesn’t.</span></h2>
+  <p style="margin:0;max-width:46ch;font-size:clamp(17px,1.5vw,21px);line-height:1.45;color:#e6d9ea;text-wrap:pretty">Phase one asked why people leave dating apps. Phase two asks where they go next, and what it would take for someone to feel they belong.</p>
+  <a href="../#work" style="margin-top:12px;display:flex;align-items:center;gap:14px;padding:16px 28px;border-radius:999px;background:linear-gradient(100deg,#c98bd9,#ff914d);color:#1a1220;text-decoration:none;font-size:16px;letter-spacing:.02em;transition:transform .3s cubic-bezier(.2,.8,.2,1.3),box-shadow .3s" style-hover="transform:translateY(-3px);box-shadow:0 16px 40px rgba(255,145,77,.3)">Back to work <span style="font-size:18px">→</span></a>
+</section>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;motion&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Full&quot;,&quot;Reduced&quot;],&quot;default&quot;:&quot;Full&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Experience&quot;},&quot;blobs&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Experience&quot;}}">
+class Component extends DCLogic {
+  state = { eraI: 4, lens: 0, age: 23, conc: 0, hw: 'be deleted', ht: 0, ready: !!window.PORTFOLIO_DATA, pillar: 0, col: 0, ring: 0, deck: 0, liked: [], emoG: 'Both', brk: 0, chat: 0, dim: 0, arch: 0, grp: 2, prof: 1, lvl: 0, bp: -1, stB: 4, playing: true, del: 0, gate: true, gOff: 0, gOut: false, closeOn: false, npOn: false };
+  heroRef = React.createRef(); gateRef = React.createRef(); clkRef = React.createRef(); clkLab = React.createRef();
+  phoneRef = React.createRef(); netRef = React.createRef(); netLab = React.createRef();
+  rootRef = React.createRef(); bridgeRef = React.createRef(); jWrapRef = React.createRef(); jTrackRef = React.createRef(); walkerRef = React.createRef(); compRef = React.createRef(); thLine = React.createRef(); meterA = React.createRef(); meterB = React.createRef(); meterLab = React.createRef();
+  progRef = React.createRef(); chatRef = React.createRef(); npRef = React.createRef(); closeRef = React.createRef(); cardRef = React.createRef(); curRef = React.createRef(); curLab = React.createRef();
+  H = { bg: '#140d17', ink: '#f3eaf6', acc: '#c98bd9', acc2: '#e2b6ee', soft: '#2a1d31', deep: '#d9a8e6', mid: '#b3a2ba' };
+  B = { bg: '#fff6f1', ink: '#333333', acc: '#ff3131', acc2: '#ff914d', soft: '#ffe2d4', deep: '#c42323', mid: '#6f6260' };
+
+  get reduced() { return (this.props.motion ?? 'Full') === 'Reduced'; }
+
+  componentDidMount() {
+    const npTry = (n = 0) => { const el = this.npRef.current; if (!window.IntersectionObserver) { this.setState({ npOn: true }); return; } if (!el) { if (n < 100) setTimeout(() => npTry(n + 1), 200); return; } this.npIO = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) this.setState({ npOn: true }); else if (en.boundingClientRect.top > 0) this.setState({ npOn: false }); }), { threshold: .35 }); this.npIO.observe(el); }; npTry();
+    const clTry = (n = 0) => { const el = this.closeRef.current; if (!window.IntersectionObserver) return; if (!el) { if (n < 100) setTimeout(() => clTry(n + 1), 200); return; } this.clIO = new IntersectionObserver(es => es.forEach(en => { clearTimeout(this.clT); if (en.isIntersecting) this.clT = setTimeout(() => this.setState({ closeOn: true }), 1800); else this.setState({ closeOn: false }); }), { threshold: .55 }); this.clIO.observe(el); }; clTry();
+    this.preImgs = ['r14', 'r15', 'r16', 'r12', 'r21', 'r28', 'r23', 'r17'].map(n => { const im = new Image(); im.src = `assets/bh/${n}-card.png`; im.decode && im.decode().catch(() => {}); return im; });
+    if (!this.state.ready) this.poll = setInterval(() => { if (window.PORTFOLIO_DATA) { clearInterval(this.poll); this.setState({ ready: true }); } }, 80);
+    this.onScroll = () => { if (!this.raf) this.raf = requestAnimationFrame(() => { this.raf = 0; this.tick(); }); };
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    window.addEventListener('resize', this.onScroll);
+    this.io = new IntersectionObserver(es => es.forEach(en => {
+      if (!en.isIntersecting) return;
+      const el = en.target; this.io.unobserve(el);
+      if (el.hasAttribute('data-reveal')) { el.style.opacity = '1'; el.style.transform = 'none'; }
+      if (el.hasAttribute('data-count')) this.count(el);
+      if (el === this.chatRef.current && !this.state.chat) this.playChat();
+    }), { threshold: 0.12 });
+    this.wire(); this.tick();
+    if (!this.reduced) this.typeLoop();
+    this.fine = matchMedia('(pointer:fine)').matches;
+    if (false) { this.cur = { x: innerWidth / 2, y: innerHeight / 2, tx: innerWidth / 2, ty: innerHeight / 2 };
+      const loop = () => { const c = this.cur, el = this.curRef.current; c.x += (c.tx - c.x) * 0.2; c.y += (c.ty - c.y) * 0.2;
+        if (el) el.style.transform = 'translate3d(' + c.x.toFixed(1) + 'px,' + c.y.toFixed(1) + 'px,0)'; const k = this.comp || (this.comp = { x: c.x, y: c.y, rest: 0 }); k.x += (c.x - k.x) * 0.045; k.y += (c.y - k.y) * 0.045;
+        const dist = Math.hypot(c.x - k.x, c.y - k.y), cp = this.compRef.current, ln = this.thLine.current, near = dist < 14;
+        if (cp) { cp.style.transform = 'translate3d(' + k.x.toFixed(1) + 'px,' + k.y.toFixed(1) + 'px,0)'; const ct = near ? '' : 'someone'; if (cp.firstChild.textContent !== ct) cp.firstChild.textContent = ct; }
+        if (ln) { ln.setAttribute('x1', c.x.toFixed(1)); ln.setAttribute('y1', c.y.toFixed(1)); ln.setAttribute('x2', k.x.toFixed(1)); ln.setAttribute('y2', k.y.toFixed(1)); ln.style.opacity = near ? '0' : String(Math.min(.7, dist / 160)); }
+        this.curRaf = requestAnimationFrame(loop); };
+      this.curRaf = requestAnimationFrame(loop); }
+    document.documentElement.style.overflow = 'hidden'; window.scrollTo(0, 0);
+    this.onKey = e => { if (this.state.gate && !this.state.gOut) this.openGate(); };
+    window.addEventListener('keydown', this.onKey);
+    if (!this.reduced) this.heroRaf = requestAnimationFrame(this.heroLoop);
+    this.fxRaf = requestAnimationFrame(this.fxLoop);
+    this.fxT = setTimeout(() => { this.setupReveal(); this.motion2(); }, 1500);
+    this.t0 = document.title || 'Hinge to Belong';
+    this.onVis = () => { clearTimeout(this.visT); if (document.hidden) document.title = '♥ don\'t ghost us'; else { document.title = 'you came back ♥'; this.visT = setTimeout(() => { document.title = this.t0; }, 2200); } };
+    document.addEventListener('visibilitychange', this.onVis);
+    if (!this.reduced) this.netRaf = requestAnimationFrame(this.netLoop);
+    this.dimT = setInterval(() => { if (!this.dimHold && !this.reduced) this.setState(s => ({ dim: (s.dim + 1) % 8 })); }, 3400);
+  }
+  componentDidUpdate(pp, ps) { this.wire(); if (ps && ps.eraI !== this.state.eraI) { const el = this.eraPathRef.current; if (el) { el.style.transition = 'none'; el.style.opacity = '0'; el.getBoundingClientRect(); el.style.transition = 'opacity .8s ease .7s'; el.style.opacity = '1'; } } }
+  eraPathRef = React.createRef();
+  eraScene(e) {
+    let s = 7 + e * 13; const R = () => (s = (s * 16807) % 2147483647) / 2147483647;
+    const N = 64, nodes = [], path = [];
+    const put = (x, y, o) => nodes.push({ x, y, w: 6, h: 6, r: '50%', o: .45, rot: 0, ...o });
+    if (e === 0) { for (let i = 0; i < 6; i++) { const a = i / 6 * Math.PI * 2 - Math.PI / 2; put(500 + Math.cos(a) * 80, 160 + Math.sin(a) * 70, { w: 12, h: 12, o: .7 }); } path.push(4, 2); }
+    else if (e === 1) { for (let r = 0; r < 3; r++) for (let c = 0; c < 4; c++) put(380 + c * 80, 100 + r * 60, { w: 26, h: 18, r: '0', o: .5 }); path.push(5); }
+    else if (e === 2) { for (let c = 0; c < 4; c++) for (let r = 0; r < 7; r++) put(320 + c * 120, 70 + r * 30, { w: 90, h: 3, r: '0', o: .4 }); path.push(17); }
+    else if (e === 3) { for (let r = 0; r < 6; r++) for (let c = 0; c < 10; c++) put(275 + c * 50, 85 + r * 30, { w: 7, h: 7, r: '0', o: .35 }); path.push(2, 12, 15, 25, 36, 47); }
+    else if (e === 4) { for (let i = 0; i < 64; i++) { const x = 180 + i * 10, k = i === 50; put(x, k ? 160 : 160 + (R() < .5 ? -1 : 1) * (30 + R() * 110), { w: 10, h: 14, r: '2px', o: k ? 1 : .22, rot: k ? 0 : (R() - .5) * 70 }); } path.push(50); }
+    else { for (let i = 0; i < 64; i++) put(150 + R() * 700, 25 + R() * 270, { w: 3 + R() * 6, h: 0, o: .3 + R() * .4 }); nodes.forEach(n => n.h = n.w); const byX = nodes.map((n, i) => i).sort((a, b) => nodes[a].x - nodes[b].x); for (let i = 3; i < 64; i += 7) path.push(byX[i]); }
+    const lit = new Set(path);
+    const out = [];
+    for (let i = 0; i < N; i++) { const n = nodes[i]; if (!n) { out.push({ l: '50%', t: '50%', w: 0, h: 0, r: '50%', o: 0, bg: 'var(--ink)', sh: 'none', rot: 0, dl: 0 }); continue; }
+      const L = lit.has(i); out.push({ l: n.x / 10 + '%', t: n.y / 3.2 + '%', w: L ? Math.max(n.w, 10) : n.w, h: L ? Math.max(n.h, 10) : n.h, r: n.r, o: L ? 1 : n.o, bg: L ? 'var(--acc)' : 'var(--ink)', sh: L ? '0 0 18px 4px rgba(201,139,217,.6)' : 'none', rot: n.rot, dl: (i % 16) * .015 }); }
+    const pts = [[30, 160], ...path.map(i => [nodes[i].x, nodes[i].y]), [970, 160]].map(q => q[0].toFixed(1) + ',' + q[1].toFixed(1)).join(' ');
+    return { out, pts };
+  }
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.onScroll); window.removeEventListener('resize', this.onScroll);
+    clearInterval(this.poll); clearInterval(this.dimT); clearInterval(this.orbT); clearInterval(this.bT); cancelAnimationFrame(this.netRaf); cancelAnimationFrame(this.heroRaf); cancelAnimationFrame(this.fxRaf); clearTimeout(this.fxT); if (this.hio) this.hio.disconnect(); if (this.inkIO) this.inkIO.disconnect(); window.removeEventListener('keydown', this.onKey); document.documentElement.style.overflow = ''; clearTimeout(this.holdT); clearTimeout(this.visT); document.removeEventListener('visibilitychange', this.onVis); if (this.t0) document.title = this.t0; clearTimeout(this.htm); cancelAnimationFrame(this.curRaf); (this.tm || []).forEach(clearTimeout); this.io && this.io.disconnect(); cancelAnimationFrame(this.m2raf); this.m2io && this.m2io.disconnect(); this.m2bar && this.m2bar.remove(); (this.nEls || []).forEach(n => n.remove()); window.removeEventListener('pointermove', this.nMove); window.removeEventListener('pointermove', this.nTrail); clearInterval(this.nShoot); window.removeEventListener('scroll', this.nScroll); cancelAnimationFrame(this.nRaf);
+  }
+  wire() {
+    const r = this.rootRef.current; if (!r || !this.io) return;
+    const red = this.reduced;
+    r.querySelectorAll('[data-reveal]:not([data-rv])').forEach(el => {
+      el.setAttribute('data-rv', '');
+      if (red || el.getBoundingClientRect().top < innerHeight) return;
+      el.style.opacity = '0'; el.style.transform = 'translateY(56px)';
+      el.style.transition = 'opacity 1s cubic-bezier(.2,.7,.1,1), transform 1s cubic-bezier(.2,.7,.1,1)';
+      this.io.observe(el);
+    });
+    r.querySelectorAll('[data-count]:not([data-cw])').forEach(el => { el.setAttribute('data-cw', ''); if (!red) this.io.observe(el); });
+    if (this.chatRef.current && !this.chatObs) { this.chatObs = true; if (red) this.setState({ chat: 4 }); else this.io.observe(this.chatRef.current); }
+    this.depthEls = r.querySelectorAll('[data-depth]');
+    this.parEls = r.querySelectorAll('[data-par],[data-px],[data-rot],[data-zoom]');
+    this.bandEls = r.querySelectorAll('[data-band]');
+    this.magEls = r.querySelectorAll('[data-magnet]');
+  }
+  count(el) {
+    const txt = el.getAttribute('data-count'); const m = txt.match(/^([^\d]*)([\d.]+)(.*)$/); if (!m) return;
+    const end = parseFloat(m[2]), dec = (m[2].split('.')[1] || '').length, t0 = performance.now(), dur = 1400;
+    const step = now => { const p = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+      el.textContent = p >= 1 ? txt : m[1] + (end * e).toFixed(dec) + m[3]; if (p < 1) requestAnimationFrame(step); };
+    requestAnimationFrame(step);
+  }
+  mix(a, b, t) {
+    const p = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
+    const A = p(a), Bc = p(b); return '#' + A.map((v, i) => Math.round(v + (Bc[i] - v) * t).toString(16).padStart(2, '0')).join('');
+  }
+  tick() {
+    const vh = innerHeight, cl = v => Math.max(0, Math.min(1, v)), root = this.rootRef.current; if (!root) return;
+    const b = this.bridgeRef.current;
+    if (b) {
+      const r = b.getBoundingClientRect(); const t = cl((vh * 0.6 - r.top) / (r.height * 0.75));
+      if (Number.isFinite(t) && t !== this.t) { this.t = t; for (const k in this.H) root.style.setProperty('--' + k, this.mix(this.H[k], this.B[k], t)); }
+    }
+    const w = this.jWrapRef.current, tr = this.jTrackRef.current;
+    if (w && tr) {
+      const r = w.getBoundingClientRect(); const p = cl(-r.top / Math.max(1, r.height - vh));
+      const vw = tr.parentElement.clientWidth; const max = Math.max(0, tr.scrollWidth - vw);
+      tr.style.transform = `translate3d(${-p * max}px,0,0)`;
+      if (this.walkerRef.current) this.walkerRef.current.style.transform = `translate3d(${p * Math.max(0, vw - 220)}px,0,0)`;
+    }
+    if (!this.reduced) {
+      (this.parEls || []).forEach(el => { const r = el.getBoundingClientRect(); if (r.bottom < -vh || r.top > vh * 2) return;
+        const c = Math.max(-1.2, Math.min(1.2, (r.top + r.height / 2 - vh / 2) / vh)); const d = el.dataset;
+        el.style.transform = 'translate3d(' + (c * (+d.px || 0)).toFixed(1) + 'px,' + (c * (+d.par || 0)).toFixed(1) + 'px,0) rotate(' + (c * (+d.rot || 0)).toFixed(2) + 'deg) scale(' + (1 + c * (+d.zoom || 0)).toFixed(3) + ')'; });
+      const v = scrollY - (this.lastY ?? scrollY); this.lastY = scrollY; const sk = Math.max(-14, Math.min(14, v * 0.25));
+      (this.bandEls || []).forEach(el => { const r = el.getBoundingClientRect(); if (r.bottom < -200 || r.top > vh + 200) return;
+        el.style.transform = 'translate3d(calc(-22% + ' + (r.top * (+el.dataset.band)).toFixed(1) + 'px),0,0) skewX(' + sk.toFixed(2) + 'deg)'; });
+      if (v) clearTimeout(this.skT); if (v) this.skT = setTimeout(() => { this.lastY = scrollY; this.tick(); }, 120);
+    }
+    const de = document.documentElement;
+    { const p = cl(scrollY / Math.max(1, de.scrollHeight - vh)), A = this.meterA.current, Bm = this.meterB.current, L = this.meterLab.current;
+      if (A && Bm) { const met = p > 0.97; A.style.left = (p * 50) + '%'; Bm.style.left = (100 - p * 50) + '%';
+        A.style.transform = Bm.style.transform = met ? 'scale(1.6)' : 'scale(1)'; Bm.style.background = met ? 'var(--acc)' : 'var(--acc2)';
+        if (L) { const t = met ? 'together' : p > 0.6 ? 'almost there' : 'someone'; if (L.textContent !== t) L.textContent = t; } } }
+    if (this.progRef.current) this.progRef.current.style.transform = `scaleX(${cl(scrollY / Math.max(1, de.scrollHeight - vh))})`;
+  }
+  onMove = e => {
+    this.mouse = { x: e.clientX, y: e.clientY };
+    if (this.reduced) return;
+    if (this.cur) { this.cur.tx = e.clientX; this.cur.ty = e.clientY; const el = this.curRef.current, lab = this.curLab.current;
+      if (el) { const t = e.target.closest ? e.target : null; const lc = t && t.closest('[data-cursor]'); const act = t && t.closest('a,button,input');
+        const text = act ? 'yes, this one' : (lc ? lc.dataset.cursor : 'you');
+        if (this.compRef.current) this.compRef.current.parentElement.style.opacity = '1'; el.style.opacity = '1';
+        if (lab && lab.textContent !== text) lab.textContent = text; } }
+    (this.magEls || []).forEach(m => { const r = m.getBoundingClientRect(); const dx = e.clientX - (r.left + r.width / 2), dy = e.clientY - (r.top + r.height / 2);
+      const near = Math.abs(dx) < r.width * 0.75 && Math.abs(dy) < r.height * 0.9; m.style.transition = 'translate .35s cubic-bezier(.2,.8,.2,1.3)'; m.style.translate = near ? (dx * 0.28).toFixed(1) + 'px ' + (dy * 0.35).toFixed(1) + 'px' : '0px 0px'; });
+    const S = e.target.closest ? e.target.closest('[data-spot]') : null;
+    if (this.spot && this.spot !== S) { this.spot.style.setProperty('--mx', '-999px'); this.spot.style.setProperty('--my', '-999px'); }
+    if (S) { const r = S.getBoundingClientRect(); S.style.setProperty('--mx', (e.clientX - r.left) + 'px'); S.style.setProperty('--my', (e.clientY - r.top) + 'px'); }
+    this.spot = S;
+    const x = e.clientX / innerWidth - 0.5, y = e.clientY / innerHeight - 0.5;
+    (this.depthEls || []).forEach(el => { const d = +el.dataset.depth || 0; el.style.translate = `${(x * d).toFixed(1)}px ${(y * d).toFixed(1)}px`; });
+    const L = e.target.closest ? e.target.closest('[data-lens]') : null;
+    if (this.lens && this.lens !== L) { const im = this.lens.querySelector('img'); if (im) im.style.transform = 'scale(1)'; }
+    if (L) { const r = L.getBoundingClientRect(), im = L.querySelector('img');
+      if (im) { im.style.transformOrigin = `${((e.clientX - r.left) / r.width * 100).toFixed(1)}% ${((e.clientY - r.top) / r.height * 100).toFixed(1)}%`; im.style.transform = 'scale(2.2)'; } }
+    this.lens = L;
+    const C = this.closeRef.current;
+    if (C && C.contains(e.target)) { const r = C.getBoundingClientRect(); C.style.setProperty('--mx', (e.clientX - r.left) + 'px'); C.style.setProperty('--my', (e.clientY - r.top) + 'px'); }
+  };
+  onLeave = () => { if (this.curRef.current) this.curRef.current.style.opacity = '0'; if (this.compRef.current) this.compRef.current.parentElement.style.opacity = '0'; if (this.lens) { const im = this.lens.querySelector('img'); if (im) im.style.transform = 'scale(1)'; this.lens = null; } };
+  openGate = () => { if (this.state.gOut) return; document.documentElement.style.overflow = ''; this.setState({ gOut: true, gOff: 0 }); setTimeout(() => this.setState({ gate: false }), 950); };
+  motion2() {
+    const root = this.rootRef.current; if (!root || this.reduced || !window.IntersectionObserver) return;
+    const E = 'cubic-bezier(.16,1,.3,1)';
+    const bar = document.createElement('div');
+    bar.style.cssText = 'position:fixed;left:0;top:0;height:3px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,#93529f,#c98bd9,#ff914d,#ff3131);z-index:80;pointer-events:none';
+    root.appendChild(bar); this.m2bar = bar;
+    const imgs = [...root.querySelectorAll('section img:not([data-nofx])')].filter(im => { const cs = getComputedStyle(im); return cs.position !== 'absolute' && im.getBoundingClientRect().width > 160 && !im.closest('#top'); });
+    const paras = [];
+    this.m2io = new IntersectionObserver(es => es.forEach(e => { if (!e.isIntersecting) return; const el = e.target; this.m2io.unobserve(el); el.getAnimations().forEach(an => { if (an.id === 'm2h') an.cancel(); });
+      if (el.tagName === 'IMG') {
+        el.animate([{ clipPath: 'inset(100% 0 0 0)', transform: 'scale(1.25)', filter: 'blur(6px)' }, { clipPath: 'inset(0 0 0 0)', transform: 'scale(1)', filter: 'blur(0)' }], { duration: 1500, easing: E, fill: 'backwards' });
+      } else {
+        const sib = [...el.parentElement.children].indexOf(el);
+        el.animate([{ opacity: 0, transform: 'translateY(40px)', filter: 'blur(8px)' }, { opacity: 1, transform: 'none', filter: 'blur(0)' }], { duration: 1100, delay: Math.min(sib, 5) * 90, easing: E, fill: 'backwards' });
+      } }), { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+    [...imgs, ...paras].forEach(el => { if (el.getBoundingClientRect().top > innerHeight) { el.animate([{ opacity: 0 }, { opacity: 0 }], { duration: 1, fill: 'forwards', id: 'm2h' }); this.m2io.observe(el); } });
+    this.night(root);
+    // velocity skew + progress
+    let lastY = scrollY, sk = 0; this.m2imgs = imgs;
+    const loop = () => { const y = scrollY, v = y - lastY; lastY = y; sk += (Math.max(-6, Math.min(6, v * 0.12)) - sk) * 0.12;
+      const max = document.documentElement.scrollHeight - innerHeight; bar.style.transform = 'scaleX(' + (max > 0 ? y / max : 0).toFixed(4) + ')';
+      if (Math.abs(sk) > 0.02 || this.m2sk) { this.m2sk = Math.abs(sk) > 0.02; for (const im of imgs) if (!im.matches(':hover')) im.style.transform = 'skewY(' + sk.toFixed(2) + 'deg)'; }
+      this.m2raf = requestAnimationFrame(loop); };
+    this.m2raf = requestAnimationFrame(loop);
+    // cursor tilt on images
+    if (matchMedia('(pointer:fine)').matches) {
+      imgs.forEach(im => { im.style.transition = 'transform .5s ' + E; im.style.willChange = 'transform';
+        im.addEventListener('pointermove', ev => { const r = im.getBoundingClientRect(), x = (ev.clientX - r.left) / r.width - .5, y = (ev.clientY - r.top) / r.height - .5;
+          im.style.transform = 'perspective(900px) rotateY(' + (x * 10).toFixed(2) + 'deg) rotateX(' + (-y * 10).toFixed(2) + 'deg) scale(1.03)'; });
+        im.addEventListener('pointerleave', () => { im.style.transform = 'none'; }); });
+    }
+  }
+  night(root) {
+    const fine = matchMedia('(pointer:fine)').matches;
+    const sky = document.createElement('div'); sky.setAttribute('aria-hidden', 'true');
+    sky.style.cssText = 'position:fixed;inset:0;z-index:0;pointer-events:none;transition:opacity .3s';
+    let seed = 11; const rnd = () => (seed = (seed * 9301 + 49297) % 233280) / 233280;
+    if (!document.getElementById('nightKf')) { const st = document.createElement('style'); st.id = 'nightKf'; st.textContent = '@keyframes nTw{0%,100%{opacity:.12}50%{opacity:.85}}'; document.head.appendChild(st); }
+    for (let i = 0; i < 140; i++) { const s = document.createElement('span'); const r = 1 + rnd() * 2;
+      s.style.cssText = 'position:absolute;left:' + (rnd() * 100).toFixed(2) + '%;top:' + (rnd() * 100).toFixed(2) + '%;width:' + r + 'px;height:' + r + 'px;border-radius:50%;background:#fff;animation:nTw ' + (2 + rnd() * 4).toFixed(1) + 's ease-in-out ' + (-rnd() * 5).toFixed(1) + 's infinite';
+      sky.appendChild(s); }
+    const sun = document.createElement('div'); sun.setAttribute('aria-hidden', 'true');
+    sun.style.cssText = 'position:fixed;left:50%;bottom:-60vw;width:90vw;height:90vw;margin-left:-45vw;border-radius:50%;background:radial-gradient(circle,rgba(255,241,220,.9) 0%,rgba(255,176,127,.55) 35%,rgba(255,145,77,0) 70%);z-index:0;pointer-events:none;opacity:0;transform:translateY(40%)';
+    const glow = document.createElement('div'); glow.setAttribute('aria-hidden', 'true');
+    glow.style.cssText = 'position:fixed;inset:0;z-index:55;pointer-events:none;mix-blend-mode:screen;background:radial-gradient(circle 280px at var(--nx,-999px) var(--ny,-999px),rgba(255,214,170,.12) 0%,rgba(255,214,170,.04) 45%,transparent 70%)';
+    root.appendChild(sky); root.appendChild(sun); root.appendChild(glow); this.nEls = [sky, sun, glow];
+    const T = [...root.querySelectorAll('section h2, section h3, section p, section img, section li, section figure')].filter(el => !el.closest('#top') && !el.closest('[aria-hidden="true"]') && el.getBoundingClientRect().width > 0);
+    T.forEach(el => { if (el.getBoundingClientRect().top < innerHeight * .6) return; if (el.style.opacity !== '' && el.style.opacity !== '1') return; el.dataset.nf = el.style.filter || ''; el.dataset.no = el.style.opacity || ''; el.setAttribute('data-dark', ''); el.dataset.nt = el.style.transition || ''; el.style.transition = (el.dataset.nt ? el.dataset.nt + ',' : '') + 'opacity 1.2s ease, filter 1.2s ease'; el.style.opacity = '.1'; el.style.filter = ((el.dataset.nf && el.dataset.nf !== 'none') ? el.dataset.nf + ' ' : '') + 'blur(2px)'; });
+    const lit = el => { el.removeAttribute('data-dark'); el.style.opacity = el.dataset.no; el.style.filter = el.dataset.nf; setTimeout(() => { el.style.transition = el.dataset.nt; }, 1300); };
+    let px = -999, py = -999;
+    const bridge = root.querySelector('#bridge');
+    const check = () => { this.nRaf = 0;
+      root.querySelectorAll('[data-dark]').forEach(el => { const r = el.getBoundingClientRect(); if (r.bottom < 0 || r.top > innerHeight) return;
+        const dx = Math.max(r.left - px, 0, px - r.right), dy = Math.max(r.top - py, 0, py - r.bottom);
+        if ((fine && Math.hypot(dx, dy) < 200) || r.top < innerHeight * .55) lit(el); });
+      if (bridge) { const b = bridge.getBoundingClientRect(), t = Math.max(0, Math.min(1, (innerHeight - b.top) / (b.height + innerHeight)));
+        sky.style.opacity = String(Math.max(0, 1 - t * 1.6));
+        sun.style.opacity = String(Math.sin(Math.PI * Math.min(1, t * 1.2)).toFixed(3));
+        sun.style.transform = 'translateY(' + (40 - t * 40).toFixed(1) + '%)'; } };
+    const sched = () => { if (!this.nRaf) this.nRaf = requestAnimationFrame(check); };
+    this.nMove = e => { px = e.clientX; py = e.clientY; glow.style.setProperty('--nx', px + 'px'); glow.style.setProperty('--ny', py + 'px'); sched(); };
+    this.nScroll = sched;
+    window.addEventListener('pointermove', this.nMove, { passive: true }); window.addEventListener('scroll', this.nScroll, { passive: true });
+    check();
+    // shooting stars
+    const shoot = () => { if (sky.style.opacity === '0') return; const s = document.createElement('span'), x = 10 + Math.random() * 70, y = Math.random() * 40;
+      s.style.cssText = 'position:absolute;left:' + x + '%;top:' + y + '%;width:140px;height:2px;background:linear-gradient(90deg,#fff,rgba(255,255,255,0));transform:rotate(-155deg);transform-origin:0 50%;border-radius:2px';
+      sky.appendChild(s); s.animate([{ transform: 'rotate(-155deg) translateX(0)', opacity: 0 }, { opacity: 1, offset: .15 }, { transform: 'rotate(-155deg) translateX(-420px)', opacity: 0 }], { duration: 1100, easing: 'ease-out' }).onfinish = () => s.remove(); };
+    this.nShoot = setInterval(shoot, 3800);
+    if (!fine) return;
+    // spark trail
+    let last = 0;
+    this.nTrail = e => { const now = performance.now(); if (now - last < 28) return; last = now;
+      const d = document.createElement('span'), sz = 3 + Math.random() * 4;
+      d.style.cssText = 'position:fixed;left:' + e.clientX + 'px;top:' + e.clientY + 'px;width:' + sz + 'px;height:' + sz + 'px;margin:-' + sz / 2 + 'px;border-radius:50%;background:' + (Math.random() > .5 ? '#ffd9b0' : '#c98bd9') + ';pointer-events:none;z-index:70;box-shadow:0 0 8px 2px rgba(255,200,150,.5)';
+      root.appendChild(d); d.animate([{ transform: 'translate(0,0) scale(1)', opacity: .9 }, { transform: 'translate(' + (Math.random() * 30 - 15) + 'px,' + (10 + Math.random() * 24) + 'px) scale(0)', opacity: 0 }], { duration: 800, easing: 'ease-out' }).onfinish = () => d.remove(); };
+    window.addEventListener('pointermove', this.nTrail, { passive: true });
+    // magnetic buttons & links, drifting headings
+    const mags = [...root.querySelectorAll('section button, section a')].filter(b => { const r = b.getBoundingClientRect(); return r.width > 0 && r.width < 360 && r.height < 120; });
+    mags.forEach(b => { b.addEventListener('pointermove', ev => { const r = b.getBoundingClientRect(); b.style.translate = ((ev.clientX - r.left - r.width / 2) * .25).toFixed(1) + 'px ' + ((ev.clientY - r.top - r.height / 2) * .3).toFixed(1) + 'px'; });
+      b.addEventListener('pointerleave', () => { b.style.translate = '0 0'; }); b.style.transition = (b.style.transition ? b.style.transition + ',' : '') + 'translate .35s cubic-bezier(.2,1.4,.4,1)'; });
+    root.querySelectorAll('section h2').forEach(t => { t.style.transition = (t.style.transition ? t.style.transition + ',' : '') + 'translate .6s cubic-bezier(.2,.8,.2,1), text-shadow .6s';
+      t.addEventListener('pointermove', ev => { const r = t.getBoundingClientRect(); t.style.translate = ((ev.clientX - r.left - r.width / 2) / r.width * 14).toFixed(1) + 'px ' + ((ev.clientY - r.top - r.height / 2) / r.height * 8).toFixed(1) + 'px'; t.style.textShadow = '0 0 40px rgba(255,200,150,.35)'; });
+      t.addEventListener('pointerleave', () => { t.style.translate = '0 0'; t.style.textShadow = ''; }); });
+  }
+  setupReveal() {
+    const root = this.rootRef.current; if (!root || this.reduced || !window.IntersectionObserver) return;
+    this.inkIO = new IntersectionObserver(es => es.forEach(e => { if (!e.isIntersecting) return; this.inkIO.unobserve(e.target); e.target.animate([{ strokeDashoffset: 1 }, { strokeDashoffset: 0 }], { duration: 900, delay: 650, easing: 'cubic-bezier(.6,0,.2,1)', fill: 'forwards' }); }), { threshold: 1 });
+    this.hio = new IntersectionObserver(es => es.forEach(e => { if (!e.isIntersecting) return; this.hio.unobserve(e.target);
+      e.target.animate([{ clipPath: 'inset(0 0 100% 0)', transform: 'translateY(.4em) skewY(4deg)' }, { clipPath: 'inset(-10% -10% -25% -10%)', transform: 'none' }], { duration: 1100, easing: 'cubic-bezier(.16,.84,.24,1)' }); }), { threshold: 0 });
+    root.querySelectorAll('svg[data-ink] path').forEach(p => this.inkIO.observe(p));
+    root.querySelectorAll('section h2:not([data-px])').forEach(el => { if (el.getBoundingClientRect().top > innerHeight) this.hio.observe(el); });
+  }
+  fxLoop = () => {
+    this.fxRaf = requestAnimationFrame(this.fxLoop);
+    const root = this.rootRef.current; if (!root) return; const vh = innerHeight; this.fxF = (this.fxF || 0) + 1;
+    if (!this.fxImgs || this.fxF % 120 === 0) {
+      const hero = this.heroRef.current;
+      this.fxImgs = [...root.querySelectorAll('section img:not([data-nofx])')].filter(im => !(hero && hero.contains(im))).map(im => { const o = (this.fxImgs || []).find(x => x.el === im); return o || { el: im, base: im.style.filter || '', g: 1 }; });
+      this.fxBig = [...root.querySelectorAll('[data-big]')]; this.fxSecs = [...root.querySelectorAll('section[data-screen-label]')];
+    }
+    if (document.hidden) return;
+    if (this.fxF % 6 === 3) for (const o of this.fxImgs) { const r = o.el.getBoundingClientRect(); if (r.bottom < -100 || r.top > vh + 100 || !r.height) continue;
+      const d = Math.abs((r.top + r.height / 2) - vh / 2) / (vh * .55); const g = Math.min(1, Math.max(0, d * d)); if (Math.abs(g - o.g) < .05) continue; o.g = g;
+      o.el.style.filter = ('grayscale(' + g.toFixed(2) + ') ' + o.base).trim(); }
+    if (!this.reduced) for (const el of this.fxBig) { const s = el.parentElement.getBoundingClientRect(); if (s.bottom < 0 || s.top > vh) continue; el.style.transform = 'translateY(' + ((s.top) * -.35).toFixed(1) + 'px)'; }
+    if (this.fxF % 6 === 0) { const se = document.scrollingElement, p = Math.min(1, Math.max(0, se.scrollTop / Math.max(1, se.scrollHeight - vh)));
+      const mins = (23 * 60 + Math.round(p * 8 * 60)) % 1440, hh = Math.floor(mins / 60), mm = mins % 60; const t = ((hh % 12) || 12) + ':' + String(mm).padStart(2, '0') + (hh < 12 ? ' AM' : ' PM');
+      if (this.clkRef.current && this.clkRef.current.textContent !== t) this.clkRef.current.textContent = t;
+      let lab = ''; for (const s of this.fxSecs) { const r = s.getBoundingClientRect(); if (r.top <= vh * .45 && r.bottom > vh * .45) { lab = s.getAttribute('data-screen-label'); break; } }
+      if (lab && this.clkLab.current && this.clkLab.current.textContent !== lab) this.clkLab.current.textContent = lab; }
+  };
+  heroLoop = () => {
+    this.heroRaf = requestAnimationFrame(this.heroLoop);
+    const sec = this.heroRef.current; if (!sec) return; const r = sec.getBoundingClientRect(); if (r.bottom < 0) return;
+    const m = this.mouse; const tx = m ? m.x - r.left : r.width * .72 + Math.sin(Date.now() / 1400) * r.width * .12, ty = m ? m.y - r.top : r.height * .58 + Math.cos(Date.now() / 1700) * r.height * .1;
+    this.hl = this.hl || { x: tx, y: ty }; this.hl.x += (tx - this.hl.x) * .12; this.hl.y += (ty - this.hl.y) * .12;
+    sec.style.setProperty('--hx', this.hl.x.toFixed(1) + 'px'); sec.style.setProperty('--hy', this.hl.y.toFixed(1) + 'px');
+    if (!this.mags) this.mags = [...sec.querySelectorAll('[data-mag]')].map(el => ({ el, x: 0, y: 0, r: 0 }));
+    const R = Math.max(140, r.width * .13);
+    for (const g of this.mags) { const b = g.el.getBoundingClientRect(); const cx = b.left + b.width / 2 - g.x, cy = b.top + b.height / 2 - g.y;
+      let txx = 0, tyy = 0, tr = 0; if (m) { const dx = cx - m.x, dy = cy - m.y, d = Math.hypot(dx, dy); if (d < R) { const k = (1 - d / R) ** 2 * 70; txx = dx / (d || 1) * k; tyy = dy / (d || 1) * k; tr = dx > 0 ? k * .3 : -k * .3; } }
+      g.x += (txx - g.x) * .16; g.y += (tyy - g.y) * .16; g.r += (tr - g.r) * .16;
+      g.el.style.transform = 'translate(' + g.x.toFixed(1) + 'px,' + g.y.toFixed(1) + 'px) rotate(' + g.r.toFixed(1) + 'deg)'; }
+  };
+  netLoop = () => {
+    this.netRaf = requestAnimationFrame(this.netLoop);
+    const cv = this.netRef.current, root = this.rootRef.current; if (!cv || !root) return;
+    const r = cv.getBoundingClientRect(); if (r.bottom < 0 || r.top > innerHeight || !r.width) return;
+    const dpr = Math.min(2, devicePixelRatio || 1), W = r.width, H = r.height;
+    if (!this.net || this.net.W !== W || this.net.H !== H) {
+      cv.width = W * dpr; cv.height = H * dpr; const N = Math.round(Math.min(170, Math.max(60, W * H / 13000))); const old = this.net ? this.net.nodes : [];
+      this.net = { W, H, N, f: 0, nodes: Array.from({ length: N }, (_, i) => ({ x: Math.random() * W, y: Math.random() * H, vx: (Math.random() - .5) * .3, vy: (Math.random() - .5) * .3, c: old[i] ? old[i].c : 0 })) };
+    }
+    const n = this.net; n.f++;
+    if (n.f % 30 === 1) { const cs = getComputedStyle(root); n.acc = cs.getPropertyValue('--acc').trim() || '#93529f'; n.ink = cs.getPropertyValue('--ink').trim() || '#2a1d31'; }
+    const ctx = cv.getContext('2d'); ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, W, H);
+    const m = this.mouse ? { x: this.mouse.x - r.left, y: this.mouse.y - r.top } : null, R = 150, L = 120;
+    let cnt = 0;
+    for (const p of n.nodes) {
+      p.x += p.vx; p.y += p.vy; if (p.x < 0 || p.x > W) p.vx *= -1; if (p.y < 0 || p.y > H) p.vy *= -1;
+      if (m) { const d = Math.hypot(m.x - p.x, m.y - p.y); if (d < R) { p.c = 1; p.x += (m.x - p.x) * 0.01; p.y += (m.y - p.y) * 0.01;
+        ctx.globalAlpha = (1 - d / R) * .55; ctx.strokeStyle = n.acc; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(m.x, m.y); ctx.lineTo(p.x, p.y); ctx.stroke(); } }
+      if (p.c) cnt++;
+    }
+    ctx.strokeStyle = n.acc; ctx.lineWidth = 1.2;
+    for (let i = 0; i < n.nodes.length; i++) { const a = n.nodes[i]; if (!a.c) continue;
+      for (let j = i + 1; j < n.nodes.length; j++) { const b = n.nodes[j]; if (!b.c) continue; const d = Math.hypot(a.x - b.x, a.y - b.y);
+        if (d < L) { ctx.globalAlpha = (1 - d / L) * .45; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke(); } } }
+    for (const p of n.nodes) { ctx.globalAlpha = p.c ? 1 : .22; ctx.fillStyle = p.c ? n.acc : n.ink; ctx.beginPath(); ctx.arc(p.x, p.y, p.c ? 3.2 : 2.2, 0, 6.2832); ctx.fill(); }
+    ctx.globalAlpha = 1;
+    const lab = this.netLab.current; if (lab && n.f % 10 === 0) { const t = cnt >= n.N ? 'everyone belongs somewhere.' : cnt ? cnt + ' of ' + n.N + ' no longer alone' : 'move around. bring people together.'; if (lab.textContent !== t) lab.textContent = t; }
+  };
+  delShatter() {
+    const root = this.rootRef.current; const tile = root && root.querySelector('[data-hinge="true"]'); if (!tile || this.reduced) return;
+    const r = tile.getBoundingClientRect(), cx = r.left + r.width / 2, cy = r.top + r.height / 2, cols = ['#f6efeb', '#c98bd9', '#93529f', '#ff914d', '#ff3131'];
+    for (let i = 0; i < 34; i++) { const s = document.createElement('span'), sz = 5 + Math.random() * 16;
+      s.style.cssText = 'position:fixed;left:' + (cx + (Math.random() - .5) * r.width) + 'px;top:' + (cy + (Math.random() - .5) * r.height) + 'px;width:' + sz + 'px;height:' + sz + 'px;background:' + cols[i % 5] + ';pointer-events:none;z-index:9998;border-radius:' + (i % 3 ? '2px' : '50%');
+      document.body.appendChild(s); const a = Math.random() * Math.PI * 2, d = 80 + Math.random() * 260, dx = Math.cos(a) * d, dy = Math.sin(a) * d - 120;
+      s.animate([{ transform: 'translate(0,0) rotate(0)', opacity: 1 }, { transform: 'translate(' + dx * .7 + 'px,' + dy * .7 + 'px) rotate(' + (Math.random() * 360) + 'deg)', opacity: 1, offset: .45 }, { transform: 'translate(' + dx + 'px,' + (dy + 420) + 'px) rotate(' + (Math.random() * 720) + 'deg)', opacity: 0 }], { duration: 1300 + Math.random() * 700, easing: 'cubic-bezier(.2,.6,.4,1)' }).onfinish = () => s.remove(); }
+    const sec = tile.closest('section'); if (sec) sec.animate([{ filter: 'none' }, { filter: 'hue-rotate(60deg) saturate(1.8)', offset: .2 }, { filter: 'invert(.12) hue-rotate(-30deg)', offset: .45 }, { filter: 'none' }], { duration: 520, easing: 'steps(6)' });
+    const ph = this.phoneRef.current; if (ph) ph.animate([{ transform: 'none' }, { transform: 'translateX(-8px) rotate(-1deg)' }, { transform: 'translateX(7px) rotate(1deg)' }, { transform: 'translateX(-4px)' }, { transform: 'none' }], { duration: 420 });
+  }
+  typeLoop() {
+    const words = ['be deleted', 'Belong.']; this.mode = 'hold';
+    const run = () => { const { hw, ht } = this.state, target = words[ht];
+      if (this.mode === 'hold') { this.mode = 'del'; this.htm = setTimeout(run, ht ? 3400 : 2400); return; }
+      if (this.mode === 'del') { if (hw.length) { this.setState({ hw: hw.slice(0, -1) }); this.htm = setTimeout(run, 50); return; }
+        this.mode = 'type'; this.setState({ ht: (ht + 1) % 2 }); this.htm = setTimeout(run, 320); return; }
+      if (hw.length < target.length) { this.setState({ hw: target.slice(0, hw.length + 1) }); this.htm = setTimeout(run, 95); return; }
+      this.mode = 'hold'; run(); };
+    this.htm = setTimeout(run, 600);
+  }
+  onBurst = e => {
+    if (this.reduced || (e.target.closest && e.target.closest('input'))) return;
+    const belong = (this.t || 0) > 0.5, sym = belong ? '✦' : '♥', cols = belong ? ['#ff3131', '#ff914d', '#333333'] : ['#93529f', '#c98bd9', '#683b78'];
+    for (let i = 0; i < 12; i++) { const s = document.createElement('span'); s.textContent = sym;
+      s.style.cssText = 'position:fixed;left:' + e.clientX + 'px;top:' + e.clientY + 'px;pointer-events:none;z-index:9998;font-size:' + (14 + Math.random() * 22) + 'px;color:' + cols[i % 3] + ';line-height:1;margin:-.5em 0 0 -.5em';
+      document.body.appendChild(s); const a = Math.random() * Math.PI * 2, d = 60 + Math.random() * 120;
+      s.animate([{ transform: 'translate(0,0) scale(.4) rotate(0deg)', opacity: 1 }, { transform: 'translate(' + Math.cos(a) * d + 'px,' + (Math.sin(a) * d - 40) + 'px) scale(1) rotate(' + (Math.random() * 120 - 60) + 'deg)', opacity: 0 }], { duration: 800 + Math.random() * 500, easing: 'cubic-bezier(.2,.8,.2,1)' }).onfinish = () => s.remove(); }
+  };
+  chatScript = [
+    { d: 'Monday', tm: '9:12', a: 'Hinge', w: 'Mon', t: 'It’s a match! You and Riya liked each other.' },
+    { d: 'Monday', tm: '9:40', a: 'Riya', w: 'Mon', t: 'okay, your chai prompt is elite' },
+    { d: 'Wednesday', tm: '11:05', a: 'Riya', w: 'Wed', t: 'sorry, crazy week! will text you later' },
+    { d: 'Friday', tm: '1:47', a: 'Hinge', w: 'Fri', t: 'Someone new just liked you. Upgrade to see who.' },
+    { d: 'Sunday', tm: '10:30', a: 'Hinge', w: 'Sun', t: 'Your match with Aman expires in 24 hours.' },
+    { d: 'Tuesday', tm: '1:47', a: 'You → Riya', w: 'Tue', t: 'should we finally get that chai this weekend?  · Seen' },
+    { d: 'Saturday', tm: '1:47', a: 'Hinge', w: 'Sat', t: 'Riya is no longer available.' }
+  ];
+  playChat = () => {
+    (this.tm || []).forEach(clearTimeout); this.tm = [];
+    const S = this.chatScript; this.setState({ chat: 1, chatN: 0 });
+    let t = 900;
+    S.forEach((st, i) => { this.tm.push(setTimeout(() => this.setState({ chatN: i + 1 }), t)); t += i === 5 ? 4200 : 3200; });
+    this.tm.push(setTimeout(() => this.setState({ chat: 3 }), t));
+    this.tm.push(setTimeout(() => this.setState({ chat: 4 }), t + 4200));
+    this.tm.push(setTimeout(() => { if (!this.state.del) this.playChat(); }, t + 16000));
+  };
+  cardDown = e => { const el = this.cardRef.current; if (!el) return; this.drag = { x: e.clientX, dx: 0 }; try { el.setPointerCapture(e.pointerId); } catch (_) {} el.style.transition = 'none'; el.style.cursor = 'grabbing'; };
+  cardMove = e => {
+    if (!this.drag) return; const el = this.cardRef.current; const dx = e.clientX - this.drag.x; this.drag.dx = dx;
+    el.style.transform = `translateX(${dx}px) rotate(${dx / 16}deg)`;
+    const L = el.querySelector('[data-stamp="like"]'), S = el.querySelector('[data-stamp="skip"]');
+    if (L) L.style.opacity = String(Math.max(0, Math.min(1, dx / 110))); if (S) S.style.opacity = String(Math.max(0, Math.min(1, -dx / 110)));
+  };
+  cardUp = () => {
+    if (!this.drag) return; const dx = this.drag.dx; this.drag = null; const el = this.cardRef.current; if (el) el.style.cursor = 'grab';
+    if (dx > 110) this.swipe(true); else if (dx < -110) this.swipe(false);
+    else if (el) { el.style.transition = 'transform .45s cubic-bezier(.2,.8,.2,1.3)'; el.style.transform = ''; el.querySelectorAll('[data-stamp]').forEach(s => s.style.opacity = '0'); }
+  };
+  swipe(like) {
+    const el = this.cardRef.current; if (!el || this.state.deck >= 8 || this.swiping) return; this.swiping = true;
+    el.style.transition = 'transform .28s cubic-bezier(.5,0,.75,0)';
+    el.style.transform = `translateX(${like ? 140 : -140}%) rotate(${like ? 26 : -26}deg)`;
+    const st = el.querySelector(`[data-stamp="${like ? 'like' : 'skip'}"]`); if (st) st.style.opacity = '1';
+    setTimeout(() => {
+      el.style.transition = 'none'; el.style.transform = 'scale(.92)'; el.querySelectorAll('[data-stamp]').forEach(s => s.style.opacity = '0');
+      this.setState(s => ({ deck: s.deck + 1, liked: like ? [...s.liked, s.deck] : s.liked }), () => {
+        requestAnimationFrame(() => { const c = this.cardRef.current; if (c) { c.style.transition = 'transform .3s cubic-bezier(.2,.8,.2,1.2)'; c.style.transform = ''; } this.swiping = false; });
+      });
+    }, 280);
+  }
+
+  renderVals() {
+    const D = window.PORTFOLIO_DATA || {}; const s = this.state; const red = this.reduced;
+    const A = (k) => D[k] || [];
+    const blobsOn = this.props.blobs ?? true;
+    const ce = React.createElement;
+    const blob = (st, anim) => ce('div', { style: { position: 'absolute', borderRadius: '50%', filter: 'blur(70px)', opacity: 0.55, animation: red ? 'none' : anim, ...st } });
+    const blobs = blobsOn ? ce('div', { style: { position: 'fixed', inset: 0, zIndex: 0, pointerEvents: 'none', overflow: 'hidden' } },
+      blob({ width: '46vw', height: '46vw', left: '-12vw', top: '-10vw', background: 'radial-gradient(circle, var(--acc2), transparent 68%)' }, 'drift1 22s ease-in-out infinite alternate'),
+      blob({ width: '40vw', height: '40vw', right: '-10vw', top: '30vh', background: 'radial-gradient(circle, var(--soft), transparent 68%)' }, 'drift2 26s ease-in-out infinite alternate'),
+      blob({ width: '34vw', height: '34vw', left: '30vw', bottom: '-14vw', background: 'radial-gradient(circle, var(--acc), transparent 70%)', opacity: 0.22 }, 'drift1 30s ease-in-out infinite alternate-reverse')) : null;
+    const wheel = ce('img', { src: 'assets/esd/r36.png', alt: '', style: { position: 'absolute', right: '-8vw', bottom: '-8vw', width: 'clamp(220px,32vw,480px)', opacity: 0.55, animation: red ? 'none' : 'spin 60s linear infinite', pointerEvents: 'none' } });
+    const revs = [
+      { s: 1, d: '28 April 2026', t: 'I created an account after having quite a successful account last summer. went on a few dates, met some really colourful people and some not so colourful. but Unfortunately hinge has now chosen to hide my profile to try and tempt me into buying their hinge X premium. I got a notification that I got a match, then within an hour of checking the app, the match had disappeared. I doubt it was even a human anyway, probably a bot. hinge used to be great but like all the dating apps now, greedy.', h: '41 people found this review helpful' },
+      { s: 3, d: '16 February 2025', t: "It's okay. Probably the best dating app of all of them right now. Don't like that it seems my most local/compatible matches are hidden behind the Standout pay wall. That's smarmy... What's the purpose of regular search results if I have to pay for the good ones? On top of that, still very few messages and likes if you're a man. You need to play the long game.", h: '98 people found this review helpful' },
+      { s: 4, d: '1 July 2026', t: "The best of a bad bunch when it comes to dating apps, Hinge only allows a very small number of 'likes' to be sent for free every day, but in return, the person you like is actually notified that you've liked them, making matches in generally much more likely to happen than in other dating apps. if you want to reach more people then you need to pay, but when it comes to dating quality matters far more than quantity and Hinge mostly delivers on that. This is the only dating app I'd consider.", h: '7 people found this review helpful' },
+      { s: 5, d: '22 April 2026', t: 'I\'ve been using the app wrong. It\'s not for dating, it\'s for seeing everything wrong with dating apps and the dating pool. Most people put no effort into their profiles, much less trying to connect. Probably 90% mirror and gym selfies and "I like food, alcohol, and travel". Also, maybe instead of having likes expire after 2 weeks, they should deactivate accounts instead. Anyway, thanks, Hinge, I\'m deleting the app, just as it was designed to be. But not because I found someone here :D', h: '110 people found this review helpful' }
+    ];
+    const revCard = (r, i) => ce('div', { key: i, style: { flex: 'none', width: 400, boxSizing: 'border-box', padding: '24px 26px', borderRadius: 20, background: 'rgba(243,234,246,.06)', border: '1px solid rgba(243,234,246,.14)', color: '#f3eaf6', display: 'flex', flexDirection: 'column', gap: 10 } },
+      ce('div', { style: { display: 'flex', alignItems: 'center', gap: 12, fontSize: 12, color: 'rgba(243,234,246,.6)' } }, ce('span', { style: { letterSpacing: 2, fontSize: 14, color: '#c98bd9' } }, '★'.repeat(r.s), ce('span', { style: { color: 'rgba(243,234,246,.2)' } }, '★'.repeat(5 - r.s))), r.d),
+      ce('p', { style: { margin: 0, fontSize: 14, lineHeight: 1.5, display: '-webkit-box', WebkitLineClamp: 5, WebkitBoxOrient: 'vertical', overflow: 'hidden' } }, r.t),
+      ce('span', { style: { fontSize: 12, color: 'rgba(243,234,246,.5)' } }, r.h));
+    const reviews = ce('div', { style: { display: 'flex', gap: 16, width: 'max-content', alignItems: 'stretch', animation: red ? 'none' : 'marq 70s linear infinite' }, onMouseEnter: e => { e.currentTarget.style.animationPlayState = 'paused'; }, onMouseLeave: e => { e.currentTarget.style.animationPlayState = 'running'; } }, [...revs, ...revs].map(revCard));
+    const dots = [0, 1, 2].map(i => ce('span', { key: i, style: { width: 10, height: 10, borderRadius: '50%', background: '#c98bd9', animation: `blink 1s ${i * 0.18}s infinite` } }));
+    const rnd = (i, k) => { const x = Math.sin(i * 12.9898 + k * 78.233) * 43758.5453; return x - Math.floor(x); };
+    const stars = ce('div', { style: { position: 'absolute', inset: 0, pointerEvents: 'none' } },
+      Array.from({ length: 80 }, (_, i) => ce('span', { key: i, style: { position: 'absolute', left: (rnd(i, 1) * 100) + '%', top: (rnd(i, 2) * 100) + '%', width: rnd(i, 3) > 0.85 ? 3 : 2, height: rnd(i, 3) > 0.85 ? 3 : 2, borderRadius: '50%', background: rnd(i, 4) > 0.7 ? '#ff914d' : '#fff', animation: red ? 'none' : `tw ${2 + rnd(i, 5) * 4}s ${rnd(i, 6) * 4}s ease-in-out infinite` } })));
+    const phone = ce('img', { src: 'assets/nsd/n52.png', alt: 'Belong sign-in screen', style: { position: 'relative', width: 'min(82%,340px)', animation: red ? 'none' : 'float 7s ease-in-out infinite', filter: 'drop-shadow(0 40px 60px rgba(0,0,0,.5))' } });
+    const bars = (n, h, play) => Array.from({ length: n }, (_, i) => ce('span', { key: i, style: { flex: '1 1 0', minWidth: 3, height: Math.round(h * (0.3 + 0.7 * Math.abs(Math.sin(i * 0.55) * Math.cos(i * 0.21)))), borderRadius: 4, background: `linear-gradient(180deg,#ff914d,#ff3131)`, transformOrigin: 'center', animation: red ? 'none' : `wv ${0.7 + rnd(i, 7) * 0.8}s ${rnd(i, 8) * 0.6}s ease-in-out infinite alternate`, animationPlayState: play ? 'running' : 'paused' } }));
+    const wave = bars(64, 96, s.playing);
+    const miniWave = bars(28, 36, true);
+
+    const eraCols = [['', '#e9c6f2'], ['', '#e2b6ee'], ['', '#d9a8e6'], ['', '#cf9bdd'], ['', '#c98bd9'], ['', '#f3eaf6']];
+    const eras = A('eras').map((e, i) => ({ ...e, bg: eraCols[i][0], fg: eraCols[i][1] }));
+    const jCols = [['', '#e9c6f2'], ['', '#e2b6ee'], ['', '#d9a8e6'], ['', '#cf9bdd'], ['', '#c98bd9'], ['', '#f3eaf6']];
+    const journey = A('journey').map((j, i) => ({ ...j, bg: jCols[i][0], fg: jCols[i][1] }));
+    const PL = A('pillars'), pS = s.pillar || 0, NP = PL.length || 5;
+    if (!this.orbT && !red) this.orbT = setInterval(() => { if (!this.orbHeld) this.setState(x => ({ pillar: ((x.pillar || 0) + 1) % (A('pillars').length || 5) })); }, 4800);
+    this.orbTurn = this.orbTurn || 0; if (this.orbLast !== pS) { const want = -pS * 360 / NP; let d = want - this.orbTurn; d = ((d % 360) + 540) % 360 - 180; this.orbTurn += d; this.orbLast = pS; }
+    const orbs = PL.map((p, i) => { const a = (i * 360 / NP - 90) * Math.PI / 180, on = i === pS, sz = on ? 'clamp(64px,9vw,96px)' : 'clamp(44px,6vw,62px)';
+      return { n: p.n, t: p.t, x: (50 + 50 * Math.cos(a)).toFixed(2) + '%', y: (50 + 50 * Math.sin(a)).toFixed(2) + '%', sz, m: on ? 'calc(clamp(64px,9vw,96px) / -2)' : 'calc(clamp(44px,6vw,62px) / -2)',
+        bg: on ? 'radial-gradient(circle at 35% 30%,#fff3e6,#ff914d 55%,#93529f)' : 'radial-gradient(circle at 35% 30%,#e9c6f2,#93529f 60%,#3a1f45)', sh: on ? '0 0 40px 10px rgba(255,145,77,.45)' : '0 0 18px 2px rgba(201,139,217,.3)',
+        fg: on ? '#140d17' : '#fff', cr: (-this.orbTurn).toFixed(1), bar: on ? 'var(--acc)' : 'rgba(201,139,217,.2)', pick: () => this.setState({ pillar: i }) }; });
+    const bI = s.bStep || 0; if (!this.bT && !red) this.bT = setInterval(() => { if (!this.bHeld) this.setState(x => ({ bStep: ((x.bStep || 0) + 1) % 3 })); }, 3200);
+    const svcPos = [['L', '80%'], ['L', '9%'], ['R', '47%'], ['L', '61%'], ['R', '6%']];
+    const svcA = PL.map((p, i) => { const on = i === pS; return { side: (svcPos[i] || ['R', '0'])[0], top: (svcPos[i] || ['R', '0'])[1], n: p.n, t: p.t, d: p.d, op: on ? 1 : .42, gr: on ? '1fr' : '0fr', lc: on ? 'var(--acc)' : 'rgba(201,139,217,.35)', ds: on ? '0 0 12px 3px rgba(201,139,217,.7)' : 'none', pick: () => this.setState({ pillar: i }) }; });
+    const svcL = [1, 3, 0].map(i => svcA[i]).filter(Boolean), svcR = [4, 2].map(i => svcA[i]).filter(Boolean);
+    const svcItems = PL.map((p, i) => { const on = i === pS; return { n: p.n, t: p.t, d: p.d, c: on ? 'var(--acc)' : 'var(--mid)', tc: on ? 'var(--ink)' : 'rgba(243,234,246,.45)', gr: on ? '1fr' : '0fr', pick: () => this.setState({ pillar: i }) }; });
+    const GLOW = '0 0 0 2px var(--acc),0 0 28px 6px rgba(201,139,217,.6)', hs = {}; for (let i = 0; i < 4; i++) { const on = i === pS; hs['h' + i] = on ? GLOW : '0 0 0 0 rgba(0,0,0,0)'; hs['o' + i] = on || pS === 4 ? 1 : .45; }
+    const deep = pS === 4, ly = {}; [0, 1, 2].forEach(k => { ly['t' + k] = deep ? 'translate3d(' + (40 + k * 34) + 'px,' + (-30 - k * 26) + 'px,' + (-60 - k * 50) + 'px) rotate(' + (4 + k * 3) + 'deg)' : 'translate3d(0,0,-20px)'; ly['o' + k] = deep ? 1 : 0; });
+    const cardTilt = deep ? 'rotateY(-14deg) rotateX(5deg) translateX(-24px)' : ['rotateY(4deg)', 'rotateY(-4deg) rotateX(4deg)', 'rotateY(6deg) rotateX(-3deg)', 'rotateY(-6deg)'][pS] || 'none';
+    const pillars = A('pillars').map((p, i) => ({ ...p, open: i === s.pillar, closed: i !== s.pillar, flex: i === s.pillar ? '5 1 0' : '1 1 0', bg: i === s.pillar ? 'var(--acc)' : 'var(--soft)', fg: i === s.pillar ? 'var(--acc)' : 'var(--ink)', enter: () => this.setState({ pillar: i }) }));
+    const cols = ['Hinge', 'Tinder', 'Bumble'].map((t, i) => ({ t, bd: i === s.col ? 'var(--acc)' : 'transparent', bg: i === s.col ? 'var(--ink)' : 'transparent', fg: i === s.col ? 'var(--acc)' : 'var(--ink)', pick: () => this.setState({ col: i }) }));
+    const numOf = v => { const m = String(v || '').replace(/,/g, '').match(/(\d+(?:\.\d+)?)\s*([MBK])?/); if (!m) return null; return +m[1] * ({ B: 1000, M: 1, K: .001 }[m[2]] || 1); };
+    const isNum = r => [r.h, r.t, r.b].every(v => /^\s*(US\$|\d)/.test(String(v || '')));
+    const compare = A('compare').map(r => { const nm = isNum(r), vals = [r.h, r.t, r.b].map(numOf), mx = Math.max(...vals.map(x => x || 0)) || 1; return ({ p: r.p, cells: [r.h, r.t, r.b].map((v, i) => ({ v, bw: nm && vals[i] ? (vals[i] / mx * 100).toFixed(1) + '%' : '0%', bo: nm ? 1 : 0, bc: i === s.col ? 'var(--acc)' : 'rgba(243,234,246,.5)', pick: () => this.setState({ col: i }), bg: i === s.col ? 'var(--acc)' : 'var(--soft)', fg: i === s.col ? 'var(--acc)' : 'var(--ink)', op: i === s.col ? 1 : 0.55 })) }); });
+    const stake = A('stake');
+    const ringDef = [{ i: 2, size: '100%', pad: '7%' }, { i: 1, size: '68%', pad: '7%' }, { i: 0, size: '36%', pad: '14%' }];
+    const ringFill = ['var(--acc)', 'var(--acc2)', 'var(--soft)'];
+    const rings = stake.length ? ringDef.map(r => ({ t: stake[r.i].t, size: r.size, pad: r.pad, bg: s.ring === r.i ? 'var(--ink)' : ringFill[r.i], fg: s.ring === r.i ? 'var(--acc)' : 'var(--ink)', pick: () => this.setState({ ring: r.i }) })) : [];
+    const rs = stake[s.ring] || { t: '', items: [] };
+    const ringSel = { t: rs.t ? rs.t.charAt(0) + rs.t.slice(1).toLowerCase() : '', items: rs.items };
+    const segC = ['#2a1d31', '#683b78', '#93529f', '#c98bd9', '#ecdcf8'];
+    const ages = A('ages').map((a, i) => ({ ...a, c: segC[i] }));
+    const orI = s.orI || 0, orient = A('orient').map((a, i) => ({ ...a, c: segC[i], f: parseFloat(a.v) || 1, op: i === orI ? 1 : .35, so: i === orI ? 1 : .3, h: i === orI ? '6px' : '2px', pick: () => this.setState({ orI: i }) }));
+    const orO = A('orient')[orI] || {}, orNow = { v: orO.v || '', line: orO.l ? 'identify as ' + String(orO.l).toLowerCase() + '.' : '' };
+    const imgs = ['r14', 'r15', 'r16', 'r12', 'r21', 'r28', 'r23', 'r17'];
+    const cards = A('behaviour').map((b, i) => ({ ...b, img: `assets/bh/${imgs[i]}-card.png` }));
+    const top = cards[s.deck] || {};
+    const behind = cards.slice(s.deck + 1, s.deck + 3).map((c, i) => ({ bg: i ? 'var(--soft)' : '#fff', tf: `translateY(${(i + 1) * 14}px) scale(${1 - (i + 1) * 0.05})` })).reverse();
+
+    const val = { Happy: 1, Hopeful: 1, Curious: 0, Anxious: -1, Disappointed: -1 };
+    const F = [['Curious', 37.3], ['Curious', 39.0], ['Happy', 49.2], ['Curious', 37.3], ['Anxious', 45.8], ['Disappointed', 28.8]];
+    const M = [['Curious', 31.0], ['Hopeful', 34.5], ['Happy', 44.8], ['Happy', 41.4], ['Hopeful', 44.8], ['Curious', 44.8]];
+    const yP = v => (v === 1 ? 20 : v === 0 ? 50 : 80);
+    const pts = (L, off) => L.map(([e, v], i) => ({ x: (i + 0.5) / 6 * 100 + off, y: yP(val[e]), e, v }));
+    const path = P => P.map((p, i) => { const X = p.x * 10, Y = p.y * 4; if (!i) return `M${X},${Y}`; const q = P[i - 1], QX = q.x * 10, QY = q.y * 4, mx = (QX + X) / 2; return `C${mx},${QY} ${mx},${Y} ${X},${Y}`; }).join(' ');
+    const fP = pts(F, -1.4), mP = pts(M, 1.4);
+    const fOp = s.emoG === 'Male' ? 0.12 : 1, mOp = s.emoG === 'Female' ? 0.12 : 1;
+    const emoPts = [...fP.map(p => ({ ...p, g: 'F', bg: 'var(--acc)', op: fOp, lab: 'bottom:calc(100% + 10px)' })), ...mP.map(p => ({ ...p, g: 'M', bg: 'var(--ink)', op: mOp, lab: 'top:calc(100% + 10px)' }))]
+      .map((p, k) => ({ left: p.x + '%', top: p.y + '%', size: (k % 6) === (s.emoS ?? 2) ? '14px' : '8px', e: p.e, v: p.v + '%', g: p.g, bg: p.bg, op: p.op, lt: p.g === 'M' ? 'calc(100% + 10px)' : 'auto', lb: p.g === 'F' ? 'calc(100% + 10px)' : 'auto' }));
+    const emoS = s.emoS ?? 2, stN = ['Creating profile', 'Waiting for matches', 'Receiving a like', 'Starting a chat', 'Planning a date', 'After a first date'];
+    const emoCols = stN.map((t, i) => ({ t, f: s.emoG === 'Male' ? '' : 'F · ' + F[i][0] + ' ' + F[i][1] + '%', m: s.emoG === 'Female' ? '' : 'M · ' + M[i][0] + ' ' + M[i][1] + '%', fg: i === emoS ? 'var(--ink)' : 'var(--mid)', op: i === emoS ? 1 : 0, pick: () => this.setState({ emoS: i }) }));
+    const emoCur = { left: ((emoS + 0.5) / 6 * 100) + '%' };
+    const emoTabs = ['Both', 'Female', 'Male'].map(t => ({ t, bg: s.emoG === t ? 'var(--ink)' : 'transparent', fg: s.emoG === t ? 'var(--acc)' : 'var(--ink)', pick: () => this.setState({ emoG: t }) }));
+    const concerns = A('concerns').map((c, i) => { const v = parseFloat(c.v); const sz = Math.round(Math.sqrt(v) * 24); return { ...c, size: sz + 'px', fs: Math.max(18, Math.round(sz / 4.6)) + 'px', bg: v > 60 ? 'var(--acc)' : v > 40 ? 'var(--acc2)' : 'var(--soft)', fg: v > 60 ? 'var(--acc)' : v > 40 ? 'var(--acc2)' : 'var(--ink)' }; });
+    const breaks = A('breaks').map((b, i) => ({ ...b, h: (parseFloat(b.v) / 70 * 82).toFixed(1) + '%', bg: i === s.brk ? 'linear-gradient(to top,#93529f,var(--acc))' : 'rgba(243,234,246,.12)', fg: i === s.brk ? 'var(--acc)' : 'var(--mid)', enter: () => this.setState({ brk: i }) }));
+    const brkSel = A('breaks')[s.brk] || {};
+    const insI = s.insI ?? 0, insightsV = A('insights').map((x, i) => ({ ...x, nc: i === insI ? 'var(--acc)' : 'var(--ink)', to: i === insI ? 1 : .7, op: i === insI ? 1 : .35, pick: () => this.setState({ insI: i }) }));
+
+    const pCols = [['', '#333333'], ['', '#7a1d12'], ['', '#a3241a'], ['', '#c42323'], ['', '#ff3131']];
+    const principles = A('principles').map((p, i) => ({ ...p, bg: pCols[i][0], fg: pCols[i][1] }));
+    const dimsD = A('dims');
+    this.dimHoldSet = this.dimHoldSet || (() => {});
+    const dims = dimsD.map((d, i) => { const a = (-90 + i * 45) * Math.PI / 180; const on = i === s.dim;
+      return { t: d.t, left: (50 + 41 * Math.cos(a)).toFixed(2) + '%', top: (50 + 41 * Math.sin(a)).toFixed(2) + '%', sc: on ? 1.15 : 1, bg: on ? 'var(--ink)' : (i < 4 ? '#fff' : 'var(--soft)'), fg: on ? 'var(--acc)' : 'var(--ink)', enter: () => { this.dimHold = true; this.setState({ dim: i }); } }; });
+    const dimSel = dimsD[s.dim] || {};
+    const archD = A('archetypes');
+    const archTabs = archD.map((a, i) => ({ n: a.n, t: a.t, bg: i === s.arch ? '#ff3131' : '#fff', fg: i === s.arch ? 'var(--acc)' : 'var(--ink)', pick: () => this.setState({ arch: i }) }));
+    const arch = archD[s.arch] || {};
+    const mfCols = ['#fff', 'var(--soft)', '#ffc4a8', '#ff914d', '#ff6a4a', '#ff3131', '#c42323', '#333333'];
+    const musicFlow = A('musicFlow').map((m, i) => ({ ...m, bg: mfCols[i], fg: ['#333333', '#7a1d12', '#a3241a', '#c42323', '#e0331f', '#ff3131', '#c42323', '#333333'][i] }));
+    const groupsD = A('groups');
+    const groupTabs = groupsD.map((g, i) => ({ p: g.p, bg: i === s.grp ? 'var(--ink)' : '#fff', fg: i === s.grp ? 'var(--acc)' : 'var(--ink)', pick: () => this.setState({ grp: i }) }));
+    const grp = groupsD[s.grp] || {};
+    const lv = { Low: 1, Medium: 2, High: 3, Difficult: 1, 'Easy to medium': 2, Easy: 3 };
+    const seg = n => [1, 2, 3].map(k => (k <= n ? '#ff3131' : '#ffe2d4'));
+    const grpMeters = grp.c ? [{ l: 'Comfort', v: grp.c, seg: seg(lv[grp.c]) }, { l: 'Flow', v: grp.f, seg: seg(lv[grp.f]) }] : [];
+    const vCols = [['', '#c42323'], ['', '#ff3131'], ['', '#333333']];
+    const validation = A('validation').map((v, i) => ({ ...v, bg: vCols[i][0], fg: vCols[i][1] }));
+    const sb = A('belongStages');
+    const stagesB = sb.map((x, i) => ({ ...x, bg: i === s.stB ? 'linear-gradient(140deg,#ff3131,#ff914d)' : (i === 5 ? '#333333' : '#fff'), fg: i === s.stB ? '#ff3131' : 'var(--ink)', enter: () => this.setState({ stB: i }) }));
+    const pricing = A('pricing').map(p => ({ ...p, sticks: Array.from({ length: parseInt(p.pr) }, (_, i) => i) }));
+    const laneCols = [['#ffe2d4', '#7a1d12'], ['#f6efeb', '#333333'], ['#333333', '#fff'], ['#ffc4a8', '#333333'], ['#efe7e3', '#333333'], ['#e2d8d3', '#333333']];
+    const laneLines = ['0', '2px solid #333333', '2px dashed #ff3131', '2px solid #ff914d', '2px dashed #d6cbc6', '2px solid #d6cbc6'];
+    const bpHeads = sb.map((x, i) => ({ ...x, bg: s.bp === i ? '#ff3131' : '#f6efeb', fg: s.bp === i ? '#ff3131' : '#333333', enter: () => this.setState({ bp: i }) }));
+    const bpLanes = A('lanes').map((l, li) => ({ t: l.t, s: l.s, bg: laneCols[li][0], fg: laneCols[li][1], line: laneLines[li], c: l.c.map((items, ci) => ({ items, op: s.bp < 0 || s.bp === ci ? 1 : 0.25, enter: () => this.setState({ bp: ci }) })) }));
+    const ps = A('profileSteps');
+    const profSteps = ps.map((p, i) => ({ ...p, bg: i + 1 === s.prof ? 'linear-gradient(120deg,#ff3131,#ff914d)' : (i + 1 < s.prof ? '#ffe2d4' : '#fff'), fg: i + 1 === s.prof ? 'var(--acc)' : 'var(--ink)', pick: () => this.setState({ prof: i + 1 }) }));
+    const lad = A('ladder');
+    const fv = A('funnel').map((f, i) => ({ ...f, c: i <= s.lvl + 1 ? 'linear-gradient(90deg,#ff3131,#ff914d)' : 'var(--soft)' }));
+
+    const now = new Date(), hr = now.getHours(), tm = now.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+    const greeting = hr < 5 || hr >= 22 ? "It's " + tm + ". Are you up too?" : 'Hello, stranger.';
+    const dl = s.del, jig = (dl === 1 || dl === 2) && !red;
+    const tBg = ['rgba(246,239,235,.10)', 'rgba(201,139,217,.26)', 'rgba(246,239,235,.16)', 'rgba(246,239,235,.07)', 'rgba(255,145,77,.20)', 'rgba(246,239,235,.13)'];
+    const delTiles = Array.from({ length: 20 }, (_, i) => { const isH = i === 9;
+      return { isH: isH ? 'true' : 'false', label: isH ? 'H' : '', bg: isH ? '#f6efeb' : tBg[(i * 7) % 6], op: isH && dl === 3 ? 0 : 1, sc: isH && dl === 3 ? 0.2 : 1,
+        cur: isH && dl < 3 ? 'pointer' : 'default', x: isH && dl === 1, anim: jig ? 'jig .26s ' + ((i % 4) * -0.07).toFixed(2) + 's ease-in-out infinite' : 'none',
+        down: isH ? () => { if (this.state.del !== 0) return; clearTimeout(this.holdT); this.holdT = setTimeout(() => this.setState({ del: 1 }), 520); } : undefined,
+        up: isH ? () => clearTimeout(this.holdT) : undefined, ctx: e => e.preventDefault(),
+        onX: e => { e.stopPropagation(); this.setState({ del: 2 }); } }; });
+    const delHint = (s.chat || 0) < 4 && dl === 0 ? '' : ['press and hold Hinge', 'now tap the ×', 'last chance…', 'Hinge has been deleted.'][dl];
+
+    const gd = new Date();
+    const PD = window.PORTFOLIO_DATA || {}, st = this.state, ACC = 'var(--acc)', MID = 'var(--mid)';
+    const erasD = PD.eras || [], who = ['family', 'a marriage bureau', 'a newspaper ad', 'an online database', 'a swipe', 'an algorithm'];
+    const eN = erasD[st.eraI] || {}; const eraNow = { ...eN, who: who[st.eraI], gap: (1 - st.eraI * 0.15).toFixed(2) };
+    const eraIco = {}; for (let i = 0; i < 6; i++) { const on = i === st.eraI; eraIco['o' + i] = on ? 1 : 0; eraIco['s' + i] = on ? 1 : .4; eraIco['r' + i] = on ? 0 : -30; }
+    const eraSc = this.eraScene(st.eraI); const eraHops = ['A circle of relatives', 'One matchmaker, one ledger', 'One ad in many columns', 'Six queries through a database', 'One out of sixty-four swipes', 'Signals you never see'][st.eraI];
+    const eraTicks = erasD.map((e, i) => ({ y: e.y, c: i === st.eraI ? ACC : MID, pick: () => this.setState({ eraI: i }) }));
+    const GL = [
+      Array.from({ length: 12 }, (_, i) => { const a = i / 12 * Math.PI * 2; const s = i % 3 === 0 ? 22 : 14; return [120 + Math.cos(a) * 62 - s / 2, 70 + Math.sin(a) * 42 - s / 2, s, s, i % 2 ? 'o' : 'c', 0]; }),
+      [[50, 74, 140, 50, 'b', 0], [74, 30, 26, 26, 'c', 0], [140, 30, 26, 26, 'o', 0], [92, 86, 56, 5, 'r', 0], [92, 98, 56, 5, 'r', 0], [92, 110, 40, 5, 'r', 0]],
+      Array.from({ length: 12 }, (_, i) => [i < 6 ? 24 : 128, 22 + (i % 6) * 18, i % 6 === 0 ? 88 : (i % 6 === 5 ? 50 : 88), i % 6 === 0 ? 10 : 4, 'r', 0]),
+      Array.from({ length: 12 }, (_, i) => [18 + (i % 4) * 52, 18 + Math.floor(i / 4) * 38, 46, 30, i === 5 ? 'f' : 'b', 0]),
+      [[70, 12, 76, 112, 'b', -14], [94, 14, 76, 112, 'b', 10], [82, 10, 76, 112, 'f', 0], [108, 98, 24, 6, 'r', 0]],
+      Array.from({ length: 12 }, (_, i) => { if (i === 0) return [104, 54, 32, 32, 'f', 0]; const a = i / 11 * Math.PI * 2, rr = i % 2 ? 62 : 40, s = i % 2 ? 10 : 14; return [120 + Math.cos(a) * rr * 1.4 - s / 2, 70 + Math.sin(a) * rr * .9 - s / 2, s, s, i % 3 ? 'c' : 'o', 0]; })
+    ];
+    const gl = GL[st.eraI] || GL[0];
+    const eraGlyph = Array.from({ length: 12 }, (_, i) => { const q = gl[i]; if (!q) return { x: 120, y: 70, w: 0, h: 0, r: '50%', bg: 'transparent', bd: '0', o: 0, rot: 0, dl: 0 };
+      const [x, y, w, hh, k, rot] = q, round = k === 'c' || k === 'o', fill = k === 'c' || k === 'f' || k === 'r';
+      return { x: x.toFixed(1), y: y.toFixed(1), w, h: hh, r: round ? '50%' : '3px', bg: fill ? (k === 'f' || i % 4 === 0 ? 'var(--acc)' : 'var(--ink)') : 'transparent', bd: fill ? '0' : '2px solid var(--acc)', o: 1, rot, dl: (i * 0.03).toFixed(2) }; });
+    const eraPanels = erasD.map((e, i) => { const on = i === st.eraI; return { n: '0' + (i + 1), y: e.y, t: e.t, d: e.d, flex: on ? 6 : 1, bg: on ? 'rgba(201,139,217,.12)' : 'transparent', c: on ? 'var(--ink)' : 'var(--mid)', ys: on ? 'clamp(32px,4vw,64px)' : '15px', mw: on ? 'min(460px,calc(100% - 320px))' : '64px', wm: on ? 'horizontal-tb' : 'vertical-rl', tf: on ? 'none' : 'rotate(180deg)', op: on ? 1 : 0, ty: on ? 0 : 16, dl: on ? .25 : 0, pick: () => { if (st.eraI !== i) this.setState({ eraI: i }); } }; });
+    const eraNum = '0' + (st.eraI + 1);
+    const eraDots = erasD.map((e, i) => { const on = i === st.eraI; return { y: e.y, t: e.t, pick: () => this.setState({ eraI: i }), sz: on ? 16 : 8, bg: on ? 'var(--acc)' : 'var(--ink)', sh: on ? '0 0 0 6px rgba(201,139,217,.15),0 0 20px 4px rgba(201,139,217,.6)' : 'none', c: on ? 'var(--acc)' : 'var(--mid)' }; });
+    const L = [['Revenue 2025', [690.9, 1863, 783], v => 'US$' + (v >= 1000 ? (v / 1000).toFixed(2) + 'B' : v + 'M')], ['YoY growth', [26, -4, -9.6], v => (v > 0 ? '+' : '') + v + '%'], ['Paying users', [1.801, 9.026, 2.4], v => v + 'M'], ['Monthly ARPPU', [31.97, 17.2, 26.8], v => 'US$' + v.toFixed(2)]];
+    const lensTabs = L.map((l, i) => ({ t: l[0], c: i === st.lens ? ACC : MID, b: i === st.lens ? ACC : 'transparent', pick: () => this.setState({ lens: i }) }));
+    const lensV = L[st.lens][1], neg = lensV.some(v => v < 0), mx = Math.max(...lensV.map(Math.abs)), zero = neg ? 50 : 0, span = neg ? 50 : 100;
+    const lensBars = ['Hinge', 'Tinder', 'Bumble'].map((n, i) => { const v = lensV[i], w = Math.abs(v) / mx * span; return { n, v: L[st.lens][2](v), c: i === 0 ? ACC : 'var(--ink)', w: w.toFixed(1) + '%', l: (v < 0 ? zero - w : zero).toFixed(1) + '%', z: zero + '%', zo: neg ? .6 : 0 }; });
+    const stakeD = PD.stake || []; const stakeL = stakeD.map((r, i) => ({ t: r.t, items: r.items, open: i === st.ring, pad: (i * 8) + '%', fs: ['clamp(40px,4.4vw,68px)', 'clamp(30px,3.2vw,48px)', 'clamp(22px,2.2vw,32px)'][i], c: i === st.ring ? ACC : 'var(--ink)', pick: () => this.setState({ ring: i }) }));
+    const bandI = st.age <= 20 ? 0 : st.age <= 24 ? 1 : st.age <= 29 ? 2 : st.age <= 34 ? 3 : 4, agesD = PD.ages || [];
+    const ageBands = agesD.map((a, i) => ({ ...a, op: i === bandI ? 1 : .35, fw: 400, h: i === bandI ? '6px' : '2px' }));
+    const ageNow = { age: st.age, line: agesD[bandI] ? agesD[bandI].v + ' of respondents are ' + agesD[bandI].l.replace(' years', '') + ', like you.' : '' };
+    const cD = PD.concerns || []; const cn = cD[st.conc] || { v: '0%', l: '' }, nOf = Math.round(parseFloat(cn.v) * .9);
+    const concList = cD.map((c, i) => ({ ...c, c: i === st.conc ? ACC : 'var(--ink)', pick: () => this.setState({ conc: i }) }));
+    const tally = Array.from({ length: 90 }, (_, i) => ({ c: i < nOf ? ACC : 'rgba(128,110,130,.35)', r: (i % 5 === 4 && i < nOf) ? '-55deg' : '0deg', d: (i * 6) + 'ms' }));
+    return {
+      eraGlyph, eraPanels, eraNum, eraDots, eraNodes: eraSc.out, eraPts: eraSc.pts, eraPathRef: this.eraPathRef, eraHops, eraI: st.eraI, setEra: e => this.setState({ eraI: +e.target.value }), eraNow, eraTicks, lensTabs, lensBars, stakeL, age: st.age, setAge: e => this.setState({ age: +e.target.value }), ageBands, ageNow, concList, concNow: { n: nOf, l: cn.l.toLowerCase() }, tally,
+      ...D, greeting, gate: s.gate, gateRef: this.gateRef, heroRef: this.heroRef, clkRef: this.clkRef, clkLab: this.clkLab,
+      gateTime: gd.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }).replace(/\s?[AP]M$/i, ''), gateDate: gd.toLocaleDateString([], { weekday: 'long', day: 'numeric', month: 'long' }),
+      gateY: s.gOut ? '-100%' : s.gOff + 'px', gateTr: s.gOut ? 'transform .9s cubic-bezier(.7,0,.2,1)' : (this.gDrag ? 'none' : 'transform .4s cubic-bezier(.2,.8,.2,1)'),
+      gOpen: e => { if (e && e.stopPropagation) e.stopPropagation(); this.openGate(); },
+      gDown: e => { this.gDrag = true; this.gY0 = e.clientY; try { e.currentTarget.setPointerCapture(e.pointerId); } catch (_) {} },
+      gMove: e => { if (!this.gDrag) return; this.setState({ gOff: Math.min(0, e.clientY - this.gY0) }); },
+      gUp: e => { if (!this.gDrag) return; this.gDrag = false; if (e.clientY - this.gY0 < -70) this.openGate(); else this.setState({ gOff: 0 }); }, delTiles, delHint, delAsk: dl === 2, delDone: dl === 3, delNotDone: dl !== 3, phoneRef: this.phoneRef, netRef: this.netRef, netLab: this.netLab,
+      delConfirm: e => { e.stopPropagation(); this.delShatter(); this.setState({ del: 3 }); }, delCancel: e => { e.stopPropagation(); this.setState({ del: 0 }); }, delReset: e => { e.stopPropagation(); this.setState({ del: 0 }); this.playChat(); }, rootRef: this.rootRef, bridgeRef: this.bridgeRef, jWrapRef: this.jWrapRef, jTrackRef: this.jTrackRef, walkerRef: this.walkerRef, meterA: this.meterA, meterB: this.meterB, meterLab: this.meterLab,
+      progRef: this.progRef, chatRef: this.chatRef, closeRef: this.closeRef, cardRef: this.cardRef,
+      onMove: this.onMove, onLeave: this.onLeave, onBurst: this.onBurst,
+      bs: { o0: +(bI === 0), o1: +(bI === 1), o2: +(bI === 2), y0: bI === 0 ? 0 : 16, y1: bI === 1 ? 0 : 16, y2: bI === 2 ? 0 : 16 },
+      bSteps: [['01', 'Match', 'Two profiles find each other.'], ['02', 'Meet', 'The conversation moves offline.'], ['03', 'Delete', 'The app is no longer needed. That is the win.']].map((x, i) => ({ n: x[0], t: x[1], d: x[2], op: i === bI ? 1 : .4, lc: i === bI ? 'var(--acc)' : 'rgba(201,139,217,.25)', pick: () => this.setState({ bStep: i }) })),
+      ...(() => { const T = A('stake'), act = s.stT ?? -1, RR = [.2, .34, .47], HH = .55, dots = [];
+        T.forEach((g, k) => { const its = g.items || [], on = act < 0 || act === k; its.forEach((t, i) => { const an = Math.PI + (i + 1) * Math.PI / (its.length + 1), r = RR[k];
+          dots.push({ t, x: (50 + r * 100 * Math.cos(an)).toFixed(2), y: (100 + r * 100 * Math.sin(an) / HH).toFixed(2), bg: on ? 'var(--ink)' : 'rgba(243,234,246,.25)', sh: act === k ? '0 0 14px 3px rgba(201,139,217,.7)' : 'none', tc: act === k ? 'var(--acc2)' : 'var(--ink)', op: on ? 1 : .3 }); }); });
+        const prev = [.1, .2, .34];
+        const rings = T.map((g, k) => ({ t: g.t.charAt(0) + g.t.slice(1).toLowerCase(), d: (RR[k] * 200) + '%', lx: (50 - (RR[k] + prev[k]) / 2 * 100) + '%', bg: act === k ? 'rgba(201,139,217,.16)' : 'rgba(201,139,217,' + (.07 - k * .02) + ')', bd: act === k ? 'var(--acc)' : 'rgba(201,139,217,.3)', lc: act === k ? 'var(--acc2)' : 'var(--mid)', pick: () => this.setState({ stT: k }) })).reverse();
+        return { stDots: dots, stRings: rings, stOff: () => this.setState({ stT: -1 }) }; })(),
+      orNow,
+      mkCons: A('market').map((m, k) => {
+        const RR = [90, 200, 310], YY = [40, 160, 280], C = 6;
+        const items = (m.items || []).map((t, i) => ({ t, x: Math.round(C + Math.sqrt(RR[i] * RR[i] - YY[i] * YY[i])), y: C + YY[i] - 10 }));
+        const rings = RR.slice(0, items.length).map(r => ({ o: C - r, d: r * 2 }));
+        const pulse = red ? null : ce('span', { key: 'p' + k, 'aria-hidden': true, style: { position: 'absolute', left: C - 300, top: C - 300, width: 600, height: 600, borderRadius: '50%', border: '1.5px solid rgba(255,178,122,.5)', animation: 'rip 6s ' + (k * 1.4) + 's cubic-bezier(.2,.6,.3,1) infinite', transform: 'scale(0)', pointerEvents: 'none' } });
+        return { t: m.t, items, rings, pulse };
+      }),
+      mkTabs: A('market').map((m, i) => { const on = i === (s.mk || 0); return { t: m.t, c: on ? 'var(--ink)' : 'rgba(243,234,246,.4)', w: on ? '40px' : '0px', fw: on ? 700 : 400, pick: () => this.setState({ mk: i }) }; }),
+      mkItems: ((A('market')[s.mk || 0] || {}).items || []).map((t, i) => ({ t, n: '0' + (i + 1) })),
+      hz: (() => { const k = s.hz ?? -1, o = {}; for (let i = 0; i < 3; i++) { const on = k === i; o['b' + i] = on ? '2px solid rgba(255,178,122,.9)' : '1.5px solid rgba(201,139,217,' + (k < 0 ? .45 : .2) + ')'; o['s' + i] = on ? '0 0 30px rgba(255,160,100,.35), inset 0 0 30px rgba(255,160,100,.2)' : 'none'; o['o' + i] = k < 0 || on ? 1 : .35; } return o; })(),
+      hz0: () => this.setState({ hz: 0 }), hz1: () => this.setState({ hz: 1 }), hz2: () => this.setState({ hz: 2 }), hzOff: () => this.setState({ hz: -1 }),
+      bHold: () => { this.bHeld = true; }, bFree: () => { this.bHeld = false; },
+      svcItems, svcL, svcR, hs, ly, cardTilt, orbs, orbRot: this.orbTurn.toFixed(1), orbN: (PL[pS] || {}).n || '', orbT: (PL[pS] || {}).t || '', orbD: (PL[pS] || {}).d || '', orbHold: () => { this.orbHeld = true; }, orbFree: () => { this.orbHeld = false; },
+      heroWord: red ? 'be deleted' : s.hw, heroCol: s.ht ? '#ff3131' : 'var(--ink)', heroFam: s.ht ? "'Quicksand',sans-serif" : 'inherit', heroIt: s.ht ? 'italic' : 'normal', heroW: s.ht ? 400 : 800, heroLs: s.ht ? '-.02em' : 'inherit',
+      caret: red ? null : ce('span', { style: { display: 'inline-block', width: '.07em', height: '.78em', marginLeft: '.05em', background: s.ht ? '#ff3131' : 'var(--acc)', verticalAlign: '-.02em', animation: 'blink .9s steps(2) infinite' } }),
+      heartGlow: ce('div', { 'aria-hidden': true, style: { position: 'fixed', left: '50%', top: '52%', width: '80vmin', height: '80vmin', marginLeft: '-40vmin', marginTop: '-40vmin', borderRadius: '50%', background: 'radial-gradient(circle, var(--acc2) 0%, transparent 62%)', opacity: 0.22, zIndex: 0, pointerEvents: 'none', animation: red ? 'none' : 'lubdub 1.5s ease-in-out infinite' } }),
+      companion: red ? null : ce('div', { 'aria-hidden': true, style: { position: 'fixed', inset: 0, zIndex: 98, pointerEvents: 'none', opacity: 0, transition: 'opacity .4s' } },
+        ce('svg', { style: { position: 'absolute', inset: 0, width: '100%', height: '100%', overflow: 'visible' } }, ce('line', { ref: this.thLine, x1: 0, y1: 0, x2: 0, y2: 0, style: { stroke: 'var(--acc)', strokeWidth: 1.5, strokeDasharray: '3 6', strokeLinecap: 'round' } })),
+        ce('div', { ref: this.compRef, style: { position: 'absolute', left: 0, top: 0, marginLeft: 14, marginTop: 8, whiteSpace: 'nowrap' } },
+          ce('span', { style: { color: 'var(--acc2)', font: "italic 400 24px/1 'Quicksand',sans-serif" } }, 'someone'))),
+      cursor: ce('div', { ref: this.curRef, 'aria-hidden': true, style: { position: 'fixed', left: 0, top: 0, marginLeft: 14, marginTop: 8, pointerEvents: 'none', zIndex: 9999, opacity: 0, color: 'var(--acc)', font: "italic 400 24px/1 'Quicksand',sans-serif", whiteSpace: 'nowrap', boxSizing: 'border-box', transition: 'width .35s cubic-bezier(.2,.8,.2,1.3),height .35s cubic-bezier(.2,.8,.2,1.3),margin .35s cubic-bezier(.2,.8,.2,1.3),background .3s,opacity .3s' } }, ce('span', { ref: this.curLab })),
+      bandA: ['Hopeful', 'Curious', 'Anxious', 'Drained', 'Ghosted', 'Validated', 'Hopeful', 'Curious', 'Anxious', 'Drained', 'Ghosted', 'Validated'],
+      bandA2: ['swipe', 'skip', 'like', 'match', 'chat', 'date', 'delete', 'repeat', 'swipe', 'skip', 'like', 'match', 'chat', 'date', 'delete', 'repeat'],
+      bandB: ['Presence', 'Comfort', 'Belonging', 'Understanding', 'Exploration', 'Intimacy', 'Validation', 'Safety', 'Presence', 'Comfort', 'Belonging', 'Understanding'],
+      bandB2: ['someone who listens', 'someone who notices', 'someone simply present', 'someone who gets them', 'someone who listens', 'someone who notices', 'someone simply present', 'someone who gets them'], blobs, wheel, reviews, dots, stars, phone, wave, miniWave,
+      eras, journey, pillars, cols, compare, rings, ringSel, ages, orient,
+      top, behind, hasTop: s.deck < 8 && cards.length > 0, deckDone: s.deck >= 8, deckCount: `${Math.min(s.deck + 1, 8)} / 8`,
+      likedNames: s.liked.map(i => (cards[i] || {}).t), likedCount: s.liked.length,
+      cardDown: this.cardDown, cardMove: this.cardMove, cardUp: this.cardUp,
+      like: () => this.swipe(true), skip: () => this.swipe(false), resetDeck: () => this.setState({ deck: 0, liked: [] }),
+      emoCols, emoCur, brkSel, fPath: path(fP), mPath: path(mP), fOp, mOp, emoPts, emoTabs, concerns, breaks,
+      notifs: (() => { const n = s.chatN || 0; return this.chatScript.slice(0, n).map((x, i) => ({ ...x, op: i < n - 4 ? 0 : 1 })).slice(-4).reverse(); })(),
+      lockDay: (this.chatScript[(s.chatN || 1) - 1] || {}).d, lockTime: (this.chatScript[(s.chatN || 1) - 1] || {}).tm, lockEndO: (s.chat || 0) >= 3 ? 1 : 0,
+      chatGone: s.chat >= 4, chatO: s.chat >= 4 ? 0 : 1, chatT: s.chat >= 4 ? 'translateY(-14%) scale(.92)' : 'none', chatPE: s.chat >= 4 ? 'none' : 'auto',
+      chatDraft: s.chat < 4 && (this.chatScript[(s.chatN || 0) - 1] || {}).k === 'mt' ? React.createElement('span', { style: { display: 'flex', gap: 5 } }, dots) : React.createElement('span', { style: { color: 'rgba(243,234,246,.4)' } }, 'Send a message'), replayChat: this.playChat,
+      principles, dims, dimSel, dimRelease: () => { this.dimHold = false; },
+      archTabs, arch, musicFlow, groupTabs, grp, grpMeters, validation, stagesB, pricing, bpHeads, bpLanes, bpLeave: () => this.setState({ bp: -1 }),
+      profSteps, prof: s.prof, profSel: ps[s.prof - 1] || {}, l1only: s.prof < 2, l2: s.prof >= 2, l3: s.prof >= 3, l4: s.prof >= 4, l5: s.prof >= 5,
+      avatarBg: s.prof >= 2 ? 'radial-gradient(circle at 35% 30%,#ff914d,#ff3131)' : 'transparent',
+      lvl: s.lvl, setLvl: e => this.setState({ lvl: +e.target.value }), ladderSel: lad[s.lvl] || {}, lvlLabel: `${s.lvl + 1} / 5`, promptOp: (1 - s.lvl * 0.17).toFixed(2), funnelV: fv,
+      insights: insightsV, npRef: this.npRef,
+      np: s.npOn ? { strike: '108%', oldO: 0, clip: 'inset(0 0% 0 0)', o: 1, y: '0px' } : { strike: '0%', oldO: 1, clip: 'inset(0 100% 0 0)', o: 0, y: '14px' },
+      cl: s.closeOn ? { bg: 1, t: 1, y: '0px', d: 0, ds: .4, bl: '0px', hs: 1 } : { bg: 0, t: 0, y: '16px', d: 1, ds: 1, bl: '14px', hs: .92 },
+      bigDots: [0, 1, 2].map(i => React.createElement('span', { key: i, style: { width: 'clamp(28px,4vw,64px)', height: 'clamp(28px,4vw,64px)', borderRadius: '50%', background: '#c98bd9', animation: `blink 1.2s ${i * 0.2}s infinite` } })),
+      togglePlay: () => this.setState(x => ({ playing: !x.playing })), playIcon: s.playing ? '❚❚' : '▶'
+    };
+  }
+}
+</script>
+</body>
+</html>
