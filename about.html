@@ -10,9 +10,11 @@
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&amp;family=Caveat+Brush&amp;display=swap" rel="stylesheet">
-<style>.xs-track{position:relative;height:260vh}
-.xs-pin{position:sticky;top:0;height:100vh;display:grid;grid-template-columns:minmax(0,.72fr) minmax(0,1.6fr);gap:clamp(32px,5cqw,88px);align-items:center}
-.xs-year{display:flex;font:500 clamp(96px,14cqw,220px)/1 'Familjen Grotesk',sans-serif;letter-spacing:-.055em;color:#F4EFE6}
+<style>a,button{touch-action:manipulation}
+@media (max-height:480px) and (orientation:landscape){.xs-pin{gap:20px}.xs-line{font-size:15px;line-height:1.3}.xs-when{margin-top:6px;font-size:17px}.xs-bar{margin-top:10px}}
+.xs-track{position:relative;height:260vh}
+.xs-pin{position:sticky;top:0;height:100svh;display:grid;grid-template-columns:minmax(0,.72fr) minmax(0,1.6fr);gap:clamp(32px,5cqw,88px);align-items:center}
+.xs-year{display:flex;font:500 clamp(60px,min(14cqw,26vh),220px)/1 'Familjen Grotesk',sans-serif;letter-spacing:-.055em;color:#F4EFE6}
 .xs-roll{display:inline-block;height:1em;overflow:hidden;color:#D42A2E}
 .xs-reel{display:flex;flex-direction:column;transition:transform .9s cubic-bezier(.3,1.25,.5,1)}
 .xs-reel span{display:block;height:1em}
@@ -85,9 +87,9 @@ body{margin:0;background:#161412}*{box-sizing:border-box}html{scroll-behavior:sm
 <script src="reeva-face.js?v=20261027-10"></script>
 <script src="reeva-line.js?v=20261029-2"></script>
 </helmet>
-<div style="min-height:100vh;background:#161412;font-family:'Familjen Grotesk',sans-serif">
+<div style="min-height:100svh;background:#161412;font-family:'Familjen Grotesk',sans-serif">
 <div ref="{{ peekRef }}" style="position:fixed;left:0;top:0;width:0;height:0;overflow:hidden;z-index:45;pointer-events:none"><div ref="{{ canvasRef }}" style="position:absolute;left:0;top:0;width:0;height:0"></div></div>
-<div ref="{{ bubbleRef }}" style="position:fixed;left:0;top:0;z-index:46;pointer-events:none;opacity:0;transition:opacity .3s;padding:10px 16px 8px;border-radius:999px;background:#F4EFE6;color:#1F1C1A;font:400 20px/1 'Caveat Brush',cursive;white-space:nowrap;box-shadow:0 10px 30px rgba(0,0,0,.25)"></div>
+<div ref="{{ bubbleRef }}" style="position:fixed;left:0;top:0;z-index:46;pointer-events:none;opacity:0;transition:opacity .3s;padding:10px 16px 8px;border-radius:18px;background:#F4EFE6;color:#1F1C1A;font:400 20px/1 'Caveat Brush',cursive;width:max-content;max-width:min(340px,calc(100vw - 24px));box-shadow:0 10px 30px rgba(0,0,0,.25)"></div>
 <div style="width:100%;margin:0 auto;overflow:clip;container-type:inline-size;background:#1F1C1A;color:#F4EFE6;position:relative">
 
 <header style="position:relative;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:28px clamp(20px,5.5cqw,80px)">
@@ -225,9 +227,9 @@ body{margin:0;background:#161412}*{box-sizing:border-box}html{scroll-behavior:sm
 </div>
 <div data-reveal="1" style="margin-top:clamp(80px,8cqw,110px)">
 <div ref="{{ pickRef }}" style="position:relative;display:flex;height:clamp(300px,34cqw,440px);border:1px solid rgba(244,239,230,.15);overflow:hidden">
-<button onClick="{{ cur.pickA }}" style="flex:{{ cur.aFlex }} 1 0%;min-width:0;border:none;background:{{ cur.aBg }};color:{{ cur.aFg }};cursor:pointer;display:flex;align-items:flex-end;justify-content:flex-start;padding:clamp(20px,3cqw,40px);transition:flex .6s cubic-bezier(.6,0,.2,1),background .4s,color .4s;overflow:hidden" style-hover="background:{{ cur.aHover }}"><span style="font:400 clamp(30px,5.4cqw,78px)/1 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;text-transform:uppercase;white-space:nowrap">{{ cur.a }}</span></button>
+<button onClick="{{ cur.pickA }}" style="flex:{{ cur.aFlex }} 1 0%;min-width:0;border:none;background:{{ cur.aBg }};color:{{ cur.aFg }};cursor:pointer;display:flex;align-items:flex-end;justify-content:flex-start;padding:clamp(20px,3cqw,40px);transition:flex .6s cubic-bezier(.6,0,.2,1),background .4s,color .4s;overflow:hidden" style-hover="background:{{ cur.aHover }}"><span style="font:400 clamp(20px,5.4cqw,78px)/1 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;text-transform:uppercase;white-space:nowrap">{{ cur.a }}</span></button>
 <div style="width:1px;background:rgba(244,239,230,.15)"></div>
-<button onClick="{{ cur.pickB }}" style="flex:{{ cur.bFlex }} 1 0%;min-width:0;border:none;background:{{ cur.bBg }};color:{{ cur.bFg }};cursor:pointer;display:flex;align-items:flex-start;justify-content:flex-end;padding:clamp(20px,3cqw,40px);transition:flex .6s cubic-bezier(.6,0,.2,1),background .4s,color .4s;overflow:hidden" style-hover="background:{{ cur.bHover }}"><span style="font:400 clamp(30px,5.4cqw,78px)/1 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;text-transform:uppercase;white-space:nowrap">{{ cur.b }}</span></button>
+<button onClick="{{ cur.pickB }}" style="flex:{{ cur.bFlex }} 1 0%;min-width:0;border:none;background:{{ cur.bBg }};color:{{ cur.bFg }};cursor:pointer;display:flex;align-items:flex-start;justify-content:flex-end;padding:clamp(20px,3cqw,40px);transition:flex .6s cubic-bezier(.6,0,.2,1),background .4s,color .4s;overflow:hidden" style-hover="background:{{ cur.bHover }}"><span style="font:400 clamp(20px,5.4cqw,78px)/1 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;text-transform:uppercase;white-space:nowrap">{{ cur.b }}</span></button>
 <div style="position:absolute;left:{{ cur.split }};top:50%;transform:translate(-50%,-50%);width:clamp(120px,15cqw,190px);aspect-ratio:1;border-radius:50%;background:#1F1C1A;border:1px solid rgba(244,239,230,.25);display:grid;place-items:center;text-align:center;padding:18px;pointer-events:none;transition:left .6s cubic-bezier(.6,0,.2,1)"><span style="font:400 clamp(16px,1.6cqw,21px)/1.15 'Caveat Brush',cursive;color:#F4EFE6">{{ cur.note }}</span></div>
 <div style="position:absolute;left:clamp(20px,3cqw,40px);top:clamp(20px,3cqw,40px);font:400 14px/1 'Familjen Grotesk',sans-serif;color:{{ cur.numC }};pointer-events:none">{{ cur.num }}</div>
 </div>
@@ -412,7 +414,7 @@ class Component extends DCLogic {
     if (bub) {
       const txt = (this.tempUntil > t ? this.tempNote : note) || '';
       if (bub.textContent !== txt) bub.textContent = txt;
-      const bw = bub.offsetWidth; let bx = D.x - bw - 6; if (bx < 8) bx = D.x + D.w + 6;
+      const bw = bub.offsetWidth; let bx = D.x - bw - 6; if (bx < 8) bx = D.x + D.w + 6; bx = Math.max(8, Math.min(bx, innerWidth - bw - 8));
       const by = D.y + D.h * (D.side === 'r' ? .18 : .15);
       bub.style.transform = `translate(${bx}px,${by}px) rotate(-3deg)`; bub.style.opacity = this.pk > .85 && txt ? 1 : 0;
     }

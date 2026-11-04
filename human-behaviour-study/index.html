@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,7 +11,9 @@
 <title>Law &amp; Life: what happens to people while they wait for justice</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@700;900&amp;family=Zilla+Slab:ital,wght@0,400;0,500;0,600;1,400&amp;family=Tenor+Sans&amp;family=Kalam:wght@400;700&amp;family=Quicksand:wght@400;500;600;700&amp;family=Doto:wght@800;900&amp;display=swap" rel="stylesheet">
-<style>
+<style>a,button{touch-action:manipulation}
+p{overflow-wrap:break-word}@media(max-width:1100px){.tg{font-size:clamp(11px,1.5vw,14px)!important}}
+
 @font-face{font-family:'Gullia';src:url('fonts/Gullia.otf') format('opentype'),local('Gullia'),local('Gullia-Regular');font-display:swap}
 html{scroll-behavior:smooth}
 body{margin:0;background:#ECE3CF;color:#1E1611;-webkit-font-smoothing:antialiased}
@@ -25,7 +27,7 @@ img{display:block;max-width:100%}
 
 <div style="position:relative;font-family:'Gullia','Tenor Sans',serif;background:#ECE3CF;color:#1E1611;overflow-x:clip">
 
-<header data-screen-label="00 In the matter of" style="position:relative;height:100vh;min-height:620px;background:#1E130D">
+<header data-screen-label="00 In the matter of" style="position:relative;height:100svh;min-height:620px;background:#1E130D">
 <div style="position:absolute;inset:0;overflow:hidden">{{ hero }}</div>
 <div style="position:absolute;left:0;right:0;top:0;display:flex;justify-content:space-between;gap:16px;padding:26px clamp(20px,4vw,56px);font-family:'Quicksand',sans-serif;font-size:12px;letter-spacing:.1em;color:#ECE3CF;pointer-events:none;font-weight:600">
 <a href="../#work" style="pointer-events:auto">← WORK</a><span style="margin-right:clamp(70px,6vw,100px)">FIELD NOTE · FAMILY COURT CORRIDOR</span>
@@ -337,7 +339,7 @@ img{display:block;max-width:100%}
 <span style="font-family:'Quicksand',sans-serif;font-size:11px;letter-spacing:.14em;color:#5E4D3E;font-weight:600">{{ t.h }}</span>
 <span style="font-family:'Big Shoulders Stencil Display',sans-serif;font-weight:900;font-size:20px;line-height:1;color:{{ t.codeColor }}">{{ t.code }}</span>
 </div>
-<p style="margin:12px 0 0;font-family:{{ t.font }};font-size:17px;line-height:1.35;color:{{ t.color }};text-wrap:pretty">{{ t.v }}</p>
+<p class="tg" style="margin:12px 0 0;font-family:{{ t.font }};font-size:17px;line-height:1.35;color:{{ t.color }};text-wrap:pretty">{{ t.v }}</p>
 </div>
 </div>
 </sc-for>
@@ -399,7 +401,7 @@ img{display:block;max-width:100%}
 </section>
 
 <section data-screen-label="13 Adjourned" style="position:relative;background:#2E1D14;color:#ECE3CF;padding:0 clamp(20px,4vw,56px)">
-<div style="position:relative;margin:0 calc(-1 * clamp(20px,4vw,56px));min-height:100vh;overflow:hidden;color:#F7F2E6;display:flex;flex-direction:column;justify-content:flex-end">
+<div style="position:relative;margin:0 calc(-1 * clamp(20px,4vw,56px));min-height:100svh;overflow:hidden;color:#F7F2E6;display:flex;flex-direction:column;justify-content:flex-end">
 <img src="img/photo-causelist-wall.png" alt="Cause list pasted on the court wall" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) brightness(.36)">
 <div style="position:relative;padding:clamp(28px,6vw,80px);display:flex;flex-direction:column;gap:clamp(40px,6vw,72px)">
 <div style="position:relative;align-self:flex-start;transform:rotate(-6deg);padding:clamp(9px,1.1vw,14px) clamp(20px,2.8vw,36px) clamp(4px,.5vw,7px);border:clamp(3px,.45vw,5px) solid #E5533F;color:#E5533F;font-family:'Doto',monospace;font-weight:900;font-size:clamp(46px,7.6vw,108px);line-height:1;mix-blend-mode:screen"><span data-thread-end="1" style="position:absolute;right:-7px;top:-7px;width:14px;height:14px"></span>ADJOURNED</div>

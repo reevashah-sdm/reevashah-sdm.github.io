@@ -12,7 +12,8 @@
 <script src="_ds/modernist-930a2025-f3ad-4539-99d0-9b46a1ff691a/_ds_bundle.js"></script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap">
 <script src="portfolio-data.js"></script>
-<style>@media(max-width:480px){.htb-name{display:none!important}}</style>
+<style>a,button{touch-action:manipulation}
+@media(max-width:480px){.htb-name{display:none!important}}</style>
 <style>
 :root{--font-heading:'Quicksand',sans-serif;--font-body:'Quicksand',sans-serif}
 html,body,*,button,input,select,textarea{font-family:'Quicksand',sans-serif !important}
@@ -31,7 +32,7 @@ html{scroll-behavior:smooth}body{margin:0;background:#140d17}a{color:inherit}a:h
 @keyframes blink{0%,100%{opacity:.2}50%{opacity:1}}
 </style>
 <style>@keyframes walkerStep{0%,100%{transform:translateY(0) rotate(0)}25%{transform:translateY(-4px) rotate(1.2deg)}50%{transform:translateY(0) rotate(0)}75%{transform:translateY(-4px) rotate(-1deg)}}</style><style>@keyframes bubIn{from{opacity:0;transform:translateY(12px) scale(.96)}to{opacity:1;transform:none}}</style></helmet>
-<div ref="{{ rootRef }}" onMouseMove="{{ onMove }}" onMouseLeave="{{ onLeave }}" onClick="{{ onBurst }}" style="--bg:#140d17;--ink:#f3eaf6;--acc:#c98bd9;--acc2:#e2b6ee;--soft:#2a1d31;--deep:#d9a8e6;--mid:#b3a2ba;position:relative;min-height:100vh;background:var(--bg);color:var(--ink);font-family:'Archivo',system-ui,sans-serif;font-size:17px;line-height:1.55;overflow-x:clip">
+<div ref="{{ rootRef }}" onMouseMove="{{ onMove }}" onMouseLeave="{{ onLeave }}" onClick="{{ onBurst }}" style="--bg:#140d17;--ink:#f3eaf6;--acc:#c98bd9;--acc2:#e2b6ee;--soft:#2a1d31;--deep:#d9a8e6;--mid:#b3a2ba;position:relative;min-height:100svh;background:var(--bg);color:var(--ink);font-family:'Archivo',system-ui,sans-serif;font-size:17px;line-height:1.55;overflow-x:clip">
 
 <header style="position:fixed;top:0;left:0;right:0;z-index:60;pointer-events:none">
   <div style="height:3px"><div ref="{{ progRef }}" style="height:100%;background:linear-gradient(90deg,var(--acc),var(--acc2));transform-origin:0 50%;transform:scaleX(0)"></div></div>
@@ -61,7 +62,7 @@ html{scroll-behavior:smooth}body{margin:0;background:#140d17}a{color:inherit}a:h
 </sc-if>
 
 <!-- HERO -->
-<section id="top" ref="{{ heroRef }}" data-screen-label="Hero" style="--ink:#f6efeb;--deep:#c98bd9;--hx:72%;--hy:58%;position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;padding:120px 0 56px;overflow:hidden;background:#120c15;color:#f6efeb">
+<section id="top" ref="{{ heroRef }}" data-screen-label="Hero" style="--ink:#f6efeb;--deep:#c98bd9;--hx:72%;--hy:58%;position:relative;z-index:1;min-height:100svh;display:flex;flex-direction:column;padding:120px 0 56px;overflow:hidden;background:#120c15;color:#f6efeb">
   <img src="assets/esd/r01.png" alt="" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:right bottom;opacity:.07;filter:grayscale(1);pointer-events:none">
   <img src="assets/esd/r01.png" alt="Two people leaping, holding hands" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:right bottom;filter:grayscale(1) contrast(1.1);pointer-events:none;-webkit-mask-image:radial-gradient(circle clamp(180px,22vw,340px) at var(--hx) var(--hy),#000 35%,transparent 100%);mask-image:radial-gradient(circle clamp(180px,22vw,340px) at var(--hx) var(--hy),#000 35%,transparent 100%)">
   <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle clamp(220px,26vw,400px) at var(--hx) var(--hy),rgba(201,139,217,.16),transparent 70%)"></div>
@@ -84,7 +85,7 @@ html{scroll-behavior:smooth}body{margin:0;background:#140d17}a{color:inherit}a:h
 </section>
 
 <!-- HINGE POSTER -->
-<section id="hinge" data-spot="" data-cursor="explore" data-screen-label="Chapter 01 · Hinge" style="--mx:-999px;--my:-999px;position:relative;z-index:1;min-height:100vh;overflow:hidden;background:linear-gradient(160deg,#4a2857 0%,#93529f 48%,#c98bd9 100%);color:#fff;display:flex;align-items:center">
+<section id="hinge" data-spot="" data-cursor="explore" data-screen-label="Chapter 01 · Hinge" style="--mx:-999px;--my:-999px;position:relative;z-index:1;min-height:100svh;overflow:hidden;background:linear-gradient(160deg,#4a2857 0%,#93529f 48%,#c98bd9 100%);color:#fff;display:flex;align-items:center">
   {{ wheel }}
   <img src="assets/esd/r03.png" alt="Two hands reaching toward each other" style="position:absolute;top:0;bottom:0;right:clamp(0px,6vw,120px);height:100%;width:auto;max-width:none;z-index:1;pointer-events:none">
   <div style="position:relative;max-width:1440px;width:100%;margin:0 auto;padding:clamp(80px,10vw,160px) clamp(20px,5vw,80px);box-sizing:border-box;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:40px;align-items:center">
@@ -390,7 +391,7 @@ html{scroll-behavior:smooth}body{margin:0;background:#140d17}a{color:inherit}a:h
 <div data-reveal="" data-screen-label="Thread · 08 User journey" style="position:relative;z-index:1;max-width:1440px;margin:0 auto;padding:clamp(16px,2vw,32px) clamp(20px,5vw,80px) clamp(8px,1vw,16px);box-sizing:border-box;display:flex;flex-direction:column;gap:20px"><span aria-hidden="true" style="display:block;width:2px;height:clamp(32px,3vw,48px);background:linear-gradient(to bottom,transparent,var(--acc))"></span><p style="margin:0;max-width:30ch;font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;letter-spacing:0;font-size:clamp(26px,2.8vw,42px);line-height:1.15;color:var(--acc2);text-wrap:balance">We followed them from download to deletion.</p></div>
 <!-- 08 JOURNEY (horizontal) -->
 <section ref="{{ jWrapRef }}" data-cursor="scroll" data-screen-label="08 User journey" style="position:relative;z-index:1;height:380vh">
-  <div style="position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;gap:28px">
+  <div style="position:sticky;top:0;height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;gap:28px">
     <div style="max-width:1440px;width:100%;margin:0 auto;padding:0 clamp(20px,5vw,80px);box-sizing:border-box;display:flex;flex-wrap:wrap;gap:12px 40px;align-items:flex-end;justify-content:space-between">
       <div style="display:flex;flex-direction:column;gap:12px"><span style="font-size:12px;font-weight:400;letter-spacing:.34em;text-transform:uppercase;color:var(--deep)">User journey · keep scrolling</span><h2 style="font-size:clamp(40px,5.4vw,88px);line-height:.9;letter-spacing:-.05em;margin:0;font-weight:800">Download to deletion, <span style="font-family:'Quicksand',sans-serif;font-weight:400;color:var(--acc);position:relative;display:inline-block">and back</span></h2></div>
     </div>
@@ -552,7 +553,7 @@ html{scroll-behavior:smooth}body{margin:0;background:#140d17}a{color:inherit}a:h
 
 
 <!-- DELETE RITUAL -->
-<section id="delete" ref="{{ chatRef }}" data-screen-label="Interlude · Delete Hinge" style="position:relative;z-index:2;min-height:100vh;overflow:hidden;background:radial-gradient(900px circle at 70% 50%,#3b2444 0%,#1d1420 62%);color:#f6efeb;display:flex;align-items:center">
+<section id="delete" ref="{{ chatRef }}" data-screen-label="Interlude · Delete Hinge" style="position:relative;z-index:2;min-height:100svh;overflow:hidden;background:radial-gradient(900px circle at 70% 50%,#3b2444 0%,#1d1420 62%);color:#f6efeb;display:flex;align-items:center">
   <div style="max-width:1440px;width:100%;margin:0 auto;padding:clamp(96px,12vw,160px) clamp(20px,5vw,80px);box-sizing:border-box;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:56px 80px;align-items:center">
     <div style="display:flex;flex-direction:column;gap:26px">
       <span style="font-size:12px;font-weight:400;letter-spacing:.34em;text-transform:uppercase;color:#c98bd9">The end of phase one · Hinge's own promise</span>

@@ -16,6 +16,9 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap">
 <style>
 html,body{overflow-x:clip}
+a,button{touch-action:manipulation}
+@media (max-height:480px) and (orientation:landscape){.op{zoom:.52}}
+@media (min-height:481px) and (max-height:719px){.op{zoom:.8}}
 :root{--font-body:'Lato',system-ui,sans-serif;--font-heading:'Lato',system-ui,sans-serif;--font-big:'Archivo',system-ui,sans-serif}
 body{font-family:var(--font-body)}
 body{margin:0;background:#f3f2f2;-webkit-font-smoothing:antialiased}
@@ -59,7 +62,7 @@ a{color:var(--color-accent-700)}a:hover{color:var(--color-accent)}
 <div style="position:relative;z-index:2;color:var(--color-text)">
 
 <header id="top" data-bg="#f3f2f2" data-scene="hero" data-chapter="Breakfast. Upgraded." style="position:relative;height:150vh">
-  <div style="position:sticky;top:0;height:100vh;overflow:hidden">
+  <div style="position:sticky;top:0;height:100svh;overflow:hidden">
     <div style="position:absolute;left:50%;top:50%;width:min(110vh,90vw);aspect-ratio:1/1;transform:translate(-50%,-50%) scale(calc(1 + var(--p,0) * 0.4));border-radius:50%;background:radial-gradient(circle, rgba(47,87,174,.32) 0%, rgba(47,87,174,0) 62%)"></div>
     <div style="position:absolute;left:50%;top:44%;width:92vw;transform:translate(-50%,-50%) translateY(calc(var(--p,0) * -14vh)) translateX(calc(var(--mx,0) * -10px));opacity:calc(1 - var(--p,0) * 1.2)">{{ heroMark }}</div>
     <sc-for list="{{ floaters }}" as="f" hint-placeholder-count="0">
@@ -80,7 +83,7 @@ a{color:var(--color-accent-700)}a:hover{color:var(--color-accent)}
 </header>
 
 <section data-scene="name" data-bg="#201e1d" data-dark="1" data-chapter="The Name" style="height:230vh;position:relative;color:#f3f2f2">
-  <div style="position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;padding:0 clamp(20px,4vw,56px);gap:6vh">
+  <div style="position:sticky;top:0;height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;padding:0 clamp(20px,4vw,56px);gap:6vh">
     <div style="font-size:12px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-neutral-500)">The name</div>
     <div style="font-size:clamp(64px,12.5vw,230px);font-weight:500;letter-spacing:-0.05em;line-height:0.95;white-space:nowrap;display:flex;gap:0.22em;font-family:var(--font-big);font-stretch:70%;font-weight:600;letter-spacing:-0.005em">
       <span style="display:inline-grid;overflow:hidden;padding:0 0.02em 0.08em">
@@ -94,7 +97,7 @@ a{color:var(--color-accent-700)}a:hover{color:var(--color-accent)}
 </section>
 
 <section data-scene="market" data-bg="#f3f2f2" data-chapter="The Market" style="height:240vh;position:relative">
-  <div style="position:sticky;top:0;height:100vh;overflow:hidden">
+  <div style="position:sticky;top:0;height:100svh;overflow:hidden">
     <div style="position:absolute;right:-6vw;top:50%;width:min(58vw,700px);aspect-ratio:1/1;transform:translateY(-50%) scale(calc(0.6 + var(--p,0) * 0.5)) rotate(calc(var(--p,0) * 200deg))">
       <img src="assets/p14_8.png" alt="" style="width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 40px 50px rgba(32,30,29,.22))">
     </div>
@@ -111,7 +114,7 @@ a{color:var(--color-accent-700)}a:hover{color:var(--color-accent)}
   </div>
 </section>
 
-<section data-bg="#201e1d" data-dark="1" data-chapter="Who owns the biscuit" style="position:relative;min-height:100vh;color:#f3f2f2;padding:18vh clamp(20px,4vw,56px) 14vh;display:flex;flex-wrap:wrap;align-items:center;gap:6vw">
+<section data-bg="#201e1d" data-dark="1" data-chapter="Who owns the biscuit" style="position:relative;min-height:100svh;color:#f3f2f2;padding:18vh clamp(20px,4vw,56px) 14vh;display:flex;flex-wrap:wrap;align-items:center;gap:6vw">
   <div onMouseMove="{{ onPieMove }}" onClick="{{ onPieMove }}" style="position:relative;width:min(520px,84vw);aspect-ratio:1/1;flex:none;cursor:crosshair">
     {{ pie }}
     <div style="position:absolute;inset:-6%;border-radius:50%;pointer-events:none;opacity:{{ pieHintO }};transition:opacity .6s;animation:omg-spin 6s linear infinite">
@@ -175,7 +178,7 @@ a{color:var(--color-accent-700)}a:hover{color:var(--color-accent)}
 
 
 <section data-bg="#eae7e7" data-chapter="The Person" data-scene="persona" ref="{{ personaRef }}" style="position:relative;height:260vh">
- <div style="position:sticky;top:0;height:100vh;min-height:720px;overflow:hidden">
+ <div class="op" style="position:sticky;top:0;height:100svh;min-height:720px;overflow:hidden">
   <div style="position:absolute;left:clamp(20px,4vw,56px);top:14vh;width:44vw;display:flex;flex-direction:column;gap:14px;pointer-events:none;z-index:2">
     <div style="font-size:12px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-neutral-600)">Who it’s for</div>
     <div style="position:relative;font-size:clamp(36px,4.6vw,84px);font-weight:500;letter-spacing:-0.04em;line-height:1;min-height:2.05em;font-family:var(--font-big);font-stretch:70%;font-weight:600;letter-spacing:-0.005em">
@@ -210,7 +213,7 @@ a{color:var(--color-accent-700)}a:hover{color:var(--color-accent)}
   </div>
 </section>
 
-<section data-bg="#ec3013" data-chapter="The Voice" style="position:relative;min-height:100vh;overflow:hidden;display:flex;flex-direction:column;padding:16vh clamp(20px,4vw,56px) 0">
+<section data-bg="#ec3013" data-chapter="The Voice" style="position:relative;min-height:100svh;overflow:hidden;display:flex;flex-direction:column;padding:16vh clamp(20px,4vw,56px) 0">
   <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:12px;margin-bottom:6vh">
     <div style="font-size:12px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;opacity:.8">The voice · the witty wingman</div>
     <div style="font-size:14px;opacity:.8">Pick a moment. The wingman always has a line.</div>
@@ -252,7 +255,7 @@ a{color:var(--color-accent-700)}a:hover{color:var(--color-accent)}
 </section>
 
 <section data-scene="range" data-bg="range" data-dark="1" data-chapter="The Range" ref="{{ rangeRef }}" style="height:720vh;position:relative">
-  <div style="position:sticky;top:0;height:100vh;overflow:hidden;color:{{ rg.fg }};transition:color .5s">
+  <div style="position:sticky;top:0;height:100svh;overflow:hidden;color:{{ rg.fg }};transition:color .5s">
     <div style="position:absolute;inset:0;background:radial-gradient(55% 60% at 50% 55%, rgba(255,255,255,.30), rgba(255,255,255,0) 70%), radial-gradient(120% 90% at 50% 50%, rgba(0,0,0,0) 55%, rgba(0,0,0,.38) 100%);pointer-events:none"></div>
     <div style="position:absolute;inset:0;z-index:1;pointer-events:none">{{ rgRain }}</div>
     <sc-for list="{{ kin }}" as="k" hint-placeholder-count="6">
@@ -294,7 +297,7 @@ a{color:var(--color-accent-700)}a:hover{color:var(--color-accent)}
 
 
 <section data-scene="prism" data-bg="#f3f2f2" data-chapter="Identity Prism" style="position:relative;height:420vh;color:var(--color-text)">
-  <div style="position:sticky;top:0;height:100vh;overflow:hidden;--f:calc(clamp(0, (var(--p,0) - 0.1) / 0.8, 0.9999) * 6);--act:clamp(0, (var(--p,0) - 0.08) * 14, 1);--o0:clamp(0, min((var(--f) - 0) * 5, (1 - var(--f)) * 5), 1);--o1:clamp(0, min((var(--f) - 1) * 5, (2 - var(--f)) * 5), 1);--o2:clamp(0, min((var(--f) - 2) * 5, (3 - var(--f)) * 5), 1);--o3:clamp(0, min((var(--f) - 3) * 5, (4 - var(--f)) * 5), 1);--o4:clamp(0, min((var(--f) - 4) * 5, (5 - var(--f)) * 5), 1);--o5:clamp(0, (var(--f) - 5) * 5, 1);">
+  <div style="position:sticky;top:0;height:100svh;overflow:hidden;--f:calc(clamp(0, (var(--p,0) - 0.1) / 0.8, 0.9999) * 6);--act:clamp(0, (var(--p,0) - 0.08) * 14, 1);--o0:clamp(0, min((var(--f) - 0) * 5, (1 - var(--f)) * 5), 1);--o1:clamp(0, min((var(--f) - 1) * 5, (2 - var(--f)) * 5), 1);--o2:clamp(0, min((var(--f) - 2) * 5, (3 - var(--f)) * 5), 1);--o3:clamp(0, min((var(--f) - 3) * 5, (4 - var(--f)) * 5), 1);--o4:clamp(0, min((var(--f) - 4) * 5, (5 - var(--f)) * 5), 1);--o5:clamp(0, (var(--f) - 5) * 5, 1);">
     <div style="position:absolute;left:clamp(20px,4vw,56px);right:clamp(20px,4vw,56px);top:10vh;display:flex;justify-content:space-between;align-items:baseline;border-top:2px solid var(--color-text);padding-top:14px">
       <span style="font-size:12px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase">Brand Identity Prism</span>
       <span style="font-size:14px;color:var(--color-neutral-600)">One name, split into six facets.</span>
@@ -405,7 +408,7 @@ a{color:var(--color-accent-700)}a:hover{color:var(--color-accent)}
 </section>
 
 <section data-scene="fourp" data-bg="#f3f2f2" data-chapter="The 4P’s" ref="{{ fourRef }}" style="position:relative;height:520vh">
-  <div style="position:sticky;top:0;height:100vh;overflow:hidden;color:var(--color-text)">
+  <div style="position:sticky;top:0;height:100svh;overflow:hidden;color:var(--color-text)">
     <div style="position:absolute;left:clamp(20px,4vw,56px);right:clamp(20px,4vw,56px);top:10vh;display:flex;justify-content:space-between;align-items:baseline;border-top:2px solid var(--color-text);padding-top:14px;z-index:5">
       <span style="font-size:12px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase">The 4P’s</span>
       <span style="font-size:14px;font-variant-numeric:tabular-nums">{{ fp.n }} / 04</span>
@@ -464,7 +467,7 @@ a{color:var(--color-accent-700)}a:hover{color:var(--color-accent)}
 </section>
 
 <section data-scene="social" data-bg="#201e1d" data-dark="1" data-chapter="Social" style="position:relative;height:320vh">
-  <div style="position:sticky;top:0;height:100vh;overflow:hidden;color:#f3f2f2">
+  <div style="position:sticky;top:0;height:100svh;overflow:hidden;color:#f3f2f2">
     <div style="position:absolute;left:50%;top:14vh;transform:translateX(-50%);text-align:center;display:flex;flex-direction:column;gap:10px;z-index:5;pointer-events:none">
       <div style="font-size:12px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-neutral-500)">Social Media · Instagram Creatives</div>
       <div style="font-size:clamp(32px,4vw,72px);font-weight:500;letter-spacing:-0.04em;line-height:1;font-family:var(--font-big);font-stretch:70%;font-weight:600;letter-spacing:-0.005em">Made for <span style="color:var(--color-accent-400)">the feed.</span></div>
@@ -595,7 +598,7 @@ a{color:var(--color-accent-700)}a:hover{color:var(--color-accent)}
   </div>
 </section>
 
-<footer data-bg="#ec3013" data-chapter="Oat My God!" style="position:relative;min-height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;padding:16vh clamp(20px,4vw,56px) 28px;color:var(--color-text)">
+<footer data-bg="#ec3013" data-chapter="Oat My God!" style="position:relative;min-height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;padding:16vh clamp(20px,4vw,56px) 28px;color:var(--color-text)">
   <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:4vw">
     <div style="display:flex;flex-direction:column;gap:12px">
       <div style="font-size:clamp(40px,6vw,108px);font-weight:500;letter-spacing:-0.05em;line-height:0.98;font-family:var(--font-big);font-stretch:70%;font-weight:600;letter-spacing:-0.005em">Breakfast.<br><span style="color:#fff">Upgraded.</span></div>
