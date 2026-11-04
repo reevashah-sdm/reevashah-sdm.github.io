@@ -12,6 +12,7 @@
 <script src="_ds/modernist-930a2025-f3ad-4539-99d0-9b46a1ff691a/_ds_bundle.js"></script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap">
 <script src="portfolio-data.js"></script>
+<style>@media(max-width:560px){.blg-name{display:none}}</style>
 <style>
 html,body,*,button,input{font-family:'Quicksand',sans-serif !important}
 html{scroll-behavior:smooth}body{margin:0;background:#0c080b}a{color:inherit;text-decoration:none}a:hover{color:#ff914d}button{background:none;border:0;color:inherit;padding:0;font:inherit}
@@ -31,7 +32,7 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #ff91
 <div ref="{{ neb2 }}" aria-hidden="true" style="position:fixed;right:-25vw;bottom:-30vh;width:80vw;height:80vw;border-radius:50%;background:radial-gradient(closest-side,rgba(255,145,77,.16),rgba(255,145,77,0));pointer-events:none;z-index:0;will-change:transform"></div>
 
 <header style="position:fixed;top:0;left:0;right:0;z-index:70;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px clamp(16px,4vw,56px) 28px;background:linear-gradient(to bottom,rgba(12,8,11,.85),rgba(12,8,11,0));font-size:11px;font-weight:700;letter-spacing:.26em;text-transform:uppercase">
-  <a href="#intro">Match Made in Heaven</a>
+  <div style="display:flex;gap:clamp(14px,2vw,28px);align-items:center"><a href="../#work" style="white-space:nowrap">← Work</a><a class="blg-name" href="#intro">Match Made in Heaven</a></div>
   <nav style="display:flex;gap:clamp(14px,2vw,28px);align-items:center">
     <a href="Hinge to Belong Portfolio v17.dc.html" style="color:var(--mid)">← Phase 01 · Hinge</a>
     <button onClick="{{ openTl }}" style="cursor:pointer;letter-spacing:inherit;text-transform:inherit;display:flex;gap:8px;align-items:center" style-hover="color:#ff914d"><span style="display:flex;gap:2px;align-items:flex-end;height:11px"><span style="width:2px;height:5px;background:currentColor"></span><span style="width:2px;height:11px;background:currentColor"></span><span style="width:2px;height:8px;background:currentColor"></span></span>Tracklist</button>
