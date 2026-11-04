@@ -840,14 +840,15 @@ class Component extends DCLogic {
     const raw = x => Math.sin(x * 0.045 + tt * 3) * (0.55 + 0.45 * Math.sin(x * 0.011 + tt * 0.7)) * amp;
     const zone = (x, i) => { const d = Math.abs(x / W - cx[i]); return d < hw ? 0.5 + 0.5 * Math.cos(Math.PI * d / hw) : 0; };
     const cap = amp * (1 - 0.82 * kill[0]), gapHalf = hw * W * 0.55 * kill[1];
-    ctx.lineWidth = 2; ctx.strokeStyle = '#c98bd9'; ctx.shadowColor = '#c98bd9'; ctx.shadowBlur = 12; ctx.beginPath();
+    const edge = x => { const q = Math.max(0, Math.min(1, Math.min(x, W - x) / (W * 0.1))); return q * q * (3 - 2 * q); }, lineG = ctx.createLinearGradient(0, 0, W, 0); lineG.addColorStop(0, 'rgba(201,139,217,0)'); lineG.addColorStop(0.07, '#c98bd9'); lineG.addColorStop(0.93, '#c98bd9'); lineG.addColorStop(1, 'rgba(201,139,217,0)');
+    ctx.lineWidth = 2; ctx.strokeStyle = lineG; ctx.shadowColor = '#c98bd9'; ctx.shadowBlur = 12; ctx.beginPath();
     let pen = false;
     for (let x = 0; x <= W; x += 2) {
       let v = raw(x);
       const z0 = zone(x, 0); if (z0 > 0) { const c = amp - (amp - cap) * Math.min(1, z0 * 1.6); v = Math.max(-c, Math.min(c, v)); }
       const inBreak = Math.abs(x - cx[1] * W) < gapHalf; if (x > cx[1] * W + gapHalf && kill[1] > 0) v = raw(x + 40 * kill[1]) * (1 - 0.3 * zone(x, 1) * kill[1]) + 18 * kill[1] * zone(x, 1);
       const z2 = zone(x, 2); if (z2 > 0) v *= 1 - kill[2] * Math.min(1, z2 * 1.5);
-      const y = mid + v;
+      const y = mid + v * edge(x);
       if (inBreak) { pen = false; continue; }
       if (!pen) { ctx.moveTo(x, y); pen = true; } else ctx.lineTo(x, y);
     }
@@ -855,7 +856,7 @@ class Component extends DCLogic {
     ctx.font = '700 11px Quicksand, sans-serif'; ctx.textAlign = 'center';
     const lab = [['GAP 01', 'CAPPED BY PAYWALLS'], ['GAP 02', 'BREAKS BETWEEN STAGES'], ['GAP 03', 'ON A FREQUENCY IT CAN’T HEAR']];
     for (let i = 0; i < 3; i++) { const k = kill[i]; if (k <= 0) continue; const X = cx[i] * W; ctx.globalAlpha = k;
-      ctx.fillStyle = '#ff914d'; ctx.fillText(lab[i][0], X, 12); ctx.fillStyle = 'rgba(255,210,176,.85)'; ctx.font = '600 10px Quicksand, sans-serif'; ctx.fillText(lab[i][1], X, 27); ctx.font = '700 11px Quicksand, sans-serif';
+      ctx.fillStyle = '#ff914d'; ctx.fillText(lab[i][0], X, 12); ctx.fillStyle = 'rgba(255,210,176,.85)'; ctx.font = '600 10px Quicksand, sans-serif'; if (W >= 640) ctx.fillText(lab[i][1], X, 27); ctx.font = '700 11px Quicksand, sans-serif';
       ctx.strokeStyle = '#ff914d'; ctx.lineWidth = 1.5;
       if (i === 0) { ctx.setLineDash([5, 5]); [-cap, cap].forEach(o => { ctx.beginPath(); ctx.moveTo(X - hw * W, mid + o); ctx.lineTo(X + hw * W, mid + o); ctx.stroke(); }); ctx.setLineDash([]);
         ctx.fillStyle = '#ff914d'; ctx.fillRect(X - 7, mid - cap - 20, 14, 10); ctx.beginPath(); ctx.arc(X, mid - cap - 20, 4.5, Math.PI, 0); ctx.stroke(); }
