@@ -82,7 +82,7 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #ff91
 </section>
 
 
-<section id="t01" data-track="" data-label="Track 01" data-title="How did we reach here?" data-screen-label="Track 01 · The shift" style="position:relative;">
+<section id="t01" data-track="" data-label="Track 01" data-title="How did we reach here?" data-screen-label="Track 01 · The shift" style="position:relative;overflow-x:clip">
 
 <div data-pin="" style="position:relative;height:230vh">
   <div style="position:sticky;top:0;height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center">
@@ -118,7 +118,7 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #ff91
     <div style="display:flex;gap:20px;align-items:flex-start;padding-top:clamp(0px,7vw,120px)"><span aria-hidden="true" style="flex:0 0 auto;width:2px;align-self:stretch;background:linear-gradient(#ff914d,rgba(255,145,77,0));box-shadow:0 0 12px #ff914d"></span><p data-lyric="" style="margin:0;font-size:clamp(22px,2.2vw,34px);line-height:1.2;letter-spacing:-.02em;font-weight:500;color:#ffd2b0;text-wrap:pretty">It is that conventional platforms may not adequately address the emotional and contextual reasons people seek connection.</p></div>
   </div>
   <div data-pin="" style="position:relative;height:300vh;margin:0 calc(-1 * clamp(20px,5vw,72px))">
-  <div style="position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;padding:80px clamp(20px,5vw,72px) 96px;box-sizing:border-box">
+  <div style="position:sticky;top:0;height:100vh;display:flex;flex-direction:column;justify-content:center;padding:80px clamp(20px,5vw,72px) 96px;box-sizing:border-box">
     <div aria-hidden="true" style="position:absolute;left:calc(var(--pp,0) * 100%);top:50%;width:70vmin;aspect-ratio:1/1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(closest-side,rgba(255,80,49,.32),rgba(255,80,49,0));pointer-events:none"></div>
     <div style="position:relative;display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap"><span style="font-size:11px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--mid)">What we asked · tune in by scrolling</span><span style="font-size:11px;font-weight:700;letter-spacing:.3em;color:#ff914d">FIVE FREQUENCIES</span></div>
     <div style="position:relative;flex:1;min-height:0">
@@ -140,12 +140,13 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #ff91
 </section>
 <section id="t02" data-track="" data-label="Track 02" data-title="Belong." data-screen-label="Track 02 · Belong" style="position:relative;overflow-x:clip;padding-bottom:clamp(48px,6vw,96px)">
 
-<div style="position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:120px 0 clamp(32px,4vw,56px);box-sizing:border-box">
+<div style="position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:120px 0 clamp(32px,4vw,56px);box-sizing:border-box">
   <div aria-hidden="true" style="position:absolute;left:50%;top:0;width:min(120vw,1600px);aspect-ratio:1/1;transform:translate(-30%,-18%);border-radius:50%;background:radial-gradient(closest-side,rgba(255,49,49,.5),rgba(255,120,60,.22) 45%,rgba(255,145,77,0));pointer-events:none;animation:drift 18s ease-in-out infinite alternate"></div>
-  <div style="position:absolute;left:clamp(20px,5vw,72px);right:clamp(20px,5vw,72px);top:110px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px"><span style="font-size:11px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:#ff914d">Chapter 02 · New Service Design</span><span style="font-size:clamp(20px,2.4vw,34px);line-height:1.1;color:#ffb27a;transform:rotate(-4deg)">someone out there gets it...</span></div>
-  <img data-par="-70" src="assets/nsd/n02.png" alt="Three friends embracing" style="position:absolute;right:4vw;top:20vh;width:min(42vw,560px);height:auto;z-index:2;-webkit-mask-image:radial-gradient(closest-side,#000 70%,transparent);mask-image:radial-gradient(closest-side,#000 70%,transparent)">
-  <img data-par="50" src="assets/nsd/n48.png" alt="" style="position:absolute;left:8vw;top:30vh;width:min(14vw,180px);z-index:2">
-  <h2 data-zoom=".14" style="position:relative;margin:0 0 0 -1vw;font-size:30vw;line-height:.76;letter-spacing:-.075em;font-weight:700;background:linear-gradient(100deg,#f6efeb 10%,#ffb27a 45%,#ff914d 62%,#ff3131 90%);-webkit-background-clip:text;background-clip:text;color:transparent;transform-origin:50% 100%;white-space:nowrap">Belong.</h2>
+  <div style="position:absolute;left:clamp(20px,5vw,72px);top:110px;display:flex;flex-direction:column;align-items:flex-start;gap:clamp(14px,2vw,26px)"><span style="font-size:11px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:#ff914d">Chapter 02 · New Service Design</span><span style="font-size:clamp(20px,2.4vw,34px);line-height:1.1;color:#ffb27a;transform:rotate(-4deg)">someone out there gets it...</span></div>
+  <div data-zoom=".03" style="position:relative;align-self:center;font-size:min(28.5vw,50vh);line-height:1;transform-origin:50% 100%">
+    <img src="assets/nsd/n02.png" alt="Three friends embracing" style="position:absolute;left:67%;bottom:.7em;width:min(1.25em,548px);height:auto;transform:translateX(-50%);-webkit-mask-image:linear-gradient(#000 80%,transparent 100%);mask-image:linear-gradient(#000 80%,transparent 100%)">
+    <h2 style="position:relative;margin:0;padding:0 .06em .08em 0;font-size:1em;line-height:1.2;letter-spacing:-.075em;font-weight:700;background:linear-gradient(100deg,#f6efeb 10%,#ffb27a 45%,#ff914d 62%,#ff3131 90%);-webkit-background-clip:text;background-clip:text;color:transparent;white-space:nowrap">Belong.</h2>
+  </div>
 </div>
 
 <div style="max-width:1440px;margin:0 auto;padding-left:clamp(20px,5vw,72px);padding-right:clamp(20px,5vw,72px);box-sizing:border-box"><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:48px clamp(40px,8vw,140px);padding-bottom:clamp(80px,10vw,160px)">
@@ -161,10 +162,13 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #ff91
 </div>
 <span style="font-size:11px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--mid)">Five principles · a constellation</span>
     <div data-prog="" style="position:relative;margin-top:20px">
-      <svg viewBox="0 0 1000 120" preserveAspectRatio="none" aria-hidden="true" style="display:block;width:100%;height:110px;overflow:visible"><polyline points="100,78 300,28 500,92 700,36 900,70" fill="none" stroke="#ff914d" stroke-opacity=".75" stroke-width="1.2" vector-effect="non-scaling-stroke" pathLength="100" style="stroke-dasharray:100px;stroke-dashoffset:calc(100px - 100px * var(--pr,1))"></polyline><g fill="#ffd2b0" style="filter:drop-shadow(0 0 6px #ff914d)"><circle cx="100" cy="78" r="5"></circle><circle cx="300" cy="28" r="6"></circle><circle cx="500" cy="92" r="5"></circle><circle cx="700" cy="36" r="6"></circle><circle cx="900" cy="70" r="5"></circle></g></svg>
-      <div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:20px">
+      <div aria-hidden="true" style="position:relative;height:110px">
+        <svg viewBox="0 0 1000 120" preserveAspectRatio="none" style="position:absolute;inset:0;display:block;width:100%;height:100%;overflow:visible;clip-path:inset(-20px calc(100% - 100% * var(--pr,1)) -20px 0)"><polyline points="100,78 300,28 500,92 700,36 900,70" fill="none" stroke="#ff914d" stroke-opacity=".75" stroke-width="1.2" vector-effect="non-scaling-stroke"></polyline></svg>
+        <span style="position:absolute;left:10%;top:65%;width:11px;height:11px;margin:-5.5px;border-radius:50%;background:#ffd2b0;box-shadow:0 0 10px 1px #ff914d"></span><span style="position:absolute;left:30%;top:23.3%;width:13px;height:13px;margin:-6.5px;border-radius:50%;background:#ffd2b0;box-shadow:0 0 10px 1px #ff914d"></span><span style="position:absolute;left:50%;top:76.7%;width:11px;height:11px;margin:-5.5px;border-radius:50%;background:#ffd2b0;box-shadow:0 0 10px 1px #ff914d"></span><span style="position:absolute;left:70%;top:30%;width:13px;height:13px;margin:-6.5px;border-radius:50%;background:#ffd2b0;box-shadow:0 0 10px 1px #ff914d"></span><span style="position:absolute;left:90%;top:58.3%;width:11px;height:11px;margin:-5.5px;border-radius:50%;background:#ffd2b0;box-shadow:0 0 10px 1px #ff914d"></span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0">
         <sc-for list="{{ principles }}" as="p" hint-placeholder-count="5">
-          <div data-reveal="" style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;transition:color .3s" style-hover="color:#ff914d">
+          <div data-reveal="" style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;padding:0 10px;transition:color .3s" style-hover="color:#ff914d">
             <span style="font-size:22px;font-weight:300;color:#ff914d">{{ p.n }}</span>
             <span style="font-size:14px;line-height:1.4;max-width:22ch">{{ p.t }}</span>
           </div>
@@ -174,30 +178,37 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #ff91
 </section>
 <section id="t03" data-track="" data-label="Track 03" data-title="Who is a companion?" data-screen-label="Track 03 · Companion" style="position:relative;">
 
-<div style="max-width:1440px;margin:0 auto;padding-left:clamp(20px,5vw,72px);padding-right:clamp(20px,5vw,72px);box-sizing:border-box"><div data-reveal="" style="position:relative;padding:clamp(40px,6vw,80px) 0 clamp(40px,5vw,72px)">
-  <span style="display:block;font-size:clamp(56px,12vw,210px);font-weight:300;line-height:.9;letter-spacing:-.05em;color:transparent;-webkit-text-stroke:1px rgba(255,178,122,.55)">/kəmˈpænjən/</span>
-  <div style="display:flex;flex-wrap:wrap;gap:24px clamp(40px,8vw,140px);align-items:flex-end;margin-top:calc(-1 * clamp(20px,4vw,64px))">
-    <h2 style="margin:0;font-size:clamp(40px,5.6vw,92px);line-height:.92;letter-spacing:-.05em;font-weight:600">Who is a <span style="color:#ff914d">companion?</span><span style="display:block;font-size:14px;font-weight:500;letter-spacing:0;color:var(--mid);margin-top:10px">noun</span></h2>
-    <p style="max-width:46ch;margin:0;font-size:15px;line-height:1.65;color:rgba(246,239,235,.8);text-wrap:pretty">A companion is someone who provides presence, connection, and a sense of togetherness. They are someone you can spend time with, share experiences with, talk to, or simply exist alongside without necessarily needing a romantic relationship. They can also be someone who makes you feel emotionally connected, understood, or less alone.</p>
+<div style="max-width:1440px;margin:0 auto;padding-left:clamp(20px,5vw,72px);padding-right:clamp(20px,5vw,72px);box-sizing:border-box"><div style="padding:clamp(56px,8vw,120px) 0 clamp(56px,7vw,110px)">
+  <h2 data-reveal="" style="margin:0;font-size:clamp(46px,9.4vw,168px);line-height:.95;letter-spacing:-.055em;font-weight:600">Who is a <span style="color:#ff914d">companion?</span></h2>
+  <div data-prog="" style="position:relative;margin-top:clamp(120px,15vw,210px);border-bottom:1px solid rgba(255,145,77,.55)">
+    <img src="assets/nsd/n48.png" alt="Two people running hand in hand" style="position:absolute;left:calc(var(--pr,1) * 100%);bottom:calc(-1 * clamp(150px,19vw,280px) * .147);width:clamp(150px,19vw,280px);height:auto;transform:translateX(calc(var(--pr,1) * -100%));pointer-events:none">
+    <div style="position:absolute;left:0;bottom:12px;display:flex;align-items:baseline;gap:14px;font-size:clamp(17px,1.7vw,24px);color:#ffb27a"><span>/kəmˈpænjən/</span><span style="font-size:14px;color:var(--mid)">noun</span></div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:32px clamp(40px,8vw,140px);align-items:start;margin-top:clamp(32px,4vw,56px)">
+    <p data-lyric="" style="margin:0;font-size:clamp(28px,3.4vw,54px);line-height:1.06;letter-spacing:-.035em;font-weight:500;text-wrap:balance">A companion is someone who provides presence, connection, and a sense of togetherness.</p>
+    <div data-reveal="" style="display:flex;flex-direction:column;gap:18px;font-size:clamp(17px,1.4vw,20px);line-height:1.55;color:rgba(246,239,235,.85);text-wrap:pretty">
+      <p style="margin:0">They are someone you can spend time with, share experiences with, talk to, or simply exist alongside without necessarily needing a romantic relationship.</p>
+      <p style="margin:0">They can also be someone who makes you feel emotionally connected, understood, or less alone.</p>
+    </div>
   </div>
 </div></div>
 <div data-pin="" style="position:relative;height:360vh">
   <div style="position:sticky;top:0;height:100vh;overflow:hidden">
-    <span style="position:absolute;left:clamp(20px,5vw,72px);top:100px;font-size:11px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--mid)">Forms of companionship · keep scrolling to turn the wheel</span>
-    <div aria-hidden="true" style="position:absolute;left:50%;top:calc(100% + 4vh);width:150vh;aspect-ratio:1/1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(closest-side,rgba(255,80,49,.32),rgba(255,80,49,0) 80%)"></div>
-    <div style="position:absolute;left:50%;top:calc(100% + 4vh);width:150vh;aspect-ratio:1/1;transform:translate(-50%,-50%) rotate(calc(var(--pp,0) * -270deg));border-radius:50%;box-shadow:inset 0 0 0 1px rgba(255,145,77,.3)">
+    <span style="position:absolute;left:0;right:0;top:clamp(84px,11vh,110px);z-index:3;padding:0 20px;text-align:center;font-size:11px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--mid)">Forms of companionship · keep scrolling to turn the world</span>
+    <div aria-hidden="true" style="position:absolute;left:50%;top:56vh;width:120vh;aspect-ratio:1/1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(closest-side,rgba(255,80,49,.3),rgba(255,80,49,0))"></div>
+    <div style="position:absolute;left:50%;top:166vh;width:220vh;aspect-ratio:1/1;transform:translate(-50%,-50%) rotate(calc(var(--pp,0) * -216deg))">
       <sc-for list="{{ formsV }}" as="f" hint-placeholder-count="4">
         <div style="position:absolute;inset:0;transform:rotate({{ f.a }})">
-          <img src="{{ f.img }}" alt="{{ f.who }}" style="position:absolute;left:50%;top:0;height:min(40vh,380px);max-width:34vw;object-fit:contain;transform:translate(-50%,-58%) rotate(calc(var(--pp,0) * 270deg - {{ f.a }}))">
+          <img src="{{ f.img }}" alt="{{ f.who }}" style="position:absolute;left:50%;top:0;height:min(44vh,440px);max-width:88vw;object-fit:contain;transform:translate(-50%,calc(-100% + {{ f.tk }}));{{ f.mk }}">
         </div>
       </sc-for>
     </div>
+    <div aria-hidden="true" style="position:absolute;left:50%;top:166vh;width:220vh;aspect-ratio:1/1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(closest-side,rgba(28,12,14,0) 70%,#1c0c0e 86%,#2c110f 100%);box-shadow:0 0 0 1px rgba(255,145,77,.55),0 0 70px 4px rgba(255,110,60,.28)"></div>
     <sc-for list="{{ formsV }}" as="f" hint-placeholder-count="4">
-      <div style="position:absolute;left:clamp(20px,5vw,72px);top:20vh;max-width:min(380px,34vw);display:flex;flex-direction:column;gap:12px;opacity:min(clamp(0, calc((var(--pp,0) * 3 - {{ f.i }} + .5) * 4), 1), clamp(0, calc(({{ f.i }} + .5 - var(--pp,0) * 3) * 4), 1))">
-        <span style="font-size:clamp(64px,8vw,130px);font-weight:300;line-height:.8;color:#ff914d">{{ f.n }}</span>
-        <span style="font-size:11px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:#ff914d">{{ f.k }}</span>
-        <span style="font-size:clamp(22px,2.4vw,36px);font-weight:600;line-height:1.08;letter-spacing:-.02em">{{ f.who }}</span>
-        <span style="font-size:15px;color:rgba(246,239,235,.8)">{{ f.d }}</span>
+      <div style="position:absolute;left:50%;top:60vh;width:min(780px,calc(100vw - 40px));transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;text-align:center;gap:clamp(8px,1.6vh,16px);opacity:min(clamp(0, calc((var(--pp,0) * 3 - {{ f.i }} + .5) * 4), 1), clamp(0, calc(({{ f.i }} + .5 - var(--pp,0) * 3) * 4), 1))">
+        <span style="font-size:12px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:#ff914d">{{ f.n }} · {{ f.k }}</span>
+        <span style="font-size:clamp(16px,min(1.5vw,2.4vh),21px);line-height:1.4;color:rgba(246,239,235,.85);text-wrap:balance">{{ f.d }}</span>
+        <span style="font-size:clamp(30px,min(4.4vw,7vh),68px);font-weight:600;line-height:1.02;letter-spacing:-.035em;text-wrap:balance">{{ f.who }}</span>
       </div>
     </sc-for>
   </div>
@@ -941,7 +952,7 @@ class Component extends DCLogic {
     const ph = A('phases');
     return {
       ...D, tw, tw48, qs: A('questions').map((t, i, a) => ({ t, i, n: 'Q' + (i + 1), d: (i * 0.14).toFixed(2), pos: ((i + 0.5) / a.length * 100).toFixed(1) + '%' })), ticks: Array.from({ length: 61 }, (_, i) => ({ h: i % 12 === 6 ? '24px' : i % 3 === 0 ? '13px' : '7px', o: i % 12 === 6 ? '.8' : '.26' })), gapsV: A('gaps').map((g, i) => ({ ...g, at: [0.1, 0.36, 0.62][i] || 0.8 })),
-      formsV: [...A('forms'), { k: 'PETS', img: 'assets/nsd/n08.png', d: '', who: 'Your pets are your companion too!' }].map((f, i) => ({ ...f, n: '0' + (i + 1), i, a: (i * 90) + 'deg' })),
+      formsV: [...A('forms'), { k: 'PETS', img: 'assets/nsd/n03.png', d: '', who: 'Your pets are your companion too!' }].map((f, i) => ({ ...f, n: '0' + (i + 1), i, a: (i * 72) + 'deg', tk: ['24%', '5%', '5%', '12%'][i], mk: i === 3 ? 'max-height:423px;-webkit-mask-image:linear-gradient(90deg,transparent 1%,#000 22%),radial-gradient(ellipse 22% 44% at 2% 4%,transparent 82%,#000 100%);mask-image:linear-gradient(90deg,transparent 1%,#000 22%),radial-gradient(ellipse 22% 44% at 2% 4%,transparent 82%,#000 100%);-webkit-mask-composite:source-in;mask-composite:intersect' : '' })),
       orbitPS: s.deepI >= 0 ? 'paused' : 'running', mapMove: e => { const el = e.currentTarget, r = el.getBoundingClientRect(); el.style.setProperty('--mx', ((e.clientX - r.left) / r.width - 0.5).toFixed(3)); el.style.setProperty('--my', ((e.clientY - r.top) / r.height - 0.5).toFixed(3)); }, sigRef: this.sigRef, pairRef: this.pairRef, phasesV: ph.map((p, i) => ({ ...p, arrow: i < ph.length - 1 ? '→' : '', indent: 'clamp(0px,' + (i * 12) + 'vw,' + (i * 220) + 'px)' })),
       needStates, nb: { r: nOp('r'), s: nOp('s'), x: nOp('x') }, needR: () => this.setState({ needG: 'r' }), needS: () => this.setState({ needG: 's' }), needX: () => this.setState({ needG: 'x' }), needOff: () => this.setState({ needG: '' }),
       fl, dimSel: dimsD[s.dim] || {}, d0: dv(0), d1: dv(1), d2: dv(2), d3: dv(3), d4: dv(4), drvOff: () => this.setState({ drv: -1 }),
