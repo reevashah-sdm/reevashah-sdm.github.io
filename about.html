@@ -82,45 +82,48 @@
 @keyframes ddSwing{0%{transform:rotate(9deg)}45%{transform:rotate(-5deg)}75%{transform:rotate(2deg)}100%{transform:rotate(0)}}
 @keyframes ddRedraw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
 @media (prefers-reduced-motion:reduce){.dd{animation:none}.dd path{stroke-dashoffset:0}}
-.hb{margin-top:clamp(36px,4cqw,56px)}
-.hb-r{display:grid;grid-template-columns:minmax(0,1fr) clamp(220px,20cqw,290px);gap:clamp(16px,3cqw,48px);align-items:baseline;padding:clamp(15px,1.5cqw,22px) 0}
-.hb-s{position:relative;margin:0;font:400 clamp(25px,3cqw,46px)/1.22 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;color:#F4EFE6;text-wrap:pretty;transition:color .5s}
-.hb-x{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
-.hb-n{font:400 clamp(20px,1.9cqw,27px)/1.1 'Caveat Brush',cursive;color:#D42A2E;white-space:nowrap;transform:rotate(-2deg);transform-origin:left;transition:opacity .4s .6s,transform .5s cubic-bezier(.3,1.6,.5,1) .6s}
-.hb-n i{font-style:normal;color:#9D958A}
-.hb-c{margin-left:.15em;font:400 .92em/1 'Caveat Brush',cursive;letter-spacing:0;color:#D42A2E;white-space:nowrap}
-.hb-c b{font-weight:400}.hb-c i{font-style:normal}
-.hb-w{display:inline-block;transition:transform .7s cubic-bezier(.3,1.9,.5,1) .45s}
-.hb-a{display:inline-block;font:400 .84em/1 'Caveat Brush',cursive;letter-spacing:0;color:#9D958A;transform:rotate(-1.5deg);clip-path:inset(-30% -2% -30% 0);transition:clip-path .8s ease .35s}
-.hb-q{position:relative;width:154px;height:20px;margin-top:10px}
-.hb-q span{position:absolute;top:5px;left:calc(var(--n)*18px);width:10px;height:10px;border-radius:50%;background:#F4EFE6;transition:transform .7s cubic-bezier(.3,1.25,.5,1) calc(var(--n)*55ms + .2s),opacity .4s}
-.hb-q .cut{background:#D42A2E;transition:transform .55s cubic-bezier(.3,1.25,.5,1) 1.2s,opacity .4s 1.2s}
-.hb-k{display:inline-block;white-space:nowrap}
-.hb-k i{display:inline-block;font-style:normal;transition:transform .8s cubic-bezier(.3,1.5,.5,1) .4s}
-.hb-e{position:relative;display:inline-block}
-.hb-e::after{content:"";position:absolute;left:-.06em;right:-.06em;top:56%;height:.07em;background:#D42A2E;transform-origin:left;transition:transform .45s ease .3s}
-.hb-e b{position:absolute;left:-.1em;bottom:78%;font:400 .72em/1 'Caveat Brush',cursive;letter-spacing:0;color:#D42A2E;white-space:nowrap;transform:rotate(-4deg);transition:opacity .35s .7s}
-.hb-m{display:inline-block;white-space:nowrap}
-.hb-m i{display:inline-block;font-style:normal}
-.hb-r.go .hb-m i{animation:hbDrop .7s cubic-bezier(.3,1.4,.5,1) both;animation-delay:calc(var(--i)*26ms)}
-.hb.on .hb-r:not(.seen) .hb-s{color:#5E574E}
-.hb.on .hb-r:not(.go) .hb-n{opacity:0;transform:rotate(-2deg) translateY(8px);transition:none}
-.hb.on .hb-r:not(.go) .hb-c{opacity:0}
-.hb.on .hb-r:not(.go) .hb-w{transform:translateY(.24em) rotate(7deg);transition:none}
-.hb.on .hb-r:not(.go) .hb-a{clip-path:inset(-30% 100% -30% 0);transition:none}
-.hb.on .hb-r:not(.go) .hb-q span{transform:translate(var(--x),var(--y));opacity:.45;transition:none}
-.hb.on .hb-r:not(.go) .hb-q .cut{opacity:0}
-.hb.on .hb-r:not(.go) .hb-k i{transform:translateX(var(--k));transition:none}
-.hb.on .hb-r:not(.go) .hb-e::after{transform:scaleX(0);transition:none}
-.hb.on .hb-r:not(.go) .hb-e b{opacity:0;transition:none}
-.hb.on .hb-r:not(.go) .hb-m i{opacity:0}
-@keyframes hbDrop{0%{opacity:0;transform:translateY(-.7em) scale(.6)}55%{opacity:1;transform:translateY(.1em)}100%{opacity:1;transform:none}}
-@container (max-width:700px){.hb-r{grid-template-columns:minmax(0,1fr);gap:8px;padding:14px 0}}
+.sv-line{margin:0;padding-bottom:.7em;font:400 clamp(30px,4.1cqw,72px)/2.3 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;color:#9D958A;text-wrap:balance}
+.sv-x{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.sv-w{white-space:nowrap}
+.sv{position:relative;display:inline-block;line-height:1.1;color:#F4EFE6;cursor:default}
+.sv i{font-style:normal}
+.sv-n{position:absolute;left:50%;top:calc(100% + .1em);width:max-content;transform:translateX(-50%) rotate(-2deg);text-align:center;font:400 clamp(15px,1.5cqw,23px)/1.02 'Caveat Brush',cursive;letter-spacing:0;color:#D42A2E;transition:opacity .35s .4s}
+.sv-eyes{position:absolute;left:50%;bottom:84%;display:flex;gap:.04em;transform:translateX(-50%);transition:transform .45s cubic-bezier(.3,1.8,.5,1)}
+.sv-eyes i{display:block;width:.25em;height:.25em;border-radius:50%;background:#F4EFE6}
+.sv-eyes b{display:block;width:.12em;height:.12em;margin:.065em;border-radius:50%;background:#161412;transform:translate(var(--ex,0),var(--ey,0));transition:transform .18s ease-out}
+.sv-t{display:inline-block;transform:rotate(-5deg);transform-origin:bottom;transition:transform .55s cubic-bezier(.3,1.9,.5,1)}
+.sv-q{position:absolute;left:96%;top:-.34em;font:400 .78em/1 'Caveat Brush',cursive;letter-spacing:0;color:#D42A2E;transform:rotate(12deg);transition:transform .45s cubic-bezier(.3,1.9,.5,1) .25s,opacity .2s .25s}
+.sv-arc{position:absolute;left:0;bottom:74%;width:100%;height:.42em;overflow:visible;clip-path:inset(-30% -6% -30% 0);transition:clip-path .8s ease}
+.sv-arc path{fill:none;stroke:#D42A2E;stroke-width:3;stroke-linecap:round;stroke-dasharray:.1 7;vector-effect:non-scaling-stroke}
+.sv-pin{position:absolute;right:0;bottom:70%;width:.13em;height:.13em;border-radius:50%;background:#D42A2E;transition:transform .35s cubic-bezier(.3,1.9,.5,1) .7s}
+.sv-g{position:relative;display:inline-block}
+.sv-g::before{content:"";position:absolute;inset:-.04em -.04em;opacity:.45;background-image:linear-gradient(rgba(212,42,46,.75) 1px,transparent 1px),linear-gradient(90deg,rgba(212,42,46,.75) 1px,transparent 1px);background-size:.28em .28em;transition:opacity .35s}
+.sv-g i{position:relative;display:inline-block;transition:transform .6s cubic-bezier(.3,1.6,.5,1) .25s}
+.sv-p{display:inline-block;background:linear-gradient(100deg,#F4EFE6 0 40%,#fff 50%,#7D766C 60% 100%) 0 0/300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;transition:background-position 1s ease}
+.sv-s{position:absolute;right:-.16em;top:-.24em;font-size:.5em;line-height:1;color:#D42A2E;transition:transform .45s cubic-bezier(.3,1.9,.5,1) .8s}
+.sv-explain{margin:0 .18em}
+.sv-explain .sv-n{top:calc(100% + .36em)}
+.sv-b{position:absolute;left:-.2em;top:-.14em;width:calc(100% + .4em);height:calc(100% + .46em);overflow:visible;transform-origin:10% 100%;transition:transform .45s cubic-bezier(.3,1.6,.5,1),opacity .2s}
+.sv-b path{fill:none;stroke:#D42A2E;stroke-width:1.5;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.sv-move{color:#D42A2E}
+.sv-move i{display:inline-block;animation:svWave 1.5s ease-in-out infinite;animation-delay:calc(var(--i)*110ms)}
+.sv-on .sv:not(.go) .sv-n{opacity:0;transition:none}
+.sv-on .sv:not(.go) .sv-eyes{transform:translateX(-50%) scale(0);transition:none}
+.sv-on .sv:not(.go) .sv-t{transform:none;transition:none}
+.sv-on .sv:not(.go) .sv-q{opacity:0;transform:rotate(12deg) scale(.3);transition:none}
+.sv-on .sv:not(.go) .sv-arc{clip-path:inset(-30% 100% -30% 0);transition:none}
+.sv-on .sv:not(.go) .sv-pin{transform:scale(0);transition:none}
+.sv-on .sv:not(.go) .sv-g::before{opacity:0;transition:none}
+.sv-on .sv:not(.go) .sv-g i{transform:translate(var(--k),var(--j));transition:none}
+.sv-on .sv:not(.go) .sv-p{background-position:100% 0;transition:none}
+.sv-on .sv:not(.go) .sv-s{transform:scale(0);transition:none}
+.sv-on .sv:not(.go) .sv-b{opacity:0;transform:scale(.6);transition:none}
+@keyframes svWave{0%,60%,100%{transform:none}30%{transform:translateY(-.14em)}}
 @container (max-width:700px){.wk-i{padding:0 26px}.line{overflow-x:auto;margin-left:-20px;margin-right:-20px;padding:0 20px}.line-in{min-width:760px}}
 body{margin:0;background:#161412}*{box-sizing:border-box}html{scroll-behavior:smooth}a{color:inherit;text-decoration:none;transition:color .2s}a:hover{color:#D42A2E}::selection{background:#D42A2E;color:#F4EFE6}@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}html{scroll-behavior:auto!important}}</style>
 <script src="reeva-face.js?v=20261027-10"></script>
 <script src="reeva-line.js?v=20261029-2"></script>
-<script src="reeva-habits.js?v=20261105-2"></script>
+<script src="reeva-verbs.js?v=20261105-1"></script>
 </helmet>
 <div style="min-height:100svh;background:#161412;font-family:'Familjen Grotesk',sans-serif">
 <div ref="{{ peekRef }}" style="position:fixed;left:0;top:0;width:0;height:0;overflow:hidden;z-index:45;pointer-events:none"><div ref="{{ canvasRef }}" style="position:absolute;left:0;top:0;width:0;height:0"></div></div>
@@ -225,18 +228,8 @@ body{margin:0;background:#161412}*{box-sizing:border-box}html{scroll-behavior:sm
 <div class="wk-i" aria-hidden="true" data-tag="design project 1"><span class="wk-st" style="--r:-2.5deg"><img src="logos/gujarat-tourism.png" alt="" style="height:clamp(62px,6.2cqw,84px)"></span></div>
 </div></div>
 
-<section style="padding:calc(clamp(90px,10cqw,140px) - 30px) clamp(20px,5.5cqw,80px) 0">
-<div data-reveal="1" style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px;font:500 19px/1 'Familjen Grotesk',sans-serif"><span style="font:400 26px/1 'Caveat Brush',cursive;color:#D42A2E">Occupational Hazards</span><span style="font:400 15px/1 'Familjen Grotesk',sans-serif;color:#9D958A">seven and counting</span></div>
-<div data-reveal="1" style="margin-top:48px"><h2 style="margin:0;font:400 clamp(28px,3.6cqw,52px)/1.15 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;color:#F4EFE6">Things I can't<br><span style="color:#D42A2E">stop doing.</span></h2></div>
-<div class="hb">
-<div class="hb-r"><div><p class="hb-s">I count the taps it takes to pay a bill. <span class="hb-c" aria-hidden="true"><b data-n="7">7</b><i> taps</i></span></p></div><div class="hb-n"><i>a.k.a.</i> UX design</div></div>
-<div class="hb-r"><div><p class="hb-s">I fix other people's <span class="hb-w">apps</span> in my head.</p></div><div class="hb-n"><i>a.k.a.</i> UI design</div></div>
-<div class="hb-r"><div><p class="hb-s">I interview auto drivers. <span class="hb-a">They didn't ask for this.</span></p></div><div class="hb-n"><i>a.k.a.</i> design research</div></div>
-<div class="hb-r"><div><p class="hb-s">I watch how people queue at a chai stall.</p><div class="hb-q" aria-hidden="true"><span style="--n:0;--x:22px;--y:-7px"></span><span style="--n:1;--x:-14px;--y:7px"></span><span style="--n:2;--x:46px;--y:6px"></span><span style="--n:3;--x:8px;--y:-6px"></span><span style="--n:5;--x:-30px;--y:7px"></span><span style="--n:6;--x:26px;--y:-7px"></span><span style="--n:7;--x:-44px;--y:5px"></span><span style="--n:8;--x:-12px;--y:-6px"></span><span class="cut" style="--n:4;--x:150px;--y:0px"></span></div></div><div class="hb-n"><i>a.k.a.</i> behaviour study</div></div>
-<div class="hb-r"><div><p class="hb-s"><span class="hb-x">I can't walk past bad kerning.</span><span aria-hidden="true">I can't walk past bad <span class="hb-k"><i style="--k:0em">k</i><i style="--k:.26em">e</i><i style="--k:-.05em">r</i><i style="--k:.34em">n</i><i style="--k:.08em">i</i><i style="--k:.4em">n</i><i style="--k:.14em">g</i></span>.</span></p></div><div class="hb-n"><i>a.k.a.</i> visual design</div></div>
-<div class="hb-r"><div><p class="hb-s"><span class="hb-x">I rewrite restaurant menus while waiting to order.</span><span aria-hidden="true">I <span class="hb-e">read<b>rewrite</b></span> restaurant menus while waiting to order.</span></p></div><div class="hb-n"><i>a.k.a.</i> communication design</div></div>
-<div class="hb-r"><div><p class="hb-s"><span class="hb-x">Nothing is allowed to just appear.</span><span aria-hidden="true"><span class="hb-m"><i style="--i:0">N</i><i style="--i:1">o</i><i style="--i:2">t</i><i style="--i:3">h</i><i style="--i:4">i</i><i style="--i:5">n</i><i style="--i:6">g</i></span> <span class="hb-m"><i style="--i:7">i</i><i style="--i:8">s</i></span> <span class="hb-m"><i style="--i:9">a</i><i style="--i:10">l</i><i style="--i:11">l</i><i style="--i:12">o</i><i style="--i:13">w</i><i style="--i:14">e</i><i style="--i:15">d</i></span> <span class="hb-m"><i style="--i:16">t</i><i style="--i:17">o</i></span> <span class="hb-m"><i style="--i:18">j</i><i style="--i:19">u</i><i style="--i:20">s</i><i style="--i:21">t</i></span> <span class="hb-m"><i style="--i:22">a</i><i style="--i:23">p</i><i style="--i:24">p</i><i style="--i:25">e</i><i style="--i:26">a</i><i style="--i:27">r</i><i style="--i:28">.</i></span></span></p></div><div class="hb-n"><i>a.k.a.</i> motion graphics</div></div>
-</div>
+<section style="padding:clamp(90px,10cqw,140px) clamp(20px,5.5cqw,80px) 0">
+<p class="sv-line"><span class="sv-x">I watch, which is behaviour study. I ask, which is design research. I map, which is UX design. I shape, which is UI design. I polish, which is visual design. I explain, which is communication design. And I move, which is motion graphics.</span><span aria-hidden="true">I <span class="sv-w"><span class="sv"><span class="sv-eyes"><i><b></b></i><i><b></b></i></span>watch<span class="sv-n">behaviour<br>study</span></span>,</span> <span class="sv-w"><span class="sv"><span class="sv-t">ask</span><span class="sv-q">?</span><span class="sv-n">design<br>research</span></span>,</span> <span class="sv-w"><span class="sv"><svg class="sv-arc" viewBox="0 0 100 30" preserveAspectRatio="none"><path d="M4 28 Q50 -18 96 28"></path></svg><span class="sv-pin"></span>map<span class="sv-n">UX<br>design</span></span>,</span> <span class="sv-w"><span class="sv"><span class="sv-g"><i style="--k:0em;--j:-.1em">s</i><i style="--k:.05em;--j:.09em">h</i><i style="--k:-.05em;--j:-.05em">a</i><i style="--k:.06em;--j:.1em">p</i><i style="--k:-.03em;--j:-.09em">e</i></span><span class="sv-n">UI<br>design</span></span>,</span> <span class="sv-w"><span class="sv"><span class="sv-p">polish</span><span class="sv-s">✦</span><span class="sv-n">visual<br>design</span></span>,</span> <span class="sv-w"><span class="sv sv-explain"><svg class="sv-b" viewBox="0 0 100 40" preserveAspectRatio="none"><path d="M8 1H92Q99 1 99 8V25Q99 32 92 32H20L9 40L11 32H8Q1 32 1 25V8Q1 1 8 1Z"></path></svg>explain<span class="sv-n">communication<br>design</span></span></span> and <span class="sv-w"><span class="sv sv-move"><i style="--i:0">m</i><i style="--i:1">o</i><i style="--i:2">v</i><i style="--i:3">e</i><span class="sv-n">motion<br>graphics</span></span>.</span></span></p>
 </section>
 
 <section style="padding:calc(clamp(90px,10cqw,140px) - 30px) clamp(20px,5.5cqw,80px) 0">
