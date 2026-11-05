@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap">
 <script src="portfolio-data.js"></script>
 <style>
+[style*="--gd"]{margin-top:var(--gp)!important}@media(min-width:900px){[style*="--gd"]{margin-top:var(--gd)!important}}
 :root{--t1:clamp(34px,4.4vw,64px);--t2:clamp(20px,2vw,28px);--t3:14px}@media(max-width:560px){.blg-name{display:none}}</style>
 <style>
 html,body,*,button,input{font-family:'Quicksand',sans-serif !important}
@@ -97,8 +98,8 @@ a,button{touch-action:manipulation}
     <div style="position:relative;z-index:1;height:100%;max-width:1280px;margin:0 auto;padding:clamp(110px,13vw,160px) clamp(20px,5vw,72px) 0;box-sizing:border-box;display:flex;flex-direction:column;gap:24px;pointer-events:none">
       <span style="font-size:var(--t3);font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#c98bd9">Phase 02 · Belong · New service design</span>
       <div style="position:relative">
-        <h1 ref="{{ open1 }}" style="margin:0;font-size:var(--t1);line-height:.9;letter-spacing:-.05em;font-weight:600;max-width:9ch">Stars don’t talk back.</h1>
-        <h1 ref="{{ open2 }}" style="position:absolute;left:0;top:0;margin:0;font-size:var(--t1);line-height:.9;letter-spacing:-.05em;font-weight:600;max-width:9ch;color:#ff914d;opacity:0">People do.</h1>
+        <h1 ref="{{ open1 }}" style="margin:0;font-size:clamp(52px,8.4vw,136px);line-height:.9;letter-spacing:-.05em;font-weight:600;max-width:9ch">Stars don’t talk back.</h1>
+        <h1 ref="{{ open2 }}" style="position:absolute;left:0;top:0;margin:0;font-size:clamp(52px,8.4vw,136px);line-height:.9;letter-spacing:-.05em;font-weight:600;max-width:9ch;color:#ff914d;opacity:0">People do.</h1>
       </div>
       <span ref="{{ openHint }}" style="margin-top:auto;margin-bottom:clamp(32px,5vw,72px);display:flex;align-items:center;gap:14px;font-size:var(--t3);font-weight:700;letter-spacing:.14em;text-transform:uppercase"><span style="display:block;width:2px;height:36px;background:#ff3131;animation:blink 1.4s ease-in-out infinite"></span>Hold anywhere to listen · scroll to continue</span>
     </div>
@@ -143,7 +144,7 @@ a,button{touch-action:manipulation}
   </div>
 </div></div>
 </section>
-<section id="t02" data-track="" data-label="Track 02" data-title="Belong." data-screen-label="Track 02 · Belong" style="position:relative;overflow-x:clip;padding-bottom:clamp(48px,6vw,96px)">
+<section id="t02" data-track="" data-label="Track 02" data-title="Belong." data-screen-label="Track 02 · Belong" style="--gd:-3.26vw;--gp:-80px;position:relative;overflow-x:clip;padding-bottom:clamp(48px,6vw,96px)">
 
 <div style="position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:120px 0 clamp(32px,4vw,56px);box-sizing:border-box">
   <div aria-hidden="true" style="position:absolute;left:50%;top:0;width:min(120vw,1600px);aspect-ratio:1/1;transform:translate(-30%,-18%);border-radius:50%;background:radial-gradient(closest-side,rgba(255,49,49,.5),rgba(255,120,60,.22) 45%,rgba(255,145,77,0));pointer-events:none;animation:drift 18s ease-in-out infinite alternate"></div>
@@ -167,7 +168,7 @@ a,button{touch-action:manipulation}
 </div>
 </div>
 </section>
-<section id="t03" data-track="" data-label="Track 03" data-title="Who is a companion?" data-screen-label="Track 03 · Companion" style="position:relative;">
+<section id="t03" data-track="" data-label="Track 03" data-title="Who is a companion?" data-screen-label="Track 03 · Companion" style="--gd:-14.44vw;--gp:-143px;position:relative;">
 
 <div style="max-width:1440px;margin:0 auto;padding-left:clamp(20px,5vw,72px);padding-right:clamp(20px,5vw,72px);box-sizing:border-box"><div style="padding:clamp(56px,8vw,120px) 0 clamp(56px,7vw,110px)">
   <h2 data-reveal="" style="margin:0;font-size:var(--t1);line-height:.95;letter-spacing:-.055em;font-weight:600">Who is a <span style="color:#ff914d">companion?</span></h2>
@@ -205,7 +206,7 @@ a,button{touch-action:manipulation}
   </div>
 </div>
 </section>
-<section id="t04" data-track="" data-label="Track 04" data-title="What people actually seek" data-screen-label="Track 04 · Need validation" style="position:relative;padding-bottom:clamp(48px,6vw,96px)">
+<section id="t04" data-track="" data-label="Track 04" data-title="What people actually seek" data-screen-label="Track 04 · Need validation" style="--gd:-4.86vw;--gp:-49px;position:relative;padding-bottom:clamp(48px,6vw,96px)">
 
 <div aria-hidden="true" style="overflow:hidden;padding:clamp(24px,3vw,48px) 0;white-space:nowrap">
   <div style="display:inline-flex;gap:clamp(24px,4vw,64px);animation:marq 40s linear infinite;font-size:var(--t1);font-weight:600;letter-spacing:-.05em;line-height:1.1;color:transparent;-webkit-text-stroke:1px rgba(255,145,77,.5)">
@@ -234,7 +235,7 @@ a,button{touch-action:manipulation}
 <path d="M298 258 C 298 228, 308 224, 337 224" fill="none" stroke="#f6efeb" stroke-opacity=".7" stroke-width="1.2"></path><circle cx="298" cy="258" r="4" fill="#fff"></circle><text x="345" y="230.0" text-anchor="start" font-size="14.5" font-weight="700" letter-spacing="0.8" fill="#fff">UNSEEN</text><text x="345" y="250.5" text-anchor="start" font-size="14.5" font-weight="400" letter-spacing="0" fill="rgba(246,239,235,.96)">Someone who</text><text x="345" y="268.7" text-anchor="start" font-size="14.5" font-weight="400" letter-spacing="0" fill="rgba(246,239,235,.96)">notices them</text><path d="M234 310 C 280 310, 288 326, 288 342" fill="none" stroke="#f6efeb" stroke-opacity=".7" stroke-width="1.2"></path><circle cx="288" cy="342" r="4" fill="#fff"></circle><text x="150" y="316.0" text-anchor="start" font-size="14.5" font-weight="700" letter-spacing="0.8" fill="#fff">UNHEARD</text><text x="150" y="336.5" text-anchor="start" font-size="14.5" font-weight="400" letter-spacing="0" fill="rgba(246,239,235,.96)">Someone who</text><text x="150" y="354.7" text-anchor="start" font-size="14.5" font-weight="400" letter-spacing="0" fill="rgba(246,239,235,.96)">listens</text><path d="M397 396 C 397 365, 407 361, 434 361" fill="none" stroke="#f6efeb" stroke-opacity=".7" stroke-width="1.2"></path><circle cx="397" cy="396" r="4" fill="#fff"></circle><text x="442" y="367.0" text-anchor="start" font-size="14.5" font-weight="700" letter-spacing="0.8" fill="#fff">MISUNDERSTOOD</text><text x="442" y="387.5" text-anchor="start" font-size="14.5" font-weight="400" letter-spacing="0" fill="rgba(246,239,235,.96)">Someone who</text><text x="442" y="405.7" text-anchor="start" font-size="14.5" font-weight="400" letter-spacing="0" fill="rgba(246,239,235,.96)">‘gets’ them</text><path d="M324 480 C 352 480, 360 496, 360 512" fill="none" stroke="#f6efeb" stroke-opacity=".7" stroke-width="1.2"></path><circle cx="360" cy="512" r="4" fill="#fff"></circle><text x="200" y="486.0" text-anchor="start" font-size="14.5" font-weight="700" letter-spacing="0.8" fill="#fff">UNIMPORTANT</text><text x="200" y="506.5" text-anchor="start" font-size="14.5" font-weight="400" letter-spacing="0" fill="rgba(246,239,235,.96)">Someone who</text><text x="200" y="524.7" text-anchor="start" font-size="14.5" font-weight="400" letter-spacing="0" fill="rgba(246,239,235,.96)">chooses them</text><path d="M662 256 C 662 226, 672 222, 696 222" fill="none" stroke="#f6efeb" stroke-opacity=".7" stroke-width="1.2"></path><circle cx="662" cy="256" r="4" fill="#fff"></circle><text x="704" y="228.0" text-anchor="start" font-size="14.5" font-weight="700" letter-spacing="0.8" fill="#fff">DISCONNECTED</text><text x="704" y="248.5" text-anchor="start" font-size="14.5" font-weight="400" letter-spacing="0" fill="rgba(246,239,235,.96)">Someone who</text><text x="704" y="266.7" text-anchor="start" font-size="14.5" font-weight="400" letter-spacing="0" fill="rgba(246,239,235,.96)">shares their world</text><path d="M888 300 C 888 270, 898 266, 930 266" fill="none" stroke="#f6efeb" stroke-opacity=".7" stroke-width="1.2"></path><circle cx="888" cy="300" r="4" fill="#fff"></circle><text x="938" y="272.0" text-anchor="start" font-size="14.5" font-weight="700" letter-spacing="0.8" fill="#fff">UNSAFE</text><text x="938" y="292.5" text-anchor="start" font-size="14.5" font-weight="400" letter-spacing="0" fill="rgba(246,239,235,.96)">Someone</text><text x="938" y="310.7" text-anchor="start" font-size="14.5" font-weight="400" letter-spacing="0" fill="rgba(246,239,235,.96)">they can trust</text><path d="M962 422 C 962 386, 972 382, 1004 382" fill="none" stroke="#f6efeb" stroke-opacity=".7" stroke-width="1.2"></path><circle cx="962" cy="422" r="4" fill="#fff"></circle><text x="1012" y="388.0" text-anchor="start" font-size="14.5" font-weight="700" letter-spacing="0.8" fill="#fff">EMOTIONALLY</text><text x="1012" y="407.6" text-anchor="start" font-size="14.5" font-weight="700" letter-spacing="0.8" fill="#fff">OVERLOADED</text><text x="1012" y="428.0" text-anchor="start" font-size="14.5" font-weight="400" letter-spacing="0" fill="rgba(246,239,235,.96)">Someone who</text><text x="1012" y="446.2" text-anchor="start" font-size="14.5" font-weight="400" letter-spacing="0" fill="rgba(246,239,235,.96)">helps regulate</text><path d="M465 561 C 465 530, 475 526, 505 526" fill="none" stroke="#f6efeb" stroke-opacity=".7" stroke-width="1.2"></path><circle cx="465" cy="561" r="4" fill="#fff"></circle><text x="513" y="532.0" text-anchor="start" font-size="14.5" font-weight="700" letter-spacing="0.8" fill="#fff">UNSTIMULATED</text><text x="513" y="552.5" text-anchor="start" font-size="14.5" font-weight="400" letter-spacing="0" fill="rgba(246,239,235,.96)">Someone to</text><text x="513" y="570.7" text-anchor="start" font-size="14.5" font-weight="400" letter-spacing="0" fill="rgba(246,239,235,.96)">explore with</text><path d="M664 608 C 664 579, 674 575, 702 575" fill="none" stroke="#f6efeb" stroke-opacity=".7" stroke-width="1.2"></path><circle cx="664" cy="608" r="4" fill="#fff"></circle><text x="710" y="581.0" text-anchor="start" font-size="14.5" font-weight="700" letter-spacing="0.8" fill="#fff">BORED / EMPTY</text><text x="710" y="601.5" text-anchor="start" font-size="14.5" font-weight="400" letter-spacing="0" fill="rgba(246,239,235,.96)">Someone to share</text><text x="710" y="619.7" text-anchor="start" font-size="14.5" font-weight="400" letter-spacing="0" fill="rgba(246,239,235,.96)">experiences with</text><path d="M918 574 C 918 542, 928 538, 957 538" fill="none" stroke="#f6efeb" stroke-opacity=".7" stroke-width="1.2"></path><circle cx="918" cy="574" r="4" fill="#fff"></circle><text x="965" y="544.0" text-anchor="start" font-size="14.5" font-weight="700" letter-spacing="0.8" fill="#fff">UNACCOMPANIED</text><text x="965" y="564.5" text-anchor="start" font-size="14.5" font-weight="400" letter-spacing="0" fill="rgba(246,239,235,.96)">Someone simply</text><text x="965" y="582.7" text-anchor="start" font-size="14.5" font-weight="400" letter-spacing="0" fill="rgba(246,239,235,.96)">present</text></svg></div>
 <p style="margin:clamp(24px,3vw,44px) auto 0;font-size:var(--t2);line-height:1.2;letter-spacing:-.02em;font-weight:500;color:#ffd2b0;text-align:center;max-width:38ch;text-wrap:balance">“Someone to talk to” really means to feel heard, not alone, reassured, that I matter, without the pressure of romance.</p></div>
 </section>
-<section id="t05" data-track="" data-label="Track 05" data-title="The dimensions of companionship" data-screen-label="Track 05 · Dimensions" style="position:relative;">
+<section id="t05" data-track="" data-label="Track 05" data-title="The dimensions of companionship" data-screen-label="Track 05 · Dimensions" style="--gd:0.00vw;--gp:-18px;position:relative;">
 <div style="max-width:1440px;margin:0 auto;padding-left:clamp(20px,5vw,72px);padding-right:clamp(20px,5vw,72px);box-sizing:border-box"><div style="padding:clamp(40px,5vw,72px) 0 clamp(48px,6vw,96px)">
 <div data-reveal="" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:20px 72px;align-items:end;margin-bottom:32px">
   <div style="display:flex;flex-direction:column;gap:14px"><span style="font-size:var(--t3);font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mid)">Eight forms of companionship</span><h2 class="bh">The dimensions of <span style="color:#ff914d">companionship</span></h2></div>
@@ -267,7 +268,7 @@ a,button{touch-action:manipulation}
 </svg>
 </div></div>
 </section>
-<section id="t06" data-track="" data-label="Track 06" data-title="Companionship with purpose" data-screen-label="Track 06 · With purpose" style="position:relative;">
+<section id="t06" data-track="" data-label="Track 06" data-title="Companionship with purpose" data-screen-label="Track 06 · With purpose" style="--gd:1.39vw;--gp:0px;position:relative;">
 
 <div style="max-width:1440px;margin:0 auto;padding-left:clamp(20px,5vw,72px);padding-right:clamp(20px,5vw,72px);box-sizing:border-box"><div style="padding:clamp(40px,5vw,72px) 0 clamp(56px,7vw,100px)">
   <h2 class="bh" style="text-align:center;margin-bottom:clamp(24px,3vw,44px)">Companionship <span style="color:#ff914d">with purpose</span></h2>
@@ -298,7 +299,7 @@ a,button{touch-action:manipulation}
   </div>
 </div></div>
 </section>
-<section id="t07" data-track="" data-label="Track 07" data-title="Five drivers" data-screen-label="Track 07 · Drivers" style="position:relative;">
+<section id="t07" data-track="" data-label="Track 07" data-title="Five drivers" data-screen-label="Track 07 · Drivers" style="--gd:3.47vw;--gp:28px;position:relative;">
 
 <div style="max-width:1440px;margin:0 auto;padding-left:clamp(20px,5vw,72px);padding-right:clamp(20px,5vw,72px);box-sizing:border-box"><div data-reveal="" style="display:flex;flex-direction:column;gap:12px;margin-bottom:clamp(24px,3vw,44px)"><span class="bk">Five drivers of companionship · each layer holds the next</span><h2 class="bh">What makes it <span style="color:#ff914d">worth it</span></h2></div>
 <div style="max-width:1240px;margin:0 auto clamp(72px,9vw,128px)"><div style="position:relative;aspect-ratio:1900/941">
@@ -372,7 +373,7 @@ a,button{touch-action:manipulation}
 </svg></div>
 </div></div>
 </section>
-<section id="t08" ref="{{ archRef }}" data-track="" data-label="Track 08" data-title="Patterns, not personalities" data-screen-label="Track 08 · Archetypes" style="position:relative;padding:clamp(48px,6vw,88px) 0">
+<section id="t08" ref="{{ archRef }}" data-track="" data-label="Track 08" data-title="Patterns, not personalities" data-screen-label="Track 08 · Archetypes" style="--gd:-2.01vw;--gp:-26px;position:relative;padding:clamp(48px,6vw,88px) 0">
 <div style="max-width:1440px;margin:0 auto;padding-left:clamp(20px,5vw,72px);padding-right:clamp(20px,5vw,72px);box-sizing:border-box">
   <div data-reveal="" class="two" style="align-items:end;gap:14px clamp(32px,6vw,96px);margin-bottom:clamp(20px,2.4vw,32px)"><div style="display:flex;flex-direction:column;gap:12px"><span class="bk">Redefining user archetypes · four voice memos</span><h2 class="bh">Patterns, <span style="color:#ff914d">not personalities</span></h2></div><p class="bp" style="max-width:52ch">These archetypes are behavioural patterns rather than fixed personality types. A person may move between them depending on their circumstances. Play a memo to hear what each one says.</p></div>
   <div class="arch4" style="grid-template-columns:repeat(4,minmax(0,1fr))!important;border-bottom:1px solid rgba(255,145,77,.45)">
@@ -418,7 +419,7 @@ a,button{touch-action:manipulation}
   <div data-reveal="" data-delay=".15" style="display:flex;flex-direction:column;gap:10px;align-self:end"><span style="font-size:var(--t3);font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mid)">Need statement</span><p style="margin:0;font-size:var(--t3);line-height:1.65;color:rgba(246,239,235,.8);text-wrap:pretty">Young adults need an accessible and psychologically safe way to find contextually relevant companionship that supports authentic, low-pressure human connection during different phases of life, particularly during periods of transition, stress, and everyday loneliness.</p></div>
 </div></div>
 </section>
-<section id="t09" data-track="" data-label="Track 09" data-title="Music as an anchor" data-screen-label="Track 09 · Music" style="position:relative;overflow-x:clip">
+<section id="t09" data-track="" data-label="Track 09" data-title="Music as an anchor" data-screen-label="Track 09 · Music" style="--gd:4.51vw;--gp:44px;position:relative;overflow-x:clip">
 
 <div style="max-width:1440px;margin:0 auto;padding-left:clamp(20px,5vw,72px);padding-right:clamp(20px,5vw,72px);box-sizing:border-box"><div style="padding-top:clamp(40px,5vw,72px)"><div data-px="-200" style="font-size:clamp(72px,11vw,180px);font-weight:600;letter-spacing:-.06em;line-height:.85;margin-bottom:clamp(40px,5vw,72px);white-space:nowrap">A <span style="color:#ff914d;text-shadow:0 0 40px rgba(255,90,49,.7)">♪</span> B</div></div>
 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:40px clamp(40px,7vw,120px);align-items:end;margin-bottom:clamp(40px,5vw,72px)">
@@ -447,7 +448,7 @@ a,button{touch-action:manipulation}
   <div style="display:flex;flex-direction:column;gap:24px;padding-top:clamp(0px,2.2vw,32px)"><sc-for list="{{ musicResults }}" as="r" hint-placeholder-count="3"><div data-reveal="" style="display:flex;gap:16px"><span style="flex:0 0 auto;width:8px;height:8px;margin-top:9px;border-radius:50%;background:#ff914d;box-shadow:0 0 10px #ff914d"></span><div><span style="font-size:var(--t3);font-weight:600">{{ r.t }}</span><p style="margin:2px 0 0;font-size:var(--t3);color:rgba(246,239,235,.78)">{{ r.d }}</p></div></div></sc-for></div>
 </div></div>
 </section>
-<section id="t10" data-track="" data-label="Track 10" data-title="Storytelling as an anchor" data-screen-label="Track 10 · Storytelling" style="position:relative;">
+<section id="t10" data-track="" data-label="Track 10" data-title="Storytelling as an anchor" data-screen-label="Track 10 · Storytelling" style="--gd:1.60vw;--gp:0px;position:relative;">
 <div style="max-width:1440px;margin:0 auto;padding-left:clamp(20px,5vw,72px);padding-right:clamp(20px,5vw,72px);box-sizing:border-box">
 <div data-reveal="" class="two" style="align-items:end;gap:14px clamp(32px,6vw,96px);padding-top:clamp(32px,4vw,56px);margin-bottom:clamp(20px,2.4vw,32px)"><div style="display:flex;flex-direction:column;gap:12px"><span class="bk">Prototype 02 · Story as anchor</span><h2 class="bh">Storytelling as <span style="color:#ff914d">an anchor</span></h2></div><p style="margin:0;max-width:38ch;font-size:var(--t3);font-weight:500;line-height:1.35">Can anonymous story sharing be a low-pressure entry point for conversations between strangers?</p></div>
 <div class="strip" style="margin-bottom:clamp(40px,5vw,72px)">
@@ -478,7 +479,7 @@ a,button{touch-action:manipulation}
 </div>
 <div style="display:flex;flex-direction:column;gap:12px;align-items:center;text-align:center;padding:clamp(48px,6vw,84px) 0 clamp(40px,5vw,72px)"><span class="bk" style="color:#ff914d">Learning</span><p data-lyric="" style="margin:0;max-width:48ch;font-size:var(--t2);line-height:1.2;letter-spacing:-.02em;font-weight:500;color:#ffd2b0;text-wrap:balance">Storytelling shifted the focus from what people like to what people have experienced and how they interpret it, a pathway into companionship based on shared meaning rather than similarity alone.</p></div></div>
 </section>
-<section id="t12" data-track="" data-label="Track 12" data-title="Where Belong sits" data-screen-label="Track 12 · Positioning" style="position:relative;">
+<section id="t12" data-track="" data-label="Track 12" data-title="Where Belong sits" data-screen-label="Track 12 · Positioning" style="--gd:5.00vw;--gp:30px;position:relative;">
 <div style="max-width:1440px;margin:0 auto;padding-left:clamp(20px,5vw,72px);padding-right:clamp(20px,5vw,72px);box-sizing:border-box">
 <div data-reveal="" style="display:flex;flex-direction:column;gap:14px;margin-bottom:clamp(32px,4vw,56px)"><span style="font-size:var(--t3);font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mid)">Secondary research &amp; competitive analysis</span><h2 class="bh">Where Belong <span style="color:#ff914d">sits</span></h2></div>
 <div class="sky">
@@ -499,7 +500,7 @@ a,button{touch-action:manipulation}
   </sc-for>
 </div></div>
 </section>
-<section id="t13" data-track="" data-label="Track 13" data-title="Letting it out in the universe" data-screen-label="Track 13 · Designing Belong" style="position:relative;">
+<section id="t13" data-track="" data-label="Track 13" data-title="Letting it out in the universe" data-screen-label="Track 13 · Designing Belong" style="--gd:-4.65vw;--gp:0px;position:relative;">
 <div style="max-width:1440px;margin:0 auto;padding-left:clamp(20px,5vw,72px);padding-right:clamp(20px,5vw,72px);box-sizing:border-box">
 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));gap:32px clamp(32px,5vw,72px);align-items:center;padding:clamp(40px,5vw,72px) 0">
   <div data-reveal="" style="display:flex;flex-direction:column;gap:16px">
@@ -521,7 +522,7 @@ a,button{touch-action:manipulation}
 <div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap"><span class="bk">Wireframes and interaction design</span><span class="bk" style="color:#ff914d">Scroll sideways →</span></div>
 <div class="wf" tabindex="0" role="group" aria-label="Hand-drawn wireframes of every flow" style="margin:16px 0 clamp(48px,6vw,96px)"><img src="assets/nsd/wf1.png" alt="Wireframes, onboarding"><img src="assets/nsd/wf2.png" alt="Wireframes, profile and home"><img src="assets/nsd/wf3.png" alt="Wireframes, settings flow"><img src="assets/nsd/wf4.png" alt="Wireframes, recording and private room"><img src="assets/nsd/wf5.png" alt="Wireframes, full flow"></div></div>
 </section>
-<section id="t14" data-track="" data-label="Track 14" data-title="Service ecosystem" data-screen-label="Track 14 · Ecosystem" style="position:relative;">
+<section id="t14" data-track="" data-label="Track 14" data-title="Service ecosystem" data-screen-label="Track 14 · Ecosystem" style="--gd:-4.17vw;--gp:-44px;position:relative;">
 <div style="max-width:1440px;margin:0 auto;padding-left:clamp(20px,5vw,72px);padding-right:clamp(20px,5vw,72px);box-sizing:border-box">
 <div style="padding-top:clamp(72px,9vw,128px)"><div data-px="200" style="font-size:var(--t1);font-weight:600;letter-spacing:-.05em;line-height:.9;margin-bottom:clamp(40px,5vw,72px);white-space:nowrap">Service <span style="color:#ff914d">ecosystem</span></div>
   <span style="font-size:var(--t3);font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mid)">User journey · discovering the wow · the emotional line, hover a stage</span>
@@ -562,7 +563,7 @@ a,button{touch-action:manipulation}
   </div>
 </div></div>
 </section>
-<section id="t15" data-track="" data-label="Track 15" data-title="Above and below the line" data-screen-label="Track 15 · Blueprint" style="position:relative;">
+<section id="t15" data-track="" data-label="Track 15" data-title="Above and below the line" data-screen-label="Track 15 · Blueprint" style="--gd:4.72vw;--gp:28px;position:relative;">
 <div style="max-width:1440px;margin:0 auto;padding-left:clamp(20px,5vw,72px);padding-right:clamp(20px,5vw,72px);box-sizing:border-box">
 <div data-reveal="" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:24px 72px;align-items:end;margin-bottom:clamp(32px,4vw,56px)">
   <h2 style="margin:0;font-size:var(--t1);line-height:.92;letter-spacing:-.05em;font-weight:600">Above and <span style="display:block;color:#ff914d">below the line</span></h2>
@@ -588,7 +589,7 @@ a,button{touch-action:manipulation}
   </div>
 <div style="height:clamp(48px,6vw,96px)"></div></div>
 </section>
-<section id="t16" data-track="" data-label="Track 16" data-title="Profile building" data-screen-label="Track 16 · Profile" style="position:relative;">
+<section id="t16" data-track="" data-label="Track 16" data-title="Profile building" data-screen-label="Track 16 · Profile" style="--gd:-1.94vw;--gp:-53px;position:relative;">
 <div style="max-width:1440px;margin:0 auto;padding-left:clamp(20px,5vw,72px);padding-right:clamp(20px,5vw,72px);box-sizing:border-box"><div style="padding:clamp(32px,4vw,64px) 0 clamp(48px,6vw,96px)"><div data-reveal="" style="display:flex;flex-direction:column;gap:14px;margin-bottom:40px"><span style="font-size:var(--t3);font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mid)">Key function 1 · Profile building</span><h2 style="margin:0;font-size:var(--t1);line-height:1;letter-spacing:-.03em;font-weight:600;max-width:20ch">From a blank account to <span style="color:#ff914d">things that reveal you</span></h2></div>
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));gap:40px 72px;align-items:center">
     <div style="display:flex;flex-direction:column;gap:6px">
@@ -696,7 +697,7 @@ a,button{touch-action:manipulation}
 </div>
 </section>
 <!-- OUTRO -->
-<section id="outro" data-track="" data-label="Outro" data-title="Someone out there gets it" data-screen-label="Outro" style="position:relative;overflow:hidden;min-height:max(100vh,820px);box-sizing:border-box;display:flex;flex-direction:column;align-items:center;padding:clamp(84px,13vh,130px) 20px 0;text-align:center">
+<section id="outro" data-track="" data-label="Outro" data-title="Someone out there gets it" data-screen-label="Outro" style="--gd:-3.61vw;--gp:-73px;position:relative;overflow:hidden;min-height:max(100vh,820px);box-sizing:border-box;display:flex;flex-direction:column;align-items:center;padding:clamp(84px,13vh,130px) 20px 0;text-align:center">
   <div aria-hidden="true" style="position:absolute;inset:0;overflow:hidden;pointer-events:none;-webkit-mask-image:linear-gradient(transparent,#000 10%,#000 88%,transparent);mask-image:linear-gradient(transparent,#000 10%,#000 88%,transparent)">
     <div style="position:absolute;left:50%;bottom:-30vh;width:170vh;aspect-ratio:1/1;transform:translateX(-50%);border-radius:50%;background:radial-gradient(closest-side,rgba(255,90,45,.5),rgba(255,120,60,.16) 55%,rgba(255,145,77,0))"></div>
     <div style="position:absolute;left:50%;bottom:70px;width:clamp(300px,min(52vh,36vw),470px);aspect-ratio:1/1;transform:translateX(-50%);border-radius:50%;background:radial-gradient(circle at 50% 38%,#ffd9b8,#ff914d 46%,#ff3a31 86%);box-shadow:0 0 110px 16px rgba(255,100,50,.6)"></div>
