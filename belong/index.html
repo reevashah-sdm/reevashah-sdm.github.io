@@ -23,7 +23,8 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #ff91
 .sky{position:relative;aspect-ratio:2/1;max-width:1240px;margin:0 auto clamp(40px,5vw,72px)}
 .prc{outline:0}.prs{position:relative;display:inline-flex;align-items:flex-end;gap:clamp(3px,.4vw,5px);vertical-align:bottom}.stk{position:relative;flex:0 0 auto;width:clamp(9px,1vw,14px);height:clamp(72px,7.4vw,108px);border-radius:2px 2px 0 0;background:linear-gradient(#ff914d 0 24%,#f6efeb 24%)}.stk::before{content:"";position:absolute;left:0;right:0;top:0;height:6px;border-radius:2px 2px 0 0;background:#ffe2ce;box-shadow:0 0 12px 3px #ff5a2a;opacity:0;transition:opacity .3s}.sm{position:absolute;left:50%;bottom:100%;width:24px;height:64px;transform:translateX(-50%);fill:none;stroke:rgba(246,239,235,.55);stroke-width:1.2;stroke-linecap:round;stroke-dasharray:90;stroke-dashoffset:90;opacity:0}
 .prc:hover .stk::before,.prc:focus .stk::before{opacity:1}.prc:hover .sm,.prc:focus .sm{animation:prsm 2.4s ease-out infinite}@keyframes prsm{0%{stroke-dashoffset:90;opacity:0}25%{opacity:1}100%{stroke-dashoffset:0;opacity:0}}@media(prefers-reduced-motion:reduce){.prc:hover .sm,.prc:focus .sm{animation:none;opacity:.6;stroke-dashoffset:0}}
-.npd{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);box-sizing:border-box;width:min(calc(100vw - 32px),400px);height:54px;display:flex;align-items:center;gap:12px;padding:0 20px 0 8px;border-radius:999px;background:rgba(18,10,12,.94);border:1px solid rgba(255,145,77,.35);cursor:pointer;pointer-events:auto;text-align:left}.npr{position:relative;flex:0 0 auto;width:38px;height:38px}.npv{position:absolute;inset:0;border-radius:50%;background:conic-gradient(rgba(255,210,176,.26) 0 7%,transparent 7% 50%,rgba(255,210,176,.26) 50% 57%,transparent 57%),repeating-radial-gradient(circle,#160c0e 0 2px,#2e1b1c 2px 3px)}.npc{position:absolute;left:50%;top:50%;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;background:#ff914d}.npx{flex:1;min-width:0;display:flex;flex-direction:column;gap:6px}.npm{display:flex;align-items:baseline;gap:10px;min-width:0}.npn{flex:0 0 auto;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#ff914d}.npt{min-width:0;font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.nps,.npl{display:block;height:7px;background:repeating-linear-gradient(90deg,var(--tk) 0 2px,transparent 2px 6px)}.nps{--tk:rgba(246,239,235,.24);position:relative}.npl{--tk:#ff914d;position:absolute;inset:0;clip-path:inset(0 100% 0 0)}
+.rk{position:relative;display:flex;align-items:center;justify-content:flex-end;width:56px;height:14px;cursor:pointer;pointer-events:auto}.rk i{display:block;width:10px;height:2px;background:rgba(246,239,235,.42);transition:width .3s,background .3s}.rk.past i{background:#ff914d}.rk.on i{width:24px;height:3px;background:#ff914d;box-shadow:0 0 8px #ff914d}.rk:hover i{width:18px;background:#fff}.rk.on:hover i{width:24px}.rn{display:none;margin-right:6px;padding:1px 4px;border-radius:4px;background:rgba(18,10,12,.9);font-size:13px;font-weight:700;line-height:1.3;color:#ff914d}.rk.on .rn{display:block}.rt{position:absolute;right:100%;top:50%;transform:translateY(-50%);padding:5px 12px;border-radius:999px;background:rgba(18,10,12,.94);font-size:12px;font-weight:600;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s}.rk:hover .rt,.rk:focus-visible .rt{opacity:1}
+@media(max-width:700px){.rk{width:40px;height:12px}.rk i{width:6px}.rk.on i,.rk.on:hover i{width:14px}.rn{margin-right:3px;font-size:10px}}
 .r5{display:grid;grid-template-columns:repeat(5,minmax(0,1fr))}.pr{display:grid;grid-template-columns:clamp(92px,8vw,116px) minmax(0,1fr);gap:12px;align-items:baseline;padding:clamp(9px,1vw,14px) 0;border-top:1px solid rgba(255,145,77,.28);transition:opacity .3s}.pr:hover{opacity:1!important}
 @media(max-width:820px){.r5{grid-template-columns:minmax(0,1fr);gap:18px}}
 .bub{box-sizing:border-box;max-width:min(100%,560px);padding:clamp(14px,1.6vw,22px) clamp(20px,2.2vw,32px);font-size:clamp(20px,2.2vw,32px);line-height:1.15;letter-spacing:-.02em;font-weight:500}
@@ -80,14 +81,8 @@ a,button{touch-action:manipulation}
 </div>
 </sc-if>
 
-<div class="npbar" ref="{{ barRef }}" style="position:fixed;left:0;right:0;bottom:0;z-index:65;height:80px;pointer-events:none;opacity:0;transform:translateY(100%);transition:opacity .5s,transform .5s cubic-bezier(.2,.8,.2,1)">
-  <button class="npd" onClick="{{ openTl }}" aria-label="Open the tracklist">
-    <span class="npr" aria-hidden="true"><span class="npv" ref="{{ npDisc }}"></span><span class="npc"></span></span>
-    <span class="npx">
-      <span class="npm"><span class="npn" ref="{{ npNum }}">Intro</span><span class="npt" ref="{{ npTitle }}">Stars don’t talk back</span></span>
-      <span class="nps" aria-hidden="true"><span class="npl" ref="{{ npLine }}"></span></span>
-    </span>
-  </button>
+<div class="npbar" ref="{{ barRef }}" style="position:fixed;right:clamp(4px,1vw,14px);top:0;bottom:0;z-index:65;display:flex;align-items:center;pointer-events:none;opacity:0;transform:translateY(100%);transition:opacity .5s,transform .5s cubic-bezier(.2,.8,.2,1)">
+  <nav ref="{{ railRef }}" aria-label="Tracks" style="display:flex;flex-direction:column"></nav>
 </div>
 
 <div style="position:relative;z-index:1">
@@ -710,7 +705,7 @@ a,button{touch-action:manipulation}
 class Component extends DCLogic {
   state = { ready: !!window.PORTFOLIO_DATA, dim: 0, arch: 0, grp: 2, prof: 1, lvl: 0, bp: -1, stB: 4, playing: true, tl: false, recStep: -1, rec: 'idle', needG: '', drv: -1, deepI: -1 };
   sigRef = React.createRef(); pairRef = React.createRef(); rootRef = React.createRef(); openRef = React.createRef(); starRef = React.createRef(); horRef = React.createRef(); barRef = React.createRef(); skyRef = React.createRef(); neb1 = React.createRef(); neb2 = React.createRef();
-  open1 = React.createRef(); open2 = React.createRef(); openHint = React.createRef(); npNum = React.createRef(); npLine = React.createRef(); npDisc = React.createRef(); npTitle = React.createRef();
+  open1 = React.createRef(); open2 = React.createRef(); openHint = React.createRef(); railRef = React.createRef();
   memoTxt = React.createRef(); memoBar = React.createRef(); archRef = React.createRef(); recRef = React.createRef(); syncRef = React.createRef(); syncLab = React.createRef();
   TR = [
     ['intro', '00', 'Intro', 'Stars don’t talk back'], ['t01', '01', 'Side A · Listening', 'How did we reach here?'], ['t02', '02', 'Side A · Listening', 'Belong.'],
@@ -760,7 +755,7 @@ class Component extends DCLogic {
     const mid = vh * 0.5; let cur = null;
     for (const el of (this.tracks || [])) { const r = el.getBoundingClientRect(); if (r.top <= mid && r.bottom > mid) cur = el; if (r.bottom < -vh || r.top > vh * 2) continue; const p = Math.round(cl((mid - r.top) / Math.max(1, r.height)) * 100);
       if (el._tp !== p) { el._tp = p; el.style.setProperty('--tp', p + '%'); el.style.setProperty('--tpx', (p * 16) + 'px'); } }
-    if (cur !== this.cur) { this.cur = cur; const n = this.npNum.current, t = this.npTitle.current; if (n) n.textContent = cur ? cur.dataset.label : 'Intro'; if (t) t.textContent = cur ? cur.dataset.title : 'Stars don’t talk back'; }
+    if (cur !== this.cur) { this.cur = cur; this.railSet(cur); }
     const kar = this.props.karaoke !== false && !this.reduced;
     for (const el of (this.lyrics || [])) { const r = el.getBoundingClientRect(); if (r.bottom < -40 || r.top > vh + 40) continue; const ws = el._ws || (el._ws = el.querySelectorAll('[data-w]'));
       const lit = kar ? Math.round(cl((vh * 0.85 - r.top) / (vh * 0.5)) * ws.length) : ws.length; if (el._lit === lit) continue; el._lit = lit; ws.forEach((w, i) => { w.style.opacity = i < lit ? '1' : '.2'; }); }
@@ -773,7 +768,6 @@ class Component extends DCLogic {
     for (const el of (this.progEls || [])) { const r = el.getBoundingClientRect(); if (r.bottom < -vh || r.top > vh * 1.5) continue; const p = Math.round(cl((vh * 0.92 - r.top) / (vh * 0.62)) * 1000) / 1000; if (el._pr !== p) { el._pr = p; el.style.setProperty('--pr', this.reduced ? 1 : p); } }
     const y = scrollY; this.vel = Math.max(this.vel || 0, Math.min(1, Math.abs(y - (this.lastY ?? y)) / 70)); this.lastY = y;
     this.prog = cl(y / Math.max(1, document.documentElement.scrollHeight - vh));
-    if (this.npLine.current) this.npLine.current.style.clipPath = 'inset(0 ' + (100 - this.prog * 100).toFixed(2) + '% 0 0)'; if (this.npDisc.current) this.npDisc.current.style.transform = 'rotate(' + (y * 0.18).toFixed(1) + 'deg)';
     if (!this.reduced) { const p = this.prog; if (this.neb1.current) this.neb1.current.style.transform = 'translate3d(' + (p * 60).toFixed(1) + 'vw,' + (Math.sin(p * 7) * 20).toFixed(1) + 'vh,0)';
       if (this.neb2.current) this.neb2.current.style.transform = 'translate3d(' + (-p * 50).toFixed(1) + 'vw,' + (Math.cos(p * 5) * -25).toFixed(1) + 'vh,0)'; }
     const ar = this.archRef.current; if (ar && !this.archPlayed) { const r = ar.getBoundingClientRect(); if (r.top < vh * 0.45 && r.bottom > 0) { this.archPlayed = true; this.playMemo(this.state.arch); } }
@@ -897,6 +891,9 @@ class Component extends DCLogic {
     ctx.globalAlpha = 1;
   }
   goTo(id) { const el = document.getElementById(id); if (el) scrollTo({ top: el.getBoundingClientRect().top + scrollY + 2, behavior: 'smooth' }); }
+  railSet(cur) { const R = this.railRef.current, arr = this.tracks || []; if (!R) return;
+    if (R.childElementCount !== arr.length) { R.textContent = ''; arr.forEach(el => { const l = el.dataset.label, b = document.createElement('button'), t = document.createElement('span'), n = document.createElement('span'); b.className = 'rk'; b.setAttribute('aria-label', l + ': ' + el.dataset.title); t.className = 'rt'; t.textContent = el.dataset.title; n.className = 'rn'; n.textContent = l.startsWith('Track') ? l.replace('Track ', '') : l.slice(0, 3); b.append(t, n, document.createElement('i')); b.onclick = () => scrollTo({ top: el.getBoundingClientRect().top + scrollY + 2, behavior: 'smooth' }); R.appendChild(b); }); }
+    const i = arr.indexOf(cur); [...R.children].forEach((b, k) => { b.classList.toggle('on', k === i); b.classList.toggle('past', k < i); }); }
   step(d) { const arr = this.tracks || []; let i = arr.indexOf(this.cur); if (i < 0) i = d > 0 ? -1 : 0; const el = arr[Math.max(0, Math.min(arr.length - 1, i + d))]; if (el) scrollTo({ top: el.getBoundingClientRect().top + scrollY + 2, behavior: 'smooth' }); }
   onMove = e => {};
   onLeave = () => {};
@@ -951,7 +948,7 @@ class Component extends DCLogic {
       holdDown: e => { this.hold = true; this.hp = { x: e.clientX, y: e.clientY }; this.lastRing = 0; }, holdMove: e => { this.hp = { x: e.clientX, y: e.clientY }; }, holdUp: () => { this.hold = false; },
       outroMove: e => { const r = e.currentTarget.getBoundingClientRect(); this.sx = (e.clientX - r.left) / r.width; }, onMove: this.onMove, onLeave: this.onLeave,
       rootRef: this.rootRef, openRef: this.openRef, starRef: this.starRef, horRef: this.horRef, barRef: this.barRef, skyRef: this.skyRef, neb1: this.neb1, neb2: this.neb2, open1: this.open1, open2: this.open2, openHint: this.openHint,
-      npNum: this.npNum, npLine: this.npLine, npDisc: this.npDisc, npTitle: this.npTitle, memoTxt: this.memoTxt, memoBar: this.memoBar, archRef: this.archRef, recRef: this.recRef, syncRef: this.syncRef, syncLab: this.syncLab
+      railRef: this.railRef, memoTxt: this.memoTxt, memoBar: this.memoBar, archRef: this.archRef, recRef: this.recRef, syncRef: this.syncRef, syncLab: this.syncLab
     };
   }
 }
