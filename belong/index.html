@@ -23,6 +23,7 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #ff91
 .sky{position:relative;aspect-ratio:2/1;max-width:1240px;margin:0 auto clamp(40px,5vw,72px)}
 .prc{outline:0}.prs{position:relative;display:inline-flex;align-items:flex-end;gap:clamp(3px,.4vw,5px);vertical-align:bottom}.stk{position:relative;flex:0 0 auto;width:clamp(9px,1vw,14px);height:clamp(72px,7.4vw,108px);border-radius:2px 2px 0 0;background:linear-gradient(#ff914d 0 24%,#f6efeb 24%)}.stk::before{content:"";position:absolute;left:0;right:0;top:0;height:6px;border-radius:2px 2px 0 0;background:#ffe2ce;box-shadow:0 0 12px 3px #ff5a2a;opacity:0;transition:opacity .3s}.sm{position:absolute;left:50%;bottom:100%;width:24px;height:64px;transform:translateX(-50%);fill:none;stroke:rgba(246,239,235,.55);stroke-width:1.2;stroke-linecap:round;stroke-dasharray:90;stroke-dashoffset:90;opacity:0}
 .prc:hover .stk::before,.prc:focus .stk::before{opacity:1}.prc:hover .sm,.prc:focus .sm{animation:prsm 2.4s ease-out infinite}@keyframes prsm{0%{stroke-dashoffset:90;opacity:0}25%{opacity:1}100%{stroke-dashoffset:0;opacity:0}}@media(prefers-reduced-motion:reduce){.prc:hover .sm,.prc:focus .sm{animation:none;opacity:.6;stroke-dashoffset:0}}
+.npl{height:100%;background:#ff914d;transform-origin:0 50%;transform:scaleX(0)}.npd{position:absolute;right:clamp(14px,2.4vw,28px);bottom:clamp(14px,2vw,22px);width:44px;height:44px;cursor:pointer;pointer-events:auto}.npv{position:absolute;inset:0;border-radius:50%;box-sizing:border-box;border:1px solid rgba(255,145,77,.45);background:conic-gradient(rgba(255,210,176,.22) 0 7%,transparent 7% 50%,rgba(255,210,176,.22) 50% 57%,transparent 57%),repeating-radial-gradient(circle,#160c0e 0 2px,#2a181a 2px 3px)}.npc{position:absolute;left:50%;top:50%;width:22px;height:22px;margin:-11px 0 0 -11px;border-radius:50%;background:#ff914d;color:#1c0c0e;font-size:10px;font-weight:700;line-height:22px;text-align:center}.npt{position:absolute;right:54px;top:50%;transform:translateY(-50%);padding:6px 12px;border-radius:999px;background:rgba(12,8,11,.88);font-size:12px;font-weight:600;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .25s}.npd:hover .npt,.npd:focus-visible .npt{opacity:1}
 .r5{display:grid;grid-template-columns:repeat(5,minmax(0,1fr))}.pr{display:grid;grid-template-columns:clamp(92px,8vw,116px) minmax(0,1fr);gap:12px;align-items:baseline;padding:clamp(9px,1vw,14px) 0;border-top:1px solid rgba(255,145,77,.28);transition:opacity .3s}.pr:hover{opacity:1!important}
 @media(max-width:820px){.r5{grid-template-columns:minmax(0,1fr);gap:18px}}
 .bub{box-sizing:border-box;max-width:min(100%,560px);padding:clamp(14px,1.6vw,22px) clamp(20px,2.2vw,32px);font-size:clamp(20px,2.2vw,32px);line-height:1.15;letter-spacing:-.02em;font-weight:500}
@@ -79,17 +80,13 @@ a,button{touch-action:manipulation}
 </div>
 </sc-if>
 
-<div class="npbar" ref="{{ barRef }}" style="position:fixed;left:0;right:0;bottom:0;z-index:65;height:72px;display:flex;align-items:center;gap:clamp(12px,2vw,22px);padding:14px clamp(16px,4vw,56px) 10px;box-sizing:border-box;background:linear-gradient(to top,rgba(12,8,11,.92) 40%,rgba(12,8,11,0));opacity:0;transform:translateY(100%);transition:opacity .5s,transform .5s cubic-bezier(.2,.8,.2,1)">
-  <button onClick="{{ togglePlay }}" aria-label="Pause or play the horizon" style="flex:0 0 auto;width:36px;height:36px;border-radius:50%;cursor:pointer;background:radial-gradient(circle at 35% 30%,#ff914d,#ff3131);color:#fff;font-size:11px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 24px rgba(255,90,49,.5)">{{ playIcon }}</button>
-  <div style="flex:0 0 auto;display:flex;flex-direction:column;width:clamp(110px,16vw,230px);min-width:0">
-    <span ref="{{ npNum }}" style="font-size:10px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:#ff914d">Intro</span>
-    <span ref="{{ npTitle }}" style="font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Stars don’t talk back</span>
-  </div>
-  <canvas ref="{{ horRef }}" onClick="{{ seek }}" title="Click to move through the story" style="flex:1;min-width:0;height:36px;display:block;cursor:pointer"></canvas>
-  <div style="flex:0 0 auto;display:flex;gap:2px">
-    <button onClick="{{ prev }}" aria-label="Previous track" style="width:32px;height:32px;cursor:pointer;font-size:14px" style-hover="color:#ff914d">⟨</button>
-    <button onClick="{{ next }}" aria-label="Next track" style="width:32px;height:32px;cursor:pointer;font-size:14px" style-hover="color:#ff914d">⟩</button>
-  </div>
+<div class="npbar" ref="{{ barRef }}" style="position:fixed;left:0;right:0;bottom:0;z-index:65;height:72px;pointer-events:none;opacity:0;transform:translateY(100%);transition:opacity .5s,transform .5s cubic-bezier(.2,.8,.2,1)">
+  <div aria-hidden="true" style="position:absolute;left:0;right:0;bottom:0;height:1px;background:rgba(246,239,235,.12)"><div class="npl" ref="{{ npLine }}"></div></div>
+  <button class="npd" onClick="{{ openTl }}" aria-label="Open the tracklist">
+    <span class="npv" ref="{{ npDisc }}"></span>
+    <span class="npc" ref="{{ npNum }}">♪</span>
+    <span class="npt" ref="{{ npTitle }}">Stars don’t talk back</span>
+  </button>
 </div>
 
 <div style="position:relative;z-index:1">
@@ -712,7 +709,7 @@ a,button{touch-action:manipulation}
 class Component extends DCLogic {
   state = { ready: !!window.PORTFOLIO_DATA, dim: 0, arch: 0, grp: 2, prof: 1, lvl: 0, bp: -1, stB: 4, playing: true, tl: false, recStep: -1, rec: 'idle', needG: '', drv: -1, deepI: -1 };
   sigRef = React.createRef(); pairRef = React.createRef(); rootRef = React.createRef(); openRef = React.createRef(); starRef = React.createRef(); horRef = React.createRef(); barRef = React.createRef(); skyRef = React.createRef(); neb1 = React.createRef(); neb2 = React.createRef();
-  open1 = React.createRef(); open2 = React.createRef(); openHint = React.createRef(); npNum = React.createRef(); npTitle = React.createRef();
+  open1 = React.createRef(); open2 = React.createRef(); openHint = React.createRef(); npNum = React.createRef(); npLine = React.createRef(); npDisc = React.createRef(); npTitle = React.createRef();
   memoTxt = React.createRef(); memoBar = React.createRef(); archRef = React.createRef(); recRef = React.createRef(); syncRef = React.createRef(); syncLab = React.createRef();
   TR = [
     ['intro', '00', 'Intro', 'Stars don’t talk back'], ['t01', '01', 'Side A · Listening', 'How did we reach here?'], ['t02', '02', 'Side A · Listening', 'Belong.'],
@@ -762,7 +759,7 @@ class Component extends DCLogic {
     const mid = vh * 0.5; let cur = null;
     for (const el of (this.tracks || [])) { const r = el.getBoundingClientRect(); if (r.top <= mid && r.bottom > mid) cur = el; if (r.bottom < -vh || r.top > vh * 2) continue; const p = Math.round(cl((mid - r.top) / Math.max(1, r.height)) * 100);
       if (el._tp !== p) { el._tp = p; el.style.setProperty('--tp', p + '%'); el.style.setProperty('--tpx', (p * 16) + 'px'); } }
-    if (cur !== this.cur) { this.cur = cur; const n = this.npNum.current, t = this.npTitle.current; if (n) n.textContent = cur ? cur.dataset.label : 'Intro'; if (t) t.textContent = cur ? cur.dataset.title : 'Stars don’t talk back'; }
+    if (cur !== this.cur) { this.cur = cur; const n = this.npNum.current, t = this.npTitle.current; if (n) n.textContent = cur && /^Track/.test(cur.dataset.label) ? cur.dataset.label.replace('Track ', '') : '♪'; if (t) t.textContent = cur ? cur.dataset.title : 'Stars don’t talk back'; }
     const kar = this.props.karaoke !== false && !this.reduced;
     for (const el of (this.lyrics || [])) { const r = el.getBoundingClientRect(); if (r.bottom < -40 || r.top > vh + 40) continue; const ws = el._ws || (el._ws = el.querySelectorAll('[data-w]'));
       const lit = kar ? Math.round(cl((vh * 0.85 - r.top) / (vh * 0.5)) * ws.length) : ws.length; if (el._lit === lit) continue; el._lit = lit; ws.forEach((w, i) => { w.style.opacity = i < lit ? '1' : '.2'; }); }
@@ -775,6 +772,7 @@ class Component extends DCLogic {
     for (const el of (this.progEls || [])) { const r = el.getBoundingClientRect(); if (r.bottom < -vh || r.top > vh * 1.5) continue; const p = Math.round(cl((vh * 0.92 - r.top) / (vh * 0.62)) * 1000) / 1000; if (el._pr !== p) { el._pr = p; el.style.setProperty('--pr', this.reduced ? 1 : p); } }
     const y = scrollY; this.vel = Math.max(this.vel || 0, Math.min(1, Math.abs(y - (this.lastY ?? y)) / 70)); this.lastY = y;
     this.prog = cl(y / Math.max(1, document.documentElement.scrollHeight - vh));
+    if (this.npLine.current) this.npLine.current.style.transform = 'scaleX(' + this.prog.toFixed(4) + ')'; if (this.npDisc.current) this.npDisc.current.style.transform = 'rotate(' + (y * 0.18).toFixed(1) + 'deg)';
     if (!this.reduced) { const p = this.prog; if (this.neb1.current) this.neb1.current.style.transform = 'translate3d(' + (p * 60).toFixed(1) + 'vw,' + (Math.sin(p * 7) * 20).toFixed(1) + 'vh,0)';
       if (this.neb2.current) this.neb2.current.style.transform = 'translate3d(' + (-p * 50).toFixed(1) + 'vw,' + (Math.cos(p * 5) * -25).toFixed(1) + 'vh,0)'; }
     const ar = this.archRef.current; if (ar && !this.archPlayed) { const r = ar.getBoundingClientRect(); if (r.top < vh * 0.45 && r.bottom > 0) { this.archPlayed = true; this.playMemo(this.state.arch); } }
@@ -952,7 +950,7 @@ class Component extends DCLogic {
       holdDown: e => { this.hold = true; this.hp = { x: e.clientX, y: e.clientY }; this.lastRing = 0; }, holdMove: e => { this.hp = { x: e.clientX, y: e.clientY }; }, holdUp: () => { this.hold = false; },
       outroMove: e => { const r = e.currentTarget.getBoundingClientRect(); this.sx = (e.clientX - r.left) / r.width; }, onMove: this.onMove, onLeave: this.onLeave,
       rootRef: this.rootRef, openRef: this.openRef, starRef: this.starRef, horRef: this.horRef, barRef: this.barRef, skyRef: this.skyRef, neb1: this.neb1, neb2: this.neb2, open1: this.open1, open2: this.open2, openHint: this.openHint,
-      npNum: this.npNum, npTitle: this.npTitle, memoTxt: this.memoTxt, memoBar: this.memoBar, archRef: this.archRef, recRef: this.recRef, syncRef: this.syncRef, syncLab: this.syncLab
+      npNum: this.npNum, npLine: this.npLine, npDisc: this.npDisc, npTitle: this.npTitle, memoTxt: this.memoTxt, memoBar: this.memoBar, archRef: this.archRef, recRef: this.recRef, syncRef: this.syncRef, syncLab: this.syncLab
     };
   }
 }
