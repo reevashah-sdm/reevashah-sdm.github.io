@@ -383,7 +383,7 @@ class Component extends DCLogic {
     const hb = R(this.heroRef);
     if (hb && hb.bottom > H * .45) { d = null; }
     else if (this.tip && (tk => tk && tk.top < H * .4 && tk.bottom > H * .6)(R(this.trackRef))) { const z = mob ? 96 : 130, tp = this.tip; d = { id: 'how', x: tp.x - z / 2, y: tp.y - z * .8, w: z, h: z * .8, in: z, side: 'b', note: STEP_NOTES[this.state.step] }; }
-    else if (sq && r0 && rn && r0.top < H * .5 && rn.bottom > H * .5) { const z = Math.min(190, sq.width * .48); d = { id: 'work', x: sq.right - z - 8, y: sq.top - z * .62, w: z, h: z * .62, in: z, side: 'b', note: this.state.cardFlip ? 'the toolkit behind this one' : 'hover the card to see what it took' }; }
+    else if (sq && r0 && rn && r0.top < H * .5 && rn.bottom > H * .5) { const z = Math.min(190, sq.width * .48); d = { id: 'work', x: sq.right - z - 8, y: sq.top - z * .62, w: z, h: z * .62, in: z, side: 'b', note: this.state.cardFlip ? 'skills I used on this project' : 'hover the card to see what it took' }; }
     else if (fl && fl.top < H) { const z = mob ? 150 : 220; d = { id: 'foot', x: fl.right - z - (mob ? 0 : 24), y: fl.top - z * .62, w: z, h: z * .62, in: z, side: 'b', note: "what's the other side of your story?" }; }
     if (!this.cd && d) this.cd = d;
     let want = 0;
