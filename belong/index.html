@@ -139,29 +139,10 @@ a,button{touch-action:manipulation}
     </div>
   </div></div>
 <div style="max-width:1440px;margin:0 auto;padding-left:clamp(20px,5vw,72px);padding-right:clamp(20px,5vw,72px);box-sizing:border-box"><div style="padding:clamp(40px,6vw,96px) 0 clamp(64px,8vw,120px)">
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:32px clamp(40px,8vw,140px);align-items:start;margin:0 0 clamp(56px,7vw,110px)">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:32px clamp(40px,8vw,140px);align-items:start">
     <p data-lyric="" style="margin:0;font-size:clamp(30px,3.6vw,56px);line-height:1.04;letter-spacing:-.035em;font-weight:500;text-wrap:balance">The problem is not simply that people cannot meet others.</p>
     <div style="display:flex;gap:20px;align-items:flex-start;padding-top:clamp(0px,7vw,120px)"><span aria-hidden="true" style="flex:0 0 auto;width:2px;align-self:stretch;background:linear-gradient(#ff914d,rgba(255,145,77,0));box-shadow:0 0 12px #ff914d"></span><p data-lyric="" style="margin:0;font-size:clamp(22px,2.2vw,34px);line-height:1.2;letter-spacing:-.02em;font-weight:500;color:#ffd2b0;text-wrap:pretty">It is that conventional platforms may not adequately address the emotional and contextual reasons people seek connection.</p></div>
   </div>
-  <div data-pin="" style="position:relative;height:300vh;margin:0 calc(-1 * clamp(20px,5vw,72px))">
-  <div style="position:sticky;top:0;height:100svh;display:flex;flex-direction:column;justify-content:center;padding:80px clamp(20px,5vw,72px) 96px;box-sizing:border-box">
-    <div aria-hidden="true" style="position:absolute;left:calc(var(--pp,0) * 100%);top:50%;width:70vmin;aspect-ratio:1/1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(closest-side,rgba(255,80,49,.32),rgba(255,80,49,0));pointer-events:none"></div>
-    <div style="position:relative;display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap"><span style="font-size:11px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--mid)">What we asked · tune in by scrolling</span><span style="font-size:11px;font-weight:700;letter-spacing:.3em;color:#ff914d">FIVE FREQUENCIES</span></div>
-    <div style="position:relative;flex:1;min-height:0">
-      <sc-for list="{{ qs }}" as="q" hint-placeholder-count="5">
-        <div style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;gap:clamp(16px,2vw,28px);opacity:min(clamp(0, calc((var(--pp,0) * 5 - {{ q.i }}) * 6), 1), clamp(0, calc(({{ q.i }} + 1 - var(--pp,0) * 5) * 6), 1))">
-          <span style="font-size:clamp(56px,min(16vw,22vh),240px);font-weight:300;line-height:.8;letter-spacing:-.06em;color:transparent;-webkit-text-stroke:1px rgba(255,145,77,.55)">{{ q.n }}</span>
-          <span style="max-width:20ch;font-size:clamp(26px,min(5.2vw,7vh),84px);font-weight:500;line-height:1;letter-spacing:-.045em;text-wrap:balance;text-shadow:0 0 60px rgba(255,90,49,.35)">{{ q.t }}</span>
-        </div>
-      </sc-for>
-    </div>
-    <div style="position:relative;height:64px">
-      <div aria-hidden="true" style="position:absolute;left:0;right:0;bottom:22px;height:24px;display:flex;justify-content:space-between;align-items:flex-end"><sc-for list="{{ ticks }}" as="t" hint-placeholder-count="61"><span style="width:1px;height:{{ t.h }};background:rgba(246,239,235,{{ t.o }})"></span></sc-for></div>
-      <sc-for list="{{ qs }}" as="q" hint-placeholder-count="5"><span style="position:absolute;bottom:0;left:{{ q.pos }};transform:translateX(-50%);font-size:10px;font-weight:700;letter-spacing:.24em;color:#ff914d;opacity:calc(.35 + min(clamp(0, calc((var(--pp,0) * 5 - {{ q.i }}) * 6), 1), clamp(0, calc(({{ q.i }} + 1 - var(--pp,0) * 5) * 6), 1)) * .65)">{{ q.n }}</span></sc-for>
-      <div aria-hidden="true" style="position:absolute;left:calc(var(--pp,0) * 100%);bottom:16px;width:2px;height:44px;transform:translateX(-50%);background:#ffd2b0;box-shadow:0 0 14px 3px #ff914d"></div>
-    </div>
-  </div>
-</div>
 </div></div>
 </section>
 <section id="t02" data-track="" data-label="Track 02" data-title="Belong." data-screen-label="Track 02 · Belong" style="position:relative;overflow-x:clip;padding-bottom:clamp(48px,6vw,96px)">
@@ -952,7 +933,7 @@ class Component extends DCLogic {
     const recLabel = s.rec === 'rec' ? 'Recording · release to publish' : s.rec === 'done' ? (s.recStep >= 4 ? 'Published · someone sent a PR' : 'Published · listening back') : 'Hold REC to record a story';
     const ph = A('phases');
     return {
-      ...D, rivals: A('rivals').filter(r => r.k === 'Gap'), tw, tw48, qs: A('questions').map((t, i, a) => ({ t, i, n: 'Q' + (i + 1), d: (i * 0.14).toFixed(2), pos: ((i + 0.5) / a.length * 100).toFixed(1) + '%' })), ticks: Array.from({ length: 61 }, (_, i) => ({ h: i % 12 === 6 ? '24px' : i % 3 === 0 ? '13px' : '7px', o: i % 12 === 6 ? '.8' : '.26' })), gapsV: A('gaps').map((g, i) => ({ ...g, at: [0.1, 0.36, 0.62][i] || 0.8 })),
+      ...D, rivals: A('rivals').filter(r => r.k === 'Gap'), tw, tw48, gapsV: A('gaps').map((g, i) => ({ ...g, at: [0.1, 0.36, 0.62][i] || 0.8 })),
       formsV: [...A('forms'), { k: 'PETS', img: 'assets/nsd/n03.png', d: '', who: 'Your pets are your companion too!' }].map((f, i) => ({ ...f, n: '0' + (i + 1), i, a: (i * 72) + 'deg', tk: ['24%', '5%', '5%', '12%'][i], mk: i === 3 ? 'max-height:423px;-webkit-mask-image:linear-gradient(90deg,transparent 1%,#000 22%),radial-gradient(ellipse 22% 44% at 2% 4%,transparent 82%,#000 100%);mask-image:linear-gradient(90deg,transparent 1%,#000 22%),radial-gradient(ellipse 22% 44% at 2% 4%,transparent 82%,#000 100%);-webkit-mask-composite:source-in;mask-composite:intersect' : '' })),
       orbitPS: s.deepI >= 0 ? 'paused' : 'running', mapMove: e => { const el = e.currentTarget, r = el.getBoundingClientRect(); el.style.setProperty('--mx', ((e.clientX - r.left) / r.width - 0.5).toFixed(3)); el.style.setProperty('--my', ((e.clientY - r.top) / r.height - 0.5).toFixed(3)); }, sigRef: this.sigRef, pairRef: this.pairRef, phasesV: ph.map((p, i) => ({ ...p, arrow: i < ph.length - 1 ? '→' : '', indent: 'clamp(0px,' + (i * 12) + 'vw,' + (i * 220) + 'px)' })),
       needStates, nb: { r: nOp('r'), s: nOp('s'), x: nOp('x') }, needR: () => this.setState({ needG: 'r' }), needS: () => this.setState({ needG: 's' }), needX: () => this.setState({ needG: 'x' }), needOff: () => this.setState({ needG: '' }),
