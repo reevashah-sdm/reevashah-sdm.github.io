@@ -25,6 +25,8 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #ff91
 .prc:hover .stk::before,.prc:focus .stk::before{opacity:1}.prc:hover .sm,.prc:focus .sm{animation:prsm 2.4s ease-out infinite}@keyframes prsm{0%{stroke-dashoffset:90;opacity:0}25%{opacity:1}100%{stroke-dashoffset:0;opacity:0}}@media(prefers-reduced-motion:reduce){.prc:hover .sm,.prc:focus .sm{animation:none;opacity:.6;stroke-dashoffset:0}}
 .rlab{writing-mode:vertical-rl;transform:rotate(180deg);max-height:78vh;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;margin-right:6px;padding:10px 3px;border-radius:6px;background:rgba(18,10,12,.72);font-size:13px;font-weight:600;letter-spacing:.02em;color:#f6efeb}.rlab:empty{display:none}.rlab span{margin-bottom:8px;font-weight:700;color:#ff914d}.rk{position:relative;display:flex;align-items:center;justify-content:flex-end;width:26px;height:14px;cursor:pointer;pointer-events:auto}.rk i{display:block;width:10px;height:2px;background:rgba(246,239,235,.42);transition:width .3s,background .3s}.rk.past i{background:#ff914d}.rk.on i{width:24px;height:3px;background:#ff914d;box-shadow:0 0 8px #ff914d}.rk:hover i{width:18px;background:#fff}.rk.on:hover i{width:24px}.rt{position:absolute;right:100%;top:50%;transform:translateY(-50%);padding:5px 12px;border-radius:999px;background:rgba(18,10,12,.94);font-size:12px;font-weight:600;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s}.rk:hover .rt,.rk:focus-visible .rt{opacity:1}
 @media(max-width:700px){.npbar nav{display:none!important}.rlab{margin-right:0;padding:8px 0;background:none;font-size:11px;line-height:14px}}
+.apw{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px clamp(24px,4vw,64px);align-items:center;padding:clamp(56px,7vw,110px) 0}.apl{display:flex;flex-direction:column;margin-top:clamp(14px,2vw,26px)}.apb{display:flex;flex-direction:column;gap:2px;padding:clamp(10px,1.1vw,15px) 0 clamp(10px,1.1vw,15px) 16px;border-left:2px solid rgba(255,145,77,.25);text-align:left;cursor:pointer;opacity:.62;transition:opacity .25s,border-color .25s}.apb.on{opacity:1;border-left-color:#ff914d}.apb:hover{opacity:1}.apb b{font-size:clamp(18px,1.8vw,26px);font-weight:600;letter-spacing:-.02em;line-height:1.15}.apb span{font-size:14px;color:#ffd2b0}.app{justify-self:center;height:min(76vh,640px);aspect-ratio:500/1038;filter:drop-shadow(0 24px 50px rgba(255,60,40,.35))}.app video{display:block;width:100%;height:100%;object-fit:cover;border-radius:15%/7.2%}
+@media(max-width:820px){.apw{grid-template-columns:minmax(0,1fr)}.app{height:min(68vh,540px)}}
 .r5{display:grid;grid-template-columns:repeat(5,minmax(0,1fr))}.pr{display:grid;grid-template-columns:clamp(92px,8vw,116px) minmax(0,1fr);gap:12px;align-items:baseline;padding:clamp(9px,1vw,14px) 0;border-top:1px solid rgba(255,145,77,.28);transition:opacity .3s}.pr:hover{opacity:1!important}
 @media(max-width:820px){.r5{grid-template-columns:minmax(0,1fr);gap:18px}}
 .bub{box-sizing:border-box;max-width:min(100%,560px);padding:clamp(14px,1.6vw,22px) clamp(20px,2.2vw,32px);font-size:clamp(20px,2.2vw,32px);line-height:1.15;letter-spacing:-.02em;font-weight:500}
@@ -684,6 +686,14 @@ a,button{touch-action:manipulation}
   <div data-reveal="" data-delay=".3" style="display:flex;flex-direction:column;gap:8px"><span class="bk" style="font-size:10px;color:#ff914d">Outcome</span><p style="margin:0;padding-bottom:.08em;font-size:clamp(26px,3.9vw,60px);line-height:1.08;letter-spacing:-.035em;font-weight:600;background:linear-gradient(95deg,#ffd2b0,#ff914d 50%,#ff3131);-webkit-background-clip:text;background-clip:text;color:transparent">“I want to come back and talk to you again.”</p></div>
 </div></div>
 </section>
+<section id="t19" data-track="" data-label="Track 19" data-title="The app, playing" data-screen-label="Track 19 · The app" style="position:relative;">
+<div style="max-width:1440px;margin:0 auto;padding-left:clamp(20px,5vw,72px);padding-right:clamp(20px,5vw,72px);box-sizing:border-box">
+<div class="apw">
+  <div style="display:flex;flex-direction:column;gap:14px"><span class="bk">The app, playing</span><h2 class="bh">Belong, <span style="color:#ff914d">in your hand.</span></h2><div class="apl" ref="{{ appList }}"></div></div>
+  <div class="app" ref="{{ appBox }}"></div>
+</div>
+</div>
+</section>
 <!-- OUTRO -->
 <section id="outro" data-track="" data-label="Outro" data-title="Someone out there gets it" data-screen-label="Outro" style="position:relative;overflow:hidden;min-height:max(100vh,820px);box-sizing:border-box;display:flex;flex-direction:column;align-items:center;padding:clamp(84px,13vh,130px) 20px 0;text-align:center">
   <div aria-hidden="true" style="position:absolute;inset:0;overflow:hidden;pointer-events:none;-webkit-mask-image:linear-gradient(transparent,#000 10%,#000 88%,transparent);mask-image:linear-gradient(transparent,#000 10%,#000 88%,transparent)">
@@ -706,7 +716,7 @@ a,button{touch-action:manipulation}
 class Component extends DCLogic {
   state = { ready: !!window.PORTFOLIO_DATA, dim: 0, arch: 0, grp: 2, prof: 1, lvl: 0, bp: -1, stB: 4, playing: true, tl: false, recStep: -1, rec: 'idle', needG: '', drv: -1, deepI: -1 };
   sigRef = React.createRef(); pairRef = React.createRef(); rootRef = React.createRef(); openRef = React.createRef(); starRef = React.createRef(); horRef = React.createRef(); barRef = React.createRef(); skyRef = React.createRef(); neb1 = React.createRef(); neb2 = React.createRef();
-  open1 = React.createRef(); open2 = React.createRef(); openHint = React.createRef(); railRef = React.createRef(); railLab = React.createRef();
+  open1 = React.createRef(); open2 = React.createRef(); openHint = React.createRef(); railRef = React.createRef(); railLab = React.createRef(); appBox = React.createRef(); appList = React.createRef();
   memoTxt = React.createRef(); memoBar = React.createRef(); archRef = React.createRef(); recRef = React.createRef(); syncRef = React.createRef(); syncLab = React.createRef();
   TR = [
     ['intro', '00', 'Intro', 'Stars don’t talk back'], ['t01', '01', 'Side A · Listening', 'How did we reach here?'], ['t02', '02', 'Side A · Listening', 'Belong.'],
@@ -715,7 +725,7 @@ class Component extends DCLogic {
     ['interlude', '—', 'Interlude', 'Design question'], ['t09', '09', 'Side B · Making', 'Music as an anchor'], ['t10', '10', 'Side B · Making', 'Storytelling as an anchor'],
     ['t12', '12', 'Side B · Making', 'Where Belong sits'], ['t13', '13', 'Side C · Building', 'Letting it out in the universe'],
     ['t14', '14', 'Side C · Building', 'Service ecosystem'], ['t15', '15', 'Side C · Building', 'Above and below the line'], ['t16', '16', 'Side C · Building', 'Profile building'],
-    ['t17', '17', 'Side C · Building', 'Private Room'], ['t18', '18', 'Side C · Building', 'Recording Room'], ['outro', '∞', 'Outro', 'Someone out there gets it']
+    ['t17', '17', 'Side C · Building', 'Private Room'], ['t18', '18', 'Side C · Building', 'Recording Room'], ['t19', '19', 'Side C · Building', 'The app, playing'], ['outro', '∞', 'Outro', 'Someone out there gets it']
   ].map(([id, n, s, t]) => ({ id, n, s, t }));
   NS = [['UNSEEN', 'Someone who notices them', 26, 27, 'r'], ['UNHEARD', 'Someone who listens', 9, 37, 'r'], ['MISUNDERSTOOD', 'Someone who ‘gets’ them', 32, 44, 'r'], ['UNIMPORTANT', 'Someone who chooses them', 14, 58, 'r'],
     ['DISCONNECTED', 'Someone who shares their world', 54, 25, 's'], ['UNSAFE', 'Someone they can trust', 74, 32, 's'], ['EMOTIONALLY OVERLOADED', 'Someone who helps regulate', 78, 47, 's'],
@@ -743,7 +753,7 @@ class Component extends DCLogic {
       nodes.forEach(n => { const f = document.createDocumentFragment(); n.textContent.split(/(\s+)/).forEach(p => { if (!p) return; if (/^\s+$/.test(p)) { f.appendChild(document.createTextNode(p)); return; } const s = document.createElement('span'); s.textContent = p; s.setAttribute('data-w', ''); s.style.opacity = '.2'; s.style.transition = 'opacity .3s'; f.appendChild(s); }); n.parentNode.replaceChild(f, n); });
       el._ws = null; el._lit = -1;
     });
-    this.lyrics = r.querySelectorAll('[data-lyric]'); this.tracks = Array.from(r.querySelectorAll('[data-track]'));
+    this.lyrics = r.querySelectorAll('[data-lyric]'); this.tracks = Array.from(r.querySelectorAll('[data-track]')); this.appBuild();
     this.parEls = r.querySelectorAll('[data-par],[data-px],[data-zoom]'); this.pinEls = r.querySelectorAll('[data-pin]'); this.progEls = r.querySelectorAll('[data-prog]');
   }
   tick() {
@@ -892,6 +902,14 @@ class Component extends DCLogic {
     ctx.globalAlpha = 1;
   }
   goTo(id) { const el = document.getElementById(id); if (el) scrollTo({ top: el.getBoundingClientRect().top + scrollY + 2, behavior: 'smooth' }); }
+  appBuild() { const box = this.appBox.current, list = this.appList.current; if (!box || !list || box.firstChild) return;
+    const M = [['Find your voice', 'Onboarding and the voice phrase'], ['Explore the constellation', 'The stars you can tap'], ['Private Room', 'A two-person space'], ['Recording Room', 'Ends on “Your voice is out there”']];
+    const v = document.createElement('video'), src = i => 'assets/nsd/app-' + (i + 1); let cur = 0, seen = false; v.muted = true; v.defaultMuted = true; v.playsInline = true; v.preload = 'none'; v.setAttribute('playsinline', ''); v.setAttribute('aria-label', 'Screen recording of the Belong app'); v.poster = src(0) + '.jpg';
+    const auto = !matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const set = (i, go) => { cur = i; [...list.children].forEach((b, k) => { b.classList.toggle('on', k === i); b.setAttribute('aria-pressed', k === i ? 'true' : 'false'); }); v.poster = src(i) + '.jpg'; v.src = src(i) + '.mp4'; if (go) { const p = v.play(); if (p) p.catch(() => {}); } };
+    M.forEach((m, i) => { const b = document.createElement('button'), t = document.createElement('b'), d = document.createElement('span'); b.className = 'apb'; t.textContent = m[0]; d.textContent = m[1]; b.append(t, d); b.onclick = () => { clearTimeout(this.appT); this.appT = 0; set(i, true); }; list.appendChild(b); });
+    box.appendChild(v); list.children[0].classList.add('on'); const fin = () => { if (this.appT) return; this.appT = setTimeout(() => { this.appT = 0; if (seen) set((cur + 1) % M.length, true); }, cur === M.length - 1 ? 2400 : 500); }; v.onended = fin; setInterval(() => { if (seen && v.duration && v.currentTime >= v.duration - 0.15) fin(); }, 250);
+    new IntersectionObserver(es => { const on = es[0].isIntersecting; seen = on; if (on && auto) { if (!v.currentSrc) set(cur, true); else { const p = v.play(); if (p) p.catch(() => {}); } } else if (!on) { clearTimeout(this.appT); this.appT = 0; v.pause(); } }, { threshold: 0.35 }).observe(box); }
   railSet(cur) { const R = this.railRef.current, arr = this.tracks || []; if (!R) return;
     if (R.childElementCount !== arr.length) { R.textContent = ''; arr.forEach(el => { const l = el.dataset.label, b = document.createElement('button'), t = document.createElement('span'); b.className = 'rk'; b.setAttribute('aria-label', l + ': ' + el.dataset.title); t.className = 'rt'; t.textContent = el.dataset.title; b.append(t, document.createElement('i')); b.onclick = () => scrollTo({ top: el.getBoundingClientRect().top + scrollY + 2, behavior: 'smooth' }); R.appendChild(b); }); }
     const L = this.railLab.current; if (L) { L.textContent = ''; if (cur) { const n = document.createElement('span'); n.textContent = cur.dataset.label; L.append(n, cur.dataset.title); } }
@@ -950,7 +968,7 @@ class Component extends DCLogic {
       holdDown: e => { this.hold = true; this.hp = { x: e.clientX, y: e.clientY }; this.lastRing = 0; }, holdMove: e => { this.hp = { x: e.clientX, y: e.clientY }; }, holdUp: () => { this.hold = false; },
       outroMove: e => { const r = e.currentTarget.getBoundingClientRect(); this.sx = (e.clientX - r.left) / r.width; }, onMove: this.onMove, onLeave: this.onLeave,
       rootRef: this.rootRef, openRef: this.openRef, starRef: this.starRef, horRef: this.horRef, barRef: this.barRef, skyRef: this.skyRef, neb1: this.neb1, neb2: this.neb2, open1: this.open1, open2: this.open2, openHint: this.openHint,
-      railRef: this.railRef, railLab: this.railLab, memoTxt: this.memoTxt, memoBar: this.memoBar, archRef: this.archRef, recRef: this.recRef, syncRef: this.syncRef, syncLab: this.syncLab
+      railRef: this.railRef, railLab: this.railLab, appBox: this.appBox, appList: this.appList, memoTxt: this.memoTxt, memoBar: this.memoBar, archRef: this.archRef, recRef: this.recRef, syncRef: this.syncRef, syncLab: this.syncLab
     };
   }
 }
