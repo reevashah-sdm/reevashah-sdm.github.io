@@ -96,24 +96,6 @@ a{color:var(--color-accent-700)}a:hover{color:var(--color-accent)}
   </div>
 </section>
 
-<section data-scene="market" data-bg="#f3f2f2" data-chapter="The Market" style="height:240vh;position:relative">
-  <div style="position:sticky;top:0;height:100svh;overflow:hidden">
-    <div style="position:absolute;right:-6vw;top:50%;width:min(58vw,700px);aspect-ratio:1/1;transform:translateY(-50%) scale(calc(0.6 + var(--p,0) * 0.5)) rotate(calc(var(--p,0) * 200deg))">
-      <img src="assets/p14_8.png" alt="" style="width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 40px 50px rgba(32,30,29,.22))">
-    </div>
-    <sc-for list="{{ trends }}" as="t" hint-placeholder-count="5">
-      <div style="position:absolute;right:{{ t.right }};top:{{ t.top }};padding:12px 22px;border-radius:999px;background:rgba(255,255,255,.82);backdrop-filter:blur(10px);box-shadow:0 10px 30px rgba(32,30,29,.08);font-size:clamp(14px,1.2vw,17px);font-weight:500;white-space:nowrap;opacity:clamp(0, (var(--p,0) - {{ t.th }}) * 8, 1);transform:translateY(calc((1 - clamp(0, (var(--p,0) - {{ t.th }}) * 8, 1)) * 24px))">{{ t.label }}</div>
-    </sc-for>
-    <div style="position:absolute;left:clamp(20px,4vw,56px);top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:2vh;max-width:56vw">
-      <div style="font-size:12px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-neutral-600)">The market · India</div>
-      <div ref="{{ yearRef }}" style="font-family:var(--font-big);font-size:clamp(96px,15vw,270px);font-weight:600;font-stretch:70%;letter-spacing:-0.005em;line-height:0.85">2025</div>
-      <div style="font-size:clamp(32px,4.2vw,72px);font-weight:500;letter-spacing:-0.03em;line-height:1;color:var(--color-accent);font-family:var(--font-big);font-stretch:70%;font-weight:600;letter-spacing:-0.005em">₹<span ref="{{ inrRef }}">1,16,706</span> crore</div>
-      <div style="font-size:clamp(15px,1.3vw,19px);color:var(--color-neutral-700)">US$ <span ref="{{ usdRef }}">13.58</span> billion · 6.80% CAGR · biscuit, cookies and crackers</div>
-    </div>
-    <div style="position:absolute;left:clamp(20px,4vw,56px);bottom:28px;font-size:12px;color:var(--color-neutral-600)">Source: ibef.org</div>
-  </div>
-</section>
-
 <section data-bg="#201e1d" data-dark="1" data-chapter="Who owns the biscuit" style="position:relative;min-height:100svh;color:#f3f2f2;padding:18vh clamp(20px,4vw,56px) 14vh;display:flex;flex-wrap:wrap;align-items:center;gap:6vw">
   <div onMouseMove="{{ onPieMove }}" onClick="{{ onPieMove }}" style="position:relative;width:min(520px,84vw);aspect-ratio:1/1;flex:none;cursor:crosshair">
     {{ pie }}
@@ -204,15 +186,6 @@ a{color:var(--color-accent-700)}a:hover{color:var(--color-accent)}
  </div>
 </section>
 
-<section data-bg="#f3f2f2" data-chapter="The Brand" style="position:relative;padding:22vh clamp(20px,4vw,56px) 10vh">
-  <div style="font-size:12px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-neutral-600);margin-bottom:3vh">The wordmark · move across it</div>
-  <div onMouseMove="{{ onMarkMove }}" style="cursor:pointer;transform:translateX(calc(var(--mx,0) * 8px))">{{ brandMark }}</div>
-  <div style="margin-top:4vh;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:baseline">
-    <div style="font-size:clamp(20px,2vw,30px);font-weight:500;letter-spacing:-0.02em">Nutrition On The Go</div>
-    <div style="font-size:14px;color:var(--color-neutral-700)">Irreverant, Energetic, Cheeky and Confident.</div>
-  </div>
-</section>
-
 <section data-bg="#ec3013" data-chapter="The Voice" style="position:relative;min-height:100svh;overflow:hidden;display:flex;flex-direction:column;padding:16vh clamp(20px,4vw,56px) 0">
   <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:12px;margin-bottom:6vh">
     <div style="font-size:12px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;opacity:.8">The voice · the witty wingman</div>
@@ -295,117 +268,6 @@ a{color:var(--color-accent-700)}a:hover{color:var(--color-accent)}
 </section>
 
 
-
-<section data-scene="prism" data-bg="#f3f2f2" data-chapter="Identity Prism" style="position:relative;height:420vh;color:var(--color-text)">
-  <div style="position:sticky;top:0;height:100svh;overflow:hidden;--f:calc(clamp(0, (var(--p,0) - 0.1) / 0.8, 0.9999) * 6);--act:clamp(0, (var(--p,0) - 0.08) * 14, 1);--o0:clamp(0, min((var(--f) - 0) * 5, (1 - var(--f)) * 5), 1);--o1:clamp(0, min((var(--f) - 1) * 5, (2 - var(--f)) * 5), 1);--o2:clamp(0, min((var(--f) - 2) * 5, (3 - var(--f)) * 5), 1);--o3:clamp(0, min((var(--f) - 3) * 5, (4 - var(--f)) * 5), 1);--o4:clamp(0, min((var(--f) - 4) * 5, (5 - var(--f)) * 5), 1);--o5:clamp(0, (var(--f) - 5) * 5, 1);">
-    <div style="position:absolute;left:clamp(20px,4vw,56px);right:clamp(20px,4vw,56px);top:10vh;display:flex;justify-content:space-between;align-items:baseline;border-top:2px solid var(--color-text);padding-top:14px">
-      <span style="font-size:12px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase">Brand Identity Prism</span>
-      <span style="font-size:14px;color:var(--color-neutral-600)">One name, split into six facets.</span>
-    </div>
-    <div style="position:absolute;left:clamp(20px,4vw,56px);right:clamp(20px,4vw,56px);top:19vh;--fs:min(14.2vw,25vh);--bh:calc(var(--fs) * 0.8 / 6);height:calc(6 * var(--bh) + 6vh)">
-      <div style="position:absolute;left:0;right:0;top:calc(0 * var(--bh) + 0 * var(--act) * 1.2vh);height:var(--bh);overflow:hidden;opacity:calc(1 - var(--act) * 0.82 * (1 - var(--o0)));transform:translateX(calc(var(--o0) * -3vw))">
-        <div style="position:absolute;left:0;top:calc(0 * var(--bh) * -1);font-size:var(--fs);font-weight:800;letter-spacing:-0.06em;line-height:.8;white-space:nowrap;color:var(--color-text);font-family:var(--font-big);font-stretch:70%;font-weight:600;letter-spacing:-0.005em">OATMYGOD!</div>
-        <div style="position:absolute;left:0;top:calc(0 * var(--bh) * -1);font-size:var(--fs);font-weight:800;letter-spacing:-0.06em;line-height:.8;white-space:nowrap;color:var(--color-accent);opacity:var(--o0);font-family:var(--font-big);font-stretch:70%;font-weight:600;letter-spacing:-0.005em">OATMYGOD!</div>
-      </div>
-      <div style="position:absolute;left:0;right:0;top:calc(1 * var(--bh) + 1 * var(--act) * 1.2vh);height:var(--bh);overflow:hidden;opacity:calc(1 - var(--act) * 0.82 * (1 - var(--o1)));transform:translateX(calc(var(--o1) * 3vw))">
-        <div style="position:absolute;left:0;top:calc(1 * var(--bh) * -1);font-size:var(--fs);font-weight:800;letter-spacing:-0.06em;line-height:.8;white-space:nowrap;color:var(--color-text);font-family:var(--font-big);font-stretch:70%;font-weight:600;letter-spacing:-0.005em">OATMYGOD!</div>
-        <div style="position:absolute;left:0;top:calc(1 * var(--bh) * -1);font-size:var(--fs);font-weight:800;letter-spacing:-0.06em;line-height:.8;white-space:nowrap;color:var(--color-accent);opacity:var(--o1);font-family:var(--font-big);font-stretch:70%;font-weight:600;letter-spacing:-0.005em">OATMYGOD!</div>
-      </div>
-      <div style="position:absolute;left:0;right:0;top:calc(2 * var(--bh) + 2 * var(--act) * 1.2vh);height:var(--bh);overflow:hidden;opacity:calc(1 - var(--act) * 0.82 * (1 - var(--o2)));transform:translateX(calc(var(--o2) * -3vw))">
-        <div style="position:absolute;left:0;top:calc(2 * var(--bh) * -1);font-size:var(--fs);font-weight:800;letter-spacing:-0.06em;line-height:.8;white-space:nowrap;color:var(--color-text);font-family:var(--font-big);font-stretch:70%;font-weight:600;letter-spacing:-0.005em">OATMYGOD!</div>
-        <div style="position:absolute;left:0;top:calc(2 * var(--bh) * -1);font-size:var(--fs);font-weight:800;letter-spacing:-0.06em;line-height:.8;white-space:nowrap;color:var(--color-accent);opacity:var(--o2);font-family:var(--font-big);font-stretch:70%;font-weight:600;letter-spacing:-0.005em">OATMYGOD!</div>
-      </div>
-      <div style="position:absolute;left:0;right:0;top:calc(3 * var(--bh) + 3 * var(--act) * 1.2vh);height:var(--bh);overflow:hidden;opacity:calc(1 - var(--act) * 0.82 * (1 - var(--o3)));transform:translateX(calc(var(--o3) * 3vw))">
-        <div style="position:absolute;left:0;top:calc(3 * var(--bh) * -1);font-size:var(--fs);font-weight:800;letter-spacing:-0.06em;line-height:.8;white-space:nowrap;color:var(--color-text);font-family:var(--font-big);font-stretch:70%;font-weight:600;letter-spacing:-0.005em">OATMYGOD!</div>
-        <div style="position:absolute;left:0;top:calc(3 * var(--bh) * -1);font-size:var(--fs);font-weight:800;letter-spacing:-0.06em;line-height:.8;white-space:nowrap;color:var(--color-accent);opacity:var(--o3);font-family:var(--font-big);font-stretch:70%;font-weight:600;letter-spacing:-0.005em">OATMYGOD!</div>
-      </div>
-      <div style="position:absolute;left:0;right:0;top:calc(4 * var(--bh) + 4 * var(--act) * 1.2vh);height:var(--bh);overflow:hidden;opacity:calc(1 - var(--act) * 0.82 * (1 - var(--o4)));transform:translateX(calc(var(--o4) * -3vw))">
-        <div style="position:absolute;left:0;top:calc(4 * var(--bh) * -1);font-size:var(--fs);font-weight:800;letter-spacing:-0.06em;line-height:.8;white-space:nowrap;color:var(--color-text);font-family:var(--font-big);font-stretch:70%;font-weight:600;letter-spacing:-0.005em">OATMYGOD!</div>
-        <div style="position:absolute;left:0;top:calc(4 * var(--bh) * -1);font-size:var(--fs);font-weight:800;letter-spacing:-0.06em;line-height:.8;white-space:nowrap;color:var(--color-accent);opacity:var(--o4);font-family:var(--font-big);font-stretch:70%;font-weight:600;letter-spacing:-0.005em">OATMYGOD!</div>
-      </div>
-      <div style="position:absolute;left:0;right:0;top:calc(5 * var(--bh) + 5 * var(--act) * 1.2vh);height:var(--bh);overflow:hidden;opacity:calc(1 - var(--act) * 0.82 * (1 - var(--o5)));transform:translateX(calc(var(--o5) * 3vw))">
-        <div style="position:absolute;left:0;top:calc(5 * var(--bh) * -1);font-size:var(--fs);font-weight:800;letter-spacing:-0.06em;line-height:.8;white-space:nowrap;color:var(--color-text);font-family:var(--font-big);font-stretch:70%;font-weight:600;letter-spacing:-0.005em">OATMYGOD!</div>
-        <div style="position:absolute;left:0;top:calc(5 * var(--bh) * -1);font-size:var(--fs);font-weight:800;letter-spacing:-0.06em;line-height:.8;white-space:nowrap;color:var(--color-accent);opacity:var(--o5);font-family:var(--font-big);font-stretch:70%;font-weight:600;letter-spacing:-0.005em">OATMYGOD!</div>
-      </div>
-    </div>
-    <div style="position:absolute;left:clamp(20px,4vw,56px);right:clamp(20px,4vw,56px);bottom:17vh;display:grid">
-      <div style="grid-area:1/1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:4vw;align-items:end;opacity:var(--o0);transform:translateY(calc((1 - var(--o0)) * 16px))">
-        <div style="display:flex;flex-direction:column;gap:1.4vh">
-          <span style="font-size:14px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--color-accent)">01 / 06</span>
-          <span style="font-size:clamp(40px,5.4vw,96px);font-weight:700;letter-spacing:-0.05em;line-height:.9;font-family:var(--font-big);font-stretch:70%;font-weight:600;letter-spacing:-0.005em">Physique</span>
-        </div>
-        <span style="font-size:clamp(17px,1.4vw,22px);line-height:1.45;color:var(--color-neutral-700);text-wrap:pretty;max-width:42ch">Modern, Sleek and Colour-coded for the diverse series. Rich textures, visible oat chunks, and high quality ingredients visible through the design</span>
-      </div>
-      <div style="grid-area:1/1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:4vw;align-items:end;opacity:var(--o1);transform:translateY(calc((1 - var(--o1)) * 16px))">
-        <div style="display:flex;flex-direction:column;gap:1.4vh">
-          <span style="font-size:14px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--color-accent)">02 / 06</span>
-          <span style="font-size:clamp(40px,5.4vw,96px);font-weight:700;letter-spacing:-0.05em;line-height:.9;font-family:var(--font-big);font-stretch:70%;font-weight:600;letter-spacing:-0.005em">Personality</span>
-        </div>
-        <span style="font-size:clamp(17px,1.4vw,22px);line-height:1.45;color:var(--color-neutral-700);text-wrap:pretty;max-width:42ch">Irreverant, Energetic, Cheeky and Confident. (The “Oat my God” pun itself is amplifying the experience).</span>
-      </div>
-      <div style="grid-area:1/1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:4vw;align-items:end;opacity:var(--o2);transform:translateY(calc((1 - var(--o2)) * 16px))">
-        <div style="display:flex;flex-direction:column;gap:1.4vh">
-          <span style="font-size:14px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--color-accent)">03 / 06</span>
-          <span style="font-size:clamp(40px,5.4vw,96px);font-weight:700;letter-spacing:-0.05em;line-height:.9;font-family:var(--font-big);font-stretch:70%;font-weight:600;letter-spacing:-0.005em">Relationship</span>
-        </div>
-        <span style="font-size:clamp(17px,1.4vw,22px);line-height:1.45;color:var(--color-neutral-700);text-wrap:pretty;max-width:42ch">The Witty Wingman/Friend. The brand doesn’t preach: it provides solutions with a wink. “We know you’re busy, so we packed your breakfast!”</span>
-      </div>
-      <div style="grid-area:1/1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:4vw;align-items:end;opacity:var(--o3);transform:translateY(calc((1 - var(--o3)) * 16px))">
-        <div style="display:flex;flex-direction:column;gap:1.4vh">
-          <span style="font-size:14px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--color-accent)">04 / 06</span>
-          <span style="font-size:clamp(40px,5.4vw,96px);font-weight:700;letter-spacing:-0.05em;line-height:.9;font-family:var(--font-big);font-stretch:70%;font-weight:600;letter-spacing:-0.005em">Culture</span>
-        </div>
-        <span style="font-size:clamp(17px,1.4vw,22px);line-height:1.45;color:var(--color-neutral-700);text-wrap:pretty;max-width:42ch">Authentic Ingredients, Modern Convenience, Mental Health Awareness. Value is placed on productivity and balance.</span>
-      </div>
-      <div style="grid-area:1/1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:4vw;align-items:end;opacity:var(--o4);transform:translateY(calc((1 - var(--o4)) * 16px))">
-        <div style="display:flex;flex-direction:column;gap:1.4vh">
-          <span style="font-size:14px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--color-accent)">05 / 06</span>
-          <span style="font-size:clamp(40px,5.4vw,96px);font-weight:700;letter-spacing:-0.05em;line-height:.9;font-family:var(--font-big);font-stretch:70%;font-weight:600;letter-spacing:-0.005em">Reflection</span>
-        </div>
-        <span style="font-size:clamp(17px,1.4vw,22px);line-height:1.45;color:var(--color-neutral-700);text-wrap:pretty;max-width:42ch">The Hustler/Achiever. Young, urban, multitasking and successful, but still enjoys a moment of indulgence. They are Smart Snacking.</span>
-      </div>
-      <div style="grid-area:1/1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:4vw;align-items:end;opacity:var(--o5);transform:translateY(calc((1 - var(--o5)) * 16px))">
-        <div style="display:flex;flex-direction:column;gap:1.4vh">
-          <span style="font-size:14px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--color-accent)">06 / 06</span>
-          <span style="font-size:clamp(40px,5.4vw,96px);font-weight:700;letter-spacing:-0.05em;line-height:.9;font-family:var(--font-big);font-stretch:70%;font-weight:600;letter-spacing:-0.005em">Self Image</span>
-        </div>
-        <span style="font-size:clamp(17px,1.4vw,22px);line-height:1.45;color:var(--color-neutral-700);text-wrap:pretty;max-width:42ch">“I’m smart, efficient, and I don’t compromise.” I have opted for a treat that fuels my day and aligns with my goals.</span>
-      </div>
-    </div>
-    <div style="position:absolute;left:clamp(20px,4vw,56px);right:clamp(20px,4vw,56px);bottom:5vh;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:clamp(8px,1.4vw,20px)">
-      <div style="position:relative;border-top:2px solid var(--color-neutral-300);padding-top:10px;display:flex;gap:8px;font-size:13px;font-weight:500">
-        <span style="position:absolute;left:0;right:0;top:-2px;height:2px;background:var(--color-accent);transform-origin:left;transform:scaleX(var(--o0))"></span>
-        <span style="font-variant-numeric:tabular-nums;color:var(--color-neutral-500)">01</span>
-        <span style="opacity:calc(0.45 + var(--o0) * 0.55)">Physique</span>
-      </div>
-      <div style="position:relative;border-top:2px solid var(--color-neutral-300);padding-top:10px;display:flex;gap:8px;font-size:13px;font-weight:500">
-        <span style="position:absolute;left:0;right:0;top:-2px;height:2px;background:var(--color-accent);transform-origin:left;transform:scaleX(var(--o1))"></span>
-        <span style="font-variant-numeric:tabular-nums;color:var(--color-neutral-500)">02</span>
-        <span style="opacity:calc(0.45 + var(--o1) * 0.55)">Personality</span>
-      </div>
-      <div style="position:relative;border-top:2px solid var(--color-neutral-300);padding-top:10px;display:flex;gap:8px;font-size:13px;font-weight:500">
-        <span style="position:absolute;left:0;right:0;top:-2px;height:2px;background:var(--color-accent);transform-origin:left;transform:scaleX(var(--o2))"></span>
-        <span style="font-variant-numeric:tabular-nums;color:var(--color-neutral-500)">03</span>
-        <span style="opacity:calc(0.45 + var(--o2) * 0.55)">Relationship</span>
-      </div>
-      <div style="position:relative;border-top:2px solid var(--color-neutral-300);padding-top:10px;display:flex;gap:8px;font-size:13px;font-weight:500">
-        <span style="position:absolute;left:0;right:0;top:-2px;height:2px;background:var(--color-accent);transform-origin:left;transform:scaleX(var(--o3))"></span>
-        <span style="font-variant-numeric:tabular-nums;color:var(--color-neutral-500)">04</span>
-        <span style="opacity:calc(0.45 + var(--o3) * 0.55)">Culture</span>
-      </div>
-      <div style="position:relative;border-top:2px solid var(--color-neutral-300);padding-top:10px;display:flex;gap:8px;font-size:13px;font-weight:500">
-        <span style="position:absolute;left:0;right:0;top:-2px;height:2px;background:var(--color-accent);transform-origin:left;transform:scaleX(var(--o4))"></span>
-        <span style="font-variant-numeric:tabular-nums;color:var(--color-neutral-500)">05</span>
-        <span style="opacity:calc(0.45 + var(--o4) * 0.55)">Reflection</span>
-      </div>
-      <div style="position:relative;border-top:2px solid var(--color-neutral-300);padding-top:10px;display:flex;gap:8px;font-size:13px;font-weight:500">
-        <span style="position:absolute;left:0;right:0;top:-2px;height:2px;background:var(--color-accent);transform-origin:left;transform:scaleX(var(--o5))"></span>
-        <span style="font-variant-numeric:tabular-nums;color:var(--color-neutral-500)">06</span>
-        <span style="opacity:calc(0.45 + var(--o5) * 0.55)">Self Image</span>
-      </div>
-    </div>
-  </div>
-</section>
 
 <section data-scene="fourp" data-bg="#f3f2f2" data-chapter="The 4P’s" ref="{{ fourRef }}" style="position:relative;height:520vh">
   <div style="position:sticky;top:0;height:100svh;overflow:hidden;color:var(--color-text)">
@@ -519,7 +381,7 @@ a{color:var(--color-accent-700)}a:hover{color:var(--color-accent)}
 <section data-scene="launch" data-bg="#ec3013" data-chapter="The Launch" style="position:relative;padding:16vh clamp(20px,4vw,56px) 18vh;color:#f3f2f2">
   <div style="display:flex;flex-direction:column;gap:3vh;margin-bottom:10vh">
     <span style="font-size:12px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#201e1d;border-top:2px solid #201e1d;padding-top:14px">Launch Strategy</span>
-    <span style="font-size:clamp(56px,9vw,170px);font-weight:800;letter-spacing:-0.065em;line-height:.84;font-family:var(--font-big);font-stretch:70%;font-weight:600;letter-spacing:-0.005em">Five moves<br>to lift-off.</span>
+    <span style="font-size:clamp(56px,9vw,170px);font-weight:800;letter-spacing:-0.065em;line-height:.84;font-family:var(--font-big);font-stretch:70%;font-weight:600;letter-spacing:-0.005em">Three moves<br>to lift-off.</span>
   </div>
   <div style="position:relative">
     <span style="position:absolute;left:50%;top:0;bottom:0;width:2px;margin-left:-1px;background:rgba(243,242,242,.35)"></span>
@@ -531,19 +393,8 @@ a{color:var(--color-accent-700)}a:hover{color:var(--color-accent)}
     </div>
   <div data-view="" style="position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:14vw;align-items:center;padding:8vh 0">
     <span style="position:absolute;left:50%;top:50%;width:18px;height:18px;margin:-9px 0 0 -9px;background:#f3f2f2;transform:rotate(45deg) scale(calc(0.4 + clamp(0, var(--v,1) * 1.8, 1) * 0.6))"></span>
-    <div style="grid-column:1;grid-row:1;display:flex;flex-direction:column;gap:2.2vh;opacity:clamp(0, var(--v,1) * 1.8, 1);transform:translateX(calc((1 - clamp(0, var(--v,1) * 1.8, 1)) * -40px))">
-      <span style="font-size:clamp(96px,13vw,220px);font-weight:800;letter-spacing:-0.07em;line-height:.78;color:#201e1d;font-family:var(--font-big);font-stretch:70%;font-weight:600;letter-spacing:-0.005em">01</span>
-      <span style="font-size:clamp(26px,2.8vw,48px);font-weight:700;letter-spacing:-0.04em;line-height:1;color:#f3f2f2;text-wrap:balance">Define & Nail the USP</span>
-      <p style="margin:0;max-width:44ch;font-size:clamp(15px,1.1vw,18px);line-height:1.55;color:#201e1d;text-wrap:pretty">Solidify the brand's core message as the "High-Protein, Delicious, On-The-Go Fuel."</p>
-    </div>
-    <div style="grid-column:2;grid-row:1;display:flex;justify-content:flex-end;align-items:center;transform:none">
-      <div style="background:#fff;padding:12px;width:min(100%,304px);box-sizing:border-box;transform:rotate(calc(-3deg + (1 - clamp(0, var(--v,1) * 1.8, 1)) * -10deg)) translateY(calc((1 - clamp(0, var(--v,1) * 1.8, 1)) * 40px));transition:transform .2s linear;box-shadow:0 30px 50px -28px rgba(32,30,29,.55);opacity:clamp(0, var(--v,1) * 1.8, 1)"><div style="aspect-ratio:1/1;overflow:hidden;background:#fff"><img src="assets/p13_0.png" alt="Define & Nail the USP" style="display:block;width:100%;height:100%;object-fit:contain;"></img></div></div>
-    </div>
-  </div>
-  <div data-view="" style="position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:14vw;align-items:center;padding:8vh 0">
-    <span style="position:absolute;left:50%;top:50%;width:18px;height:18px;margin:-9px 0 0 -9px;background:#f3f2f2;transform:rotate(45deg) scale(calc(0.4 + clamp(0, var(--v,1) * 1.8, 1) * 0.6))"></span>
     <div style="grid-column:2;grid-row:1;display:flex;flex-direction:column;gap:2.2vh;padding-left:2vw;opacity:clamp(0, var(--v,1) * 1.8, 1);transform:translateX(calc((1 - clamp(0, var(--v,1) * 1.8, 1)) * 40px))">
-      <span style="font-size:clamp(96px,13vw,220px);font-weight:800;letter-spacing:-0.07em;line-height:.78;color:#201e1d;font-family:var(--font-big);font-stretch:70%;font-weight:600;letter-spacing:-0.005em">02</span>
+      <span style="font-size:clamp(96px,13vw,220px);font-weight:800;letter-spacing:-0.07em;line-height:.78;color:#201e1d;font-family:var(--font-big);font-stretch:70%;font-weight:600;letter-spacing:-0.005em">01</span>
       <span style="font-size:clamp(26px,2.8vw,48px);font-weight:700;letter-spacing:-0.04em;line-height:1;color:#f3f2f2;text-wrap:balance">Micro-Influencer & Ambassador Seeding</span>
       <p style="margin:0;max-width:44ch;font-size:clamp(15px,1.1vw,18px);line-height:1.55;color:#201e1d;text-wrap:pretty">Send free product boxes to 50-100 micro-influencers (under 25k followers) in the fitness, nutrition, and busy-mom/professional niches.</p>
     </div>
@@ -554,7 +405,7 @@ a{color:var(--color-accent-700)}a:hover{color:var(--color-accent)}
   <div data-view="" style="position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:14vw;align-items:center;padding:8vh 0">
     <span style="position:absolute;left:50%;top:50%;width:18px;height:18px;margin:-9px 0 0 -9px;background:#f3f2f2;transform:rotate(45deg) scale(calc(0.4 + clamp(0, var(--v,1) * 1.8, 1) * 0.6))"></span>
     <div style="grid-column:1;grid-row:1;display:flex;flex-direction:column;gap:2.2vh;opacity:clamp(0, var(--v,1) * 1.8, 1);transform:translateX(calc((1 - clamp(0, var(--v,1) * 1.8, 1)) * -40px))">
-      <span style="font-size:clamp(96px,13vw,220px);font-weight:800;letter-spacing:-0.07em;line-height:.78;color:#201e1d;font-family:var(--font-big);font-stretch:70%;font-weight:600;letter-spacing:-0.005em">03</span>
+      <span style="font-size:clamp(96px,13vw,220px);font-weight:800;letter-spacing:-0.07em;line-height:.78;color:#201e1d;font-family:var(--font-big);font-stretch:70%;font-weight:600;letter-spacing:-0.005em">02</span>
       <span style="font-size:clamp(26px,2.8vw,48px);font-weight:700;letter-spacing:-0.04em;line-height:1;color:#f3f2f2;text-wrap:balance">E-Commerce & Subscription Launch</span>
       <p style="margin:0;max-width:44ch;font-size:clamp(15px,1.1vw,18px);line-height:1.55;color:#201e1d;text-wrap:pretty">Launch the brand's website with a strong introductory offer (e.g., "Launch Bundle: Try All 4 Flavors + Free Shipping") and prominently feature a subscription option ("Never Run Out of Fuel – Save 15%").</p>
     </div>
@@ -576,23 +427,12 @@ a{color:var(--color-accent-700)}a:hover{color:var(--color-accent)}
   <div data-view="" style="position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:14vw;align-items:center;padding:8vh 0">
     <span style="position:absolute;left:50%;top:50%;width:18px;height:18px;margin:-9px 0 0 -9px;background:#f3f2f2;transform:rotate(45deg) scale(calc(0.4 + clamp(0, var(--v,1) * 1.8, 1) * 0.6))"></span>
     <div style="grid-column:2;grid-row:1;display:flex;flex-direction:column;gap:2.2vh;padding-left:2vw;opacity:clamp(0, var(--v,1) * 1.8, 1);transform:translateX(calc((1 - clamp(0, var(--v,1) * 1.8, 1)) * 40px))">
-      <span style="font-size:clamp(96px,13vw,220px);font-weight:800;letter-spacing:-0.07em;line-height:.78;color:#201e1d;font-family:var(--font-big);font-stretch:70%;font-weight:600;letter-spacing:-0.005em">04</span>
+      <span style="font-size:clamp(96px,13vw,220px);font-weight:800;letter-spacing:-0.07em;line-height:.78;color:#201e1d;font-family:var(--font-big);font-stretch:70%;font-weight:600;letter-spacing:-0.005em">03</span>
       <span style="font-size:clamp(26px,2.8vw,48px);font-weight:700;letter-spacing:-0.04em;line-height:1;color:#f3f2f2;text-wrap:balance">Hyper-Local Sampling & Pop-Ups</span>
       <p style="margin:0;max-width:44ch;font-size:clamp(15px,1.1vw,18px);line-height:1.55;color:#201e1d;text-wrap:pretty">Execute high-impact, one-day sampling pop-ups at two key locations: a major local gym/fitness studio and a high-traffic business district/college campus.</p>
     </div>
     <div style="grid-column:1;grid-row:1;display:flex;justify-content:flex-start;align-items:center;transform:none">
       <div style="background:#fff;padding:12px;width:min(100%,304px);box-sizing:border-box;transform:rotate(calc(3deg + (1 - clamp(0, var(--v,1) * 1.8, 1)) * 10deg)) translateY(calc((1 - clamp(0, var(--v,1) * 1.8, 1)) * 40px));transition:transform .2s linear;box-shadow:0 30px 50px -28px rgba(32,30,29,.55);opacity:clamp(0, var(--v,1) * 1.8, 1)"><div style="aspect-ratio:1/1;overflow:hidden;background:#fff"><img src="assets/p13_3.png" alt="Hyper-Local Sampling & Pop-Ups" style="display:block;width:100%;height:100%;object-fit:contain;"></img></div></div>
-    </div>
-  </div>
-  <div data-view="" style="position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:14vw;align-items:center;padding:8vh 0">
-    <span style="position:absolute;left:50%;top:50%;width:18px;height:18px;margin:-9px 0 0 -9px;background:#f3f2f2;transform:rotate(45deg) scale(calc(0.4 + clamp(0, var(--v,1) * 1.8, 1) * 0.6))"></span>
-    <div style="grid-column:1;grid-row:1;display:flex;flex-direction:column;gap:2.2vh;opacity:clamp(0, var(--v,1) * 1.8, 1);transform:translateX(calc((1 - clamp(0, var(--v,1) * 1.8, 1)) * -40px))">
-      <span style="font-size:clamp(96px,13vw,220px);font-weight:800;letter-spacing:-0.07em;line-height:.78;color:#201e1d;font-family:var(--font-big);font-stretch:70%;font-weight:600;letter-spacing:-0.005em">05</span>
-      <span style="font-size:clamp(26px,2.8vw,48px);font-weight:700;letter-spacing:-0.04em;line-height:1;color:#f3f2f2;text-wrap:balance">Digital Retargeting & Feedback Loop</span>
-      <p style="margin:0;max-width:44ch;font-size:clamp(15px,1.1vw,18px);line-height:1.55;color:#201e1d;text-wrap:pretty">Immediately launch retargeting ads to anyone who visited the website or watched the influencer videos. Simultaneously, send a post-purchase survey to all customers.</p>
-    </div>
-    <div style="grid-column:2;grid-row:1;display:flex;justify-content:flex-end;align-items:center;transform:none">
-      <div style="background:#e3e3e3;padding:12px;width:min(100%,304px);box-sizing:border-box;transform:rotate(calc(-3deg + (1 - clamp(0, var(--v,1) * 1.8, 1)) * -10deg)) translateY(calc((1 - clamp(0, var(--v,1) * 1.8, 1)) * 40px));transition:transform .2s linear;box-shadow:0 30px 50px -28px rgba(32,30,29,.55);opacity:clamp(0, var(--v,1) * 1.8, 1)"><div style="aspect-ratio:1/1;overflow:hidden;background:#e3e3e3;display:flex;justify-content:center"><img src="assets/p13_4.png" alt="Digital Retargeting & Feedback Loop" style="display:block;width:100%;height:100%;object-fit:contain"></img></div></div>
     </div>
   </div>
   </div>
@@ -715,7 +555,6 @@ class Component extends DCLogic {
     this.punGo = (i, auto) => { if (!auto) this.setState({ punHover: true }); if (i === this.state.pun) return; clearTimeout(this.punTo); this.setState({ pun: i }); };
     this.persT = setInterval(() => this.setState(s => ({ pHov: ((s.pHov ?? -1) + 1) % 6 })), 1600);
     this.punAuto = setInterval(() => { if (!this.state.punHover) this.punGo((this.state.pun + 1) % 6, true); }, 3200);
-    this.prismT = setInterval(() => { if (Date.now() - (this.prismTouched || 0) > 8000) this.setState(s => ({ prism: (s.prism + 1) % 6 })); }, 4000);
     this.root = document.documentElement;
     this.target = scrollY; this.cur = scrollY;
     this.schedule = () => { if (!this.raf) this.raf = requestAnimationFrame(this.tick); };
