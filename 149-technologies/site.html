@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>149 Technologies</title>
+<style>
+/* The 149 Technologies website as a live page: the real exports at full width, with the
+   prototype's own motion (from the designer's recordings) and working links between pages. */
+:root{color-scheme:light}
+*{box-sizing:border-box}
+html,body{margin:0;background:#FFFFFF}
+body{overflow-x:hidden;-webkit-font-smoothing:antialiased}
+.page{position:relative;width:100%;max-width:2400px;margin:0 auto}
+.page[hidden]{display:none}
+.page>img{display:block;width:100%;height:auto}
+.ov{position:absolute;overflow:hidden}
+.hero-ov video{display:block;width:100%;height:auto}
+.hv img,.cards img{position:absolute;inset:0;width:100%;height:100%;opacity:0;transition:opacity .3s ease-out;pointer-events:none}
+.hv:hover img{opacity:1}
+.hit{position:absolute;z-index:2;display:block}
+.h1:hover~.c1,.h2:hover~.c2{opacity:1}
+.hot{position:absolute;z-index:3;display:block;border-radius:6px;cursor:pointer}
+.hot:focus-visible{outline:2px solid #F37022;outline-offset:2px}
+.fade{position:fixed;inset:0;background:#fff;opacity:0;pointer-events:none;transition:opacity .22s;z-index:10}
+.fade.on{opacity:1}
+</style>
+</head>
+<body>
+
+<!-- HOME (export 2400 x 8346) -->
+<main class="page" id="home" aria-label="Home">
+  <img src="screens/home.jpg" alt="149 Technologies home page">
+  <div class="ov hero-ov" style="left:0;top:.767%;width:100%;height:12%"><video src="screens/hero.mp4" muted playsinline preload="auto" aria-label="Hero animation: the 149 mark builds into Right to good health"></video></div>
+  <div class="ov hv" style="left:4.104%;top:38.866%;width:91.754%;height:3.783%"><img src="screens/hv_row1.jpg" alt=""></div>
+  <div class="ov hv" style="left:4.104%;top:42.873%;width:91.754%;height:3.783%"><img src="screens/hv_row2.jpg" alt=""></div>
+  <div class="ov cards" style="left:36.45%;top:59.023%;width:61.588%;height:10.536%">
+    <i class="hit h1" style="left:3.73%;top:7.12%;width:44.66%;height:91.6%"></i>
+    <i class="hit h2" style="left:50.51%;top:7.12%;width:44.75%;height:91.6%"></i>
+    <img class="c1" src="screens/hv_card1.jpg" alt="">
+    <img class="c2" src="screens/hv_card2.jpg" alt="">
+  </div>
+</main>
+
+<!-- ABOUT US (export 2400 x 9528) -->
+<main class="page" id="about" aria-label="About Us" hidden>
+  <img src="screens/about.jpg" alt="149 Technologies About Us page">
+</main>
+
+<div class="fade" id="fade"></div>
+
+<script>
+(function(){
+  const pages={home:document.getElementById('home'),about:document.getElementById('about')};
+  const PH={home:8346,about:9528};
+  /* links on the exports (export px: x, y, w, h, target page, label) — only designed pages are linked */
+  const LINKS={
+    home:[[90,40,220,110,'home','149 logo'],[795,65,150,60,'about','About Us'],[1420,4695,250,80,'about','Know More'],
+          [100,7460,320,130,'home','Footer logo'],[90,7813,360,46,'home','Footer: Home'],[90,7873,360,46,'about','Footer: About Us']],
+    about:[[90,40,220,110,'home','149 logo'],[795,65,150,60,'about','About Us'],[1050,480,110,60,'home','Breadcrumb: Home'],
+          [100,8660,320,130,'home','Footer logo'],[90,8995,360,46,'home','Footer: Home'],[90,9055,360,46,'about','Footer: About Us']]
+  };
+  Object.entries(LINKS).forEach(([pg,list])=>list.forEach(([x,y,w,h,to,label])=>{
+    const a=document.createElement('a'); a.className='hot'; a.href='#'+to; a.setAttribute('aria-label',label);
+    Object.assign(a.style,{left:x/24+'%',top:y/PH[pg]*100+'%',width:w/24+'%',height:h/PH[pg]*100+'%'});
+    a.addEventListener('click',e=>{ if(to===current){ e.preventDefault(); scrollTo({top:0,behavior:'smooth'}); } });
+    pages[pg].appendChild(a);
+  }));
+
+  /* hero: plays, holds on the final state, plays again */
+  const v=pages.home.querySelector('video'); let hold=null;
+  const play=()=>{ const p=v.play(); if(p&&p.catch) p.catch(()=>{}); };
+  v.addEventListener('ended',()=>{ hold=setTimeout(()=>{ hold=null; v.currentTime=0; play(); },2200); });
+
+  /* routing: #home / #about, with a quick fade like a page load */
+  const fade=document.getElementById('fade');
+  let current=null;
+  function show(p,animate){
+    if(!pages[p]) p='home';
+    if(p===current){ scrollTo({top:0,behavior:'smooth'}); return; }
+    const swap=()=>{
+      Object.entries(pages).forEach(([k,el])=>el.hidden=k!==p);
+      document.title=p==='about'?'About Us | 149 Technologies':'149 Technologies';
+      scrollTo(0,0); current=p;
+      if(p==='home'){ clearTimeout(hold); hold=null; v.currentTime=0; play(); } else v.pause();
+      setTimeout(()=>fade.classList.remove('on'),40);
+    };
+    if(animate){ fade.classList.add('on'); setTimeout(swap,220); } else swap();
+  }
+  addEventListener('hashchange',()=>show(location.hash.slice(1),true));
+  show(location.hash.slice(1)||'home',false);
+})();
+</script>
+</body>
+</html>

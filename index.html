@@ -89,7 +89,8 @@ body{margin:0;background:#161412}*{box-sizing:border-box}html{scroll-behavior:sm
 
 <section id="work" style="margin-top:clamp(90px,10cqw,140px);background:#F4EFE6;color:#1F1C1A;padding:clamp(56px,7cqw,90px) clamp(20px,5.5cqw,80px)">
 <div data-reveal="1" style="display:flex;justify-content:space-between;align-items:flex-end;font:500 19px/1 'Familjen Grotesk',sans-serif"><span style="font:400 26px/1 'Caveat Brush',cursive;color:#D42A2E">Selected Work</span></div>
-<div data-reveal="1" style="margin-top:56px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px"><h2 style="margin:0;position:relative;font:400 clamp(40px,6.4cqw,92px)/1.12 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;color:#D42A2E;cursor:default"><sc-for list="{{ workLines }}" as="ln" hint-placeholder-count="2"><span style="display:block"><sc-for list="{{ ln.chars }}" as="c" hint-placeholder-count="8"><span style="white-space:pre">{{ c }}</span></sc-for></span></sc-for></h2></div>
+<div data-reveal="1" style="margin-top:56px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px"><h2 style="margin:0;position:relative;font:400 clamp(40px,6.4cqw,92px)/1.12 'Familjen Grotesk',sans-serif;letter-spacing:-.015em;color:#D42A2E;cursor:default"><sc-for list="{{ workLines }}" as="ln" hint-placeholder-count="2"><span style="display:block"><sc-for list="{{ ln.chars }}" as="c" hint-placeholder-count="8"><span style="white-space:pre">{{ c }}</span></sc-for></span></sc-for></h2>
+<div role="tablist" aria-label="Project type" style="display:flex;flex-wrap:wrap;gap:10px"><sc-for list="{{ tabs }}" as="t" hint-placeholder-count="3"><button type="button" role="tab" aria-selected="{{ t.sel }}" onClick="{{ t.onClick }}" style="display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 22px;border-radius:999px;border:1.5px solid {{ t.bd }};background:{{ t.bg }};color:{{ t.fg }};font:500 17px/1 'Familjen Grotesk',sans-serif;letter-spacing:-.01em;cursor:pointer;transition:background .25s,color .25s,border-color .25s">{{ t.label }}<span style="font:400 13px/1 'Familjen Grotesk',sans-serif;opacity:.7">{{ t.count }}</span></button></sc-for></div></div>
 </section>
 <section style="position:relative;background:#161412">
 <div style="position:absolute;inset:0;z-index:3;pointer-events:none"><div style="position:sticky;top:{{ sqTop }};height:min(60cqw,420px);padding-left:{{ sqLeft }};pointer-events:none">
@@ -224,17 +225,24 @@ const STEPS = [
   { title: 'DESIGN', kicker: 'make it felt', body: 'Then it takes shape: something people notice, remember, and feel before they can explain why.', chips: ['Form', 'Feeling', 'Story', 'Detail'], label: 'image — the outcome', tint: '#D42A2E' },
 ];
 const PROJECTS = [
-  { num: '1', title: 'Hinge to Belong', cat: 'Designed to belong', tint: '#140d17', labelC: 'rgba(244,239,230,.7)', label: '', bgImg: 'url(hinge-to-belong/cover.jpg) 50% 50%/cover', blurb: 'Phase one of a service design project: taking apart Hinge, the dating app designed to be deleted, as a service, on the way to designing Belong.', skills: ['Service Design', 'Service Blueprinting', 'Journey Mapping', 'Systems Thinking'], href: 'hinge-to-belong/' },
-  { num: '2', title: 'Belong', cat: 'Stars don’t talk back', tint: '#0c080b', labelC: 'rgba(244,239,230,.7)', label: '', bgImg: 'url(belong/cover.jpg) 50% 50%/cover', blurb: 'Phase two of the service design project: Belong, meaningful companionship, when you need it.', skills: ['Service Design', 'UX Research', 'Need Validation', 'Service Blueprinting'], href: 'belong/' },
-  { num: '3', title: 'Human Behaviour Study', cat: 'Law & Life', tint: '#5A3A24', labelC: 'rgba(244,239,230,.85)', label: '', hbs: true, bgImg: 'linear-gradient(rgba(30,19,13,.35),rgba(30,19,13,.35)), url(human-behaviour-study/img/photo-corridor-4.png) 50% 40%/cover', blurb: 'The waiting public vs a courtroom that tells them almost nothing. What happens to people while they wait for justice.', skills: ['UX Research', 'Human Behaviour', 'Systems Thinking', 'Service Design'], href: 'human-behaviour-study/' },
-  { num: '4', title: 'Adventure Tourism of India', cat: 'Chalega, nahi chalega', tint: '#1D5BA6', labelC: 'rgba(244,239,230,.7)', label: '', adv: true, bgImg: 'linear-gradient(160deg,#1D5BA6 0%,#12386B 100%)', blurb: "How India's fast-growing adventure tourism industry negotiates safety, and where tourist trust breaks between what is promised and what happens on the ground.", skills: ['UX Research', 'Human Behaviour', 'Systems Thinking', 'Design Strategy'], href: 'adventure-tourism/' },
-  { num: '5', title: 'NOU', cat: 'Wear your narrative', tint: '#2A130B', labelC: 'rgba(244,239,230,.7)', label: '', bgImg: 'url(nou/img/hero.jpg) 50% 50%/cover', blurb: "Brand strategy, identity and UI/UX for a men's footwear label handcrafted in 100% Indian leather.", skills: ['Brand Strategy', 'Visual Identity', 'UI/UX', 'Design Audit'], href: 'nou/' },
-  { num: '6', title: 'Oat My God', cat: 'Breakfast. Upgraded.', tint: '#2F57AE', labelC: 'rgba(244,239,230,.7)', label: '', bgImg: 'url(oat-my-god/cover.jpg) 50% 50%/cover', blurb: 'Brand identity, packaging and launch strategy for a nutrition-packed oat biscuit made for young adults on the go.', skills: ['Brand Strategy', 'Visual Identity', 'Packaging Design', 'Launch Strategy'], href: 'oat-my-god/' },
+  { num: '1', title: 'Hinge to Belong', cat: 'Designed to belong', tint: '#140d17', labelC: 'rgba(244,239,230,.7)', label: '', bgImg: 'url(hinge-to-belong/cover.jpg) 50% 50%/cover', blurb: 'Phase one of a service design project: taking apart Hinge, the dating app designed to be deleted, as a service, on the way to designing Belong.', skills: ['Service Design', 'Service Blueprinting', 'Journey Mapping', 'Systems Thinking'], href: 'hinge-to-belong/', cats: ['research'] },
+  { num: '2', title: 'Belong', cat: 'Stars don’t talk back', tint: '#0c080b', labelC: 'rgba(244,239,230,.7)', label: '', bgImg: 'url(belong/cover.jpg) 50% 50%/cover', blurb: 'Phase two of the service design project: Belong, meaningful companionship, when you need it.', skills: ['Service Design', 'UX Research', 'Need Validation', 'Service Blueprinting'], href: 'belong/', cats: ['research'] },
+  { num: '3', title: 'Human Behaviour Study', cat: 'Law & Life', tint: '#5A3A24', labelC: 'rgba(244,239,230,.85)', label: '', hbs: true, bgImg: 'linear-gradient(rgba(30,19,13,.35),rgba(30,19,13,.35)), url(human-behaviour-study/img/photo-corridor-4.png) 50% 40%/cover', blurb: 'The waiting public vs a courtroom that tells them almost nothing. What happens to people while they wait for justice.', skills: ['UX Research', 'Human Behaviour', 'Systems Thinking', 'Service Design'], href: 'human-behaviour-study/', cats: ['research'] },
+  { num: '4', title: 'Adventure Tourism of India', cat: 'Chalega, nahi chalega', tint: '#1D5BA6', labelC: 'rgba(244,239,230,.7)', label: '', adv: true, bgImg: 'linear-gradient(160deg,#1D5BA6 0%,#12386B 100%)', blurb: "How India's fast-growing adventure tourism industry negotiates safety, and where tourist trust breaks between what is promised and what happens on the ground.", skills: ['UX Research', 'Human Behaviour', 'Systems Thinking', 'Design Strategy'], href: 'adventure-tourism/', cats: ['research'] },
+  { num: '5', title: '149 Technologies', cat: 'Right to good health', tint: '#0B1A19', labelC: 'rgba(244,239,230,.7)', label: '', bgImg: 'url(149-technologies/cover.jpg) 50% 50%/cover', blurb: "How do you make a women's health fund look serious to investors and warm to the women it's for? A 19-screen website: a data-led home, the story behind the name, and a brand mark that builds itself in motion.", skills: ['UI Design', 'Visual Design', 'Interaction Design', 'Figma'], href: '149-technologies/', cats: ['uiux'] },
+  { num: '5', title: 'NOU', cat: 'Wear your narrative', tint: '#2A130B', labelC: 'rgba(244,239,230,.7)', label: '', bgImg: 'url(nou/img/hero.jpg) 50% 50%/cover', blurb: "Brand strategy, identity and UI/UX for a men's footwear label handcrafted in 100% Indian leather.", skills: ['Brand Strategy', 'Visual Identity', 'UI/UX', 'Design Audit'], href: 'nou/', cats: ['uiux', 'branding'] },
+  { num: '6', title: 'Oat My God', cat: 'Breakfast. Upgraded.', tint: '#2F57AE', labelC: 'rgba(244,239,230,.7)', label: '', bgImg: 'url(oat-my-god/cover.jpg) 50% 50%/cover', blurb: 'Brand identity, packaging and launch strategy for a nutrition-packed oat biscuit made for young adults on the go.', skills: ['Brand Strategy', 'Visual Identity', 'Packaging Design', 'Launch Strategy'], href: 'oat-my-god/', cats: ['branding'] },
 ];
-PROJECTS.forEach(p => { p.href = p.href || '#work'; p.skills = p.skills || []; });
+PROJECTS.forEach(p => { p.href = p.href || '#work'; p.skills = p.skills || []; p.cats = p.cats || []; });
+// project tabs: the work section shows one category at a time
+const TABS = [['research', 'Research'], ['uiux', 'UI/UX'], ['branding', 'Branding']];
+const tabFromHash = () => { try { const h = (location.hash || '').replace('#work-', ''); return TABS.some(t => t[0] === h) ? h : null; } catch (e) { return null; } };
 class Component extends DCLogic {
   ls(k, d) { try { return localStorage.getItem(k) || d; } catch (e) { return d; } }
-  state = { device: typeof innerWidth !== 'undefined' && innerWidth < 700 ? 'mobile' : 'desktop', menu: false, act: 0, step: 0, copied: false, note: '' };
+  state = { device: typeof innerWidth !== 'undefined' && innerWidth < 700 ? 'mobile' : 'desktop', menu: false, act: 0, step: 0, copied: false, note: '', tab: tabFromHash() || 'research' };
+  // projects in the selected tab, numbered within the tab
+  list(tab) { return PROJECTS.filter(p => p.cats.includes(tab || this.state.tab)).map((p, i) => ({ ...p, num: String(i + 1) })); }
+  setTab = tab => { if (tab === this.state.tab) return; this.setState({ tab, act: 0, cardFlip: false }); try { history.replaceState(null, '', '#work-' + tab); } catch (e) {} };
   canvasRef = React.createRef(); heroSlotRef = React.createRef(); footSlotRef = React.createRef();
   m = { x: 0, y: 0, nx: 0, ny: 0 }; F = null; clicks = []; flipped = false; flip = 0; kick = 0; sq = 0; sqv = 0; blink = 1; nextBlink = 2;
   rowRefs = PROJECTS.map(() => React.createRef());
@@ -291,7 +299,7 @@ class Component extends DCLogic {
   onMove = e => { const pt = e.touches ? e.touches[0] : e; if (!pt) return; this.m.x = pt.clientX; this.m.y = pt.clientY; this.m.nx = e.clientX / innerWidth * 2 - 1; this.m.ny = -(e.clientY / innerHeight) * 2 + 1; this.overUI = !!(e.target.closest && e.target.closest('a,button')); };
   onClick = e => {
     // a click or tap anywhere on a project row, outside links, buttons and the character, opens that project
-    if (!(e.target.closest && e.target.closest('a,button')) && !this.anyHit()) { const i = this.rowAt(e.clientX, e.clientY); if (i >= 0) { location.href = PROJECTS[i].href; return; } }
+    if (!(e.target.closest && e.target.closest('a,button')) && !this.anyHit()) { const i = this.rowAt(e.clientX, e.clientY); if (i >= 0) { location.href = this.list()[i].href; return; } }
     this.poke && this.poke(e);
   };
   sqRef = React.createRef(); howRef = React.createRef(); footLineRef = React.createRef();
@@ -378,7 +386,7 @@ class Component extends DCLogic {
     }
     const f = this.face, pk = this.peekRef.current, box = this.canvasRef.current, bub = this.bubbleRef.current; if (!f || !pk || !box) return;
     const W = innerWidth, H = innerHeight, mob = W < 700, R = r => r.current && r.current.getBoundingClientRect();
-    const hs = R(this.heroSlotRef), how = R(this.howRef), sq = R(this.sqRef), r0 = R(this.rowRefs[0]), rn = R(this.rowRefs[PROJECTS.length - 1]), fl = R(this.footLineRef);
+    const hs = R(this.heroSlotRef), how = R(this.howRef), sq = R(this.sqRef), r0 = R(this.rowRefs[0]), rn = R(this.rowRefs[this.list().length - 1]), fl = R(this.footLineRef);
     let d = null;
     const hb = R(this.heroRef);
     if (hb && hb.bottom > H * .45) { d = null; }
@@ -426,7 +434,7 @@ class Component extends DCLogic {
     return {
       devices: [['desktop', 'Desktop'], ['mobile', 'Mobile']].map(([k, l]) => ({ label: l, ...btn(s.device === k), onClick: () => { try { localStorage.setItem('reeva-device', k); } catch (e) {} this.setState({ device: k, menu: false }); } })),
       isMobile: mob, isDesktop: !mob,
-      frameW: '100%', frameR: '0px', outerPad: '0px', frameShadow: 'none', canvasRef: this.canvasRef, heroSlotRef: this.heroSlotRef, sqRef: this.sqRef, howRef: this.howRef, footLineRef: this.footLineRef, avatarRef: this.avatarRef, avNote: s.lens || s.lensOn ? "← you're seeing it my way now" : "← that's me", cardRot: s.cardFlip ? 180 : 0, cur: PROJECTS[s.act], ...(this.extraVals ? this.extraVals(s, mob) : {}),
+      frameW: '100%', frameR: '0px', outerPad: '0px', frameShadow: 'none', canvasRef: this.canvasRef, heroSlotRef: this.heroSlotRef, sqRef: this.sqRef, howRef: this.howRef, footLineRef: this.footLineRef, avatarRef: this.avatarRef, avNote: s.lens || s.lensOn ? "← you're seeing it my way now" : "← that's me", cardRot: s.cardFlip ? 180 : 0, cur: this.list()[s.act] || this.list()[0], ...(this.extraVals ? this.extraVals(s, mob) : {}),
       menuOpen: s.menu && mob, toggleMenu: () => this.setState(x => ({ menu: !x.menu })),
       heroRef: this.heroRef, revealRef: this.revealRef, ringRef: this.ringRef, marqRef: this.marqRef, barRef: this.barRef,
       vOn: () => this.setState({ v: true }), vOff: () => this.setState({ v: false }),
@@ -448,8 +456,9 @@ class Component extends DCLogic {
       pause: () => { this.paused = true; }, resume: () => { this.paused = false; },
       sqLeft: mob ? '20px' : 'clamp(20px,12cqw,180px)', rowH: mob ? '720px' : '100vh', rowAlign: mob ? 'flex-end' : 'center',
       textW: mob ? '100%' : 'min(100%,40%)', sqTop: mob ? '80px' : 'calc(50vh - min(30cqw,210px) + 20px)',
-      counter: '0' + (s.act + 1) + ' / 0' + PROJECTS.length,
-      projects: PROJECTS.map((p, i) => ({ ...p, ref: this.rowRefs[i], bg: p.bgImg || stripe(p.tint), op: s.act === i ? 1 : 0, sc: s.act === i ? 1 : 0.96 })),
+      counter: '0' + (s.act + 1) + ' / 0' + this.list().length,
+      projects: this.list().map((p, i) => ({ ...p, ref: this.rowRefs[i], bg: p.bgImg || stripe(p.tint), op: s.act === i ? 1 : 0, sc: s.act === i ? 1 : 0.96 })),
+      tabs: TABS.map(([k, l]) => { const on = s.tab === k; return { label: l, count: this.list(k).length, onClick: () => this.setTab(k), bg: on ? RED : 'transparent', fg: on ? '#F4EFE6' : '#1F1C1A', bd: on ? RED : 'rgba(31,28,26,.25)', sel: on ? 'true' : 'false' }; }),
       copy: () => { try { navigator.clipboard && navigator.clipboard.writeText('contactreeva@gmail.com'); } catch (e) {} this.setState({ copied: true }); clearTimeout(this.ct); this.ct = setTimeout(() => this.setState({ copied: false }), 1800); },
       copyLabel: s.copied ? 'Copied' : 'Copy', copyBg: s.copied ? RED : 'rgba(244,239,230,.12)',
     };
